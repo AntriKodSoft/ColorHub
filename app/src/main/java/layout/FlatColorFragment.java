@@ -11,18 +11,17 @@ import android.view.ViewGroup;
 import cheetatech.com.colorhub.R;
 
 
-public class MaterialColorFragment extends Fragment {
+public class FlatColorFragment extends Fragment {
 
 
     private OnFragmentInteractionListener mListener;
 
-    public MaterialColorFragment() {
+    public FlatColorFragment() {
         // Required empty public constructor
     }
 
-    // TODO: Rename and change types and number of parameters
-    public static MaterialColorFragment newInstance(String param1, String param2) {
-        MaterialColorFragment fragment = new MaterialColorFragment();
+    public static FlatColorFragment newInstance(String param1, String param2) {
+        FlatColorFragment fragment = new FlatColorFragment();
         return fragment;
     }
 
@@ -35,9 +34,10 @@ public class MaterialColorFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_material_color, container, false);
+        return inflater.inflate(R.layout.fragment_flat_color, container, false);
     }
 
+    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
 
     }

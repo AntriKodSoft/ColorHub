@@ -13,6 +13,13 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import cheetatech.com.colorhub.adapters.ViewPagerAdapter;
+import layout.FlatColorFragment;
+import layout.HtmlColorFragment;
+import layout.MaterialColorFragment;
+import layout.MetroColorFragment;
+import layout.SocialColorFragment;
+
 public class MainActivity extends AppCompatActivity {
 
     private  Toolbar toolbar = null;
@@ -28,7 +35,10 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         viewPager = (ViewPager)findViewById(R.id.pager);
+        setUpViewPager(viewPager);
 
+        tabLayout = (TabLayout)findViewById(R.id.tablayout);
+        tabLayout.setupWithViewPager(viewPager);
 
 
 
@@ -42,9 +52,20 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+    public  void setUpViewPager(ViewPager viewPager)
+    {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new MaterialColorFragment(),"Material");
+        adapter.addFragment(new FlatColorFragment(),"Flat");
+        adapter.addFragment(new SocialColorFragment(),"Social");
+        adapter.addFragment(new MetroColorFragment(),"Metro");
+        adapter.addFragment(new HtmlColorFragment(),"Html");
+        viewPager.setAdapter(adapter);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -63,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 
 
 }
