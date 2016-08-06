@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import cheetatech.com.colorhub.adapters.ViewPagerAdapter;
+import cheetatech.com.colorhub.controller.ColorArrayController;
 import layout.FlatColorFragment;
 import layout.HtmlColorFragment;
 import layout.MaterialColorFragment;
@@ -30,9 +31,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ColorArrayController controller = ColorArrayController.getInstance();
+        controller.setResource(getResources());
+        controller.initMaterial();
+        controller.initFlat();
+        controller.initMetro();
+        controller.initSocial();
+
+
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         viewPager = (ViewPager)findViewById(R.id.pager);
         setUpViewPager(viewPager);

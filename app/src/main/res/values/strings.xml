@@ -4,4 +4,226 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string-array name="Planets">
+        <item>Sun</item>
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+
+
+
+    <!-- Flat Colors -->
+
+    <string-array name="FlatColorName">
+        <item>Turquoise</item>
+        <item>Greensea</item>
+        <item>Emerland</item>
+        <item>Nephritis</item>
+        <item>Peterriver</item>
+        <item>Belizehole</item>
+        <item>Amethyst</item>
+        <item>Wisteria</item>
+        <item>Wetasphalt</item>
+        <item>Midnightblue</item>
+        <item>Sunfloser</item>
+        <item>Orange</item>
+        <item>Carrot</item>
+        <item>Pumpkin</item>
+        <item>Alizarin</item>
+        <item>Pomegranate</item>
+        <item>Clouds</item>
+        <item>Silver</item>
+        <item>Aabestos</item>
+        <item>Concrete</item>
+    </string-array>
+
+    <string-array name="FlatColorCode">
+        <item>#1abc9c</item>
+        <item>#16a085</item>
+        <item>#2ecc71</item>
+        <item>#27ae60</item>
+        <item>#3498db</item>
+        <item>#2980b9</item>
+        <item>#9b59b6</item>
+        <item>#8e44ad</item>
+        <item>#34495e</item>
+        <item>#2c3e50</item>
+        <item>#f1c40f</item>
+        <item>#f39c12</item>
+        <item>#e67e22</item>
+        <item>#d35400</item>
+        <item>#e74c3c</item>
+        <item>#c0392b</item>
+        <item>#ecf0f1</item>
+        <item>#bdc3c7</item>
+        <item>#7f8c8d</item>
+        <item>#95a5a6</item>
+    </string-array>
+
+
+
+    <!-- Flat Colors End -->
+
+    <!-- Metro Colors -->
+    <string-array name="MetroColorName">
+        <item>Lime</item>
+        <item>Green</item>
+        <item>Emerald</item>
+        <item>Teal</item>
+        <item>Cyan</item>
+        <item>Cobalt</item>
+        <item>Indigo</item>
+        <item>Violet</item>
+        <item>Pink</item>
+        <item>Magenta</item>
+        <item>Crimson</item>
+        <item>Red</item>
+        <item>Orange</item>
+        <item>Amber</item>
+        <item>Yellow</item>
+        <item>Brown</item>
+        <item>Olive</item>
+        <item>Steel</item>
+        <item>Mauve</item>
+        <item>Sienna</item>
+    </string-array>
+
+
+    <string-array name="MetroColorCode">
+        <item>#a4c400</item>
+        <item>#60a917</item>
+        <item>#008a00</item>
+        <item>#00aba9</item>
+        <item>#1ba1e2</item>
+        <item>#0050ef</item>
+        <item>#6a00ff</item>
+        <item>#aa00ff</item>
+        <item>#f472d0</item>
+        <item>#d80073</item>
+        <item>#a20025</item>
+        <item>#e51400</item>
+        <item>#fa6800</item>
+        <item>#f0a30a</item>
+        <item>#e3c800</item>
+        <item>#825a2c</item>
+        <item>#6d8764</item>
+        <item>#647687</item>
+        <item>#76608a</item>
+        <item>#a0522d</item>
+    </string-array>
+    <!-- Metro Colors End -->
+
+    <!--  Social Colors -->
+
+    <string-array name="SocialColorName">
+
+        <item>Facebook</item>
+        <item>Skype</item>
+        <item>Twitter</item>
+        <item>Wordpress</item>
+        <item>Linkedin</item>
+        <item>Vimeo</item>
+        <item>Tumblr</item>
+        <item>VK</item>
+        <item>Yahoo</item>
+        <item>Slideshare</item>
+        <item>Instagram</item>
+        <item>Google Plus</item>
+        <item>Producthunt</item>
+        <item>Slack</item>
+        <item>Hackernews</item>
+        <item>Dribbble</item>
+        <item>Whatsapp</item>
+        <item>Flickr</item>
+        <item>Wechat</item>
+        <item>Foursquare</item>
+        <item>Medium</item>
+        <item>Vine</item>
+        <item>Behance</item>
+        <item>Snapchat</item>
+    </string-array>
+
+
+    <string-array name="SocialColorCode">
+        <item>#3b5999</item>
+        <item>#00AFF0</item>
+        <item>#55acee</item>
+        <item>#21759b</item>
+        <item>#0077B5</item>
+        <item>#1ab7ea</item>
+        <item>#34465d</item>
+        <item>#4c75a3</item>
+        <item>#410093</item>
+        <item>#0077b5</item>
+        <item>#3f729b</item>
+        <item>#dd4b39</item>
+        <item>#da552f</item>
+        <item>#3aaf85</item>
+        <item>#ff6600</item>
+        <item>#ea4c89</item>
+        <item>#25D366</item>
+        <item>#ff0084</item>
+        <item>#09b83e</item>
+        <item>#f94877</item>
+        <item>#02b875</item>
+        <item>#00b489</item>
+        <item>#131418</item>
+        <item>#FFFC00</item>
+    </string-array>
+
+    <!-- Social Colors End -->
+
+
+
+
+    <!-- Material Color Red -->
+
+    <string-array name="MaterialColorNameRed">
+        <item>RED</item>
+        <item>50</item>
+        <item>100</item>
+        <item>200</item>
+        <item>300</item>
+        <item>400</item>
+        <item>500</item>
+        <item>600</item>
+        <item>700</item>
+        <item>800</item>
+        <item>900</item>
+        <item>A100</item>
+        <item>A200</item>
+        <item>A400</item>
+        <item>A700</item>
+    </string-array>
+
+
+    <string-array name="MaterialColorCodeRed">
+        <item>#f44336</item>
+        <item>#ffebee</item>
+        <item>#ffcdd2</item>
+        <item>#ef9a9a</item>
+        <item>#e57373</item>
+        <item>#ef5350</item>
+        <item>#f44336</item>
+        <item>#e53935</item>
+        <item>#d32f2f</item>
+        <item>#c62828</item>
+        <item>#b71c1c</item>
+        <item>#ff8a80</item>
+        <item>#ff5252</item>
+        <item>#ff1744</item>
+        <item>#d50000</item>
+
+    </string-array>
+
+
+
 </resources>
