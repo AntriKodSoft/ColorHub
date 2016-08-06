@@ -19,7 +19,6 @@
     </string-array>
 
 
-
     <!-- Flat Colors -->
 
     <string-array name="FlatColorName">
@@ -67,7 +66,6 @@
         <item>#7f8c8d</item>
         <item>#95a5a6</item>
     </string-array>
-
 
 
     <!-- Flat Colors End -->
@@ -182,8 +180,6 @@
     <!-- Social Colors End -->
 
 
-
-
     <!-- Material Color Red -->
 
     <string-array name="MaterialColorNameRed">
@@ -223,7 +219,6 @@
         <item>#d50000</item>
 
     </string-array>
-
 
 
 </resources>

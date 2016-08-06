@@ -7,30 +7,63 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
+import java.util.ArrayList;
+
+import cheetatech.com.colorhub.adapters.NavigationBarAdapter;
 import cheetatech.com.colorhub.adapters.ViewPagerAdapter;
 import cheetatech.com.colorhub.controller.ColorArrayController;
+import cheetatech.com.colorhub.drawer.ColorSelect;
 import layout.FlatColorFragment;
+import layout.HomeFragment;
 import layout.HtmlColorFragment;
 import layout.MaterialColorFragment;
 import layout.MetroColorFragment;
 import layout.SocialColorFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener {
 
     private  Toolbar toolbar = null;
     private TabLayout tabLayout = null;
     private ViewPager viewPager = null;
 
+    private DrawerLayout mDrawer = null;
+    private ListView drawerList = null;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+        // nav bar
+        int f = 1;
+        ArrayList<ColorSelect> cselect = new ArrayList<ColorSelect>();
+        for(int i = 0; i < 5 ; i++ )
+            cselect.add(new ColorSelect("Erkan "+f++));
+
+        NavigationBarAdapter adapter = new NavigationBarAdapter(getApplicationContext(),1,cselect);
+
+        mDrawer = (DrawerLayout)findViewById(R.id.drawer_layout);
+        drawerList = (ListView) findViewById(R.id.left_drawer);
+        drawerList.setAdapter(adapter);
+
+        drawerList.setOnItemClickListener(this);
+
+
+
+        // Color init
 
         ColorArrayController controller = ColorArrayController.getInstance();
         controller.setResource(getResources());
@@ -43,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         viewPager = (ViewPager)findViewById(R.id.pager);
         setUpViewPager(viewPager);
@@ -67,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
     public  void setUpViewPager(ViewPager viewPager)
     {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new HomeFragment(),"Home");
         adapter.addFragment(new MaterialColorFragment(),"Material");
         adapter.addFragment(new FlatColorFragment(),"Flat");
         adapter.addFragment(new SocialColorFragment(),"Social");
@@ -97,6 +131,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        mDrawer.closeDrawer(drawerList);
+        Log.e("DRAWER",""+i);
+    }
 }
