@@ -22,7 +22,9 @@ import java.util.ArrayList;
 import cheetatech.com.colorhub.adapters.NavigationBarAdapter;
 import cheetatech.com.colorhub.adapters.ViewPagerAdapter;
 import cheetatech.com.colorhub.controller.ColorArrayController;
+import cheetatech.com.colorhub.defines.MaterialColorInfo;
 import cheetatech.com.colorhub.drawer.ColorSelect;
+import cheetatech.com.colorhub.listeners.ListenerModel;
 import layout.FlatColorFragment;
 import layout.HomeFragment;
 import layout.HtmlColorFragment;
@@ -30,38 +32,21 @@ import layout.MaterialColorFragment;
 import layout.MetroColorFragment;
 import layout.SocialColorFragment;
 
-public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener {
 
-    private  Toolbar toolbar = null;
+    private Toolbar toolbar = null;
     private TabLayout tabLayout = null;
     private ViewPager viewPager = null;
 
     private DrawerLayout mDrawer = null;
     private ListView drawerList = null;
-
+    ArrayList<ColorSelect> cselect = null;
+    private int currentPosition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
-        // nav bar
-        int f = 1;
-        ArrayList<ColorSelect> cselect = new ArrayList<ColorSelect>();
-        for(int i = 0; i < 5 ; i++ )
-            cselect.add(new ColorSelect("Erkan "+f++));
-
-        NavigationBarAdapter adapter = new NavigationBarAdapter(getApplicationContext(),1,cselect);
-
-        mDrawer = (DrawerLayout)findViewById(R.id.drawer_layout);
-        drawerList = (ListView) findViewById(R.id.left_drawer);
-        drawerList.setAdapter(adapter);
-
-        drawerList.setOnItemClickListener(this);
-
-
 
         // Color init
 
@@ -72,17 +57,41 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         controller.initMetro();
         controller.initSocial();
 
+        // nav bar
 
+        //cselect = new ArrayList<ColorSelect>();
+
+        cselect = controller.getMaterialNameColorSelectList();
+        NavigationBarAdapter adapter = new NavigationBarAdapter(getApplicationContext(),1,cselect);
+
+        mDrawer = (DrawerLayout)findViewById(R.id.drawer_layout);
+        drawerList = (ListView) findViewById(R.id.left_drawer);
+        drawerList.setAdapter(adapter);
+        drawerList.setOnItemClickListener(this);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationIcon(R.drawable.ic_action_menu_);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                if(currentPosition != 1) // Material List
+                    cselect.clear();
+                else
+                    cselect = ColorArrayController.getInstance().getMaterialNameColorSelectList();
+                NavigationBarAdapter adapter = new NavigationBarAdapter(getApplicationContext(),1,cselect);
+                drawerList.setAdapter(adapter);
+                mDrawer.openDrawer(drawerList);
+            }
+        });
         viewPager = (ViewPager)findViewById(R.id.pager);
         setUpViewPager(viewPager);
 
         tabLayout = (TabLayout)findViewById(R.id.tablayout);
         tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setOnTabSelectedListener(this);
 
 
 
@@ -134,6 +143,18 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         mDrawer.closeDrawer(drawerList);
-        Log.e("DRAWER",""+i);
+        ListenerModel.getInstance().setListenerIndex(i);
+    }
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+        currentPosition =  tab.getPosition();
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
     }
 }

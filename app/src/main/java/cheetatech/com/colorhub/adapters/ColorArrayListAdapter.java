@@ -2,12 +2,11 @@ package cheetatech.com.colorhub.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -45,7 +44,7 @@ public class ColorArrayListAdapter extends ArrayAdapter<ColorInfo> {
         View view = inflater.inflate(this.resource, parent, false);
         TextView textColorName = (TextView) view.findViewById(R.id.colorName);
         TextView textColorCode = (TextView) view.findViewById(R.id.colorCode);
-        Button btnCopy = (Button) view.findViewById(R.id.buttonCopy);
+        ImageButton btnCopy = (ImageButton) view.findViewById(R.id.buttonCopy);
 
         RelativeLayout layout = (RelativeLayout)view.findViewById(R.id.rootColorLayout);
         if(layout != null)

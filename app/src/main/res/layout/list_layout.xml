@@ -41,15 +41,16 @@
         >
     </TextView>
 
-    <Button
-        android:id="@+id/buttonCopy"
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/buttonCopy"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:text="Copy"
-        android:textSize="30px" >
-    </Button>
+        android:src="@drawable/ic_copy_icon"
+        android:background="@android:color/transparent"
+        />
+
 
 
 

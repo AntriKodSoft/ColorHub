@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.view.LayoutInflater;
 
@@ -48,7 +49,7 @@ public class LazyAdapter extends BaseAdapter {
 
         TextView textColorName = (TextView) view.findViewById(R.id.colorName);
         TextView textColorCode = (TextView) view.findViewById(R.id.colorCode);
-        Button btnCopy = (Button) view.findViewById(R.id.buttonCopy);
+        ImageButton btnCopy = (ImageButton) view.findViewById(R.id.buttonCopy);
 
         textColorCode.setText("Color");
         textColorName.setText("Name");

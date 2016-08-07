@@ -7,12 +7,16 @@ import java.util.ArrayList;
 
 import cheetatech.com.colorhub.R;
 import cheetatech.com.colorhub.defines.ColorInfo;
+import cheetatech.com.colorhub.defines.MaterialColorInfo;
+import cheetatech.com.colorhub.drawer.ColorSelect;
 
 public class ColorArrayController {
     private ArrayList<ColorInfo> materialList = null;
     private ArrayList<ColorInfo> flatList = null;
     private ArrayList<ColorInfo> socialList = null;
     private ArrayList<ColorInfo> metroList = null;
+
+    private ArrayList<MaterialColorInfo> materialColorInfoList = null;
 
     private Resources resources = null;
 
@@ -30,6 +34,7 @@ public class ColorArrayController {
         flatList = new ArrayList<ColorInfo>();
         socialList = new ArrayList<ColorInfo>();
         metroList = new ArrayList<ColorInfo>();
+        materialColorInfoList = new ArrayList<MaterialColorInfo>();
     }
 
     public void setResource(Resources resource)
@@ -41,14 +46,36 @@ public class ColorArrayController {
     {
         if(resources == null)
             return;
-        materialList.clear();
+        materialColorInfoList.clear();
 
-        String[] colorCodes = resources.getStringArray(R.array.MaterialColorCodeRed);
-        String[] colorNames = resources.getStringArray(R.array.MaterialColorNameRed);
-        for(int i = 0; i< colorCodes.length;i++)
-            materialList.add(new ColorInfo(colorNames[i],colorCodes[i]));
+        int[] arrayId = new int[]{
+                R.array.MaterialColorCodeRed,R.array.MaterialColorCodePink ,R.array.MaterialColorCodePurple ,
+                R.array.MaterialColorCodeDeepPurple ,R.array.MaterialColorCodeIndigo ,R.array.MaterialColorCodeBlue ,
+                R.array.MaterialColorCodeLightBlue ,R.array.MaterialColorCodeCyan ,R.array.MaterialColorCodeTeal ,
+                R.array.MaterialColorCodeGreen ,R.array.MaterialColorCodeLightGreen ,R.array.MaterialColorCodeLime ,
+                R.array.MaterialColorCodeYellow ,R.array.MaterialColorCodeAmber ,R.array.MaterialColorCodeOrange ,
+                R.array.MaterialColorCodeDeepOrange ,R.array.MaterialColorCodeBrown ,R.array.MaterialColorCodeGrey ,
+                R.array.MaterialColorCodeBlueGrey
+        };
 
+        String[] colorNames = resources.getStringArray(R.array.MaterialColorCodeName);
+
+        for(int i = 0; i < arrayId.length; i++)
+        {
+            String[] colorCodes = resources.getStringArray(arrayId[i]);
+            ArrayList<ColorInfo> list  = new ArrayList<ColorInfo>();
+            for(int j = 0; j< colorCodes.length;j++)
+                list.add(new ColorInfo(colorNames[j],colorCodes[j]));
+            materialColorInfoList.add(new MaterialColorInfo(list));
+            list.clear();
+        }
     }
+
+    public ArrayList<MaterialColorInfo> getMaterialColorInfoList()
+    {
+        return this.materialColorInfoList;
+    }
+
     public void initFlat()
     {
         if(resources == null)
@@ -80,8 +107,24 @@ public class ColorArrayController {
         String[] colorNames = resources.getStringArray(R.array.MetroColorName);
         for(int i = 0; i< colorCodes.length;i++)
             metroList.add(new ColorInfo(colorNames[i],colorCodes[i]));
+    }
 
+    public ArrayList<String> getMaterialNameList()
+    {
+        ArrayList<String> list = new ArrayList<String>();
+        String[] colorNames = resources.getStringArray(R.array.MaterialColorNames);
+        for(int i = 0; i< colorNames.length;i++)
+            list.add(colorNames[i]);
+        return list;
+    }
 
+    public ArrayList<ColorSelect> getMaterialNameColorSelectList()
+    {
+        ArrayList<ColorSelect> list = new ArrayList<ColorSelect>();
+        String[] colorNames = resources.getStringArray(R.array.MaterialColorNames);
+        for(int i = 0; i< colorNames.length;i++)
+            list.add(new ColorSelect(colorNames[i]));
+        return list;
     }
 
     public void setMaterialList(ArrayList<ColorInfo> list)
@@ -117,6 +160,11 @@ public class ColorArrayController {
     {
         return this.metroList;
     }
+
+
+
+
+
 
 
 }

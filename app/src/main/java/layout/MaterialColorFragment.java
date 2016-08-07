@@ -1,31 +1,27 @@
 package layout;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import cheetatech.com.colorhub.R;
 import cheetatech.com.colorhub.adapters.ColorArrayListAdapter;
-import cheetatech.com.colorhub.adapters.ColorListAdapter;
-import cheetatech.com.colorhub.adapters.LazyAdapter;
 import cheetatech.com.colorhub.controller.ColorArrayController;
 import cheetatech.com.colorhub.defines.ColorInfo;
+import cheetatech.com.colorhub.listeners.ListenerModel;
 
 
-public class MaterialColorFragment extends ListFragment implements AdapterView.OnItemLongClickListener {
+public class MaterialColorFragment extends ListFragment implements AdapterView.OnItemLongClickListener , ListenerModel.OnModelStateListener {
+
+
+    private ArrayList<ColorInfo> colorInfoArrayList = null;
 
     public MaterialColorFragment() {
         // Required empty public constructor
@@ -43,8 +39,15 @@ public class MaterialColorFragment extends ListFragment implements AdapterView.O
     public void onActivityCreated(Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
+        if(colorInfoArrayList == null)
+            colorInfoArrayList = new ArrayList<ColorInfo>();
+
+        ListenerModel.getInstance().setListener(this);
+
+
         ColorArrayController controller  = ColorArrayController.getInstance();
-        ColorArrayListAdapter adapter = new ColorArrayListAdapter(getContext(),R.layout.list_layout,controller.getMaterialList());
+        colorInfoArrayList = controller.getMaterialColorInfoList().get(0).getColorInfoList();
+        ColorArrayListAdapter adapter = new ColorArrayListAdapter(getContext(),R.layout.list_layout,colorInfoArrayList);
         setListAdapter(adapter);
         getListView().setOnItemLongClickListener(this);
     }
@@ -57,5 +60,13 @@ public class MaterialColorFragment extends ListFragment implements AdapterView.O
     public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
         Log.e("TAGG", "SelectedLongListItem : " + i + " : ");
         return false;
+    }
+
+    @Override
+    public void onSelectedColorIndex(int index) {
+        ColorArrayController controller  = ColorArrayController.getInstance();
+        colorInfoArrayList = controller.getMaterialColorInfoList().get(index).getColorInfoList();
+        ColorArrayListAdapter adapter = new ColorArrayListAdapter(getContext(),R.layout.list_layout,colorInfoArrayList);
+        setListAdapter(adapter);
     }
 }
