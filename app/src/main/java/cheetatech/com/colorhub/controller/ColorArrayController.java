@@ -66,6 +66,7 @@ public class ColorArrayController {
             ArrayList<ColorInfo> list  = new ArrayList<ColorInfo>();
             for(int j = 0; j< colorCodes.length;j++)
                 list.add(new ColorInfo(colorNames[j],colorCodes[j]));
+            list.add(new ColorInfo("#000",""));
             materialColorInfoList.add(new MaterialColorInfo(list));
             list.clear();
         }
@@ -85,7 +86,7 @@ public class ColorArrayController {
         String[] colorNames = resources.getStringArray(R.array.FlatColorName);
         for(int i = 0; i< colorCodes.length;i++)
             flatList.add(new ColorInfo(colorNames[i],colorCodes[i]));
-
+        flatList.add(new ColorInfo("#000",""));
     }
     public void initSocial()
     {
@@ -96,6 +97,7 @@ public class ColorArrayController {
         String[] colorNames = resources.getStringArray(R.array.SocialColorName);
         for(int i = 0; i< colorCodes.length;i++)
             socialList.add(new ColorInfo(colorNames[i],colorCodes[i]));
+        socialList.add(new ColorInfo("#000",""));
 
     }
     public void initMetro()
@@ -107,6 +109,7 @@ public class ColorArrayController {
         String[] colorNames = resources.getStringArray(R.array.MetroColorName);
         for(int i = 0; i< colorCodes.length;i++)
             metroList.add(new ColorInfo(colorNames[i],colorCodes[i]));
+        metroList.add(new ColorInfo("#000",""));
     }
 
     public ArrayList<String> getMaterialNameList()

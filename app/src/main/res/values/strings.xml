@@ -40,7 +40,7 @@
         <item>Pomegranate</item>
         <item>Clouds</item>
         <item>Silver</item>
-        <item>Aabestos</item>
+        <item>Asbestos</item>
         <item>Concrete</item>
     </string-array>
 
@@ -205,7 +205,6 @@
 
 
     <!-- Material Color Red -->
-
     <string-array name="MaterialColorCodeName">
         <item>RED</item>
         <item>50</item>

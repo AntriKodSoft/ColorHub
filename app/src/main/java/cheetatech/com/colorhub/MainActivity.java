@@ -1,7 +1,5 @@
 package cheetatech.com.colorhub;
 
-import android.app.ActionBar;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -22,7 +20,7 @@ import java.util.ArrayList;
 import cheetatech.com.colorhub.adapters.NavigationBarAdapter;
 import cheetatech.com.colorhub.adapters.ViewPagerAdapter;
 import cheetatech.com.colorhub.controller.ColorArrayController;
-import cheetatech.com.colorhub.defines.MaterialColorInfo;
+import cheetatech.com.colorhub.defines.BoardEditor;
 import cheetatech.com.colorhub.drawer.ColorSelect;
 import cheetatech.com.colorhub.listeners.ListenerModel;
 import layout.FlatColorFragment;
@@ -32,7 +30,7 @@ import layout.MaterialColorFragment;
 import layout.MetroColorFragment;
 import layout.SocialColorFragment;
 
-public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener {
+public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener  {
 
     private Toolbar toolbar = null;
     private TabLayout tabLayout = null;
@@ -41,6 +39,9 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     private DrawerLayout mDrawer = null;
     private ListView drawerList = null;
     ArrayList<ColorSelect> cselect = null;
+
+    private FloatingActionButton fab = null;
+
     private int currentPosition = 0;
 
     @Override
@@ -57,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         controller.initMetro();
         controller.initSocial();
 
+        // Board
+        BoardEditor.getInstance().setContext(getApplicationContext());
         // nav bar
 
         //cselect = new ArrayList<ColorSelect>();
@@ -95,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
                         .setAction("Action", null).show();
             }
         });
+
     }
 
 
@@ -148,6 +152,8 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         currentPosition =  tab.getPosition();
+        tabLayout.getTabAt(currentPosition).select();
+        viewPager.setCurrentItem(currentPosition);
     }
 
     @Override
@@ -157,4 +163,5 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
     }
+
 }
