@@ -6,8 +6,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
-
-
     <string-array name="Planets">
         <item>Sun</item>
         <item>Mercury</item>
@@ -576,10 +574,6 @@
     </string-array>
 
 
-
-
-
-
     <!-- Html Color Names and Codes -->
 
     <string-array name="HtmlColorName">
@@ -873,5 +867,6 @@
         <item>#FFF0F5</item>
         <item>#FFE4E1</item>
     </string-array>
+    <string name="title_activity_color_picker">ColorPickerActivity</string>
 
 </resources>
