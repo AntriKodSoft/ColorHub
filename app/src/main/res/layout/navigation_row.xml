@@ -12,6 +12,7 @@
         android:id="@+id/colorName"
         android:layout_marginLeft="3dp"
         android:gravity="center_vertical"
+        android:textColor="#FF8C8D99"
         android:layout_gravity="center" />
 
 </LinearLayout>

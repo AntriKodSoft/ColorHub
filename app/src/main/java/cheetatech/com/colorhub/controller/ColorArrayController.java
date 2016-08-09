@@ -15,6 +15,7 @@ public class ColorArrayController {
     private ArrayList<ColorInfo> flatList = null;
     private ArrayList<ColorInfo> socialList = null;
     private ArrayList<ColorInfo> metroList = null;
+    private ArrayList<ColorInfo> htmlList = null;
 
     private ArrayList<MaterialColorInfo> materialColorInfoList = null;
 
@@ -34,7 +35,18 @@ public class ColorArrayController {
         flatList = new ArrayList<ColorInfo>();
         socialList = new ArrayList<ColorInfo>();
         metroList = new ArrayList<ColorInfo>();
+        htmlList = new ArrayList<ColorInfo>();
+
         materialColorInfoList = new ArrayList<MaterialColorInfo>();
+    }
+
+    public void init()
+    {
+        initMaterial();
+        initFlat();
+        initMetro();
+        initSocial();
+        initHtml();
     }
 
     public void setResource(Resources resource)
@@ -121,6 +133,20 @@ public class ColorArrayController {
         return list;
     }
 
+    public void initHtml()
+    {
+        if(resources == null)
+            return;
+        htmlList.clear();
+        String[] colorCodes = resources.getStringArray(R.array.HtmlColorCode);
+        String[] colorNames = resources.getStringArray(R.array.HtmlColorName);
+        for(int i = 0; i< colorCodes.length;i++)
+            htmlList.add(new ColorInfo(colorNames[i],colorCodes[i]));
+        //metroList.add(new ColorInfo("#000",""));
+    }
+
+
+
     public ArrayList<ColorSelect> getMaterialNameColorSelectList()
     {
         ArrayList<ColorSelect> list = new ArrayList<ColorSelect>();
@@ -163,7 +189,14 @@ public class ColorArrayController {
     {
         return this.metroList;
     }
-
+    public void setHtmlList(ArrayList<ColorInfo> list)
+    {
+        this.htmlList = list;
+    }
+    public ArrayList<ColorInfo> getHtmlList()
+    {
+        return this.htmlList;
+    }
 
 
 

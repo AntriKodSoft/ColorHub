@@ -14,12 +14,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
+import cheetatech.com.colorhub.adapters.DrawerListAdapter;
 import cheetatech.com.colorhub.adapters.NavigationBarAdapter;
 import cheetatech.com.colorhub.adapters.ViewPagerAdapter;
 import cheetatech.com.colorhub.controller.ColorArrayController;
+import cheetatech.com.colorhub.controller.DrawerListController;
 import cheetatech.com.colorhub.defines.BoardEditor;
 import cheetatech.com.colorhub.drawer.ColorSelect;
 import cheetatech.com.colorhub.listeners.ListenerModel;
@@ -35,12 +38,15 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     private Toolbar toolbar = null;
     private TabLayout tabLayout = null;
     private ViewPager viewPager = null;
+    private RelativeLayout relativeDrawer = null;
 
     private DrawerLayout mDrawer = null;
     private ListView drawerList = null;
     ArrayList<ColorSelect> cselect = null;
 
     private FloatingActionButton fab = null;
+
+    private DrawerListAdapter drawerListAdapter = null;
 
     private int currentPosition = 0;
 
@@ -53,14 +59,13 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
         ColorArrayController controller = ColorArrayController.getInstance();
         controller.setResource(getResources());
-        controller.initMaterial();
-        controller.initFlat();
-        controller.initMetro();
-        controller.initSocial();
+        controller.init();
 
         // Board
         BoardEditor.getInstance().setContext(getApplicationContext());
         // nav bar
+
+        drawerListAdapter = new DrawerListAdapter(getApplicationContext(),1, DrawerListController.getInstance().getNavList());
 
         //cselect = new ArrayList<ColorSelect>();
 
@@ -69,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
         mDrawer = (DrawerLayout)findViewById(R.id.drawer_layout);
         drawerList = (ListView) findViewById(R.id.left_drawer);
+        relativeDrawer = (RelativeLayout) findViewById(R.id.relative_layout);
         drawerList.setAdapter(adapter);
         drawerList.setOnItemClickListener(this);
 
@@ -81,12 +87,19 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
             public void onClick(View view) {
 
                 if(currentPosition != 1) // Material List
+                {
                     cselect.clear();
-                else
+                    drawerList.setAdapter(drawerListAdapter);
+                }
+                else{
+
                     cselect = ColorArrayController.getInstance().getMaterialNameColorSelectList();
-                NavigationBarAdapter adapter = new NavigationBarAdapter(getApplicationContext(),1,cselect);
-                drawerList.setAdapter(adapter);
-                mDrawer.openDrawer(drawerList);
+                    NavigationBarAdapter adapter = new NavigationBarAdapter(getApplicationContext(),1,cselect);
+                    drawerList.setAdapter(adapter);
+                }
+
+                //mDrawer.openDrawer(drawerList);
+                mDrawer.openDrawer(relativeDrawer);
             }
         });
         viewPager = (ViewPager)findViewById(R.id.pager);
@@ -146,7 +159,8 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        mDrawer.closeDrawer(drawerList);
+        // mDrawer.closeDrawer(drawerList);
+        mDrawer.closeDrawer(relativeDrawer);
         ListenerModel.getInstance().setListenerIndex(i);
     }
     @Override
