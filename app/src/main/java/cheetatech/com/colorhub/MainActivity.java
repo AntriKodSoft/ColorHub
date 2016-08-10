@@ -1,6 +1,7 @@
 package cheetatech.com.colorhub;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -24,6 +25,7 @@ import cheetatech.com.colorhub.adapters.NavigationBarAdapter;
 import cheetatech.com.colorhub.adapters.ViewPagerAdapter;
 import cheetatech.com.colorhub.controller.ColorArrayController;
 import cheetatech.com.colorhub.controller.DrawerListController;
+import cheetatech.com.colorhub.controller.ToolBarController;
 import cheetatech.com.colorhub.defines.BoardEditor;
 import cheetatech.com.colorhub.drawer.ColorSelect;
 import cheetatech.com.colorhub.listeners.ListenerModel;
@@ -83,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         toolbar.setNavigationIcon(R.drawable.ic_action_menu_);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,8 +112,11 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
         tabLayout = (TabLayout)findViewById(R.id.tablayout);
         tabLayout.setupWithViewPager(viewPager);
+
         tabLayout.setOnTabSelectedListener(this);
 
+        ToolBarController.getInstance().setToolBar(toolbar);
+        ToolBarController.getInstance().setTabLayout(tabLayout);
 
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -166,6 +172,8 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         // mDrawer.closeDrawer(drawerList);
         mDrawer.closeDrawer(relativeDrawer);
+
+
         if(currentPosition != 1 )
         {
             switch (i)

@@ -15,6 +15,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import cheetatech.com.colorhub.R;
+import cheetatech.com.colorhub.controller.ToolBarController;
 import cheetatech.com.colorhub.defines.BoardEditor;
 import cheetatech.com.colorhub.defines.ColorInfo;
 
@@ -57,6 +58,7 @@ public class GridViewArrayAdapter extends ArrayAdapter<ColorInfo>  {
                     BoardEditor.getInstance().copyToClipBoard(colorInfos.get(position).getColorCode());
                     Toast.makeText(BoardEditor.getInstance().getContext(), "Color " + colorInfos.get(position).getColorCode() +
                             " copied to clipboard...", Toast.LENGTH_SHORT).show();
+                    ToolBarController.getInstance().setColor(Color.parseColor(colorInfos.get(position).getColorCode()));
                 }
             });
             RelativeLayout layout = (RelativeLayout) view.findViewById(R.id.rootColorLayout);
@@ -64,6 +66,13 @@ public class GridViewArrayAdapter extends ArrayAdapter<ColorInfo>  {
                 layout.setBackgroundColor(Color.parseColor(colorInfos.get(position).getColorCode()));
             textColorCode.setText(colorInfos.get(position).getColorCode());
             textColorName.setText(colorInfos.get(position).getColorName());
+            textColorCode.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ToolBarController.getInstance().setTextColor(Color.parseColor(colorInfos.get(position).getColorCode()));
+                    ///tabLayout.setTabTextColors(Color.RED,Color.BLUE);
+                }
+            });
 
         }else
             view.setVisibility(View.GONE);
