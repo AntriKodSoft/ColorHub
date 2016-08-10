@@ -50,6 +50,7 @@ public class ColorPickerActivity extends AppCompatActivity implements SeekBar.On
         setSupportActionBar(toolbar);
 
         toolbar.setNavigationIcon(R.drawable.ic_action_back_button);
+        getSupportActionBar().setTitle("ColorHub");
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

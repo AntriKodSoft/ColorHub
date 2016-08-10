@@ -119,9 +119,9 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                //startActivity(new Intent(MainActivity.this, ColorPickerActivity.class));
+                startActivity(new Intent(MainActivity.this, ColorPickerActivity.class));
 
-                startActivity(new Intent(MainActivity.this, AboutusActivity.class));
+                //startActivity(new Intent(MainActivity.this, AboutusActivity.class));
             }
         });
 
@@ -166,7 +166,22 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         // mDrawer.closeDrawer(drawerList);
         mDrawer.closeDrawer(relativeDrawer);
-        ListenerModel.getInstance().setListenerIndex(i);
+        if(currentPosition != -1 )
+        {
+            switch (i)
+            {
+
+                case 2:
+                    startActivity(new Intent(MainActivity.this, ColorPickerActivity.class));
+                    break;
+
+                case 4:
+                    startActivity(new Intent(MainActivity.this, AboutusActivity.class));
+                    break;
+            }
+        }
+        else
+            ListenerModel.getInstance().setListenerIndex(i);
     }
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
