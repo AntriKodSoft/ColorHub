@@ -26,6 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            app:titleTextColor="@color/colorPrimaryText"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
         <android.support.design.widget.TabLayout
             android:id="@+id/tablayout"
@@ -33,6 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabMode="scrollable"
+            app:tabTextColor="@color/colorPrimaryText"
             app:tabGravity="fill"/>
 
 
@@ -75,9 +77,17 @@
             android:divider="@android:color/transparent"
             android:dividerHeight="0dp"
             android:background="@color/colorDrawerBackground"
-            android:layout_above="@+id/social_drawer_layout"
+            android:layout_above="@+id/space_item"
 
             />
+
+        <LinearLayout
+            android:layout_width="240dp"
+            android:layout_height="1dp"
+            android:background="@color/colorDrawerText"
+            android:id="@+id/space_item"
+            android:layout_above="@+id/social_drawer_layout"
+            android:orientation="horizontal" />
 
         <RelativeLayout
             android:id="@+id/social_drawer_layout"
@@ -93,33 +103,38 @@
                 >
 
                 <ImageButton
+                    android:id="@+id/icon_facebook"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/ic_action_menu_"
-
+                    android:src="@mipmap/ic_launcher_facebook"
+                    android:background="@android:color/transparent"
                     />
 
                 <ImageButton
+                    android:id="@+id/icon_twitter"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/ic_action_menu_"
+                    android:src="@mipmap/ic_launcher_twitter"
+                    android:background="@android:color/transparent"
+                    />
+                <ImageButton
+                    android:id="@+id/icon_instagram"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_launcher_instagram"
+                    android:background="@android:color/transparent"
 
                     />
                 <ImageButton
+                    android:id="@+id/icon_browser"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/ic_action_menu_"
-
-                    />
-                <ImageButton
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_action_menu_"
-
+                    android:src="@mipmap/ic_launcher_browser"
+                    android:background="@android:color/transparent"
                     />
             </LinearLayout>
 

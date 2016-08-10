@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#B2EBF2</color>  <!--B2EBF2-->
+    <color name="colorPrimary">#6D8764</color>  <!--B2EBF2-->
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorDarkGrey">#FF2B2C43</color>
+
+    <color name="colorPrimaryText">#F5F5F5</color>
+
     <color name="colorSoftBlue">#B2EBF2</color>
     <color name="colorSoftGrey">#FF8C8D99</color>
     <color name="white">#ffffff</color>
@@ -19,7 +22,18 @@
     <color name="cheetatech_background">#30898c</color>
     <color name="cheetatech_background_dark">#30758c</color>
     <color name="cheetatech_text_color">#f3dba1</color>
-    <color name="colorDrawerBackground">#616161</color>
-    <color name="colorDrawerText">#EEEEEE</color>
+    <color name="colorDrawerBackground">#FAEBD7</color>
+    <color name="colorDrawerText">#607D8B</color>
+
     <color name="colorDrawerOldText">#FF8C8D99</color>
+
+
+
+    <color name="colorAntiqueWhite">#FAEBD7</color>
+    <color name="colorBlueGray">#607D8B</color>
+    <color name="colorSeaGreen">#2E8B57</color>
+    <color name="colorWhiteSmoke">#F5F5F5</color>
+    <color name="colorMetroOlive">#6D8764</color>
+
+
 </resources>

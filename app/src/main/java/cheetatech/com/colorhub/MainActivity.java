@@ -2,6 +2,8 @@ package cheetatech.com.colorhub;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
@@ -36,7 +39,7 @@ import layout.MaterialColorFragment;
 import layout.MetroColorFragment;
 import layout.SocialColorFragment;
 
-public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener  {
+public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener ,View.OnClickListener {
 
     private Toolbar toolbar = null;
     private TabLayout tabLayout = null;
@@ -52,6 +55,11 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     private DrawerListAdapter drawerListAdapter = null;
 
     private int currentPosition = 0;
+
+    private String facebook = "https://www.facebook.com/cheetatech/?fref=ts&ref=br_tf";
+    private String twitter = "https://twitter.com/cheeta_tech";
+    private String instagram = "https://www.instagram.com/cheetatechofficial/";
+    private String web = "https://cheetatech.wordpress.com/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,6 +139,11 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
             }
         });
 
+        ((ImageButton) findViewById(R.id.icon_facebook)).setOnClickListener(this);
+        ((ImageButton) findViewById(R.id.icon_twitter)).setOnClickListener(this);
+        ((ImageButton) findViewById(R.id.icon_browser)).setOnClickListener(this);
+        ((ImageButton) findViewById(R.id.icon_instagram)).setOnClickListener(this);
+
     }
 
 
@@ -206,4 +219,29 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     public void onTabReselected(TabLayout.Tab tab) {
     }
 
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId())
+        {
+            case R.id.icon_facebook :
+                openUrl(facebook);
+                break;
+            case R.id.icon_browser :
+                openUrl(web);
+                break;
+            case R.id.icon_instagram :
+                openUrl(instagram);
+                break;
+            case R.id.icon_twitter :
+                openUrl(twitter);
+                break;
+
+        }
+    }
+
+    private void openUrl(String url) {
+        Uri uri = Uri.parse(url); // missing 'http://' will cause crashed
+        startActivity(new Intent(Intent.ACTION_VIEW, uri));
+    }
 }

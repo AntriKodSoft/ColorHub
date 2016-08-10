@@ -21,6 +21,10 @@ import cheetatech.com.colorhub.adapters.ColorListAdapter;
 import cheetatech.com.colorhub.controller.ColorArrayController;
 import cheetatech.com.colorhub.defines.ColorInfo;
 
+/**
+ *     <color name="colorDrawerBackground">#616161</color>
+ <color name="colorDrawerText">#EEEEEE</color>
+ * */
 
 public class FlatColorFragment extends ListFragment implements AdapterView.OnItemLongClickListener  {
 
