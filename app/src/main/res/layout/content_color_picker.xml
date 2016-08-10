@@ -97,6 +97,27 @@
                 android:progressDrawable="@drawable/blue_progress"
                 android:thumbTint="@color/blue"/>
 
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/opacityToolTip"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="18sp"
+                android:textColor="@color/colorDarkGrey"
+                android:layout_below="@id/blueSeekBar"
+                android:singleLine="true" />
+
+            <SeekBar
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/opacitySeekBar"
+                android:layout_below="@id/opacityToolTip"
+                android:max="255"
+                android:maxHeight="3dip"
+                android:minHeight="3dip"
+                android:progressDrawable="@drawable/opacity_progress"
+                android:thumbTint="@color/colorDarkGrey"/>
+
             <Button
                 android:layout_width="150dp"
                 android:layout_height="60dp"
