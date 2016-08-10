@@ -19,4 +19,7 @@
     <color name="cheetatech_background">#30898c</color>
     <color name="cheetatech_background_dark">#30758c</color>
     <color name="cheetatech_text_color">#f3dba1</color>
+    <color name="colorDrawerBackground">#616161</color>
+    <color name="colorDrawerText">#EEEEEE</color>
+    <color name="colorDrawerOldText">#FF8C8D99</color>
 </resources>

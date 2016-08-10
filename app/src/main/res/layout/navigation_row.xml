@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
+    android:background="@color/colorDrawerBackground"
     android:layout_height="48dp">
 
     <TextView
@@ -12,7 +13,7 @@
         android:id="@+id/colorName"
         android:layout_marginLeft="3dp"
         android:gravity="center_vertical"
-        android:textColor="#FF8C8D99"
+        android:textColor="@color/colorDrawerText"
         android:layout_gravity="center" />
 
 </LinearLayout>

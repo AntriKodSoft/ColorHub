@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         // mDrawer.closeDrawer(drawerList);
         mDrawer.closeDrawer(relativeDrawer);
-        if(currentPosition != -1 )
+        if(currentPosition != 1 )
         {
             switch (i)
             {

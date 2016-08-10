@@ -27,6 +27,7 @@
         android:clickable="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
+        android:textColor="@color/colorDrawerText"
         >
 
     </TextView>
