@@ -106,18 +106,21 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:src="@drawable/logodd"
+                    android:id="@+id/steam_1"
                     />
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:src="@drawable/logodd"
+                    android:id="@+id/steam_2"
                     />
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:src="@drawable/logodd"
+                    android:id="@+id/steam_3"
                     />
 
             </LinearLayout>
@@ -159,6 +162,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:src="@drawable/logodd"
+                    android:id="@+id/gteam_1"
                     />
                 <ImageView
                     android:layout_width="match_parent"
