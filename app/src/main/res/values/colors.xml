@@ -16,4 +16,7 @@
     <color name="dribbledark">#c32361</color>
     <color name="black">#000000</color>
     <color name="dialogcolor">#009688</color>
+    <color name="cheetatech_background">#30898c</color>
+    <color name="cheetatech_background_dark">#30758c</color>
+    <color name="cheetatech_text_color">#f3dba1</color>
 </resources>

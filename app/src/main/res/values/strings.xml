@@ -5,6 +5,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="cheetatech_com">www.cheetatech.wordpress.com</string>
+    <string name="software_team">SOFTWARE TEAM</string>
+    <string name="graphic_team">GRAPHICS TEAM</string>
+    <string name="contact_us">Contact Us</string>
 
     <string-array name="Planets">
         <item>Sun</item>
@@ -868,5 +872,6 @@
         <item>#FFE4E1</item>
     </string-array>
     <string name="title_activity_color_picker">ColorPickerActivity</string>
+    <string name="title_activity_aboutus">AboutusActivity</string>
 
 </resources>
