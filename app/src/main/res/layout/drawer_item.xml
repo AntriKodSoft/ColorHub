@@ -17,6 +17,15 @@
         android:background="@drawable/ic_action_rate"
         />
 
+    <LinearLayout
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/colorDrawerText"
+        >
+    </LinearLayout>
+
     <TextView
         android:id="@+id/drawer_text"
         android:layout_width="wrap_content"
@@ -28,6 +37,7 @@
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:textColor="@color/colorDrawerText"
+        android:layout_marginLeft="3dp"
         >
 
     </TextView>

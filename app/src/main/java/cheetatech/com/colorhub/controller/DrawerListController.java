@@ -13,15 +13,15 @@ public class DrawerListController {
             null,
             null,
             "Color Picker",
-            "Rate App",
-            "Share App",
+            "Rate This App",
+            "Share This App",
             "About Us"
     };
     private int[] idList = new int[]{
             -1,
             -1,
             R.drawable.ic_action_color_palette,
-            R.drawable.ic_action_rate,
+            R.drawable.ic_action_rate2,
             R.drawable.ic_action_share,
             R.drawable.ic_action_about_us
     };
