@@ -70,7 +70,7 @@ public class GridViewArrayAdapter extends ArrayAdapter<ColorInfo>  {
             textColorCode.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ToolBarController.getInstance().setTextColor(Color.parseColor(colorInfos.get(position).getColorCode()));
+                    //ToolBarController.getInstance().setTextColor(Color.parseColor(colorInfos.get(position).getColorCode()));
                     ///tabLayout.setTabTextColors(Color.RED,Color.BLUE);
                 }
             });

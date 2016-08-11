@@ -1,19 +1,22 @@
 package layout;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ListView;
 
 import cheetatech.com.colorhub.R;
 import cheetatech.com.colorhub.adapters.ColorArrayListAdapter;
+import cheetatech.com.colorhub.adapters.GridViewArrayAdapter;
 import cheetatech.com.colorhub.controller.ColorArrayController;
 
-public class MetroColorFragment extends ListFragment implements AdapterView.OnItemLongClickListener  {
+public class MetroColorFragment extends Fragment implements AdapterView.OnItemLongClickListener  {
 
 
     public MetroColorFragment() {
@@ -32,15 +35,16 @@ public class MetroColorFragment extends ListFragment implements AdapterView.OnIt
     public void onActivityCreated(Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
-        ColorArrayController controller  = ColorArrayController.getInstance();
+
+        /*ColorArrayController controller  = ColorArrayController.getInstance();
         setListAdapter(new ColorArrayListAdapter(getContext(),R.layout.list_layout,controller.getMetroList()));
         getListView().setOnItemLongClickListener(this);
-    }
+        */
+        GridView gridView = (GridView) getView().findViewById(R.id.gridviewmetro);
+        ColorArrayController controller  = ColorArrayController.getInstance();
+        GridViewArrayAdapter adapter = new GridViewArrayAdapter(getContext(),R.layout.grid_list,controller.getMetroList());
+        gridView.setAdapter(adapter);
 
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        // TODO Auto-generated method stub
-        super.onListItemClick(l, v, position, id);
-        Log.e("TAGG", "SelectedListItem " + id + " : " + position + " : ");
     }
 
     @Override
