@@ -2,6 +2,7 @@ package cheetatech.com.colorhub.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,8 @@ import cheetatech.com.colorhub.R;
 import cheetatech.com.colorhub.controller.ToolBarController;
 import cheetatech.com.colorhub.defines.BoardEditor;
 import cheetatech.com.colorhub.defines.ColorInfo;
+import cheetatech.com.colorhub.listeners.FloatButtonListener;
+import cheetatech.com.colorhub.listeners.ListenerModel;
 
 
 public class ColorArrayListAdapter extends ArrayAdapter<ColorInfo>  {
@@ -40,6 +43,7 @@ public class ColorArrayListAdapter extends ArrayAdapter<ColorInfo>  {
         this.resource = resource;
         this.colorInfos = objects;
 
+
     }
 
     @Override
@@ -58,7 +62,8 @@ public class ColorArrayListAdapter extends ArrayAdapter<ColorInfo>  {
                     BoardEditor.getInstance().copyToClipBoard(colorInfos.get(position).getColorCode());
                     Toast.makeText(BoardEditor.getInstance().getContext(), "Color " + colorInfos.get(position).getColorCode() +
                             " copied to clipboard...", Toast.LENGTH_SHORT).show();
-                    ToolBarController.getInstance().setColor(Color.parseColor(colorInfos.get(position).getColorCode()));
+                    //ToolBarController.getInstance().setColor(Color.parseColor(colorInfos.get(position).getColorCode()));
+
                 }
             });
             RelativeLayout layout = (RelativeLayout) view.findViewById(R.id.rootColorLayout);
@@ -71,7 +76,7 @@ public class ColorArrayListAdapter extends ArrayAdapter<ColorInfo>  {
             textColorCode.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ToolBarController.getInstance().setTextColor(Color.parseColor(colorInfos.get(position).getColorCode()));
+                    //ToolBarController.getInstance().setTextColor(Color.parseColor(colorInfos.get(position).getColorCode()));
                     ///tabLayout.setTabTextColors(Color.RED,Color.BLUE);
                 }
             });

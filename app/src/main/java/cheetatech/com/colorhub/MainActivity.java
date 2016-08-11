@@ -1,6 +1,7 @@
 package cheetatech.com.colorhub;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.media.Image;
 import android.net.Uri;
@@ -31,6 +32,7 @@ import cheetatech.com.colorhub.controller.DrawerListController;
 import cheetatech.com.colorhub.controller.ToolBarController;
 import cheetatech.com.colorhub.defines.BoardEditor;
 import cheetatech.com.colorhub.drawer.ColorSelect;
+import cheetatech.com.colorhub.listeners.FloatButtonListener;
 import cheetatech.com.colorhub.listeners.ListenerModel;
 import layout.FlatColorFragment;
 import layout.HomeFragment;
@@ -39,7 +41,7 @@ import layout.MaterialColorFragment;
 import layout.MetroColorFragment;
 import layout.SocialColorFragment;
 
-public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener ,View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements FloatButtonListener.OnFabListener,ListView.OnItemClickListener, TabLayout.OnTabSelectedListener ,View.OnClickListener {
 
     private Toolbar toolbar = null;
     private TabLayout tabLayout = null;
@@ -127,6 +129,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         ToolBarController.getInstance().setTabLayout(tabLayout);
 
 
+
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,6 +142,8 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
             }
         });
 
+
+        fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#E64A19")));
         ((ImageButton) findViewById(R.id.icon_facebook)).setOnClickListener(this);
         ((ImageButton) findViewById(R.id.icon_twitter)).setOnClickListener(this);
         ((ImageButton) findViewById(R.id.icon_browser)).setOnClickListener(this);
@@ -243,5 +248,10 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     private void openUrl(String url) {
         Uri uri = Uri.parse(url); // missing 'http://' will cause crashed
         startActivity(new Intent(Intent.ACTION_VIEW, uri));
+    }
+
+    @Override
+    public void onFabSetColor(int color) {
+        fab.setBackgroundTintList(ColorStateList.valueOf(color));
     }
 }

@@ -58,7 +58,8 @@ public class GridViewArrayAdapter extends ArrayAdapter<ColorInfo>  {
                     BoardEditor.getInstance().copyToClipBoard(colorInfos.get(position).getColorCode());
                     Toast.makeText(BoardEditor.getInstance().getContext(), "Color " + colorInfos.get(position).getColorCode() +
                             " copied to clipboard...", Toast.LENGTH_SHORT).show();
-                    ToolBarController.getInstance().setColor(Color.parseColor(colorInfos.get(position).getColorCode()));
+                    //ToolBarController.getInstance().setColor(Color.parseColor(colorInfos.get(position).getColorCode()));
+
                 }
             });
             RelativeLayout layout = (RelativeLayout) view.findViewById(R.id.rootColorLayout);
