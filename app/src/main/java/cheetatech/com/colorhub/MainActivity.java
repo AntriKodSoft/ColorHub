@@ -252,6 +252,6 @@ public class MainActivity extends AppCompatActivity implements FloatButtonListen
 
     @Override
     public void onFabSetColor(int color) {
-        fab.setBackgroundTintList(ColorStateList.valueOf(color));
+        //fab.setBackgroundTintList(ColorStateList.valueOf(color));
     }
 }
