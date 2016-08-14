@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import cheetatech.com.colorhub.adapters.DrawerListAdapter;
 import cheetatech.com.colorhub.adapters.NavigationBarAdapter;
 import cheetatech.com.colorhub.adapters.ViewPagerAdapter;
+import cheetatech.com.colorhub.apprater.AppRater;
 import cheetatech.com.colorhub.controller.ColorArrayController;
 import cheetatech.com.colorhub.controller.DrawerListController;
 import cheetatech.com.colorhub.controller.ToolBarController;
@@ -34,6 +35,9 @@ import cheetatech.com.colorhub.defines.BoardEditor;
 import cheetatech.com.colorhub.drawer.ColorSelect;
 import cheetatech.com.colorhub.listeners.FloatButtonListener;
 import cheetatech.com.colorhub.listeners.ListenerModel;
+import hotchemi.android.rate.AppRate;
+import hotchemi.android.rate.OnClickButtonListener;
+import hotchemi.android.rate.StoreType;
 import layout.FlatColorFragment;
 import layout.HomeFragment;
 import layout.HtmlColorFragment;
@@ -149,6 +153,50 @@ public class MainActivity extends AppCompatActivity implements FloatButtonListen
         ((ImageButton) findViewById(R.id.icon_browser)).setOnClickListener(this);
         ((ImageButton) findViewById(R.id.icon_instagram)).setOnClickListener(this);
 
+
+        AppRate.with(this)
+                .setStoreType(StoreType.GOOGLEPLAY) //default is Google, other option is Amazon
+                .setInstallDays(3) // default 10, 0 means install day.
+                .setLaunchTimes(10) // default 10 times.
+                .setRemindInterval(2) // default 1 day.
+                .setShowLaterButton(true) // default true.
+                .setDebug(true) // default false.
+                .setCancelable(false) // default false.
+                .setOnClickButtonListener(new OnClickButtonListener() { // callback listener.
+                    @Override
+                    public void onClickButton(int which) {
+                        Log.d(MainActivity.class.getName(), Integer.toString(which));
+                        Log.e(MainActivity.class.getName(), Integer.toString(which) + " :: Ekooo");
+                    }
+                })
+                .setMessage(R.string.new_rate_dialog_message)
+                .setTitle(R.string.new_rate_dialog_title)
+                .setTextLater(R.string.new_rate_dialog_later)
+                .setTextNever(R.string.new_rate_dialog_never)
+                .setTextRateNow(R.string.new_rate_dialog_ok)
+                .monitor();
+
+        //AppRate.with(this).showRateDialog(this);
+        AppRate.showRateDialogIfMeetsConditions(this);
+        //new AppRater(this).show();
+        /* AppRate.with(this)
+                .setInstallDays(0) // default 10, 0 means install day.
+                .setLaunchTimes(3) // default 10
+                .setRemindInterval(2) // default 1
+                .setShowLaterButton(true) // default true
+                .setDebug(false) // default false
+                .setOnClickButtonListener(new OnClickButtonListener() { // callback listener.
+                    @Override
+                    public void onClickButton(int which) {
+                        Log.d(MainActivity.class.getName(), Integer.toString(which));
+                    }
+                })
+                .monitor();
+
+        // Show a dialog if meets conditions
+        //AppRate.showRateDialogIfMeetsConditions(this);
+        AppRate.with(this).showRateDialog(this);
+        */
     }
 
 
@@ -199,6 +247,9 @@ public class MainActivity extends AppCompatActivity implements FloatButtonListen
 
                 case 2:
                     startActivity(new Intent(MainActivity.this, ColorPickerActivity.class));
+                    break;
+                case 3:
+
                     break;
                 case 4:
                     shareApp();

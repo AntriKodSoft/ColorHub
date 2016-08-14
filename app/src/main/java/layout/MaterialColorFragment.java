@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import cheetatech.com.colorhub.R;
 import cheetatech.com.colorhub.adapters.ColorArrayListAdapter;
 import cheetatech.com.colorhub.adapters.GridViewArrayAdapter;
+import cheetatech.com.colorhub.apprater.AppRater;
 import cheetatech.com.colorhub.controller.ColorArrayController;
 import cheetatech.com.colorhub.defines.ColorInfo;
 import cheetatech.com.colorhub.listeners.ListenerModel;
@@ -66,6 +67,8 @@ public class MaterialColorFragment extends Fragment implements AdapterView.OnIte
         GridViewArrayAdapter adapter = new GridViewArrayAdapter(getContext(),R.layout.grid_list,colorInfoArrayList);
 
         gridView.setAdapter(adapter);
+
+
 
     }
 
