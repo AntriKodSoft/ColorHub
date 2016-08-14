@@ -14,7 +14,9 @@
         android:layout_marginLeft="3dp"
         android:gravity="center_vertical"
         android:textColor="@color/colorDrawerText"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:textAllCaps="false"
+        />
 
 </LinearLayout>
 

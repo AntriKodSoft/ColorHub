@@ -35,7 +35,9 @@
             android:layout_height="wrap_content"
             app:tabMode="scrollable"
             app:tabTextColor="@color/colorPrimaryText"
-            app:tabGravity="fill"/>
+            app:tabGravity="fill"
+            app:tabTextAppearance="@style/TabTextAppearance"
+            />
 
 
     </android.support.design.widget.AppBarLayout>
@@ -55,7 +57,8 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_action_plus"
-        android:backgroundTint="@color/colorAccent"
+
+        app:backgroundTint="@color/colorAccent"
         />
 
 </android.support.design.widget.CoordinatorLayout>
@@ -68,6 +71,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@android:color/transparent"
+        android:layout_marginTop="24dp"
         >
 
         <ListView

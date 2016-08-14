@@ -155,9 +155,9 @@ public class MainActivity extends AppCompatActivity implements FloatButtonListen
     public  void setUpViewPager(ViewPager viewPager)
     {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new HomeFragment(),"Home");
-        adapter.addFragment(new MaterialColorFragment(),"Material");
+        //adapter.addFragment(new HomeFragment(),"Home");
         adapter.addFragment(new FlatColorFragment(),"Flat");
+        adapter.addFragment(new MaterialColorFragment(),"Material");
         adapter.addFragment(new SocialColorFragment(),"Social");
         adapter.addFragment(new MetroColorFragment(),"Metro");
         adapter.addFragment(new HtmlColorFragment(),"Html");
@@ -200,8 +200,10 @@ public class MainActivity extends AppCompatActivity implements FloatButtonListen
                 case 2:
                     startActivity(new Intent(MainActivity.this, ColorPickerActivity.class));
                     break;
-
                 case 4:
+                    shareApp();
+                    break;
+                case 5:
                     startActivity(new Intent(MainActivity.this, AboutusActivity.class));
                     break;
             }
@@ -209,6 +211,16 @@ public class MainActivity extends AppCompatActivity implements FloatButtonListen
         else
             ListenerModel.getInstance().setListenerIndex(i);
     }
+
+    private void shareApp() {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT,
+                "Hey check out Color Hub app at: https://play.google.com/store/apps/details?id=com.google.android.apps.plus");
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
+    }
+
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         currentPosition =  tab.getPosition();
