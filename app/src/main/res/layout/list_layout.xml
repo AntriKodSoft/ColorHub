@@ -39,7 +39,7 @@
         android:clickable="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:textAllCaps="true"
+        android:textAllCaps="false"
         >
     </TextView>
 

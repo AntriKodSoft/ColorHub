@@ -22,23 +22,23 @@ import cheetatech.com.colorhub.defines.BoardEditor;
 import cheetatech.com.colorhub.defines.ColorInfo;
 
 
-public class GridViewArrayAdapter extends ArrayAdapter<ColorInfo>  {
+public class MaterialGridViewAdapter extends ArrayAdapter<ColorInfo>  {
     private Context context = null;
     private int resource;
     private ArrayList<ColorInfo> colorInfos;
-    public static int HeaderIndex = -1;
-    public static boolean isMaterial = false;
+    public static int HeaderIndex = 0;
 
 
 
-    public GridViewArrayAdapter(Context context, int resource, ColorInfo[] objects) {
+
+    public MaterialGridViewAdapter(Context context, int resource, ColorInfo[] objects) {
         super(context, resource, objects);
         this.context = context;
         this.resource = resource;
 
     }
 
-    public GridViewArrayAdapter(Context context, int resource, ArrayList<ColorInfo> objects) {
+    public MaterialGridViewAdapter(Context context, int resource, ArrayList<ColorInfo> objects) {
         super(context, resource, objects);
         this.context = context;
         this.resource = resource;
@@ -69,7 +69,11 @@ public class GridViewArrayAdapter extends ArrayAdapter<ColorInfo>  {
             if (layout != null)
                 layout.setBackgroundColor(Color.parseColor(colorInfos.get(position).getColorCode()));
             textColorCode.setText(colorInfos.get(position).getColorCode());
-            textColorName.setText(colorInfos.get(position).getColorName());
+
+            String colorName = "";
+            colorName = (position == 0) ? ColorArrayController.getInstance().getHeaderColorName(HeaderIndex) : colorInfos.get(position).getColorName();
+            textColorName.setText(colorName);
+            //textColorName.setText(colorInfos.get(position).getColorName());
 
         }else
             view.setVisibility(View.GONE);

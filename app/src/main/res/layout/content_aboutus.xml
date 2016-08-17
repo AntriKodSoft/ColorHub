@@ -10,7 +10,9 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="cheetatech.com.colorhub.AboutusActivity"
-    tools:showIn="@layout/activity_aboutus">
+    tools:showIn="@layout/activity_aboutus"
+    android:background="@color/colorDrawerBackground"
+    >
 
 
     <LinearLayout
@@ -25,21 +27,40 @@
             android:id="@+id/l1"
             android:orientation="vertical"
             android:layout_weight="1"
+            android:background="@drawable/border_shape_link"
             >
-            <ImageView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/logo_image"
-                android:background="@drawable/logooval2"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                />
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/logo_image"
+                    android:background="@drawable/logodd3"
+                    android:layout_weight="1"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/aboutus"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorDrawerText"
+                    />
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:id="@+id/link_web_layout"
                 android:layout_below="@+id/logo_image"
                 android:orientation="horizontal"
-                android:background="@color/cheetatech_background_dark"
+                android:background="@drawable/border_shape_link"
                 >
                 <TextView
                     android:layout_width="match_parent"
@@ -48,7 +69,7 @@
                     android:text="@string/cheetatech_com"
                     android:textSize="18sp"
                     android:layout_gravity="center"
-                    android:textColor="@color/cheetatech_text_color"
+                    android:textColor="@color/colorDrawerText"
                     android:textStyle="bold"
                     android:gravity="center"
                     />
@@ -84,7 +105,7 @@
                     android:text="@string/software_team"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/colorDrawerText"
                     android:layout_gravity="center|left"
                     android:gravity="center|left"
                     />
@@ -105,21 +126,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/logodd"
+                    android:src="@drawable/logodd2"
                     android:id="@+id/steam_1"
                     />
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/logodd"
+                    android:src="@drawable/logodd2"
                     android:id="@+id/steam_2"
                     />
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/logodd"
+                    android:src="@drawable/logodd2"
                     android:id="@+id/steam_3"
                     />
 
@@ -140,7 +161,7 @@
                     android:text="@string/graphic_team"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/colorDrawerText"
                     android:layout_gravity="center|left"
                     android:gravity="center|left"
                     />
@@ -161,7 +182,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/logodd"
+                    android:src="@drawable/logodd2"
                     android:id="@+id/gteam_1"
                     />
                 <ImageView

@@ -9,13 +9,37 @@
     <string name="software_team">SOFTWARE TEAM</string>
     <string name="graphic_team">GRAPHICS TEAM</string>
     <string name="contact_us">Contact Us</string>
-
+    <string name="aboutus">We develops applications for Mobile platfoms and works on different technologies. For more, visit our website.</string>
 
     <string name="new_rate_dialog_title">Rate this app</string>
     <string name="new_rate_dialog_message">If you enjoy playing this app, would you mind taking a moment to rate it? It won\'t take more than a minute. Thanks for your support!</string>
     <string name="new_rate_dialog_ok">Rate It Now</string>
     <string name="new_rate_dialog_later">Remind Me Later</string>
     <string name="new_rate_dialog_never">No, Thanks</string>
+
+
+    <string-array name="HeaderColorName">
+        <item>Red</item>
+        <item>Pink</item>
+        <item>Purple</item>
+        <item>Deep Purple</item>
+        <item>Indigo</item>
+        <item>Blue</item>
+        <item>Light Blue</item>
+        <item>Cyan</item>
+        <item>Teal</item>
+        <item>Green</item>
+        <item>Light Green</item>
+        <item>Lime</item>
+        <item>Yellow</item>
+        <item>Amber</item>
+        <item>Orange</item>
+        <item>Deep Orange</item>
+        <item>Brown</item>
+        <item>Grey</item>
+        <item>Blue Grey</item>
+    </string-array>
+
 
     <string-array name="Planets">
         <item>Sun</item>

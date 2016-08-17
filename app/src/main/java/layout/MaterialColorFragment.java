@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import cheetatech.com.colorhub.R;
 import cheetatech.com.colorhub.adapters.ColorArrayListAdapter;
 import cheetatech.com.colorhub.adapters.GridViewArrayAdapter;
+import cheetatech.com.colorhub.adapters.MaterialGridViewAdapter;
 import cheetatech.com.colorhub.apprater.AppRater;
 import cheetatech.com.colorhub.controller.ColorArrayController;
 import cheetatech.com.colorhub.defines.ColorInfo;
@@ -64,7 +65,7 @@ public class MaterialColorFragment extends Fragment implements AdapterView.OnIte
         //ColorArrayListAdapter adapter = new ColorArrayListAdapter(getContext(),R.layout.list_layout,colorInfoArrayList);
 
         gridView = (GridView) getView().findViewById(R.id.gridviewmaterial);
-        GridViewArrayAdapter adapter = new GridViewArrayAdapter(getContext(),R.layout.grid_list,colorInfoArrayList);
+        MaterialGridViewAdapter adapter = new MaterialGridViewAdapter(getContext(),R.layout.grid_list,colorInfoArrayList);
 
         gridView.setAdapter(adapter);
 
@@ -80,9 +81,10 @@ public class MaterialColorFragment extends Fragment implements AdapterView.OnIte
 
     @Override
     public void onSelectedColorIndex(int index) {
+        MaterialGridViewAdapter.HeaderIndex = index;
         ColorArrayController controller  = ColorArrayController.getInstance();
         colorInfoArrayList = controller.getMaterialColorInfoList().get(index).getColorInfoList();
-        GridViewArrayAdapter adapter = new GridViewArrayAdapter(getContext(),R.layout.grid_list,colorInfoArrayList);
+        MaterialGridViewAdapter adapter = new MaterialGridViewAdapter(getContext(),R.layout.grid_list,colorInfoArrayList);
         gridView.setAdapter(adapter);
     }
 }

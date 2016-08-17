@@ -28,12 +28,15 @@ import android.widget.Toast;
 import org.json.JSONObject;
 
 import cheetatech.com.colorhub.defines.BoardEditor;
+import cheetatech.com.colorhub.defines.ColorItem;
 
 public class ColorPickerActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, View.OnClickListener {
 
     public static final String MIXPANEL_TOKEN = "8df466c6bae9ae3c3117de78e1af819d";
 
     View colorView;
+    View[] views = null;
+    int[] viewIds = new int[]{R.id.color1,R.id.color2,R.id.color3,R.id.color4,R.id.color5};
     SeekBar redSeekBar, greenSeekBar, blueSeekBar,opacitySeekBar;
     TextView redToolTip, greenToolTip, blueToolTip,opacityToolTip;
     Button buttonSelector;
@@ -44,6 +47,17 @@ public class ColorPickerActivity extends AppCompatActivity implements SeekBar.On
     int red, green, blue, seekBarLeft,opacity;
     Rect thumbRect;
     AlertDialog alertDialog;
+
+
+    //int[] colors = new int[] {Color.TRANSPARENT,Color.TRANSPARENT,Color.TRANSPARENT,Color.TRANSPARENT,Color.TRANSPARENT};
+    ColorItem[] colors = new ColorItem[]{
+            new ColorItem(0,0,0,0),
+            new ColorItem(0,0,0,0),
+            new ColorItem(0,0,0,0),
+            new ColorItem(0,0,0,0),
+            new ColorItem(0,0,0,0),
+    };
+
 
     JSONObject props;
 
@@ -100,15 +114,25 @@ public class ColorPickerActivity extends AppCompatActivity implements SeekBar.On
         blueSeekBar.setProgress(blue);
         opacitySeekBar.setProgress(opacity);
 
-
         //Setting View, Status bar & button color & hex codes
-
         //colorView.setBackgroundColor(Color.rgb(red, green, blue));
         colorView.setBackgroundColor(Color.argb(opacity,red, green, blue));
 
         //Set's color hex on Button
-        buttonSelector.setText(String.format("#%02x%02x%02x%02x", opacity,red, green, blue));
+        //buttonSelector.setText(String.format("#%02x%02x%02x%02x", opacity,red, green, blue));
+        buttonSelector.setText(String.format("#%02x%02x%02x%02x", red, green, blue,opacity));
         //buttonSelector.setText(String.format("#%02x%02x%02x", red, green, blue));
+
+        views = new View[5];
+        for (int i = 0;i<viewIds.length;i++)
+        {
+            views[i] = (View)findViewById(viewIds[i]);
+            views[i].setOnClickListener(this);
+        }
+
+        for(int j = 0;j<colors.length;j++)
+            views[j].setBackgroundColor(Color.argb(colors[j].getOpacity(),colors[j].getRed(),colors[j].getGreen(),colors[j].getBlue()));
+
     }
 
     @Override
@@ -234,7 +258,6 @@ public class ColorPickerActivity extends AppCompatActivity implements SeekBar.On
         }
 
         colorView.setBackgroundColor(Color.argb(opacity,red, green, blue));
-
         //colorView.setBackgroundColor(Color.rgb(red, green, blue));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -247,7 +270,36 @@ public class ColorPickerActivity extends AppCompatActivity implements SeekBar.On
 
         //Setting the button hex color
         //buttonSelector.setText(String.format("#%02x%02x%02x", red, green, blue));
-        buttonSelector.setText(String.format("#%02x%02x%02x%02x", opacity, red, green, blue));
+        buttonSelector.setText(String.format("#%02x%02x%02x%02x", red, green, blue,opacity));
+    }
+
+    private void addToView(ColorItem colorItem) {
+
+        if(views != null) {
+        ColorItem[] refColors = new ColorItem[6];
+        int i;
+        for(i = 0;i<colors.length;i++)
+            refColors[i] = colors[i];
+            views[0].setBackgroundColor(Color.BLUE);
+            views[0].setBackgroundColor(Color.argb(colorItem.getOpacity(), colorItem.getRed(), colorItem.getGreen(), colorItem.getBlue()));
+            for (i = 0; i < colors.length - 1; i++)
+                views[i + 1].setBackgroundColor(Color.argb(refColors[i].getOpacity(), refColors[i].getRed(), refColors[i].getGreen(), refColors[i].getBlue()));
+
+            colors[0] = new ColorItem(colorItem.getRed(), colorItem.getGreen(), colorItem.getBlue(), colorItem.getOpacity());
+
+            for (i = 0; i < colors.length - 1; i++)
+                colors[i + 1] = new ColorItem(refColors[i].getRed(), refColors[i].getGreen(), refColors[i].getBlue(), refColors[i].getOpacity());
+        }
+    }
+
+
+    private void setProgressBar(int r,int g,int b,int o)
+    {
+
+        redSeekBar.setProgress(r);
+        greenSeekBar.setProgress(g);
+        blueSeekBar.setProgress(b);
+        opacitySeekBar.setProgress(o);
     }
 
     @Override
@@ -272,9 +324,55 @@ public class ColorPickerActivity extends AppCompatActivity implements SeekBar.On
         switch (view.getId())
         {
             case R.id.buttonSelector:
+                addToView(new ColorItem(red,green,blue,opacity));
                 BoardEditor.getInstance().copyToClipBoard(buttonSelector.getText().toString());
                 Toast.makeText(BoardEditor.getInstance().getContext(), "Color " + buttonSelector.getText().toString() +
                         " copied to clipboard...", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.color1:
+
+                BoardEditor.getInstance().copyToClipBoard(colors[0].toString());
+                Toast.makeText(BoardEditor.getInstance().getContext(), "Color " + colors[0].toString() +
+                        " copied to clipboard...", Toast.LENGTH_SHORT).show();
+                red = colors[0].getRed(); green = colors[0].getGreen(); blue = colors[0].getBlue(); opacity = colors[0].getOpacity();
+                setProgressBar(red,green,blue,opacity);
+                onWindowFocusChanged(true);
+                break;
+            case R.id.color2:
+
+                BoardEditor.getInstance().copyToClipBoard(colors[1].toString());
+                Toast.makeText(BoardEditor.getInstance().getContext(), "Color " + colors[1].toString() +
+                        " copied to clipboard...", Toast.LENGTH_SHORT).show();
+                red = colors[1].getRed(); green = colors[1].getGreen(); blue = colors[1].getBlue(); opacity = colors[1].getOpacity();
+                setProgressBar(red,green,blue,opacity);
+                onWindowFocusChanged(true);
+                break;
+            case R.id.color3:
+
+                BoardEditor.getInstance().copyToClipBoard(colors[2].toString());
+                Toast.makeText(BoardEditor.getInstance().getContext(), "Color " + colors[2].toString() +
+                        " copied to clipboard...", Toast.LENGTH_SHORT).show();
+                red = colors[2].getRed(); green = colors[2].getGreen(); blue = colors[2].getBlue(); opacity = colors[2].getOpacity();
+                setProgressBar(red,green,blue,opacity);
+                onWindowFocusChanged(true);
+                break;
+            case R.id.color4:
+
+                BoardEditor.getInstance().copyToClipBoard(colors[3].toString());
+                Toast.makeText(BoardEditor.getInstance().getContext(), "Color " + colors[3].toString() +
+                        " copied to clipboard...", Toast.LENGTH_SHORT).show();
+                red = colors[3].getRed(); green = colors[3].getGreen(); blue = colors[3].getBlue(); opacity = colors[3].getOpacity();
+                setProgressBar(red,green,blue,opacity);
+                onWindowFocusChanged(true);
+                break;
+            case R.id.color5:
+
+                BoardEditor.getInstance().copyToClipBoard(colors[4].toString());
+                Toast.makeText(BoardEditor.getInstance().getContext(), "Color " + colors[4].toString() +
+                        " copied to clipboard...", Toast.LENGTH_SHORT).show();
+                red = colors[4].getRed(); green = colors[4].getGreen(); blue = colors[4].getBlue(); opacity = colors[4].getOpacity();
+                setProgressBar(red,green,blue,opacity);
+                onWindowFocusChanged(true);
                 break;
 
         }

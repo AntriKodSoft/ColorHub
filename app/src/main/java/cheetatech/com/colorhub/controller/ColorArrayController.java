@@ -16,6 +16,7 @@ public class ColorArrayController {
     private ArrayList<ColorInfo> socialList = null;
     private ArrayList<ColorInfo> metroList = null;
     private ArrayList<ColorInfo> htmlList = null;
+    private String[] headerColorList = null;
 
     private ArrayList<MaterialColorInfo> materialColorInfoList = null;
 
@@ -36,7 +37,6 @@ public class ColorArrayController {
         socialList = new ArrayList<ColorInfo>();
         metroList = new ArrayList<ColorInfo>();
         htmlList = new ArrayList<ColorInfo>();
-
         materialColorInfoList = new ArrayList<MaterialColorInfo>();
     }
 
@@ -48,6 +48,9 @@ public class ColorArrayController {
         initSocial();
         initHtml();
     }
+
+
+
 
     public void setResource(Resources resource)
     {
@@ -198,6 +201,18 @@ public class ColorArrayController {
         return this.htmlList;
     }
 
+    public String getHeaderColorName(int index)
+    {
+        if(resources == null)
+            return null;
+        if(headerColorList == null)
+            headerColorList =  resources.getStringArray(R.array.HeaderColorName);
+
+        if(index > headerColorList.length)
+            return null;
+
+        return  headerColorList[index];
+    }
 
 
 

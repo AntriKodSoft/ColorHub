@@ -22,7 +22,7 @@
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:id="@+id/colorView"
-            android:layout_weight=".8"
+            android:layout_weight=".6"
             android:elevation="2dp" />
 
         <RelativeLayout
@@ -33,7 +33,7 @@
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin"
-            android:paddingBottom="@dimen/activity_vertical_margin">
+            android:paddingBottom="0dp">
 
             <TextView
                 android:layout_width="fill_parent"
@@ -119,8 +119,8 @@
                 android:thumbTint="@color/colorDarkGrey"/>
 
             <Button
-                android:layout_width="150dp"
-                android:layout_height="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:id="@+id/buttonSelector"
                 android:layout_centerHorizontal="true"
@@ -128,6 +128,58 @@
                 android:textAllCaps="false"
                 android:background="@drawable/color_button_16"
                  />
+
+
+            <LinearLayout
+                android:id="@+id/imageLinearLayout"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/opacitySeekBar"
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:background="@drawable/border_shape"
+                android:orientation="horizontal"
+
+                >
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/color1"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/color2"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/color3"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/color4"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/color5"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    />
+
+            </LinearLayout>
 
         </RelativeLayout>
 
