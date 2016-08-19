@@ -28,4 +28,9 @@
         <item name="android:textSize">32sp</item>
     </style>
 
+    <style name="floating_action_button">
+        <item name="android:layout_marginBottom">50dp</item>
+    </style>
+
+
 </resources>

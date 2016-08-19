@@ -117,7 +117,6 @@ public class MainActivity extends AppCompatActivity implements FloatButtonListen
                     NavigationBarAdapter adapter = new NavigationBarAdapter(getApplicationContext(),1,cselect);
                     drawerList.setAdapter(adapter);
                 }
-
                 //mDrawer.openDrawer(drawerList);
                 mDrawer.openDrawer(relativeDrawer);
             }
