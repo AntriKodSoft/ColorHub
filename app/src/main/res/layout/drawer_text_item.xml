@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:id="@+id/rootColorLayout"
+    android:padding="0dp"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:descendantFocusability="blocksDescendants"
+    android:focusable="false"
+    >
+
+
+    <TextView
+        android:id="@+id/drawer_only_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/app_name"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="@color/colorDrawerText"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        >
+
+    </TextView>
+
+</LinearLayout>

@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+
+
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -17,11 +26,31 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:titleTextColor="@color/colorPrimaryText"
+             />
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tablayout"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="fixed"
+            app:tabTextColor="@color/colorPrimaryText"
+            app:tabGravity="fill"
+            style="@style/MyCustomTabLayout"
+            app:tabTextAppearance="@style/TabTextAppearance"
+
+            />
+
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
+
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -29,6 +58,97 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_email" />
+        android:src="@drawable/ic_action_plus"
+
+        app:backgroundTint="@color/colorAccent"
+        />
 
 </android.support.design.widget.CoordinatorLayout>
+
+
+
+    <RelativeLayout
+        android:id="@+id/relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="24dp"
+        >
+
+        <ListView
+            android:id="@+id/left_drawer"
+            android:layout_width="240dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:choiceMode="singleChoice"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp"
+            android:background="@color/colorDrawerBackground"
+            android:layout_above="@+id/space_item"
+
+            />
+
+        <LinearLayout
+            android:layout_width="240dp"
+            android:layout_height="1dp"
+            android:background="@color/colorDrawerText"
+            android:id="@+id/space_item"
+            android:layout_above="@+id/social_drawer_layout"
+            android:orientation="horizontal" />
+
+        <RelativeLayout
+            android:id="@+id/social_drawer_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true" >
+
+            <LinearLayout
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/colorDrawerBackground"
+                >
+
+                <ImageButton
+                    android:id="@+id/icon_facebook"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_launcher_facebook"
+                    android:background="@android:color/transparent"
+                    />
+
+                <ImageButton
+                    android:id="@+id/icon_twitter"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_launcher_twitter"
+                    android:background="@android:color/transparent"
+                    />
+                <ImageButton
+                    android:id="@+id/icon_instagram"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_launcher_instagram"
+                    android:background="@android:color/transparent"
+
+                    />
+                <ImageButton
+                    android:id="@+id/icon_browser"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_launcher_browser"
+                    android:background="@android:color/transparent"
+                    />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+
+</android.support.v4.widget.DrawerLayout>
