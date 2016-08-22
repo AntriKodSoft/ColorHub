@@ -86,16 +86,19 @@
             <LinearLayout
                 android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@color/colorDrawerText"
-                >
+                android:layout_height="53dp"
 
-                <!--
+                >
                 <com.google.android.gms.ads.AdView
+                    android:id="@+id/adView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical|center"
+                    android:layout_marginTop="0dp"
+                    android:gravity="center"
+                    ads:adSize="SMART_BANNER"
+                    ads:adUnitId="@string/banner_commercial">
                 </com.google.android.gms.ads.AdView>
-                -->
             </LinearLayout>
 
         </LinearLayout>

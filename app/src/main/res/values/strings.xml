@@ -6,6 +6,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- Admob id -->
     <string name="banner_com"></string>
+    <string name="banner_commercial">ca-app-pub-8446606602742080~2930613852</string>
     <string name="cheetatech_com">www.cheetatech.wordpress.com</string>
     <string name="software_team">SOFTWARE TEAM</string>
     <string name="graphic_team">GRAPHICS TEAM</string>

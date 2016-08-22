@@ -18,10 +18,11 @@ public class AboutusActivity extends AppCompatActivity  implements View.OnClickL
     private String cheetatechEmail = "cheetatech@gmail.com";
     private String subjectEmail = "Need Help";
     private String[] email = new String[]{
-        "https://www.linkedin.com/in/erkan-g%C3%BCzeler-95b47252",
-        "https://www.linkedin.com/in/erkan-g%C3%BCzeler-95b47252",
-        "https://www.linkedin.com/in/erkan-g%C3%BCzeler-95b47252",
-        "https://www.linkedin.com/in/erkan-g%C3%BCzeler-95b47252"
+            "https://www.linkedin.com/in/erkan-g%C3%BCzeler-95b47252",
+            "https://tr.linkedin.com/in/ali-guvenbas",
+            "https://www.linkedin.com/in/erkan-g%C3%BCzeler-95b47252",
+            "https://www.behance.net/nagihanozkar",
+            "https://www.linkedin.com/in/itır-başar-104889b5"
     };
 
     @Override
@@ -47,6 +48,7 @@ public class AboutusActivity extends AppCompatActivity  implements View.OnClickL
         ((ImageView)findViewById(R.id.steam_2)).setOnClickListener(this);
         ((ImageView)findViewById(R.id.steam_3)).setOnClickListener(this);
         ((ImageView)findViewById(R.id.gteam_1)).setOnClickListener(this);
+        ((ImageView)findViewById(R.id.gteam_2)).setOnClickListener(this);
     }
 
     @Override
@@ -71,6 +73,9 @@ public class AboutusActivity extends AppCompatActivity  implements View.OnClickL
                 break;
             case R.id.gteam_1 :
                 openUrl(email[3]);
+                break;
+            case R.id.gteam_2 :
+                openUrl(email[4]);
                 break;
         }
     }
