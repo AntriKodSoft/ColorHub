@@ -1,18 +1,28 @@
 package cheetatech.com.colorhub;
 
+import android.*;
+import android.Manifest;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.media.Image;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
@@ -21,8 +31,16 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import cheetatech.com.colorhub.adapters.DrawerListAdapter;
 import cheetatech.com.colorhub.adapters.GridViewArrayAdapter;
@@ -46,7 +64,7 @@ import layout.MaterialColorFragment;
 import layout.MetroColorFragment;
 import layout.SocialColorFragment;
 
-public class MainActivity extends AppCompatActivity implements FloatButtonListener.OnFabListener,ListView.OnItemClickListener, TabLayout.OnTabSelectedListener ,View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener ,View.OnClickListener {
 
     private Toolbar toolbar = null;
     private TabLayout tabLayout = null;
@@ -62,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements FloatButtonListen
     private DrawerListAdapter drawerListAdapter = null;
 
     private int currentPosition = 0;
+    private AdView mAdView = null;
 
     private String facebook = "https://www.facebook.com/cheetatech/?fref=ts&ref=br_tf";
     private String twitter = "https://twitter.com/cheeta_tech";
@@ -72,9 +91,10 @@ public class MainActivity extends AppCompatActivity implements FloatButtonListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        checkAndRequestPermissions();
+        MobileAds.initialize(getApplicationContext(), getString(R.string.banner_commercial));
+        mAdView = (AdView) findViewById(R.id.adView);
         // Color init
-
         ColorArrayController controller = ColorArrayController.getInstance();
         controller.setResource(getResources());
         controller.init();
@@ -117,7 +137,6 @@ public class MainActivity extends AppCompatActivity implements FloatButtonListen
                     NavigationBarAdapter adapter = new NavigationBarAdapter(getApplicationContext(),1,cselect);
                     drawerList.setAdapter(adapter);
                 }
-
                 //mDrawer.openDrawer(drawerList);
                 mDrawer.openDrawer(relativeDrawer);
             }
@@ -139,11 +158,7 @@ public class MainActivity extends AppCompatActivity implements FloatButtonListen
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
                 startActivity(new Intent(MainActivity.this, ColorPickerActivity.class));
-
-                //startActivity(new Intent(MainActivity.this, AboutusActivity.class));
             }
         });
 
@@ -155,6 +170,7 @@ public class MainActivity extends AppCompatActivity implements FloatButtonListen
         ((ImageButton) findViewById(R.id.icon_instagram)).setOnClickListener(this);
 
 
+        /*
         AppRate.with(this)
                 .setStoreType(StoreType.GOOGLEPLAY) //default is Google, other option is Amazon
                 .setInstallDays(3) // default 10, 0 means install day.
@@ -176,9 +192,9 @@ public class MainActivity extends AppCompatActivity implements FloatButtonListen
                 .setTextNever(R.string.new_rate_dialog_never)
                 .setTextRateNow(R.string.new_rate_dialog_ok)
                 .monitor();
-
+        */
         //AppRate.with(this).showRateDialog(this);
-        AppRate.showRateDialogIfMeetsConditions(this);
+        ////AppRate.showRateDialogIfMeetsConditions(this);
         //new AppRater(this).show();
         /* AppRate.with(this)
                 .setInstallDays(0) // default 10, 0 means install day.
@@ -201,6 +217,12 @@ public class MainActivity extends AppCompatActivity implements FloatButtonListen
     }
 
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        loadAdv();
+    }
+
     public  void setUpViewPager(ViewPager viewPager)
     {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -213,27 +235,19 @@ public class MainActivity extends AppCompatActivity implements FloatButtonListen
         viewPager.setAdapter(adapter);
     }
 
-
-
-
-
-
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        // mDrawer.closeDrawer(drawerList);
         mDrawer.closeDrawer(relativeDrawer);
-
 
         if(currentPosition != 1 )
         {
             switch (i)
             {
-
                 case 2:
                     startActivity(new Intent(MainActivity.this, ColorPickerActivity.class));
                     break;
                 case 3:
-
+                    openUrl("https://play.google.com/store/apps/details?id=cheetatech.com.colorhub");
                     break;
                 case 4:
                     shareApp();
@@ -251,7 +265,7 @@ public class MainActivity extends AppCompatActivity implements FloatButtonListen
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_TEXT,
-                "Hey check out Color Hub app at: https://play.google.com/store/apps/details?id=com.google.android.apps.plus");
+                "Hey check out Color Hub app at: https://play.google.com/store/apps/details?id=cheetatech.com.colorhub");
         sendIntent.setType("text/plain");
         startActivity(sendIntent);
     }
@@ -297,8 +311,128 @@ public class MainActivity extends AppCompatActivity implements FloatButtonListen
         startActivity(new Intent(Intent.ACTION_VIEW, uri));
     }
 
-    @Override
-    public void onFabSetColor(int color) {
-        //fab.setBackgroundTintList(ColorStateList.valueOf(color));
+
+    public AdRequest getAdRequest() {
+        AdRequest ret = null;
+        if (Util.TEST) {
+            ret = new AdRequest.Builder()
+                    .addTestDevice(getPhoneId())
+                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                    .build();
+        } else {
+            ret = new AdRequest.Builder().build();
+        }
+        return ret;
     }
+
+    private boolean checkPermission(String readPhoneState) {
+        boolean ret = ContextCompat.checkSelfPermission(this, readPhoneState) == PackageManager.PERMISSION_GRANTED;
+        return ret;
+    }
+    public String getPhoneId() {
+        return "0A02E72208689385EF8EE5F0CCCFE947";
+    }
+
+    private void loadAdv() {
+        if (getAdRequest() != null) {
+            AdRequest adRequest = getAdRequest();
+            mAdView.loadAd(adRequest);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        Log.d("TAG", "Permission callback called-------");
+        switch (requestCode) {
+            case Util.REQUEST_ID_MULTIPLE_PERMISSIONS: {
+
+                Map<String, Integer> perms = new HashMap<>();
+                // Initialize the map with both permissions
+                perms.put(Manifest.permission.INTERNET, PackageManager.PERMISSION_GRANTED);
+                perms.put(Manifest.permission.ACCESS_NETWORK_STATE, PackageManager.PERMISSION_GRANTED);
+                //perms.put(Manifest.permission.READ_PHONE_STATE, PackageManager.PERMISSION_GRANTED);*/
+                // Fill with actual results from user
+                if (grantResults.length > 0) {
+                    for (int i = 0; i < permissions.length; i++)
+                        perms.put(permissions[i], grantResults[i]);
+                    // Check for both permissions
+                    if (perms.get(Manifest.permission.ACCESS_NETWORK_STATE) == PackageManager.PERMISSION_GRANTED
+                            && perms.get(Manifest.permission.INTERNET) == PackageManager.PERMISSION_GRANTED
+                            //&& perms.get(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED
+                            ) {
+                        Log.d("TAG", "sms & location services permission granted");
+                        // process the normal flow
+                        //else any one or both the permissions are not granted
+                    } else {
+                        Log.d("TAG", "Some permissions are not granted ask again ");
+                        //permission is denied (this is the first time, when "never ask again" is not checked) so ask again explaining the usage of permission
+//                        // shouldShowRequestPermissionRationale will return true
+                        //show the dialog or snackbar saying its necessary and try again otherwise proceed with setup.
+                        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.INTERNET)
+                                || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_NETWORK_STATE)
+                                // || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_PHONE_STATE)
+                             ) {
+                            showDialogOK("Internet and Phone State Permission required for this app",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            switch (which) {
+                                                case DialogInterface.BUTTON_POSITIVE:
+                                                    checkAndRequestPermissions();
+                                                    break;
+                                                case DialogInterface.BUTTON_NEGATIVE:
+                                                    // proceed with logic by disabling the related features or quit the app.
+                                                    break;
+                                            }
+                                        }
+                                    });
+                        }
+                        //permission is denied (and never ask again is  checked)
+                        //shouldShowRequestPermissionRationale will return false
+                        else {
+                            Toast.makeText(this, "Go to settings and enable permissions", Toast.LENGTH_LONG)
+                                    .show();
+                            //                            //proceed with logic by disabling the related features or quit the app.
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+    private void showDialogOK(String message, DialogInterface.OnClickListener okListener) {
+        new AlertDialog.Builder(this)
+                .setMessage(message)
+                .setPositiveButton("OK", okListener)
+                .setNegativeButton("Cancel", okListener)
+                .create()
+                .show();
+    }
+
+    private  boolean checkAndRequestPermissions() {
+
+        if(Build.VERSION.SDK_INT >= 23) {
+            int permissionInternet = ContextCompat.checkSelfPermission(this, android.Manifest.permission.INTERNET);
+            int permissionAccessNetworkState = ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_NETWORK_STATE);
+            int permissionReadPhoneState = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_PHONE_STATE);
+            List<String> listPermissionsNeeded = new ArrayList<>();
+            if (permissionInternet != PackageManager.PERMISSION_GRANTED) {
+                listPermissionsNeeded.add(android.Manifest.permission.INTERNET);
+            }
+            if (permissionAccessNetworkState != PackageManager.PERMISSION_GRANTED) {
+                listPermissionsNeeded.add(Manifest.permission.ACCESS_NETWORK_STATE);
+            }
+            if (permissionReadPhoneState != PackageManager.PERMISSION_GRANTED) {
+                listPermissionsNeeded.add(Manifest.permission.READ_PHONE_STATE);
+            }
+            if (!listPermissionsNeeded.isEmpty()) {
+                ActivityCompat.requestPermissions(this, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), Util.REQUEST_ID_MULTIPLE_PERMISSIONS);
+                return false;
+            }
+        }
+        return true;
+    }
+
+
 }

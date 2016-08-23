@@ -39,7 +39,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/logo_image"
-                    android:background="@drawable/logodd3"
+                    android:background="@drawable/cheetatech_logo"
                     android:layout_weight="1"
                     />
 
@@ -47,7 +47,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/aboutus"
-                    android:textStyle="bold"
+                    android:textStyle="normal"
                     android:gravity="center"
                     android:textSize="16sp"
                     android:textColor="@color/colorDrawerText"
@@ -126,21 +126,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/logodd2"
+                    android:src="@drawable/developer1"
                     android:id="@+id/steam_1"
                     />
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/logodd2"
+                    android:src="@drawable/developer2"
                     android:id="@+id/steam_2"
                     />
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/logodd2"
+                    android:src="@drawable/developer3"
                     android:id="@+id/steam_3"
                     />
 
@@ -182,13 +182,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:src="@drawable/logodd2"
+                    android:src="@drawable/uiux1"
                     android:id="@+id/gteam_1"
                     />
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:src="@drawable/uiux2"
+                    android:id="@+id/gteam_2"
                     />
                 <ImageView
                     android:layout_width="match_parent"

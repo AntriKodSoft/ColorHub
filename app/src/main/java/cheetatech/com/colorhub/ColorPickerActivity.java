@@ -32,8 +32,6 @@ import cheetatech.com.colorhub.defines.ColorItem;
 
 public class ColorPickerActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, View.OnClickListener {
 
-    public static final String MIXPANEL_TOKEN = "8df466c6bae9ae3c3117de78e1af819d";
-
     View colorView;
     View[] views = null;
     int[] viewIds = new int[]{R.id.color1,R.id.color2,R.id.color3,R.id.color4,R.id.color5};
@@ -46,10 +44,6 @@ public class ColorPickerActivity extends AppCompatActivity implements SeekBar.On
     Display display;
     int red, green, blue, seekBarLeft,opacity;
     Rect thumbRect;
-    AlertDialog alertDialog;
-
-
-    //int[] colors = new int[] {Color.TRANSPARENT,Color.TRANSPARENT,Color.TRANSPARENT,Color.TRANSPARENT,Color.TRANSPARENT};
     ColorItem[] colors = new ColorItem[]{
             new ColorItem(0,0,0,0),
             new ColorItem(0,0,0,0),
@@ -57,9 +51,6 @@ public class ColorPickerActivity extends AppCompatActivity implements SeekBar.On
             new ColorItem(0,0,0,0),
             new ColorItem(0,0,0,0),
     };
-
-
-    JSONObject props;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,8 +70,7 @@ public class ColorPickerActivity extends AppCompatActivity implements SeekBar.On
 
         display = ((WindowManager) this.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
 
-        red = green = blue = 0;
-        opacity = 255;
+        red = green = blue = opacity = 255;
 
         clipBoard = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
         colorView = findViewById(R.id.colorView);
@@ -114,14 +104,9 @@ public class ColorPickerActivity extends AppCompatActivity implements SeekBar.On
         blueSeekBar.setProgress(blue);
         opacitySeekBar.setProgress(opacity);
 
-        //Setting View, Status bar & button color & hex codes
-        //colorView.setBackgroundColor(Color.rgb(red, green, blue));
         colorView.setBackgroundColor(Color.argb(opacity,red, green, blue));
 
-        //Set's color hex on Button
-        //buttonSelector.setText(String.format("#%02x%02x%02x%02x", opacity,red, green, blue));
         buttonSelector.setText(String.format("#%02x%02x%02x%02x", red, green, blue,opacity));
-        //buttonSelector.setText(String.format("#%02x%02x%02x", red, green, blue));
 
         views = new View[5];
         for (int i = 0;i<viewIds.length;i++)
@@ -258,18 +243,12 @@ public class ColorPickerActivity extends AppCompatActivity implements SeekBar.On
         }
 
         colorView.setBackgroundColor(Color.argb(opacity,red, green, blue));
-        //colorView.setBackgroundColor(Color.rgb(red, green, blue));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 
             if (display.getRotation() == Surface.ROTATION_0)
                 window.setStatusBarColor(Color.argb(opacity,red, green, blue));
-            //window.setStatusBarColor(Color.rgb(red, green, blue));
-
         }
-
-        //Setting the button hex color
-        //buttonSelector.setText(String.format("#%02x%02x%02x", red, green, blue));
         buttonSelector.setText(String.format("#%02x%02x%02x%02x", red, green, blue,opacity));
     }
 
@@ -374,7 +353,6 @@ public class ColorPickerActivity extends AppCompatActivity implements SeekBar.On
                 setProgressBar(red,green,blue,opacity);
                 onWindowFocusChanged(true);
                 break;
-
         }
     }
 }
