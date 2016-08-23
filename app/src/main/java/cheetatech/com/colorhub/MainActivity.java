@@ -91,7 +91,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         checkAndRequestPermissions();
         MobileAds.initialize(getApplicationContext(), getString(R.string.banner_commercial));
         mAdView = (AdView) findViewById(R.id.adView);
