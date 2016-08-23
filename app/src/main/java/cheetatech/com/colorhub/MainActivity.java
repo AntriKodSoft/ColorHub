@@ -328,7 +328,10 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     public AdRequest getAdRequest() {
         AdRequest ret = null;
         if (Util.TEST) {
-            ret = new AdRequest.Builder().addTestDevice(getPhoneId()).addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
+            ret = new AdRequest.Builder()
+                    .addTestDevice(getPhoneId())
+                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                    .build();
             //AdRequest.Builder.addTestDevice("0A02E72208689385EF8EE5F0CCCFE947")
         } else {
             ret = new AdRequest.Builder().build();
