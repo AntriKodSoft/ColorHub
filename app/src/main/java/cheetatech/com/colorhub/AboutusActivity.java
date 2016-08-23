@@ -20,7 +20,7 @@ public class AboutusActivity extends AppCompatActivity  implements View.OnClickL
     private String[] email = new String[]{
             "https://www.linkedin.com/in/erkan-g%C3%BCzeler-95b47252",
             "https://tr.linkedin.com/in/ali-guvenbas",
-            "https://www.linkedin.com/in/erkan-g%C3%BCzeler-95b47252",
+            "https://tr.linkedin.com/in/cihat-celik-87343092",
             "https://www.behance.net/nagihanozkar",
             "https://www.linkedin.com/in/itır-başar-104889b5"
     };

@@ -158,11 +158,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
                 startActivity(new Intent(MainActivity.this, ColorPickerActivity.class));
-
-                //startActivity(new Intent(MainActivity.this, AboutusActivity.class));
             }
         });
 
@@ -239,27 +235,19 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         viewPager.setAdapter(adapter);
     }
 
-
-
-
-
-
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        // mDrawer.closeDrawer(drawerList);
         mDrawer.closeDrawer(relativeDrawer);
-
 
         if(currentPosition != 1 )
         {
             switch (i)
             {
-
                 case 2:
                     startActivity(new Intent(MainActivity.this, ColorPickerActivity.class));
                     break;
                 case 3:
-
+                    openUrl("https://play.google.com/store/apps/details?id=cheetatech.com.colorhub");
                     break;
                 case 4:
                     shareApp();
@@ -277,7 +265,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_TEXT,
-                "Hey check out Color Hub app at: https://play.google.com/store/apps/details?id=com.google.android.apps.plus");
+                "Hey check out Color Hub app at: https://play.google.com/store/apps/details?id=cheetatech.com.colorhub");
         sendIntent.setType("text/plain");
         startActivity(sendIntent);
     }
@@ -331,7 +319,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
                     .addTestDevice(getPhoneId())
                     .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                     .build();
-            //AdRequest.Builder.addTestDevice("0A02E72208689385EF8EE5F0CCCFE947")
         } else {
             ret = new AdRequest.Builder().build();
         }
@@ -342,14 +329,8 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         boolean ret = ContextCompat.checkSelfPermission(this, readPhoneState) == PackageManager.PERMISSION_GRANTED;
         return ret;
     }
-
-
     public String getPhoneId() {
-        String ret = "";
-        //final TelephonyManager tm = (TelephonyManager) getBaseContext().getSystemService(Context.TELEPHONY_SERVICE);
-        //String deviceid = tm.getDeviceId();
         return "0A02E72208689385EF8EE5F0CCCFE947";
-        //return "9552A433781FF6F1766BC1BDF72022E5";
     }
 
     private void loadAdv() {
@@ -358,17 +339,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
             mAdView.loadAd(adRequest);
         }
     }
-/*
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        switch (requestCode) {
-            case Util.REQUEST_READ_PHONE_STATE:
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    loadAdv();
-                }
-                break;
-        }
-    }*/
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         Log.d("TAG", "Permission callback called-------");
