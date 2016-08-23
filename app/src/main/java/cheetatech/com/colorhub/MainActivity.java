@@ -175,6 +175,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         ((ImageButton) findViewById(R.id.icon_instagram)).setOnClickListener(this);
 
 
+        /*
         AppRate.with(this)
                 .setStoreType(StoreType.GOOGLEPLAY) //default is Google, other option is Amazon
                 .setInstallDays(3) // default 10, 0 means install day.
@@ -196,9 +197,9 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
                 .setTextNever(R.string.new_rate_dialog_never)
                 .setTextRateNow(R.string.new_rate_dialog_ok)
                 .monitor();
-
+        */
         //AppRate.with(this).showRateDialog(this);
-        AppRate.showRateDialogIfMeetsConditions(this);
+        ////AppRate.showRateDialogIfMeetsConditions(this);
         //new AppRater(this).show();
         /* AppRate.with(this)
                 .setInstallDays(0) // default 10, 0 means install day.
@@ -327,7 +328,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     public AdRequest getAdRequest() {
         AdRequest ret = null;
         if (Util.TEST) {
-            ret = new AdRequest.Builder().addTestDevice(getPhoneId()).build();
+            ret = new AdRequest.Builder().addTestDevice(getPhoneId()).addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
             //AdRequest.Builder.addTestDevice("0A02E72208689385EF8EE5F0CCCFE947")
         } else {
             ret = new AdRequest.Builder().build();
@@ -343,9 +344,10 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     public String getPhoneId() {
         String ret = "";
-        final TelephonyManager tm = (TelephonyManager) getBaseContext().getSystemService(Context.TELEPHONY_SERVICE);
-        String deviceid = tm.getDeviceId();
+        //final TelephonyManager tm = (TelephonyManager) getBaseContext().getSystemService(Context.TELEPHONY_SERVICE);
+        //String deviceid = tm.getDeviceId();
         return "0A02E72208689385EF8EE5F0CCCFE947";
+        //return "9552A433781FF6F1766BC1BDF72022E5";
     }
 
     private void loadAdv() {
