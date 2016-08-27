@@ -5,7 +5,9 @@ ColorHub is an Android Application that you select Material, Flat, Social, Metro
 
 <a href="https://play.google.com/store/apps/details?id=cheetatech.com.colorhub">
 <img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge.png" width="150px"/>
-</a>
+</a>  
+
+[![Donate](https://img.shields.io/aur/license/yaourt.svg)]()
 
 ![ColorHub Screenshots](/img/screenshot.png) 
 
@@ -52,8 +54,19 @@ We are developing this application in public to bring you a tool that _you_ want
 
   * Initial Release
 
+## Donation
+
+We are sparing extra time for develops ColorHub project. We love develop mobile applications that you can use. 
+If our application is useful for you , you can donate us for developing our application. 
+
+You can be a patron. It's completely optional and is just a direct way to support ColorHub's ongoing development.
+
+Thanks.
+
+[![Donate](https://img.shields.io/badge/patreon-donate-yellow.svg)](https://www.patreon.com/CheetaTech)
+
   
-#Licence
+## Licence
 
   ColorHub is under GPL V3 Licence -- see `LICENCE` for more details.
   
