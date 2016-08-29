@@ -11,6 +11,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -27,10 +29,18 @@ import android.widget.Toast;
 
 import org.json.JSONObject;
 
+import cheetatech.com.colorhub.adapters.ViewPagerAdapter;
 import cheetatech.com.colorhub.defines.BoardEditor;
 import cheetatech.com.colorhub.defines.ColorItem;
+import layout.ColorPicker1;
+import layout.ColorPicker2;
+import layout.FlatColorFragment;
+import layout.HtmlColorFragment;
+import layout.MaterialColorFragment;
+import layout.MetroColorFragment;
+import layout.SocialColorFragment;
 
-public class ColorPickerActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, View.OnClickListener {
+public class ColorPickerActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener ,SeekBar.OnSeekBarChangeListener, View.OnClickListener {
 
     View colorView;
     View[] views = null;
@@ -44,6 +54,10 @@ public class ColorPickerActivity extends AppCompatActivity implements SeekBar.On
     Display display;
     int red, green, blue, seekBarLeft,opacity;
     Rect thumbRect;
+    private TabLayout tabLayout = null;
+
+    private ViewPager viewPager = null;
+
     ColorItem[] colors = new ColorItem[]{
             new ColorItem(0,0,0,0),
             new ColorItem(0,0,0,0),
@@ -67,6 +81,16 @@ public class ColorPickerActivity extends AppCompatActivity implements SeekBar.On
                 onBackPressed();
             }
         });
+
+
+        viewPager = (ViewPager) findViewById(R.id.pager);
+        setUpViewPager(viewPager);
+
+        tabLayout = (TabLayout)findViewById(R.id.tablayout);
+        tabLayout.setupWithViewPager(viewPager);
+
+        tabLayout.setOnTabSelectedListener(this);
+
 
         display = ((WindowManager) this.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
 
@@ -119,6 +143,17 @@ public class ColorPickerActivity extends AppCompatActivity implements SeekBar.On
             views[j].setBackgroundColor(Color.argb(colors[j].getOpacity(),colors[j].getRed(),colors[j].getGreen(),colors[j].getBlue()));
 
     }
+
+
+
+    public  void setUpViewPager(ViewPager viewPager)
+    {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new ColorPicker1(),"ColorPicker1");
+        adapter.addFragment(new ColorPicker2(),"ColorPicker2");
+        viewPager.setAdapter(adapter);
+    }
+
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -354,5 +389,22 @@ public class ColorPickerActivity extends AppCompatActivity implements SeekBar.On
                 onWindowFocusChanged(true);
                 break;
         }
+    }
+
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+        int position =  tab.getPosition();
+        tabLayout.getTabAt(position).select();
+        viewPager.setCurrentItem(position);
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+
     }
 }

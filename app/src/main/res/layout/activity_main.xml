@@ -38,7 +38,6 @@
             app:tabGravity="fill"
             style="@style/MyCustomTabLayout"
             app:tabTextAppearance="@style/TabTextAppearance"
-
             />
 
 

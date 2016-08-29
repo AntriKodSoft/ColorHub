@@ -20,9 +20,26 @@
             app:titleTextColor="@color/colorPrimaryText"
              />
 
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tablayout"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="fixed"
+            app:tabTextColor="@color/colorPrimaryText"
+            app:tabGravity="fill"
+            style="@style/MyCustomTabLayout"
+            app:tabTextAppearance="@style/TabTextAppearance"
+            />
+
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_color_picker" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
 
 
 </android.support.design.widget.CoordinatorLayout>
