@@ -10,4 +10,11 @@
     <style name="floating_action_button">
         <item name="android:layout_marginBottom">50dp</item>
     </style>
+
+    <declare-styleable name="GradientView">
+        <attr name="pointerDrawable" format="reference"/>
+        <attr name="radius" format="dimension"/>
+        <attr name="lockPointerInBounds" format="boolean" />
+    </declare-styleable>
+
 </resources>
