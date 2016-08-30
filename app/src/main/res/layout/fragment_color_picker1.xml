@@ -10,20 +10,46 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="cheetatech.com.colorhub.ColorPickerActivity"
-    tools:showIn="@layout/activity_color_picker">
+    >
     <RelativeLayout
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ColorPickerActivity">
 
+        <!--
         <View
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:id="@+id/colorView"
             android:background="@color/colorDrawerText"
             android:layout_above="@+id/keyboardLayout"
-            android:elevation="2dp" />
+            android:elevation="2dp"
+            />
+        -->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@id/colorView"
+            android:background="@color/colorDrawerText"
+            android:layout_above="@+id/keyboardLayout"
+            android:elevation="2dp"
+            >
+            <TextView
+                android:id="@+id/textViewColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#FFABCD"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:textSize="18dp"
+                />
+        </RelativeLayout>
+
+
 
         <RelativeLayout
             android:id="@+id/keyboardLayout"
