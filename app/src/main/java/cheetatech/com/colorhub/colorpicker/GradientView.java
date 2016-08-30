@@ -416,6 +416,35 @@ public class GradientView extends View {
         }
     }
 
+    public void setBrightnessGradientColor(int colour)
+    {
+        if(mBrightnessGradientView != null)
+        {
+            mBrightnessGradientView.setIsBrightnessGradient(true);
+            mBrightnessGradientView.setColour(colour, true);
+        }
+    }
+
+    protected void setColour(int selectedColor, boolean updatePointers) {
+        Color.colorToHSV(selectedColor, mHSV);
+        if (true) {
+            mSelectedColorGradient[0] = getColorForGradient(mHSV);
+            mSelectedColor = Color.HSVToColor(mHSV);
+            buildShaders();
+            if (mLastX != Integer.MIN_VALUE) {
+                mHSV[2] = pointToValueBrightness(mLastX);
+            }
+            selectedColor = Color.HSVToColor(mHSV);
+        }
+        if (updatePointers) {
+            updatePointerPosition();
+        }
+        mSelectedColor = selectedColor;
+        invalidate();
+        dispatchColorChanged(mSelectedColor);
+    }
+
+
     public void setOnColorChangedListener(OnColorChangedListener onColorChangedListener) {
         mOnColorChangedListener = onColorChangedListener;
     }

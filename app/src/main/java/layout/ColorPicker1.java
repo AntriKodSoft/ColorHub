@@ -136,7 +136,7 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
         colorViewLayout.setBackgroundColor(Color.argb(opacity,red, green, blue));
 
         buttonSelector.setText(String.format("#%02x%02x%02x%02x", red, green, blue,opacity));
-        textViewColor.setText(String.format("#%02x%02x%02x%02x", red, green, blue,opacity));
+        textViewColor.setText(String.format("#%02x%02x%02x%02x", opacity, red, green, blue));
         textViewColor.setTextColor(Color.parseColor(inverseColor(red,green,blue)));
         views = new View[5];
         for (int i = 0;i<viewIds.length;i++)
@@ -252,7 +252,7 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
                         window.setStatusBarColor(Color.argb(opacity,red, green, blue));
                 }
                 buttonSelector.setText(String.format("#%02x%02x%02x%02x", red, green, blue,opacity));
-                textViewColor.setText(String.format("#%02x%02x%02x%02x", red, green, blue,opacity));
+                textViewColor.setText(String.format("#%02x%02x%02x%02x", opacity,red, green, blue));
             }
 
             @Override
@@ -290,7 +290,7 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
                         window.setStatusBarColor(Color.argb(opacity,red, green, blue));
                 }
                 buttonSelector.setText(String.format("#%02x%02x%02x%02x", red, green, blue,opacity));
-                textViewColor.setText(String.format("#%02x%02x%02x%02x", red, green, blue,opacity));
+                textViewColor.setText(String.format("#%02x%02x%02x%02x", opacity,red, green, blue));
                 textViewColor.setTextColor(Color.parseColor(inverseColor(red,green,blue)));
             }
 
@@ -329,7 +329,7 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
                         window.setStatusBarColor(Color.argb(opacity,red, green, blue));
                 }
                 buttonSelector.setText(String.format("#%02x%02x%02x%02x", red, green, blue,opacity));
-                textViewColor.setText(String.format("#%02x%02x%02x%02x", red, green, blue,opacity));
+                textViewColor.setText(String.format("#%02x%02x%02x%02x", opacity,red, green, blue));
                 textViewColor.setTextColor(Color.parseColor(inverseColor(red,green,blue)));
             }
 
@@ -370,7 +370,7 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
                         window.setStatusBarColor(Color.argb(opacity,red, green, blue));
                 }
                 buttonSelector.setText(String.format("#%02x%02x%02x%02x", red, green, blue,opacity));
-                textViewColor.setText(String.format("#%02x%02x%02x%02x", red, green, blue,opacity));
+                textViewColor.setText(String.format("#%02x%02x%02x%02x", opacity,red, green, blue));
                 textViewColor.setTextColor(Color.parseColor(inverseColor(red,green,blue)));
             }
 
