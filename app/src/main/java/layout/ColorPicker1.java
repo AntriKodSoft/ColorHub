@@ -159,6 +159,17 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
             }
         });
 
+
+        textViewColor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addToView(new ColorItem(red,green,blue,opacity));
+                BoardEditor.getInstance().copyToClipBoard(textViewColor.getText().toString());
+                Toast.makeText(BoardEditor.getInstance().getContext(), "Color " + textViewColor.getText().toString() +
+                        " copied to clipboard...", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         views[0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
