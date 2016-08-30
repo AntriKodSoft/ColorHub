@@ -33,8 +33,9 @@
             />
 
     </android.support.design.widget.AppBarLayout>
-
+<!--
     <include layout="@layout/content_color_picker" />
+    -->
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
