@@ -7,6 +7,6 @@
     <dimen name="gap">10dp</dimen>
     <dimen name="radius">3dp</dimen>
     <dimen name="gap_small">5dp</dimen>
-    <dimen name="gap_large">20dp</dimen>
+    <dimen name="gap_large">10dp</dimen>
     <dimen name="text">20sp</dimen>
 </resources>
