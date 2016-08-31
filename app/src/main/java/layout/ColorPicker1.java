@@ -47,7 +47,6 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
     int[] viewIds = new int[]{R.id.color1,R.id.color2,R.id.color3,R.id.color4,R.id.color5};
     SeekBar redSeekBar, greenSeekBar, blueSeekBar,opacitySeekBar;
     TextView redToolTip, greenToolTip, blueToolTip,opacityToolTip;
-    Button buttonSelector;
     ClipboardManager clipBoard;
     ClipData clip;
     Window window;
@@ -65,6 +64,14 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
             new ColorItem(0,0,0,0),
             new ColorItem(0,0,0,0),
             new ColorItem(0,0,0,0),
+    };
+
+    ColorItem[] selectedColors = new ColorItem[]{
+            new ColorItem(),
+            new ColorItem(),
+            new ColorItem(),
+            new ColorItem(),
+            new ColorItem(),
     };
 
 
@@ -122,7 +129,6 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
 
         opacityToolTip = (TextView)getView().findViewById(R.id.opacityToolTip);
 
-        buttonSelector = (Button)getView().findViewById(R.id.buttonSelector);
         textViewColor = (TextView) getView().findViewById(R.id.textViewColor);
         textViewColor.setTextColor(Color.parseColor(inverseColor(red,green,blue)));
 
@@ -135,7 +141,6 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
         //colorView.setBackgroundColor(Color.argb(opacity,red, green, blue));
         colorViewLayout.setBackgroundColor(Color.argb(opacity,red, green, blue));
 
-        buttonSelector.setText(String.format("#%02x%02x%02x%02x", red, green, blue,opacity));
         textViewColor.setText(String.format("#%02x%02x%02x%02x", opacity, red, green, blue));
         textViewColor.setTextColor(Color.parseColor(inverseColor(red,green,blue)));
         views = new View[5];
@@ -148,22 +153,16 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
         for(int j = 0;j<colors.length;j++)
             views[j].setBackgroundColor(Color.argb(colors[j].getOpacity(),colors[j].getRed(),colors[j].getGreen(),colors[j].getBlue()));
 
-
-        buttonSelector.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addToView(new ColorItem(red,green,blue,opacity));
-                BoardEditor.getInstance().copyToClipBoard(buttonSelector.getText().toString());
-                Toast.makeText(BoardEditor.getInstance().getContext(), "Color " + buttonSelector.getText().toString() +
-                        " copied to clipboard...", Toast.LENGTH_SHORT).show();
-            }
-        });
+        /*
+        setProgressBar(red,green,blue,opacity);
+        onWindowFocusChanged(true);
+        */
 
 
         textViewColor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addToView(new ColorItem(red,green,blue,opacity));
+                //addToView(new ColorItem(red,green,blue,opacity));
                 BoardEditor.getInstance().copyToClipBoard(textViewColor.getText().toString());
                 Toast.makeText(BoardEditor.getInstance().getContext(), "Color " + textViewColor.getText().toString() +
                         " copied to clipboard...", Toast.LENGTH_SHORT).show();
@@ -173,59 +172,96 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
         views[0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BoardEditor.getInstance().copyToClipBoard(colors[0].toString());
-                Toast.makeText(BoardEditor.getInstance().getContext(), "Color " + colors[0].toString() +
-                        " copied to clipboard...", Toast.LENGTH_SHORT).show();
-                red = colors[0].getRed(); green = colors[0].getGreen(); blue = colors[0].getBlue(); opacity = colors[0].getOpacity();
+                selectedColors[0].setColors(red,green,blue,opacity);
+                views[0].setBackgroundColor(Color.parseColor(selectedColors[0].toString()));
+            }
+        });
+        views[0].setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if(!selectedColors[0].getHasColor())
+                    return true;
+                red = selectedColors[0].getRed(); green = selectedColors[0].getGreen(); blue = selectedColors[0].getBlue(); opacity = selectedColors[0].getOpacity();
                 setProgressBar(red,green,blue,opacity);
                 onWindowFocusChanged(true);
+                return false;
             }
         });
         views[1].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BoardEditor.getInstance().copyToClipBoard(colors[1].toString());
-                Toast.makeText(BoardEditor.getInstance().getContext(), "Color " + colors[1].toString() +
-                        " copied to clipboard...", Toast.LENGTH_SHORT).show();
-                red = colors[1].getRed(); green = colors[1].getGreen(); blue = colors[1].getBlue(); opacity = colors[1].getOpacity();
+                selectedColors[1].setColors(red,green,blue,opacity);
+                views[1].setBackgroundColor(Color.parseColor(selectedColors[1].toString()));
+            }
+        });
+        views[1].setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if(!selectedColors[1].getHasColor())
+                    return true;
+                red = selectedColors[1].getRed(); green = selectedColors[1].getGreen(); blue = selectedColors[1].getBlue(); opacity = selectedColors[1].getOpacity();
                 setProgressBar(red,green,blue,opacity);
                 onWindowFocusChanged(true);
+                return false    ;
             }
         });
         views[2].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BoardEditor.getInstance().copyToClipBoard(colors[2].toString());
-                Toast.makeText(BoardEditor.getInstance().getContext(), "Color " + colors[2].toString() +
-                        " copied to clipboard...", Toast.LENGTH_SHORT).show();
-                red = colors[2].getRed(); green = colors[2].getGreen(); blue = colors[2].getBlue(); opacity = colors[2].getOpacity();
+                selectedColors[2].setColors(red,green,blue,opacity);
+                views[2].setBackgroundColor(Color.parseColor(selectedColors[2].toString()));
+
+            }
+        });
+        views[2].setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if(!selectedColors[2].getHasColor())
+                    return true;
+                red = selectedColors[2].getRed(); green = selectedColors[2].getGreen(); blue = selectedColors[2].getBlue(); opacity = selectedColors[2].getOpacity();
                 setProgressBar(red,green,blue,opacity);
                 onWindowFocusChanged(true);
+                return false;
             }
         });
         views[3].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BoardEditor.getInstance().copyToClipBoard(colors[3].toString());
-                Toast.makeText(BoardEditor.getInstance().getContext(), "Color " + colors[3].toString() +
-                        " copied to clipboard...", Toast.LENGTH_SHORT).show();
-                red = colors[3].getRed(); green = colors[3].getGreen(); blue = colors[3].getBlue(); opacity = colors[3].getOpacity();
+                selectedColors[3].setColors(red,green,blue,opacity);
+                views[3].setBackgroundColor(Color.parseColor(selectedColors[3].toString()));
+
+            }
+        });
+        views[3].setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if(!selectedColors[3].getHasColor())
+                    return true;
+                red = selectedColors[3].getRed(); green = selectedColors[3].getGreen(); blue = selectedColors[3].getBlue(); opacity = selectedColors[3].getOpacity();
                 setProgressBar(red,green,blue,opacity);
                 onWindowFocusChanged(true);
+                return false;
             }
         });
         views[4].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BoardEditor.getInstance().copyToClipBoard(colors[4].toString());
-                Toast.makeText(BoardEditor.getInstance().getContext(), "Color " + colors[4].toString() +
-                        " copied to clipboard...", Toast.LENGTH_SHORT).show();
-                red = colors[4].getRed(); green = colors[4].getGreen(); blue = colors[4].getBlue(); opacity = colors[4].getOpacity();
-                setProgressBar(red,green,blue,opacity);
-                onWindowFocusChanged(true);
+                selectedColors[4].setColors(red,green,blue,opacity);
+                views[4].setBackgroundColor(Color.parseColor(selectedColors[4].toString()));
             }
         });
 
+        views[4].setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if(!selectedColors[4].getHasColor())
+                    return true;
+                red = selectedColors[4].getRed(); green = selectedColors[4].getGreen(); blue = selectedColors[4].getBlue(); opacity = selectedColors[4].getOpacity();
+                setProgressBar(red,green,blue,opacity);
+                onWindowFocusChanged(true);
+                return false;
+            }
+        });
 
         redSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -251,7 +287,6 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
                     if (display.getRotation() == Surface.ROTATION_0)
                         window.setStatusBarColor(Color.argb(opacity,red, green, blue));
                 }
-                buttonSelector.setText(String.format("#%02x%02x%02x%02x", red, green, blue,opacity));
                 textViewColor.setText(String.format("#%02x%02x%02x%02x", opacity,red, green, blue));
             }
 
@@ -289,7 +324,6 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
                     if (display.getRotation() == Surface.ROTATION_0)
                         window.setStatusBarColor(Color.argb(opacity,red, green, blue));
                 }
-                buttonSelector.setText(String.format("#%02x%02x%02x%02x", red, green, blue,opacity));
                 textViewColor.setText(String.format("#%02x%02x%02x%02x", opacity,red, green, blue));
                 textViewColor.setTextColor(Color.parseColor(inverseColor(red,green,blue)));
             }
@@ -328,7 +362,6 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
                     if (display.getRotation() == Surface.ROTATION_0)
                         window.setStatusBarColor(Color.argb(opacity,red, green, blue));
                 }
-                buttonSelector.setText(String.format("#%02x%02x%02x%02x", red, green, blue,opacity));
                 textViewColor.setText(String.format("#%02x%02x%02x%02x", opacity,red, green, blue));
                 textViewColor.setTextColor(Color.parseColor(inverseColor(red,green,blue)));
             }
@@ -369,7 +402,6 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
                     if (display.getRotation() == Surface.ROTATION_0)
                         window.setStatusBarColor(Color.argb(opacity,red, green, blue));
                 }
-                buttonSelector.setText(String.format("#%02x%02x%02x%02x", red, green, blue,opacity));
                 textViewColor.setText(String.format("#%02x%02x%02x%02x", opacity,red, green, blue));
                 textViewColor.setTextColor(Color.parseColor(inverseColor(red,green,blue)));
             }

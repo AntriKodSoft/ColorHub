@@ -15,7 +15,9 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ColorPickerActivity">
+        tools:context=".ColorPickerActivity"
+        android:layout_marginBottom="115dp"
+        >
 
         <!--
         <View
@@ -60,7 +62,8 @@
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin"
-            android:paddingBottom="0dp">
+            android:layout_marginBottom="0dp"
+            >
 
             <TextView
                 android:layout_width="fill_parent"
@@ -145,20 +148,6 @@
                 android:progressDrawable="@drawable/opacity_progress"
                 android:thumbTint="@color/colorDarkGrey"/>
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:id="@+id/buttonSelector"
-                android:layout_marginTop="5dp"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentBottom="false"
-                android:layout_below="@+id/imageLinearLayout"
-                android:textAllCaps="false"
-                android:background="@drawable/color_button_16"
-                />
-
-
             <LinearLayout
                 android:id="@+id/imageLinearLayout"
                 android:layout_marginTop="10dp"
@@ -167,6 +156,8 @@
                 android:layout_height="30dp"
                 android:background="@drawable/border_shape"
                 android:orientation="horizontal"
+                android:divider="?android:dividerVertical"
+                android:showDividers="middle"
 
                 >
                 <View

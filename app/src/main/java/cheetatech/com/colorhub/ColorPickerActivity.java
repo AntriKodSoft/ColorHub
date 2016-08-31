@@ -29,6 +29,10 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 import org.json.JSONObject;
 
 import java.util.List;
@@ -49,12 +53,17 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
     private TabLayout tabLayout = null;
     private ViewPager viewPager = null;
     private ColorPicker1 ColorPicker_1 = null;
+    private AdView mAdView = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_color_picker);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        MobileAds.initialize(getApplicationContext(), getString(R.string.banner_commercial));
+        mAdView = (AdView) findViewById(R.id.adView);
 
         toolbar.setNavigationIcon(R.drawable.ic_action_back_button);
         getSupportActionBar().setTitle("ColorHub");
@@ -74,6 +83,34 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
 
         tabLayout.setOnTabSelectedListener(this);
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        loadAdv();
+    }
+
+    private void loadAdv() {
+        if (getAdRequest() != null) {
+            AdRequest adRequest = getAdRequest();
+            mAdView.loadAd(adRequest);
+        }
+    }
+    public AdRequest getAdRequest() {
+        AdRequest ret = null;
+        if (Util.TEST) {
+            ret = new AdRequest.Builder()
+                    .addTestDevice(getPhoneId())
+                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                    .build();
+        } else {
+            ret = new AdRequest.Builder().build();
+        }
+        return ret;
+    }
+    public String getPhoneId() {
+        return "0A02E72208689385EF8EE5F0CCCFE947";
     }
     public  void setUpViewPager(ViewPager viewPager)
     {

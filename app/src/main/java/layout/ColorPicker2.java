@@ -11,8 +11,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.math.BigInteger;
 
 import cheetatech.com.colorhub.R;
 import cheetatech.com.colorhub.colorpicker.GradientView;
@@ -26,6 +29,7 @@ public class ColorPicker2 extends Fragment {
     private TextView mTextView = null;
     private Drawable mIcon = null;
     private int colorText = 0;
+    private RelativeLayout colorView = null;
 
     View[] views = null;
     int[] viewIds = new int[]{R.id.color1,R.id.color2,R.id.color3,R.id.color4,R.id.color5};
@@ -44,6 +48,14 @@ public class ColorPicker2 extends Fragment {
             new ColorItem(0,0,0,0),
              */
 
+    };
+
+    ColorItem[] selectedColors = new ColorItem[]{
+            new ColorItem(),
+            new ColorItem(),
+            new ColorItem(),
+            new ColorItem(),
+            new ColorItem(),
     };
 
     public ColorPicker2() {
@@ -78,15 +90,16 @@ public class ColorPicker2 extends Fragment {
             //views[i].setOnClickListener(this);
         }
 
-        for(int j = 0;j<colors.length;j++)
-            views[j].setBackgroundColor(colors[j].getColor());
+        //for(int j = 0;j<colors.length;j++)
+        //    views[j].setBackgroundColor(colors[j].getColor());
+
+        colorView = (RelativeLayout) getView().findViewById(R.id.colorView);
 
 
-
-        mIcon = getResources().getDrawable(R.mipmap.ic_launcher);
+        //mIcon = getResources().getDrawable(R.mipmap.ic_launcher);
         mTextView = (TextView) getView().findViewById(R.id.color);
 
-        mTextView.setCompoundDrawablesWithIntrinsicBounds(mIcon, null, null, null);
+        //mTextView.setCompoundDrawablesWithIntrinsicBounds(mIcon, null, null, null);
         mTop = (GradientView)getView().findViewById(R.id.top);
         mBottom = (GradientView)getView().findViewById(R.id.bottom);
         mTop.setBrightnessGradientView(mBottom);
@@ -94,23 +107,21 @@ public class ColorPicker2 extends Fragment {
             @Override
             public void onColorChanged(GradientView view, int color) {
                 colorText = color;
-                mTextView.setTextColor(color);
                 mTextView.setText("#" + Integer.toHexString(color));
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    mIcon.setTint(color);
-                }
+                mTextView.setTextColor(Color.parseColor(inverseColor(Integer.toHexString(color))));
+                colorView.setBackgroundColor(colorText);
+
 
             }
         });
 
         final int color = 0xFF394572;
         mTop.setColor(color);
-
+        colorView.setBackgroundColor(color);
 
         mTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addToView(new ColorItem(colorText));
                 BoardEditor.getInstance().copyToClipBoard(mTextView.getText().toString());
                 Toast.makeText(BoardEditor.getInstance().getContext(), "Color " + mTextView.getText().toString() +
                         " copied to clipboard...", Toast.LENGTH_SHORT).show();
@@ -122,59 +133,102 @@ public class ColorPicker2 extends Fragment {
         views[0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BoardEditor.getInstance().copyToClipBoard(colors[0].toString());
-                int coloraa = 0xFF000000;
-                //mBottom.setColor(coloraa);
-                mTop.setColor(colors[0].getColor());
-                mTop.setBrightnessGradientColor(colors[0].getColor());
-                mTextView.setTextColor(colors[0].getColor());
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    mIcon.setTint(colors[0].getColor());
-                }
-                Toast.makeText(BoardEditor.getInstance().getContext(), "Color " + "#" + Integer.toHexString(colors[0].getColor()) +
-                        " copied to clipboard...", Toast.LENGTH_SHORT).show();
-
+                selectedColors[0].setColor(colorText);
+                views[0].setBackgroundColor(selectedColors[0].getColor());
             }
         });
+        views[0].setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if(!selectedColors[0].getHasColor())
+                    return true;
+                Log.e("kkkakkad","dsfkjişasdkf");
+                mBottom.setColor(selectedColors[0].getColor());
+                mTop.setColor(selectedColors[0].getColor());
+                colorText = selectedColors[0].getColor();
+                return false;
+            }
+        });
+
+
         views[1].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BoardEditor.getInstance().copyToClipBoard(colors[1].toString());
-                mBottom.setColor(colors[1].getColor());
-                Toast.makeText(BoardEditor.getInstance().getContext(), "Color " + colors[1].toString() +
-                        " copied to clipboard...", Toast.LENGTH_SHORT).show();
+                selectedColors[1].setColor(colorText);
+                views[1].setBackgroundColor(selectedColors[1].getColor());
             }
         });
+        views[1].setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if(!selectedColors[1].getHasColor())
+                    return true;
+                mBottom.setColor(selectedColors[1].getColor());
+                mTop.setColor(selectedColors[1].getColor());
+                colorText = selectedColors[1].getColor();
+                return false;
+            }
+        });
+
         views[2].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BoardEditor.getInstance().copyToClipBoard(colors[2].toString());
-                mBottom.setColor(colors[2].getColor());
-                Toast.makeText(BoardEditor.getInstance().getContext(), "Color " + colors[2].toString() +
-                        " copied to clipboard...", Toast.LENGTH_SHORT).show();
-
+                selectedColors[2].setColor(colorText);
+                views[2].setBackgroundColor(selectedColors[2].getColor());
             }
         });
+        views[2].setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if(!selectedColors[2].getHasColor())
+                    return true;
+                mBottom.setColor(selectedColors[2].getColor());
+                mTop.setColor(selectedColors[2].getColor());
+                colorText = selectedColors[2].getColor();
+                return false;
+            }
+        });
+
+
         views[3].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BoardEditor.getInstance().copyToClipBoard(colors[3].toString());
-                mBottom.setColor(colors[3].getColor());
-                Toast.makeText(BoardEditor.getInstance().getContext(), "Color " + colors[3].toString() +
-                        " copied to clipboard...", Toast.LENGTH_SHORT).show();
+                selectedColors[3].setColor(colorText);
+                views[3].setBackgroundColor(selectedColors[3].getColor());
 
             }
         });
+        views[3].setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if(!selectedColors[3].getHasColor())
+                    return true;
+                mBottom.setColor(selectedColors[3].getColor());
+                colorText = selectedColors[3].getColor();
+                mTop.setColor(selectedColors[3].getColor());
+                return false;
+            }
+        });
+
         views[4].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BoardEditor.getInstance().copyToClipBoard(colors[4].toString());
-                mBottom.setColor(colors[4].getColor());
-                Toast.makeText(BoardEditor.getInstance().getContext(), "Color " + colors[4].toString() +
-                        " copied to clipboard...", Toast.LENGTH_SHORT).show();
+                selectedColors[4].setColor(colorText);
+                views[4].setBackgroundColor(selectedColors[4].getColor());
             }
         });
 
+        views[4].setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if(!selectedColors[3].getHasColor())
+                    return true;
+                mBottom.setColor(selectedColors[4].getColor());
+                colorText = selectedColors[4].getColor();
+                mTop.setColor(selectedColors[4].getColor());
+                return false;
+            }
+        });
 
     }
     private void addToView(ColorItem colorItem) {
@@ -195,6 +249,29 @@ public class ColorPicker2 extends Fragment {
             for (i = 0; i < colors.length - 1; i++)
                 colors[i + 1] = new ColorItem(refColors[i].getColor());
         }
+    }
+
+    private String inverseColor(String hexColor)
+    {
+        String ff = "FF";
+        String r = hexColor.substring(2,4);
+        String g = hexColor.substring(4,6);
+        String b = hexColor.substring(6,8);
+
+
+        BigInteger ri = new BigInteger(r,16);
+        BigInteger gi = new BigInteger(g,16);
+        BigInteger bi = new BigInteger(b,16);
+
+
+        BigInteger fi = new BigInteger(ff,16);
+
+        BigInteger rs = ri.xor(fi);
+        BigInteger gs = gi.xor(fi);
+        BigInteger bs = bi.xor(fi);
+
+        String res = String.format("#%02x%02x%02x",rs,gs,bs);
+        return res;
     }
 
 }
