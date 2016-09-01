@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import java.math.BigInteger;
 
+import cheetatech.com.colorhub.ColorPickerActivity;
 import cheetatech.com.colorhub.R;
 import cheetatech.com.colorhub.colorpicker.GradientView;
 import cheetatech.com.colorhub.defines.BoardEditor;
@@ -30,6 +31,7 @@ public class ColorPicker2 extends Fragment {
     private Drawable mIcon = null;
     private int colorText = 0;
     private RelativeLayout colorView = null;
+    private int _f = 0;
 
     View[] views = null;
     int[] viewIds = new int[]{R.id.color1,R.id.color2,R.id.color3,R.id.color4,R.id.color5};
@@ -110,12 +112,11 @@ public class ColorPicker2 extends Fragment {
                 mTextView.setText("#" + Integer.toHexString(color));
                 mTextView.setTextColor(Color.parseColor(inverseColor(Integer.toHexString(color))));
                 colorView.setBackgroundColor(colorText);
-
-
             }
         });
 
-        final int color = 0xFF394572;
+        final int color = 0xFFE12109;//0xFF394572;
+        // 0xFFE12109
         mTop.setColor(color);
         colorView.setBackgroundColor(color);
 
@@ -133,20 +134,14 @@ public class ColorPicker2 extends Fragment {
         views[0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedColors[0].setColor(colorText);
-                views[0].setBackgroundColor(selectedColors[0].getColor());
+                changeState(0);
             }
         });
+        //getSlotFromBufferLocked: unknown buffer: 0xd87045a0
         views[0].setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                if(!selectedColors[0].getHasColor())
-                    return true;
-                Log.e("kkkakkad","dsfkjişasdkf");
-                mBottom.setColor(selectedColors[0].getColor());
-                mTop.setColor(selectedColors[0].getColor());
-                colorText = selectedColors[0].getColor();
-                return false;
+                return setValue(0);
             }
         });
 
@@ -154,38 +149,26 @@ public class ColorPicker2 extends Fragment {
         views[1].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedColors[1].setColor(colorText);
-                views[1].setBackgroundColor(selectedColors[1].getColor());
+                changeState(1);
             }
         });
         views[1].setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                if(!selectedColors[1].getHasColor())
-                    return true;
-                mBottom.setColor(selectedColors[1].getColor());
-                mTop.setColor(selectedColors[1].getColor());
-                colorText = selectedColors[1].getColor();
-                return false;
+                return setValue(1);
             }
         });
 
         views[2].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedColors[2].setColor(colorText);
-                views[2].setBackgroundColor(selectedColors[2].getColor());
+                changeState(2);
             }
         });
         views[2].setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                if(!selectedColors[2].getHasColor())
-                    return true;
-                mBottom.setColor(selectedColors[2].getColor());
-                mTop.setColor(selectedColors[2].getColor());
-                colorText = selectedColors[2].getColor();
-                return false;
+                return setValue(2);
             }
         });
 
@@ -193,61 +176,54 @@ public class ColorPicker2 extends Fragment {
         views[3].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedColors[3].setColor(colorText);
-                views[3].setBackgroundColor(selectedColors[3].getColor());
-
+                changeState(3);
             }
         });
         views[3].setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                if(!selectedColors[3].getHasColor())
-                    return true;
-                mBottom.setColor(selectedColors[3].getColor());
-                colorText = selectedColors[3].getColor();
-                mTop.setColor(selectedColors[3].getColor());
-                return false;
+                return setValue(3);
             }
         });
 
         views[4].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedColors[4].setColor(colorText);
-                views[4].setBackgroundColor(selectedColors[4].getColor());
+                changeState(4);
             }
         });
 
         views[4].setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                if(!selectedColors[3].getHasColor())
-                    return true;
-                mBottom.setColor(selectedColors[4].getColor());
-                colorText = selectedColors[4].getColor();
-                mTop.setColor(selectedColors[4].getColor());
-                return false;
+                return setValue(4);
             }
         });
 
     }
-    private void addToView(ColorItem colorItem) {
 
-        if(views != null) {
-            ColorItem[] refColors = new ColorItem[6];
-            int i;
-            for(i = 0;i<colors.length;i++)
-                refColors[i] = colors[i];
-            views[0].setBackgroundColor(Color.BLUE);
-            //views[0].setBackgroundColor(Color.argb(colorItem.getOpacity(), colorItem.getRed(), colorItem.getGreen(), colorItem.getBlue()));
-            views[0].setBackgroundColor(colorItem.getColor());
-            for (i = 0; i < colors.length - 1; i++)
-                views[i + 1].setBackgroundColor(refColors[i].getColor());
+    private boolean setValue(int viewValue)
+    {
+        if(!selectedColors[viewValue].getHasColor())
+            return true;
 
-            colors[0] = new ColorItem(colorItem.getColor());
-
-            for (i = 0; i < colors.length - 1; i++)
-                colors[i + 1] = new ColorItem(refColors[i].getColor());
+        //mBottom.setColor(selectedColors[viewValue].getColor());
+        mTop.setColor(selectedColors[viewValue].getColor());
+        colorText = selectedColors[viewValue].getColor();
+        return false;
+    }
+    public void changeState(int viewValue)
+    {
+        if (!ColorPickerActivity.erase)
+        {
+            selectedColors[viewValue].setColor(colorText);
+            views[viewValue].setBackgroundColor(selectedColors[viewValue].getColor());
+        }
+        else
+        {
+            selectedColors[viewValue].setColors(255, 255, 255, 255);
+            selectedColors[viewValue].setHasColor(false);
+            views[viewValue].setBackgroundColor(Color.parseColor(selectedColors[viewValue].toString()));
         }
     }
 

@@ -4,6 +4,8 @@ import android.annotation.TargetApi;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.BitmapRegionDecoder;
 import android.graphics.Color;
 import android.graphics.Rect;
@@ -54,6 +56,9 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
     private ViewPager viewPager = null;
     private ColorPicker1 ColorPicker_1 = null;
     private AdView mAdView = null;
+    private int currentPosition = 0;
+    public static boolean erase = false;
+    FloatingActionButton fabErase = null, fabAdd = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +88,33 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
 
         tabLayout.setOnTabSelectedListener(this);
 
+
+        fabErase = (FloatingActionButton) findViewById(R.id.fabErase);
+        fabErase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!erase)
+                {
+                    fabErase.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#508764")));
+                    erase = true;
+                }else{
+                    fabErase.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#E64A19")));
+                    erase = false;
+                }
+            }
+        });
+
+        fabAdd = (FloatingActionButton) findViewById(R.id.fabAdd);
+        fabAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        //#508764
+
+
     }
 
     @Override
@@ -103,6 +135,7 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
             ret = new AdRequest.Builder()
                     .addTestDevice(getPhoneId())
                     .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                    .addTestDevice("9552A433781FF6F1766BC1BDF72022E5")
                     .build();
         } else {
             ret = new AdRequest.Builder().build();
@@ -152,9 +185,10 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-        int position =  tab.getPosition();
-        tabLayout.getTabAt(position).select();
-        viewPager.setCurrentItem(position);
+        currentPosition =  tab.getPosition();
+
+        tabLayout.getTabAt(currentPosition).select();
+        viewPager.setCurrentItem(currentPosition);
     }
 
     @Override

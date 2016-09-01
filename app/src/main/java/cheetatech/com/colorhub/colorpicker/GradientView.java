@@ -330,6 +330,7 @@ public class GradientView extends View {
         }
     }
 
+
     /**
      * Switch view into brightness gradient only
      * @param isBrightnessGradient

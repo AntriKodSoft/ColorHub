@@ -162,6 +162,8 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
             }
         });
 
+        //#508764
+
 
         fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#E64A19")));
         ((ImageButton) findViewById(R.id.icon_facebook)).setOnClickListener(this);
@@ -318,6 +320,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
             ret = new AdRequest.Builder()
                     .addTestDevice(getPhoneId())
                     .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                    .addTestDevice("9552A433781FF6F1766BC1BDF72022E5")
                     .build();
         } else {
             ret = new AdRequest.Builder().build();
