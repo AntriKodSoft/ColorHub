@@ -45,6 +45,7 @@ import cheetatech.com.colorhub.defines.ColorItem;
 import cheetatech.com.colorhub.listeners.IOnFocusListenable;
 import layout.ColorPicker1;
 import layout.ColorPicker2;
+import layout.ColorPicker3;
 import layout.FlatColorFragment;
 import layout.HtmlColorFragment;
 import layout.MaterialColorFragment;
@@ -152,6 +153,7 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(ColorPicker_1,"ColorPicker1");
         adapter.addFragment(new ColorPicker2(),"ColorPicker2");
+        adapter.addFragment(new ColorPicker3(),"ColorPicker3");
         viewPager.setAdapter(adapter);
     }
     @Override

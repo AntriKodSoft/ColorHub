@@ -17,4 +17,15 @@
         <attr name="lockPointerInBounds" format="boolean" />
     </declare-styleable>
 
+    <!-- Use default button material style in v21+ -->
+    <style name="colorpickerview__PickerDialogButtonStyle" parent="android:Widget.Material.Button.Borderless">
+        <item name="android:textColor">?android:colorAccent</item>
+    </style>
+
+
+    <style name="colorpickerview__ColorPickerViewStyle">
+        <item name="android:layout_width">215dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
 </resources>
