@@ -94,6 +94,15 @@ public class ColorPickerView extends View{
 	private final static int	CIRCLE_TRACKER_RADIUS_DP = 5;
 	private final static int 	SLIDER_TRACKER_SIZE_DP = 4;
 	private final static int	SLIDER_TRACKER_OFFSET_DP = 2;
+
+	/*
+	private final static int 	HUE_PANEL_WDITH_DP = 30;
+	private final static int 	ALPHA_PANEL_HEIGH_DP = 20;
+	private final static int	PANEL_SPACING_DP = 10;
+	private final static int	CIRCLE_TRACKER_RADIUS_DP = 5;
+	private final static int 	SLIDER_TRACKER_SIZE_DP = 4;
+	private final static int	SLIDER_TRACKER_OFFSET_DP = 2;
+	*/
 	
 	
 	/**

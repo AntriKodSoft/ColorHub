@@ -49,23 +49,25 @@ public class ColorPicker3 extends Fragment implements ColorPickerView.OnColorCha
         super.onActivityCreated(savedInstanceState);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        int initialColor = prefs.getInt("color_3", 0xFFFF0000);
+        int initialColor = prefs.getInt("color_3", 0xFF40787F);
 
         mColorPickerView = (ColorPickerView) getView().findViewById(R.id.colorpickerview__color_picker_view1);
-        mOldColorPanelView = (ColorPanelView) getView().findViewById(R.id.colorpickerview__color_panel_old1);
-        mNewColorPanelView = (ColorPanelView) getView().findViewById(R.id.colorpickerview__color_panel_new1);
+        //mOldColorPanelView = (ColorPanelView) getView().findViewById(R.id.colorpickerview__color_panel_old1);
+        //mNewColorPanelView = (ColorPanelView) getView().findViewById(R.id.colorpickerview__color_panel_new1);
 
 
 
 
+        /*
         ((LinearLayout) mOldColorPanelView.getParent()).setPadding(
                 mColorPickerView.getPaddingLeft(), 0,
                 mColorPickerView.getPaddingRight(), 0);
+        */
 
 
         mColorPickerView.setOnColorChangedListener(this);
         mColorPickerView.setColor(initialColor, true);
-        mOldColorPanelView.setColor(initialColor);
+        //mOldColorPanelView.setColor(initialColor);
 
     }
 
