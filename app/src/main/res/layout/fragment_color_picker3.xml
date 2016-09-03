@@ -20,6 +20,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/groupLayout"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:orientation="vertical"
@@ -132,7 +133,13 @@
 
     </LinearLayout>
 
-
+    <LinearLayout
+        android:layout_below="@+id/groupLayout"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="15dp">
+    </LinearLayout>
+    
 
 </RelativeLayout>
 

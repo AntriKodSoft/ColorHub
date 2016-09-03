@@ -23,6 +23,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
@@ -171,6 +172,9 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         ((ImageButton) findViewById(R.id.icon_browser)).setOnClickListener(this);
         ((ImageButton) findViewById(R.id.icon_instagram)).setOnClickListener(this);
 
+
+        final int densityDpi = getResources().getDisplayMetrics().densityDpi;
+        Log.e("Dpi","Dpi is "+densityDpi);
 
         /*
         AppRate.with(this)

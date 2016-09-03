@@ -213,7 +213,6 @@ public class ColorPicker3 extends Fragment implements ColorPickerView.OnColorCha
 
     @Override
     public void onColorChanged(int newColor) {
-        Log.e("OnColorChanged "," : "+mColorPickerView.getColor() + " :: " + Integer.toHexString(mColorPickerView.getColor()) );
 
         colorText = newColor;
         colorTextView.setText("#" + Integer.toHexString(newColor));
