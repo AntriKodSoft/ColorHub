@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.media.Image;
 import android.net.Uri;
@@ -88,6 +89,9 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     private String instagram = "https://www.instagram.com/cheetatechofficial/";
     private String web = "https://cheetatech.wordpress.com/";
 
+    private SQLiteDatabase database = null;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +104,8 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         controller.setResource(getResources());
         controller.init();
 
+        database = openOrCreateDatabase("askerapp", MODE_PRIVATE, null);
+        //openOrCreateDatabase("sad",MODE_PRIVATE,null);
         // Board
         BoardEditor.getInstance().setContext(getApplicationContext());
         // nav bar
