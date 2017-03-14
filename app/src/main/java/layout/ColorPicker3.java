@@ -26,7 +26,7 @@ import cheetatech.com.colorhub.view.ColorPickerView;
 
 public class ColorPicker3 extends Fragment implements ColorPickerView.OnColorChangedListener {
 
-    RelativeLayout colorView = null;
+    View colorView = null;
     private View[] views = null;
     int[] viewIds = new int[]{R.id.color1,R.id.color2,R.id.color3,R.id.color4,R.id.color5};
     private TextView colorTextView = null;
@@ -73,7 +73,7 @@ public class ColorPicker3 extends Fragment implements ColorPickerView.OnColorCha
         for (int i = 0;i<viewIds.length;i++)
             views[i] = (View)getView().findViewById(viewIds[i]);
 
-        colorView = (RelativeLayout) getView().findViewById(R.id.colorView);
+        colorView = (View) getView().findViewById(R.id.colorView);
         colorTextView = (TextView)getView().findViewById(R.id.color);
 
         mColorPickerView = (ColorPickerView) getView().findViewById(R.id.colorpickerview__color_picker_view1);

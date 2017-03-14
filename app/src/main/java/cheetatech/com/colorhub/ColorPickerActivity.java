@@ -39,6 +39,7 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
 import cheetatech.com.colorhub.adapters.ViewPagerAdapter;
 import cheetatech.com.colorhub.defines.BoardEditor;
 import cheetatech.com.colorhub.defines.ColorItem;
@@ -65,6 +66,8 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_color_picker);
+        ButterKnife.bind(this);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -112,10 +115,6 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
 
             }
         });
-
-        //#508764
-
-
     }
 
     @Override
@@ -132,7 +131,8 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
     }
     public AdRequest getAdRequest() {
         AdRequest ret = null;
-        if (Util.TEST) {
+        //if (Util.TEST) {
+        if(BuildConfig.DEBUG){
             ret = new AdRequest.Builder()
                     .addTestDevice(getPhoneId())
                     .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
@@ -152,7 +152,7 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
             ColorPicker_1 = new ColorPicker1();
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(ColorPicker_1,"ColorPicker1");
-        adapter.addFragment(new ColorPicker2(),"ColorPicker2");
+        //adapter.addFragment(new ColorPicker2(),"ColorPicker2");
         adapter.addFragment(new ColorPicker3(),"ColorPicker3");
         viewPager.setAdapter(adapter);
     }

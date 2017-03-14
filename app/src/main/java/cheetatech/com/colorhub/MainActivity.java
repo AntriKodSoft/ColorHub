@@ -44,6 +44,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cheetatech.com.colorhub.adapters.DrawerListAdapter;
 import cheetatech.com.colorhub.adapters.GridViewArrayAdapter;
 import cheetatech.com.colorhub.adapters.NavigationBarAdapter;
@@ -66,7 +69,7 @@ import layout.MaterialColorFragment;
 import layout.MetroColorFragment;
 import layout.SocialColorFragment;
 
-public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener ,View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener {
 
     private Toolbar toolbar = null;
     private TabLayout tabLayout = null;
@@ -77,7 +80,8 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     private ListView drawerList = null;
     ArrayList<ColorSelect> cselect = null;
 
-    private FloatingActionButton fab = null;
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
 
     private DrawerListAdapter drawerListAdapter = null;
 
@@ -89,14 +93,12 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     private String instagram = "https://www.instagram.com/cheetatechofficial/";
     private String web = "https://cheetatech.wordpress.com/";
 
-    private SQLiteDatabase database = null;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        checkAndRequestPermissions();
+        ButterKnife.bind(this);
         MobileAds.initialize(getApplicationContext(), getString(R.string.banner_commercial));
         mAdView = (AdView) findViewById(R.id.adView);
         // Color init
@@ -104,15 +106,11 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         controller.setResource(getResources());
         controller.init();
 
-        database = openOrCreateDatabase("askerapp", MODE_PRIVATE, null);
-        //openOrCreateDatabase("sad",MODE_PRIVATE,null);
         // Board
         BoardEditor.getInstance().setContext(getApplicationContext());
         // nav bar
 
         drawerListAdapter = new DrawerListAdapter(getApplicationContext(),1, DrawerListController.getInstance().getNavList());
-
-        //cselect = new ArrayList<ColorSelect>();
 
         cselect = controller.getMaterialNameColorSelectList();
         NavigationBarAdapter adapter = new NavigationBarAdapter(getApplicationContext(),1,cselect);
@@ -144,7 +142,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
                     NavigationBarAdapter adapter = new NavigationBarAdapter(getApplicationContext(),1,cselect);
                     drawerList.setAdapter(adapter);
                 }
-                //mDrawer.openDrawer(drawerList);
                 mDrawer.openDrawer(relativeDrawer);
             }
         });
@@ -159,25 +156,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         ToolBarController.getInstance().setToolBar(toolbar);
         ToolBarController.getInstance().setTabLayout(tabLayout);
 
-
-
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, ColorPickerActivity.class));
-            }
-        });
-
-        //#508764
-
-
         fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#E64A19")));
-        ((ImageButton) findViewById(R.id.icon_facebook)).setOnClickListener(this);
-        ((ImageButton) findViewById(R.id.icon_twitter)).setOnClickListener(this);
-        ((ImageButton) findViewById(R.id.icon_browser)).setOnClickListener(this);
-        ((ImageButton) findViewById(R.id.icon_instagram)).setOnClickListener(this);
-
 
         final int densityDpi = getResources().getDisplayMetrics().densityDpi;
         Log.e("Dpi","Dpi is "+densityDpi);
@@ -228,6 +207,9 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         */
     }
 
+    @OnClick(R.id.fab) void fabClick(){
+        startActivity(new Intent(MainActivity.this, ColorPickerActivity.class));
+    }
 
     @Override
     protected void onStart() {
@@ -297,25 +279,20 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     public void onTabReselected(TabLayout.Tab tab) {
     }
 
-    @Override
-    public void onClick(View view) {
+    @OnClick(R.id.icon_browser) void clickBrowser(){
+        openUrl(web);
+    }
 
-        switch (view.getId())
-        {
-            case R.id.icon_facebook :
-                openUrl(facebook);
-                break;
-            case R.id.icon_browser :
-                openUrl(web);
-                break;
-            case R.id.icon_instagram :
-                openUrl(instagram);
-                break;
-            case R.id.icon_twitter :
-                openUrl(twitter);
-                break;
+    @OnClick(R.id.icon_facebook) void clickFacebook(){
+        openUrl(facebook);
+    }
 
-        }
+    @OnClick(R.id.icon_instagram) void clickInstagram(){
+        openUrl(instagram);
+    }
+
+    @OnClick(R.id.icon_twitter) void clickTwitter(){
+        openUrl(twitter);
     }
 
     private void openUrl(String url) {
@@ -326,7 +303,8 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     public AdRequest getAdRequest() {
         AdRequest ret = null;
-        if (Util.TEST) {
+        //if (Util.TEST) {
+        if(BuildConfig.DEBUG){
             ret = new AdRequest.Builder()
                     .addTestDevice(getPhoneId())
                     .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
@@ -338,10 +316,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         return ret;
     }
 
-    private boolean checkPermission(String readPhoneState) {
-        boolean ret = ContextCompat.checkSelfPermission(this, readPhoneState) == PackageManager.PERMISSION_GRANTED;
-        return ret;
-    }
     public String getPhoneId() {
         return "0A02E72208689385EF8EE5F0CCCFE947";
     }
@@ -352,100 +326,4 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
             mAdView.loadAd(adRequest);
         }
     }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        Log.d("TAG", "Permission callback called-------");
-        switch (requestCode) {
-            case Util.REQUEST_ID_MULTIPLE_PERMISSIONS: {
-
-                Map<String, Integer> perms = new HashMap<>();
-                // Initialize the map with both permissions
-                perms.put(Manifest.permission.INTERNET, PackageManager.PERMISSION_GRANTED);
-                perms.put(Manifest.permission.ACCESS_NETWORK_STATE, PackageManager.PERMISSION_GRANTED);
-                //perms.put(Manifest.permission.READ_PHONE_STATE, PackageManager.PERMISSION_GRANTED);*/
-                // Fill with actual results from user
-                if (grantResults.length > 0) {
-                    for (int i = 0; i < permissions.length; i++)
-                        perms.put(permissions[i], grantResults[i]);
-                    // Check for both permissions
-                    if (perms.get(Manifest.permission.ACCESS_NETWORK_STATE) == PackageManager.PERMISSION_GRANTED
-                            && perms.get(Manifest.permission.INTERNET) == PackageManager.PERMISSION_GRANTED
-                            //&& perms.get(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED
-                            ) {
-                        Log.d("TAG", "sms & location services permission granted");
-                        // process the normal flow
-                        //else any one or both the permissions are not granted
-                    } else {
-                        Log.d("TAG", "Some permissions are not granted ask again ");
-                        //permission is denied (this is the first time, when "never ask again" is not checked) so ask again explaining the usage of permission
-//                        // shouldShowRequestPermissionRationale will return true
-                        //show the dialog or snackbar saying its necessary and try again otherwise proceed with setup.
-                        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.INTERNET)
-                                || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_NETWORK_STATE)
-                                // || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_PHONE_STATE)
-                             ) {
-                            showDialogOK("Internet and Phone State Permission required for this app",
-                                    new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            switch (which) {
-                                                case DialogInterface.BUTTON_POSITIVE:
-                                                    checkAndRequestPermissions();
-                                                    break;
-                                                case DialogInterface.BUTTON_NEGATIVE:
-                                                    // proceed with logic by disabling the related features or quit the app.
-                                                    break;
-                                            }
-                                        }
-                                    });
-                        }
-                        //permission is denied (and never ask again is  checked)
-                        //shouldShowRequestPermissionRationale will return false
-                        else {
-                            Toast.makeText(this, "Go to settings and enable permissions", Toast.LENGTH_LONG)
-                                    .show();
-                            //                            //proceed with logic by disabling the related features or quit the app.
-                        }
-                    }
-                }
-            }
-        }
-
-    }
-
-    private void showDialogOK(String message, DialogInterface.OnClickListener okListener) {
-        new AlertDialog.Builder(this)
-                .setMessage(message)
-                .setPositiveButton("OK", okListener)
-                .setNegativeButton("Cancel", okListener)
-                .create()
-                .show();
-    }
-
-    private  boolean checkAndRequestPermissions() {
-
-        if(Build.VERSION.SDK_INT >= 23) {
-            int permissionInternet = ContextCompat.checkSelfPermission(this, android.Manifest.permission.INTERNET);
-            int permissionAccessNetworkState = ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_NETWORK_STATE);
-            int permissionReadPhoneState = ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_PHONE_STATE);
-            List<String> listPermissionsNeeded = new ArrayList<>();
-            if (permissionInternet != PackageManager.PERMISSION_GRANTED) {
-                listPermissionsNeeded.add(android.Manifest.permission.INTERNET);
-            }
-            if (permissionAccessNetworkState != PackageManager.PERMISSION_GRANTED) {
-                listPermissionsNeeded.add(Manifest.permission.ACCESS_NETWORK_STATE);
-            }
-            if (permissionReadPhoneState != PackageManager.PERMISSION_GRANTED) {
-                listPermissionsNeeded.add(Manifest.permission.READ_PHONE_STATE);
-            }
-            if (!listPermissionsNeeded.isEmpty()) {
-                ActivityCompat.requestPermissions(this, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), Util.REQUEST_ID_MULTIPLE_PERMISSIONS);
-                return false;
-            }
-        }
-        return true;
-    }
-
-
 }
