@@ -43,9 +43,6 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
 
     RelativeLayout colorViewLayout = null;
     TextView textViewColor = null;
-    View colorView;
-    View[] views = null;
-    int[] viewIds = new int[]{R.id.color1,R.id.color2,R.id.color3,R.id.color4,R.id.color5};
     SeekBar redSeekBar, greenSeekBar, blueSeekBar,opacitySeekBar;
     TextView redToolTip, greenToolTip, blueToolTip,opacityToolTip;
     ClipboardManager clipBoard;
@@ -56,25 +53,6 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
     Rect thumbRect;
     String s1 = "FF00AB";
     String s2 = "FFFFFF";
-
-
-
-    ColorItem[] colors = new ColorItem[]{
-            new ColorItem(0,0,0,0),
-            new ColorItem(0,0,0,0),
-            new ColorItem(0,0,0,0),
-            new ColorItem(0,0,0,0),
-            new ColorItem(0,0,0,0),
-    };
-
-    ColorItem[] selectedColors = new ColorItem[]{
-            new ColorItem(),
-            new ColorItem(),
-            new ColorItem(),
-            new ColorItem(),
-            new ColorItem(),
-    };
-
 
     public ColorPicker1() {
         // Required empty public constructor
@@ -105,15 +83,10 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
         super.onActivityCreated(savedInstanceState);
         display = ((WindowManager) getActivity().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
 
-
-
-
         red = green = blue = 120;
         opacity = 255;
 
         clipBoard = (ClipboardManager)getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-        //colorView = getView().findViewById(R.id.colorView);
-        colorViewLayout = (RelativeLayout)getView().findViewById(R.id.colorView);
         window = getActivity().getWindow();
 
         redSeekBar = (SeekBar)getView().findViewById(R.id.redSeekBar);
@@ -140,20 +113,11 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
         opacitySeekBar.setProgress(opacity);
 
         //colorView.setBackgroundColor(Color.argb(opacity,red, green, blue));
+        colorViewLayout = (RelativeLayout) getView().findViewById(R.id.colorView);
         colorViewLayout.setBackgroundColor(Color.argb(opacity,red, green, blue));
 
         textViewColor.setText(String.format("#%02x%02x%02x%02x", opacity, red, green, blue));
         textViewColor.setTextColor(Color.parseColor(inverseColor(red,green,blue)));
-        views = new View[5];
-        for (int i = 0;i<viewIds.length;i++)
-        {
-            views[i] = (View)getView().findViewById(viewIds[i]);
-            //views[i].setOnClickListener(this);
-        }
-
-        for(int j = 0;j<colors.length;j++)
-            views[j].setBackgroundColor(Color.argb(colors[j].getOpacity(),colors[j].getRed(),colors[j].getGreen(),colors[j].getBlue()));
-
         /*
         setProgressBar(red,green,blue,opacity);
         onWindowFocusChanged(true);
@@ -170,67 +134,6 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
             }
         });
 
-        views[0].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                changeState(0);
-            }
-        });
-        views[0].setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                return setValue(0);
-            }
-        });
-        views[1].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                changeState(1);
-            }
-        });
-        views[1].setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                return setValue(1);
-            }
-        });
-        views[2].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                changeState(2);
-            }
-        });
-        views[2].setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                return setValue(2);
-            }
-        });
-        views[3].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                changeState(3);
-            }
-        });
-        views[3].setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                return setValue(3);
-            }
-        });
-        views[4].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                changeState(4);
-            }
-        });
-
-        views[4].setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                return setValue(4);
-            }
-        });
 
         redSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -393,27 +296,9 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
 
     private boolean setValue(int viewValue)
     {
-        if(!selectedColors[viewValue].getHasColor())
-            return true;
-        red = selectedColors[viewValue].getRed(); green = selectedColors[viewValue].getGreen(); blue = selectedColors[viewValue].getBlue(); opacity = selectedColors[viewValue].getOpacity();
         setProgressBar(red,green,blue,opacity);
         onWindowFocusChanged(true);
         return false;
-    }
-
-    private void changeState(int viewValue)
-    {
-        if (!ColorPickerActivity.erase)
-        {
-            selectedColors[viewValue].setColors(red, green, blue, opacity);
-            views[viewValue].setBackgroundColor(Color.parseColor(selectedColors[viewValue].toString()));
-        }
-        else
-        {
-            selectedColors[viewValue].setColors(255, 255, 255, 255);
-            selectedColors[viewValue].setHasColor(false);
-            views[viewValue].setBackgroundColor(Color.parseColor(selectedColors[viewValue].toString()));
-        }
     }
 
     private String inverseColor(int red, int green, int blue)
@@ -439,24 +324,6 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
     }
 
 
-    private void addToView(ColorItem colorItem) {
-
-        if(views != null) {
-            ColorItem[] refColors = new ColorItem[6];
-            int i;
-            for(i = 0;i<colors.length;i++)
-                refColors[i] = colors[i];
-            views[0].setBackgroundColor(Color.BLUE);
-            views[0].setBackgroundColor(Color.argb(colorItem.getOpacity(), colorItem.getRed(), colorItem.getGreen(), colorItem.getBlue()));
-            for (i = 0; i < colors.length - 1; i++)
-                views[i + 1].setBackgroundColor(Color.argb(refColors[i].getOpacity(), refColors[i].getRed(), refColors[i].getGreen(), refColors[i].getBlue()));
-
-            colors[0] = new ColorItem(colorItem.getRed(), colorItem.getGreen(), colorItem.getBlue(), colorItem.getOpacity());
-
-            for (i = 0; i < colors.length - 1; i++)
-                colors[i + 1] = new ColorItem(refColors[i].getRed(), refColors[i].getGreen(), refColors[i].getBlue(), refColors[i].getOpacity());
-        }
-    }
     private void setProgressBar(int r,int g,int b,int o)
     {
 

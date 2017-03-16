@@ -26,7 +26,11 @@ import android.view.Surface;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,7 +43,9 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cheetatech.com.colorhub.adapters.ViewPagerAdapter;
 import cheetatech.com.colorhub.defines.BoardEditor;
 import cheetatech.com.colorhub.defines.ColorItem;
@@ -57,22 +63,24 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
     private TabLayout tabLayout = null;
     private ViewPager viewPager = null;
     private ColorPicker1 ColorPicker_1 = null;
-    private AdView mAdView = null;
+
     private int currentPosition = 0;
     public static boolean erase = false;
-    FloatingActionButton fabErase = null, fabAdd = null;
-
+    @BindView(R.id.saved_color_layout)
+    RelativeLayout mSavedLayout;
+    Animation slideUp, slideDown ;
+    private int i = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_color_picker);
         ButterKnife.bind(this);
 
+        slideUp = AnimationUtils.loadAnimation(this,R.anim.slide_up);
+        slideDown = AnimationUtils.loadAnimation(this,R.anim.slide_down);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        MobileAds.initialize(getApplicationContext(), getString(R.string.banner_commercial));
-        mAdView = (AdView) findViewById(R.id.adView);
 
         toolbar.setNavigationIcon(R.drawable.ic_action_back_button);
         getSupportActionBar().setTitle("ColorHub");
@@ -83,7 +91,6 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
             }
         });
 
-
         viewPager = (ViewPager) findViewById(R.id.pager);
         setUpViewPager(viewPager);
 
@@ -91,61 +98,144 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
         tabLayout.setupWithViewPager(viewPager);
 
         tabLayout.setOnTabSelectedListener(this);
-
-
-        fabErase = (FloatingActionButton) findViewById(R.id.fabErase);
-        fabErase.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!erase)
-                {
-                    fabErase.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#508764")));
-                    erase = true;
-                }else{
-                    fabErase.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#E64A19")));
-                    erase = false;
-                }
-            }
-        });
-
-        fabAdd = (FloatingActionButton) findViewById(R.id.fabAdd);
-        fabAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        loadAdv();
+
     }
 
-    private void loadAdv() {
-        if (getAdRequest() != null) {
-            AdRequest adRequest = getAdRequest();
-            mAdView.loadAd(adRequest);
+    @OnClick(R.id.fabAdd) void fabAddClick(){
+
+        i++;
+        if(i%2 == 1){
+            mSavedLayout.startAnimation(slideUp);
+            mSavedLayout.setVisibility(View.VISIBLE);
+            mSavedLayout.setLayoutAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    Log.e("TAG","onAnimationEnd");
+                    mSavedLayout.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
         }
-    }
-    public AdRequest getAdRequest() {
-        AdRequest ret = null;
-        //if (Util.TEST) {
-        if(BuildConfig.DEBUG){
-            ret = new AdRequest.Builder()
-                    .addTestDevice(getPhoneId())
-                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                    .addTestDevice("9552A433781FF6F1766BC1BDF72022E5")
-                    .build();
-        } else {
-            ret = new AdRequest.Builder().build();
+            //SlideToAbove();
+            //mSavedLayout.setVisibility(View.VISIBLE);
+        if(i%2 == 0) {
+            mSavedLayout.startAnimation(slideDown);
+            mSavedLayout.setVisibility(View.INVISIBLE);
+            mSavedLayout.setLayoutAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    mSavedLayout.setVisibility(View.INVISIBLE);
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
         }
-        return ret;
+            //SlideToDown();
+        //mSavedLayout.setVisibility(View.INVISIBLE);
     }
-    public String getPhoneId() {
-        return "0A02E72208689385EF8EE5F0CCCFE947";
+
+
+
+    public void SlideToAbove() {
+        Animation slide = null;
+        slide = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
+                0.0f, Animation.RELATIVE_TO_SELF, -5.0f);
+
+        slide.setDuration(400);
+        slide.setFillAfter(true);
+        slide.setFillEnabled(true);
+        mSavedLayout.startAnimation(slide);
+
+        slide.setAnimationListener(new Animation.AnimationListener() {
+
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+                mSavedLayout.clearAnimation();
+
+                RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                        mSavedLayout.getWidth(), mSavedLayout.getHeight());
+                // lp.setMargins(0, 0, 0, 0);
+                lp.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+                mSavedLayout.setLayoutParams(lp);
+
+            }
+
+        });
+
     }
+
+    public void SlideToDown() {
+        Animation slide = null;
+        slide = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
+                0.0f, Animation.RELATIVE_TO_SELF, 5.2f);
+
+        slide.setDuration(400);
+        slide.setFillAfter(true);
+        slide.setFillEnabled(true);
+        mSavedLayout.startAnimation(slide);
+
+        slide.setAnimationListener(new Animation.AnimationListener() {
+
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+                mSavedLayout.clearAnimation();
+
+                RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                        mSavedLayout.getWidth(), mSavedLayout.getHeight());
+                lp.setMargins(0, mSavedLayout.getWidth(), 0, 0);
+                lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                mSavedLayout.setLayoutParams(lp);
+            }
+        });
+
+    }
+
+
+
     public  void setUpViewPager(ViewPager viewPager)
     {
         if(ColorPicker_1 == null)

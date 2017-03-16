@@ -27,19 +27,8 @@ import cheetatech.com.colorhub.view.ColorPickerView;
 public class ColorPicker3 extends Fragment implements ColorPickerView.OnColorChangedListener {
 
     View colorView = null;
-    private View[] views = null;
-    int[] viewIds = new int[]{R.id.color1,R.id.color2,R.id.color3,R.id.color4,R.id.color5};
     private TextView colorTextView = null;
     private int colorText = 0;
-
-    ColorItem[] selectedColors = new ColorItem[]{
-            new ColorItem(),
-            new ColorItem(),
-            new ColorItem(),
-            new ColorItem(),
-            new ColorItem(),
-    };
-
 
     private ColorPickerView mColorPickerView;
     private ColorPanelView mOldColorPanelView;
@@ -69,10 +58,6 @@ public class ColorPicker3 extends Fragment implements ColorPickerView.OnColorCha
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        views = new View[5];
-        for (int i = 0;i<viewIds.length;i++)
-            views[i] = (View)getView().findViewById(viewIds[i]);
-
         colorView = (View) getView().findViewById(R.id.colorView);
         colorTextView = (TextView)getView().findViewById(R.id.color);
 
@@ -94,99 +79,8 @@ public class ColorPicker3 extends Fragment implements ColorPickerView.OnColorCha
         });
 
 
-
-        views[0].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                changeState(0);
-            }
-        });
-        views[0].setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                return setValue(0);
-            }
-        });
-
-
-        views[1].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                changeState(1);
-            }
-        });
-        views[1].setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                return setValue(1);
-            }
-        });
-
-        views[2].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                changeState(2);
-            }
-        });
-        views[2].setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                return setValue(2);
-            }
-        });
-
-
-        views[3].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                changeState(3);
-            }
-        });
-        views[3].setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                return setValue(3);
-            }
-        });
-
-        views[4].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                changeState(4);
-            }
-        });
-
-        views[4].setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                return setValue(4);
-            }
-        });
-
     }
 
-    private boolean setValue(int viewValue)
-    {
-        if(!selectedColors[viewValue].getHasColor())
-            return true;
-        mColorPickerView.setColor(selectedColors[viewValue].getColor(), true);
-        colorText = selectedColors[viewValue].getColor();
-        return false;
-    }
-    public void changeState(int viewValue)
-    {
-        if (!ColorPickerActivity.erase)
-        {
-            selectedColors[viewValue].setColor(colorText);
-            views[viewValue].setBackgroundColor(selectedColors[viewValue].getColor());
-        }
-        else
-        {
-            selectedColors[viewValue].setColors(255, 255, 255, 255);
-            selectedColors[viewValue].setHasColor(false);
-            views[viewValue].setBackgroundColor(Color.parseColor(selectedColors[viewValue].toString()));
-        }
-    }
 
     private String inverseColor(String hexColor)
     {

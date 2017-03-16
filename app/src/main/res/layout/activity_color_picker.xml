@@ -8,7 +8,11 @@
     android:fitsSystemWindows="true"
     tools:context="cheetatech.com.colorhub.ColorPickerActivity">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbarlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
@@ -19,7 +23,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:titleTextColor="@color/colorPrimaryText"
-             />
+            />
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tablayout"
@@ -37,73 +41,38 @@
 <!--
     <include layout="@layout/content_color_picker" />
     -->
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
 
-
-
-    <!-- start from here-->
-    <!-- LinearLayout for give space fab and AdView-->
-    <LinearLayout
-        android:orientation="vertical"
-        android:gravity="bottom"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
-            <!-- linearLayour for fab button-->
-            <LinearLayout
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="right">
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/fabErase"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    android:layout_margin="@dimen/fab_margin"
-                    android:src="@drawable/ic_eraser"
-                    android:layout_marginBottom="0dp"
-                    app:backgroundTint="@color/colorAccent"
-                    />
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/fabAdd"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    android:layout_margin="@dimen/fab_margin"
-                    android:src="@drawable/ic_action_plus"
-                    android:layout_marginBottom="50dp"
-                    app:backgroundTint="@color/colorAccent"
-                    />
-            </LinearLayout>
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:background="@color/black"
+            android:layout_below="@+id/appbarlayout"
+            android:layout_weight="1" />
 
-            <!-- LinearLayour for AdView-->
-            <LinearLayout
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="53dp"
+        <RelativeLayout
+            android:id="@+id/saved_color_layout"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/cheetatech_background"
+            android:visibility="invisible"
+            >
+        </RelativeLayout>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_action_plus"
+            android:layout_marginBottom="50dp"
+            app:backgroundTint="@color/colorAccent"
+            />
+    </RelativeLayout>
 
-                >
-                <com.google.android.gms.ads.AdView
-                    android:id="@+id/adView"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_vertical|center"
-                    android:layout_marginTop="0dp"
-                    android:gravity="center"
-                    ads:adSize="BANNER"
-                    ads:adUnitId="@string/banner_commercial">
-                </com.google.android.gms.ads.AdView>
-            </LinearLayout>
 
-        </LinearLayout>
-    </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

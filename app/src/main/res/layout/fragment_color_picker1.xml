@@ -14,29 +14,17 @@
     <RelativeLayout
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".ColorPickerActivity"
-        android:layout_marginBottom="115dp"
         >
 
-        <!--
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/colorView"
-            android:background="@color/colorDrawerText"
-            android:layout_above="@+id/keyboardLayout"
-            android:elevation="2dp"
-            />
-        -->
-
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:id="@id/colorView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:background="@color/colorDrawerText"
-            android:layout_above="@+id/keyboardLayout"
             android:elevation="2dp"
+            android:layout_alignParentTop="true"
             >
             <TextView
                 android:id="@+id/textViewColor"
@@ -55,7 +43,8 @@
 
         <RelativeLayout
             android:id="@+id/keyboardLayout"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/colorView"
+            android:layout_alignParentBottom="false"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
@@ -70,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/redToolTip"
                 android:fontFamily="sans-serif-medium"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textColor="@color/red"
                 android:singleLine="true" />
 
@@ -80,8 +69,8 @@
                 android:id="@+id/redSeekBar"
                 android:layout_below="@id/redToolTip"
                 android:max="255"
-                android:maxHeight="3dip"
-                android:minHeight="3dip"
+                android:maxHeight="2dip"
+                android:minHeight="2dip"
                 android:progressDrawable="@drawable/red_progress"
                 android:thumbTint="@color/red"/>
 
@@ -90,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/greenToolTip"
                 android:fontFamily="sans-serif-medium"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textColor="@color/green"
                 android:layout_below="@id/redSeekBar"
                 android:singleLine="true" />
@@ -101,8 +90,8 @@
                 android:id="@+id/greenSeekBar"
                 android:layout_below="@id/greenToolTip"
                 android:max="255"
-                android:maxHeight="3dip"
-                android:minHeight="3dip"
+                android:maxHeight="2dip"
+                android:minHeight="2dip"
                 android:progressDrawable="@drawable/green_progress"
                 android:thumbTint="@color/green" />
 
@@ -111,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/blueToolTip"
                 android:fontFamily="sans-serif-medium"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textColor="@color/blue"
                 android:layout_below="@id/greenSeekBar"
                 android:singleLine="true" />
@@ -122,8 +111,8 @@
                 android:id="@+id/blueSeekBar"
                 android:layout_below="@id/blueToolTip"
                 android:max="255"
-                android:maxHeight="3dip"
-                android:minHeight="3dip"
+                android:maxHeight="2dip"
+                android:minHeight="2dip"
                 android:progressDrawable="@drawable/blue_progress"
                 android:thumbTint="@color/blue"/>
 
@@ -132,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/opacityToolTip"
                 android:fontFamily="sans-serif-medium"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textColor="@color/colorDarkGrey"
                 android:layout_below="@id/blueSeekBar"
                 android:singleLine="true" />
@@ -143,82 +132,10 @@
                 android:id="@+id/opacitySeekBar"
                 android:layout_below="@id/opacityToolTip"
                 android:max="255"
-                android:maxHeight="3dip"
-                android:minHeight="3dip"
+                android:maxHeight="2dip"
+                android:minHeight="2dip"
                 android:progressDrawable="@drawable/opacity_progress"
                 android:thumbTint="@color/colorDarkGrey"/>
-
-            <LinearLayout
-                android:id="@+id/imageLinearLayout"
-                android:layout_marginTop="10dp"
-                android:layout_below="@+id/opacitySeekBar"
-                android:layout_width="fill_parent"
-                android:layout_height="30dp"
-                android:background="@drawable/border_shape"
-                android:orientation="horizontal"
-                android:divider="?android:dividerVertical"
-                android:showDividers="middle"
-
-                >
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="1dp"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginTop="1dp"
-                    android:id="@+id/color1"
-                    android:layout_weight="1"
-                    android:background="@android:color/transparent"
-                    />
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/color2"
-                    android:layout_weight="1"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginTop="1dp"
-                    android:background="@android:color/transparent"
-                    />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/color3"
-                    android:layout_weight="1"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginTop="1dp"
-                    android:background="@android:color/transparent"
-                    />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/color4"
-                    android:layout_weight="1"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginTop="1dp"
-                    android:background="@android:color/transparent"
-                    />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/color5"
-                    android:layout_weight="1"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginTop="1dp"
-                    android:layout_marginRight="1dp"
-                    android:background="@android:color/transparent"
-                    />
-
-            </LinearLayout>
-
         </RelativeLayout>
-
-
-
     </RelativeLayout>
-
-
-
 </RelativeLayout>
