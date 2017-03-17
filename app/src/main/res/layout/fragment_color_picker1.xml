@@ -21,7 +21,7 @@
         <RelativeLayout
             android:id="@id/colorView"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="200dp"
             android:background="@color/colorDrawerText"
             android:elevation="2dp"
             android:layout_alignParentTop="true"
@@ -35,7 +35,7 @@
                 android:textStyle="bold"
                 android:layout_centerInParent="true"
                 android:gravity="center"
-                android:textSize="18dp"
+                android:textSize="20sp"
                 />
         </RelativeLayout>
 
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/redToolTip"
                 android:fontFamily="sans-serif-medium"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textColor="@color/red"
                 android:singleLine="true" />
 
@@ -69,8 +69,8 @@
                 android:id="@+id/redSeekBar"
                 android:layout_below="@id/redToolTip"
                 android:max="255"
-                android:maxHeight="2dip"
-                android:minHeight="2dip"
+                android:maxHeight="4dip"
+                android:minHeight="4dip"
                 android:progressDrawable="@drawable/red_progress"
                 android:thumbTint="@color/red"/>
 
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/greenToolTip"
                 android:fontFamily="sans-serif-medium"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textColor="@color/green"
                 android:layout_below="@id/redSeekBar"
                 android:singleLine="true" />
@@ -90,8 +90,8 @@
                 android:id="@+id/greenSeekBar"
                 android:layout_below="@id/greenToolTip"
                 android:max="255"
-                android:maxHeight="2dip"
-                android:minHeight="2dip"
+                android:maxHeight="4dip"
+                android:minHeight="4dip"
                 android:progressDrawable="@drawable/green_progress"
                 android:thumbTint="@color/green" />
 
@@ -100,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/blueToolTip"
                 android:fontFamily="sans-serif-medium"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textColor="@color/blue"
                 android:layout_below="@id/greenSeekBar"
                 android:singleLine="true" />
@@ -111,8 +111,8 @@
                 android:id="@+id/blueSeekBar"
                 android:layout_below="@id/blueToolTip"
                 android:max="255"
-                android:maxHeight="2dip"
-                android:minHeight="2dip"
+                android:maxHeight="4dip"
+                android:minHeight="4dip"
                 android:progressDrawable="@drawable/blue_progress"
                 android:thumbTint="@color/blue"/>
 
@@ -121,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/opacityToolTip"
                 android:fontFamily="sans-serif-medium"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textColor="@color/colorDarkGrey"
                 android:layout_below="@id/blueSeekBar"
                 android:singleLine="true" />
@@ -132,8 +132,8 @@
                 android:id="@+id/opacitySeekBar"
                 android:layout_below="@id/opacityToolTip"
                 android:max="255"
-                android:maxHeight="2dip"
-                android:minHeight="2dip"
+                android:maxHeight="4dip"
+                android:minHeight="4dip"
                 android:progressDrawable="@drawable/opacity_progress"
                 android:thumbTint="@color/colorDarkGrey"/>
         </RelativeLayout>
