@@ -92,7 +92,7 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
 
         slideUp = AnimationUtils.loadAnimation(this,R.anim.slide_up);
         slideDown = AnimationUtils.loadAnimation(this,R.anim.slide_down);
-        mSavedLayout.setVisibility(View.VISIBLE);
+        //mSavedLayout.setVisibility(View.VISIBLE);
         ViewTreeObserver observer = mSavedLayout.getViewTreeObserver();
         if(observer.isAlive()){
             observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -106,6 +106,14 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
                     width = mSavedLayout.getMeasuredWidth();
                     height = mSavedLayout.getMeasuredHeight();
                     Log.e("TAG", "onCreate: widht: " + width + " height : " + height);
+
+                    RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                            width, 100);
+                    lp.setMargins(0, width, 0, 0);
+                    lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                    mSavedLayout.setLayoutParams(lp);
+
+
                 }
             });
         }
@@ -115,7 +123,7 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
 //        height = mSavedLayout.getHeight();
         //mSavedLayout.setVisibility(View.INVISIBLE);
         //Log.e("TAG", "onCreate: widht: " + width + " height : " + height);
-        Animation slideDownFast = AnimationUtils.loadAnimation(this,R.anim.slide_down_fast);
+        //Animation slideDownFast = AnimationUtils.loadAnimation(this,R.anim.slide_down_fast);
         //slideDown(slideDownFast);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -335,7 +343,28 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
     public void slideDown(Animation animation){
         mSavedLayout.clearAnimation();
         mSavedLayout.startAnimation(animation);
-        animation.setFillAfter(false);
+        //mSavedLayout.star
+        animation.setFillAfter(true);
+        long duration = animation.getDuration();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if(slideDown.hasEnded()){
+                    Log.e("TAG","Slide Down Ended");
+                    mSavedLayout.clearAnimation();
+
+                    RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                            width, 100);
+                    lp.setMargins(0, width, 0, 0);
+                    lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                    mSavedLayout.setLayoutParams(lp);
+
+                }else{
+                    Log.e("TAG","Slide Down Not Ended");
+                }
+            }
+        },(long)(duration +100));
 //        mSavedLayout.setLayoutAnimationListener(new Animation.AnimationListener() {
 //            @Override
 //            public void onAnimationStart(Animation animation) {
