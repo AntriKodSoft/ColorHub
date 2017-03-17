@@ -19,8 +19,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.ListViewAutoScrollHelper;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Display;
@@ -47,15 +50,18 @@ import com.google.android.gms.clearcut.LogEventParcelable;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cheetatech.com.colorhub.adapters.SaveListAdapter;
 import cheetatech.com.colorhub.adapters.ViewPagerAdapter;
 import cheetatech.com.colorhub.defines.BoardEditor;
 import cheetatech.com.colorhub.defines.ColorItem;
 import cheetatech.com.colorhub.listeners.IOnFocusListenable;
+import cheetatech.com.colorhub.models.Model;
 import layout.ColorPicker1;
 import layout.ColorPicker2;
 import layout.ColorPicker3;
@@ -78,7 +84,10 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
     @BindView(R.id.image_up_down)
     ImageView upDownImage;
 
+    @BindView(R.id.recyclerview)
+    RecyclerView mRecyclerView;
 
+    private List<Model> listModel = new ArrayList<>();
 
     Animation slideUp, slideDown ;
     private int i = 0;
@@ -92,7 +101,7 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
 
         slideUp = AnimationUtils.loadAnimation(this,R.anim.slide_up);
         slideDown = AnimationUtils.loadAnimation(this,R.anim.slide_down);
-        //mSavedLayout.setVisibility(View.VISIBLE);
+
         ViewTreeObserver observer = mSavedLayout.getViewTreeObserver();
         if(observer.isAlive()){
             observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -105,26 +114,14 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
                     }
                     width = mSavedLayout.getMeasuredWidth();
                     height = mSavedLayout.getMeasuredHeight();
-                    Log.e("TAG", "onCreate: widht: " + width + " height : " + height);
-
                     RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
                             width, 100);
                     lp.setMargins(0, width, 0, 0);
                     lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
                     mSavedLayout.setLayoutParams(lp);
-
-
                 }
             });
         }
-
-
-//        width = mSavedLayout.getWidth();
-//        height = mSavedLayout.getHeight();
-        //mSavedLayout.setVisibility(View.INVISIBLE);
-        //Log.e("TAG", "onCreate: widht: " + width + " height : " + height);
-        //Animation slideDownFast = AnimationUtils.loadAnimation(this,R.anim.slide_down_fast);
-        //slideDown(slideDownFast);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -145,6 +142,30 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
         tabLayout.setupWithViewPager(viewPager);
 
         tabLayout.setOnTabSelectedListener(this);
+
+        loadAdapters();
+    }
+
+    private void loadAdapters() {
+        listModel.clear();
+        listModel.add(new Model("#254678"));
+        listModel.add(new Model("#254600"));
+        listModel.add(new Model("#250078"));
+        listModel.add(new Model("#004678"));
+        listModel.add(new Model("#200678"));
+        listModel.add(new Model("#ff00ff"));
+        listModel.add(new Model("#ff0000"));
+        listModel.add(new Model("#00ff00"));
+
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(manager);
+
+        SaveListAdapter mAdapter = new SaveListAdapter(listModel);
+        mRecyclerView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
+
+
     }
 
     @Override
@@ -155,109 +176,10 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
 
     @OnClick(R.id.fabAdd) void fabAddClick(){
 
-        i++;
-        if(i%2 == 1){
-            //mSavedLayout.setVisibility(View.VISIBLE);
-            if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-                upDownImage.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.ic_action_down));
-            } else {
-                upDownImage.setBackground(ContextCompat.getDrawable(this, R.drawable.ic_action_down));
-            }
-            mSavedLayout.clearAnimation();
-            //mSavedLayout.setAnimation(slideUp);
-            mSavedLayout.startAnimation(slideUp);
-//            long duration = slideUp.getDuration();
-//            Handler handler = new Handler();
-//            handler.postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    if(!slideUp.hasEnded()){
-//                        Log.e("TAG","Has Ended False");
-//                    }else{
-//                        Log.e("TAG","Has Ended");
-//                        mSavedLayout.setVisibility(View.VISIBLE);
-//                    }
-//                }
-//            },duration + 10);
-
-
-//            mSavedLayout.invalidate();
-            slideUp.setFillAfter(true);
-            mSavedLayout.setLayoutAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) {
-
-                }
-
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    Log.e("TAG","onAnimationEnd VISIBLE");
-                    mSavedLayout.setVisibility(View.VISIBLE);
-                }
-
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-
-                }
-            });
-        }
-            //SlideToAbove();
-            //mSavedLayout.setVisibility(View.VISIBLE);
-        if(i%2 == 0) {
-
-            if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-                upDownImage.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.ic_action_up));
-            } else {
-                upDownImage.setBackground(ContextCompat.getDrawable(this, R.drawable.ic_action_up));
-            }
-            mSavedLayout.clearAnimation();
-            //mSavedLayout.setAnimation(slideDown);
-            mSavedLayout.startAnimation(slideDown);
-//            long duration = slideDown.getDuration();
-//            Handler handler = new Handler();
-//            handler.postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    if(!slideDown.hasEnded()){
-//                        Log.e("TAG","Has Ended False");
-//                    }else{
-//                        Log.e("TAG","Has Ended");
-//                        mSavedLayout.setVisibility(View.INVISIBLE);
-//                    }
-//                }
-//            },duration + 10);
-
-//            mSavedLayout.invalidate();
-            //mSavedLayout.setVisibility(View.INVISIBLE);
-            slideDown.setFillAfter(true);
-            mSavedLayout.setLayoutAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) {
-
-                }
-
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    Log.e("TAG","onAnimationEnd INVISIBLE");
-                    mSavedLayout.setVisibility(View.INVISIBLE);
-                }
-
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-
-                }
-            });
-        }
-            //SlideToDown();
-        //mSavedLayout.setVisibility(View.INVISIBLE);
     }
 
 
     @OnClick(R.id.image_layout) void updownImageClick(){
-
-        Log.e("TAG","ImageUpdown Clicked!!!");
-
-
         if(layoutStatus == 1){ // Will Open
             if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
                 upDownImage.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.ic_action_down));
@@ -276,23 +198,6 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
             slideUp.setFillAfter(true);
             slideUp.setFillEnabled(true);
             slideUp.setFillBefore(true);
-
-            mSavedLayout.setLayoutAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) {
-                    Log.e("TAG","onAnimated Start");
-                }
-
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    Log.e("TAG","onAnimated End ");
-                }
-
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-                    Log.e("TAG","onAnimation Repeat");
-                }
-            });
             layoutStatus = 2;
             return;
         }
@@ -337,50 +242,6 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
             return;
         }
     }
-
-
-
-    public void slideDown(Animation animation){
-        mSavedLayout.clearAnimation();
-        mSavedLayout.startAnimation(animation);
-        //mSavedLayout.star
-        animation.setFillAfter(true);
-        long duration = animation.getDuration();
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if(slideDown.hasEnded()){
-                    Log.e("TAG","Slide Down Ended");
-                    mSavedLayout.clearAnimation();
-
-                    RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                            width, 100);
-                    lp.setMargins(0, width, 0, 0);
-                    lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-                    mSavedLayout.setLayoutParams(lp);
-
-                }else{
-                    Log.e("TAG","Slide Down Not Ended");
-                }
-            }
-        },(long)(duration +100));
-//        mSavedLayout.setLayoutAnimationListener(new Animation.AnimationListener() {
-//            @Override
-//            public void onAnimationStart(Animation animation) {
-//            }
-//
-//            @Override
-//            public void onAnimationEnd(Animation animation) {
-//                Log.e("TAG","onAnimationEnd INVISIBLE");
-//                mSavedLayout.setVisibility(View.INVISIBLE);
-//            }
-//            @Override
-//            public void onAnimationRepeat(Animation animation) {
-//            }
-//        });
-    }
-
 
     public void SlideToAbove() {
         Animation slide = null;
