@@ -11,11 +11,13 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -24,12 +26,14 @@ import android.util.Log;
 import android.view.Display;
 import android.view.Surface;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -38,6 +42,8 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.internal.zzf;
+import com.google.android.gms.clearcut.LogEventParcelable;
 
 import org.json.JSONObject;
 
@@ -68,8 +74,16 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
     public static boolean erase = false;
     @BindView(R.id.saved_color_layout)
     RelativeLayout mSavedLayout;
+
+    @BindView(R.id.image_up_down)
+    ImageView upDownImage;
+
+
+
     Animation slideUp, slideDown ;
     private int i = 0;
+    private int layoutStatus = 1; // close;
+    private int width, height;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +92,31 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
 
         slideUp = AnimationUtils.loadAnimation(this,R.anim.slide_up);
         slideDown = AnimationUtils.loadAnimation(this,R.anim.slide_down);
+        mSavedLayout.setVisibility(View.VISIBLE);
+        ViewTreeObserver observer = mSavedLayout.getViewTreeObserver();
+        if(observer.isAlive()){
+            observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
+                        mSavedLayout.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                    } else {
+                        mSavedLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    }
+                    width = mSavedLayout.getMeasuredWidth();
+                    height = mSavedLayout.getMeasuredHeight();
+                    Log.e("TAG", "onCreate: widht: " + width + " height : " + height);
+                }
+            });
+        }
+
+
+//        width = mSavedLayout.getWidth();
+//        height = mSavedLayout.getHeight();
+        //mSavedLayout.setVisibility(View.INVISIBLE);
+        //Log.e("TAG", "onCreate: widht: " + width + " height : " + height);
+        Animation slideDownFast = AnimationUtils.loadAnimation(this,R.anim.slide_down_fast);
+        //slideDown(slideDownFast);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -110,8 +149,32 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
 
         i++;
         if(i%2 == 1){
+            //mSavedLayout.setVisibility(View.VISIBLE);
+            if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                upDownImage.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.ic_action_down));
+            } else {
+                upDownImage.setBackground(ContextCompat.getDrawable(this, R.drawable.ic_action_down));
+            }
+            mSavedLayout.clearAnimation();
+            //mSavedLayout.setAnimation(slideUp);
             mSavedLayout.startAnimation(slideUp);
-            mSavedLayout.setVisibility(View.VISIBLE);
+//            long duration = slideUp.getDuration();
+//            Handler handler = new Handler();
+//            handler.postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    if(!slideUp.hasEnded()){
+//                        Log.e("TAG","Has Ended False");
+//                    }else{
+//                        Log.e("TAG","Has Ended");
+//                        mSavedLayout.setVisibility(View.VISIBLE);
+//                    }
+//                }
+//            },duration + 10);
+
+
+//            mSavedLayout.invalidate();
+            slideUp.setFillAfter(true);
             mSavedLayout.setLayoutAnimationListener(new Animation.AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation animation) {
@@ -120,7 +183,7 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    Log.e("TAG","onAnimationEnd");
+                    Log.e("TAG","onAnimationEnd VISIBLE");
                     mSavedLayout.setVisibility(View.VISIBLE);
                 }
 
@@ -133,8 +196,32 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
             //SlideToAbove();
             //mSavedLayout.setVisibility(View.VISIBLE);
         if(i%2 == 0) {
+
+            if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                upDownImage.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.ic_action_up));
+            } else {
+                upDownImage.setBackground(ContextCompat.getDrawable(this, R.drawable.ic_action_up));
+            }
+            mSavedLayout.clearAnimation();
+            //mSavedLayout.setAnimation(slideDown);
             mSavedLayout.startAnimation(slideDown);
-            mSavedLayout.setVisibility(View.INVISIBLE);
+//            long duration = slideDown.getDuration();
+//            Handler handler = new Handler();
+//            handler.postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    if(!slideDown.hasEnded()){
+//                        Log.e("TAG","Has Ended False");
+//                    }else{
+//                        Log.e("TAG","Has Ended");
+//                        mSavedLayout.setVisibility(View.INVISIBLE);
+//                    }
+//                }
+//            },duration + 10);
+
+//            mSavedLayout.invalidate();
+            //mSavedLayout.setVisibility(View.INVISIBLE);
+            slideDown.setFillAfter(true);
             mSavedLayout.setLayoutAnimationListener(new Animation.AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation animation) {
@@ -143,6 +230,7 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
+                    Log.e("TAG","onAnimationEnd INVISIBLE");
                     mSavedLayout.setVisibility(View.INVISIBLE);
                 }
 
@@ -156,6 +244,113 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
         //mSavedLayout.setVisibility(View.INVISIBLE);
     }
 
+
+    @OnClick(R.id.image_layout) void updownImageClick(){
+
+        Log.e("TAG","ImageUpdown Clicked!!!");
+
+
+        if(layoutStatus == 1){ // Will Open
+            if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                upDownImage.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.ic_action_down));
+            } else {
+                upDownImage.setBackground(ContextCompat.getDrawable(this, R.drawable.ic_action_down));
+            }
+
+            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                    width, height);
+            lp.setMargins(0, width, 0, 0);
+            lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+            mSavedLayout.setLayoutParams(lp);
+
+            mSavedLayout.clearAnimation();
+            mSavedLayout.startAnimation(slideUp);;
+            slideUp.setFillAfter(true);
+            slideUp.setFillEnabled(true);
+            slideUp.setFillBefore(true);
+
+            mSavedLayout.setLayoutAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                    Log.e("TAG","onAnimated Start");
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    Log.e("TAG","onAnimated End ");
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+                    Log.e("TAG","onAnimation Repeat");
+                }
+            });
+            layoutStatus = 2;
+            return;
+        }
+        if(layoutStatus == 2){
+            if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                upDownImage.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.ic_action_up));
+            } else {
+                upDownImage.setBackground(ContextCompat.getDrawable(this, R.drawable.ic_action_up));
+            }
+            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                    width, height);
+            lp.setMargins(0, width, 0, 0);
+            lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+            mSavedLayout.setLayoutParams(lp);
+
+            mSavedLayout.clearAnimation();
+            mSavedLayout.startAnimation(slideDown);
+            slideDown.setFillAfter(true);
+            slideDown.setFillEnabled(true);
+            slideDown.setFillBefore(true);
+            long duration = slideDown.getDuration();
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if(slideDown.hasEnded()){
+                        Log.e("TAG","Slide Down Ended");
+                       mSavedLayout.clearAnimation();
+
+                        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                                width, 100);
+                        lp.setMargins(0, width, 0, 0);
+                        lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                        mSavedLayout.setLayoutParams(lp);
+
+                    }else{
+                        Log.e("TAG","Slide Down Not Ended");
+                    }
+                }
+            },(long)(duration +100));
+            layoutStatus = 1;
+            return;
+        }
+    }
+
+
+
+    public void slideDown(Animation animation){
+        mSavedLayout.clearAnimation();
+        mSavedLayout.startAnimation(animation);
+        animation.setFillAfter(false);
+//        mSavedLayout.setLayoutAnimationListener(new Animation.AnimationListener() {
+//            @Override
+//            public void onAnimationStart(Animation animation) {
+//            }
+//
+//            @Override
+//            public void onAnimationEnd(Animation animation) {
+//                Log.e("TAG","onAnimationEnd INVISIBLE");
+//                mSavedLayout.setVisibility(View.INVISIBLE);
+//            }
+//            @Override
+//            public void onAnimationRepeat(Animation animation) {
+//            }
+//        });
+    }
 
 
     public void SlideToAbove() {
