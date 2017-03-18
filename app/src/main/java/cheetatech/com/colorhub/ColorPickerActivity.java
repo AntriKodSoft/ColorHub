@@ -176,6 +176,101 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
 
     @OnClick(R.id.fabAdd) void fabAddClick(){
 
+        i++;
+
+        if(i%2 == 1){ // Will Open
+            if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                upDownImage.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.ic_action_down));
+            } else {
+                upDownImage.setBackground(ContextCompat.getDrawable(this, R.drawable.ic_action_down));
+            }
+
+            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                    width, height);
+            lp.setMargins(0, width, 0, 0);
+            lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+            mSavedLayout.setLayoutParams(lp);
+
+            mSavedLayout.clearAnimation();
+            mSavedLayout.startAnimation(slideUp);;
+            slideUp.setFillAfter(true);
+            slideUp.setFillEnabled(true);
+            slideUp.setFillBefore(true);
+            slideUp.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                    Log.e("TAG","onAnimationStart");
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    Log.e("TAG", "onAnimationEnd:" );
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+                    Log.e("TAG", "onAnimationRepeat: " );
+                }
+            });
+            layoutStatus = 2;
+            return;
+        }
+        if(i%2 == 0){
+            if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                upDownImage.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.ic_action_up));
+            } else {
+                upDownImage.setBackground(ContextCompat.getDrawable(this, R.drawable.ic_action_up));
+            }
+            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                    width, height);
+            lp.setMargins(0, width, 0, 0);
+            lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+            mSavedLayout.setLayoutParams(lp);
+
+            mSavedLayout.clearAnimation();
+            mSavedLayout.startAnimation(slideDown);
+            slideDown.setFillAfter(true);
+            slideDown.setFillEnabled(true);
+            slideDown.setFillBefore(true);
+            slideDown.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                    Log.e("TAG","2onAnimationStart");
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    Log.e("TAG", "2onAnimationEnd:" );
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+                    Log.e("TAG", "2onAnimationRepeat: " );
+                }
+            });
+//            long duration = slideDown.getDuration();
+//            Handler handler = new Handler();
+//            handler.postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    if(slideDown.hasEnded()){
+//                        Log.e("TAG","Slide Down Ended");
+//                        mSavedLayout.clearAnimation();
+//
+//                        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+//                                width, 100);
+//                        lp.setMargins(0, width, 0, 0);
+//                        lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+//                        mSavedLayout.setLayoutParams(lp);
+//
+//                    }else{
+//                        Log.e("TAG","Slide Down Not Ended");
+//                    }
+//                }
+//            },(long)(duration +100));
+            layoutStatus = 1;
+            return;
+        }
     }
 
 
@@ -198,6 +293,27 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
             slideUp.setFillAfter(true);
             slideUp.setFillEnabled(true);
             slideUp.setFillBefore(true);
+            slideUp.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    Log.e("TAG", "onAnimationEnd: Click");
+                    RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                            width, height);
+                    lp.setMargins(0, width, 0, 0);
+                    lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                    mSavedLayout.setLayoutParams(lp);
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
             layoutStatus = 2;
             return;
         }
@@ -218,26 +334,48 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
             slideDown.setFillAfter(true);
             slideDown.setFillEnabled(true);
             slideDown.setFillBefore(true);
-            long duration = slideDown.getDuration();
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
+            slideDown.setAnimationListener(new Animation.AnimationListener() {
                 @Override
-                public void run() {
-                    if(slideDown.hasEnded()){
-                        Log.e("TAG","Slide Down Ended");
-                       mSavedLayout.clearAnimation();
+                public void onAnimationStart(Animation animation) {
 
-                        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                                width, 100);
-                        lp.setMargins(0, width, 0, 0);
-                        lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-                        mSavedLayout.setLayoutParams(lp);
-
-                    }else{
-                        Log.e("TAG","Slide Down Not Ended");
-                    }
                 }
-            },(long)(duration +100));
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    Log.e("TAG","Slide Down Ended");
+                    mSavedLayout.clearAnimation();
+                    RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                            width, 100);
+                    lp.setMargins(0, width, 0, 0);
+                    lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                    mSavedLayout.setLayoutParams(lp);
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
+//            long duration = slideDown.getDuration();
+//            Handler handler = new Handler();
+//            handler.postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    if(slideDown.hasEnded()){
+//                        Log.e("TAG","Slide Down Ended");
+//                       mSavedLayout.clearAnimation();
+//
+//                        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+//                                width, 100);
+//                        lp.setMargins(0, width, 0, 0);
+//                        lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+//                        mSavedLayout.setLayoutParams(lp);
+//
+//                    }else{
+//                        Log.e("TAG","Slide Down Not Ended");
+//                    }
+//                }
+//            },(long)(duration +100));
             layoutStatus = 1;
             return;
         }
