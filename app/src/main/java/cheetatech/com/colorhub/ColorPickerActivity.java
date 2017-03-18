@@ -81,6 +81,9 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
     @BindView(R.id.saved_color_layout)
     RelativeLayout mSavedLayout;
 
+    @BindView(R.id.image_layout)
+    RelativeLayout mImageLayout;
+
     @BindView(R.id.image_up_down)
     ImageView upDownImage;
 
@@ -92,7 +95,7 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
     Animation slideUp, slideDown ;
     private int i = 0;
     private int layoutStatus = 1; // close;
-    private int width, height;
+    private int width, height, imageHeight;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,14 +117,22 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
                     }
                     width = mSavedLayout.getMeasuredWidth();
                     height = mSavedLayout.getMeasuredHeight();
+
+                    imageHeight = mImageLayout.getMeasuredHeight();
+                    if(imageHeight == -1)
+                        imageHeight = 100;
+                    Log.e("TAG","ImageLayout :  " + imageHeight);
+
                     RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                            width, 100);
+                            width, imageHeight);
                     lp.setMargins(0, width, 0, 0);
                     lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
                     mSavedLayout.setLayoutParams(lp);
                 }
             });
         }
+
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -345,7 +356,7 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
                     Log.e("TAG","Slide Down Ended");
                     mSavedLayout.clearAnimation();
                     RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                            width, 100);
+                            width, imageHeight);
                     lp.setMargins(0, width, 0, 0);
                     lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
                     mSavedLayout.setLayoutParams(lp);
