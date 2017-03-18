@@ -29,6 +29,9 @@ import android.widget.Toast;
 
 import java.math.BigInteger;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cheetatech.com.colorhub.ColorPickerActivity;
 import cheetatech.com.colorhub.R;
 import cheetatech.com.colorhub.adapters.GridViewArrayAdapter;
@@ -54,17 +57,38 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
     String s1 = "FF00AB";
     String s2 = "FFFFFF";
 
+    public interface OnColorListener{
+        void onAddColor(String color);
+    }
+
+    private OnColorListener mListener;
+
     public ColorPicker1() {
         // Required empty public constructor
     }
 
+    public OnColorListener getListener() {
+        return mListener;
+    }
 
+    public void setListener(OnColorListener mListener) {
+        this.mListener = mListener;
+    }
 
-    // TODO: Rename and change types and number of parameters
+    public static ColorPicker1 newInstance(OnColorListener listener) {
+        ColorPicker1 fragment = new ColorPicker1();
+        fragment.setListener(listener);
+        return fragment;
+    }
+
     public static ColorPicker1 newInstance(String param1, String param2) {
         ColorPicker1 fragment = new ColorPicker1();
-        //fragment.setArguments(args);
         return fragment;
+    }
+
+    @OnClick(R.id.add_color_button) void addColorClick(){
+        String color = textViewColor.getText().toString();
+        this.mListener.onAddColor(color);
     }
 
     @Override
@@ -75,7 +99,9 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_color_picker1, container, false);
+        View view = inflater.inflate(R.layout.fragment_color_picker1, container, false);
+        ButterKnife.bind(this,view);
+        return view;
     }
     @Override
     public void onActivityCreated(Bundle savedInstanceState)

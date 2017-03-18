@@ -908,5 +908,6 @@
     </string-array>
     <string name="title_activity_color_picker">ColorPickerActivity</string>
     <string name="title_activity_aboutus">AboutusActivity</string>
+    <string name="add_color">Add</string>
 
 </resources>
