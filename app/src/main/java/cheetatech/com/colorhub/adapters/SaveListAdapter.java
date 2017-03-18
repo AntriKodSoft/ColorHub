@@ -26,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.util.List;
 
 import butterknife.BindView;
@@ -45,6 +46,11 @@ public class SaveListAdapter extends RecyclerView.Adapter<SaveListAdapter.ViewHo
 
         @BindView(R.id.color_text_view)
         TextView mColorTextView;
+
+        @BindView(R.id.delete_saved_list)
+        ImageView mDeleteImageView;
+
+
 
         public ViewHolder(View v) {
             super(v);
@@ -77,14 +83,24 @@ public class SaveListAdapter extends RecyclerView.Adapter<SaveListAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(SaveListAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(SaveListAdapter.ViewHolder holder, final int position) {
         holder.mColorTextView.setText(this.mDataset.get(position).getColorCode());
         holder.mColorLayout.setBackgroundColor(Color.parseColor(this.mDataset.get(position).getColorCode()));
+        holder.mDeleteImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    mDataset.remove(position);
+                    notifyDataSetChanged();
+                }catch (Exception e){}
+            }
+        });
+
     }
 
     @Override
     public int getItemViewType(int position) {
-        return position == 10 ? 1 : 0;
+        return 0;
     }
 
     @Override
