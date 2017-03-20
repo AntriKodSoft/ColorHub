@@ -30,9 +30,27 @@ public class SaveDialog extends DialogFragment {
 
 
     private Unbinder unbinder;
+    private OnSaveListener mListener;
+
+    public interface OnSaveListener{
+        void onSavedName(String name);
+    }
 
     public SaveDialog(){
+    }
 
+    public static SaveDialog newInstance(OnSaveListener listener){
+        SaveDialog fragment = new SaveDialog();
+        fragment.setListener(listener);
+        return fragment;
+    }
+
+    public OnSaveListener getListener() {
+        return mListener;
+    }
+
+    public void setListener(OnSaveListener mListener) {
+        this.mListener = mListener;
     }
 
     @Override
@@ -61,6 +79,8 @@ public class SaveDialog extends DialogFragment {
         String paletteName = mPaletteName.getText().toString().trim();
         if(paletteName.length() == 0)
             return;
+        if(this.mListener != null)
+            this.mListener.onSavedName(paletteName);
         Log.e("TAG", "addButtonClick: " + paletteName );
         dismiss();
     }

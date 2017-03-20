@@ -31,10 +31,11 @@ import cheetatech.com.colorhub.adapters.ViewPagerAdapter;
 import cheetatech.com.colorhub.dialog.SaveDialog;
 import cheetatech.com.colorhub.listeners.IOnFocusListenable;
 import cheetatech.com.colorhub.models.Model;
+import cheetatech.com.colorhub.realm.RealmX;
 import layout.ColorPicker1;
 import layout.ColorPicker3;
 
-public class ColorPickerActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener , ColorPicker1.OnColorListener{
+public class ColorPickerActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener , ColorPicker1.OnColorListener,SaveDialog.OnSaveListener{
     private TabLayout tabLayout = null;
     private ViewPager viewPager = null;
     private ColorPicker1 ColorPicker_1 = null;
@@ -155,9 +156,11 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
         super.onStart();
     }
 
+
+
     @OnClick(R.id.fabAdd) void fabAddClick(){
         if(listModel.size() != 0)
-            (new SaveDialog()).show(getSupportFragmentManager(),getString(R.string.save_dialog));
+            (SaveDialog.newInstance(this)).show(getSupportFragmentManager(),getString(R.string.save_dialog));
     }
 
     @OnClick(R.id.image_layout) void updownImageClick(){
@@ -262,6 +265,7 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
     }
     @Override
     protected void onDestroy() {
+        RealmX.closeRealm();
         super.onDestroy();
     }
 
@@ -322,5 +326,10 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
                 return true;
         }
         return hold;
+    }
+
+    @Override
+    public void onSavedName(String name) {
+        Log.e("TAG", "onSavedName: " + name );
     }
 }

@@ -43,6 +43,9 @@ import cheetatech.com.colorhub.dialog.SaveDialog;
 import cheetatech.com.colorhub.drawer.ColorSelect;
 import cheetatech.com.colorhub.listeners.ListenerModel;
 import cheetatech.com.colorhub.models.Model;
+import cheetatech.com.colorhub.realm.RealmX;
+import cheetatech.com.colorhub.realm.SavedObject;
+import io.realm.RealmList;
 import layout.ColorPicker1;
 import layout.FlatColorFragment;
 import layout.HtmlColorFragment;
@@ -50,7 +53,7 @@ import layout.MaterialColorFragment;
 import layout.MetroColorFragment;
 import layout.SocialColorFragment;
 
-public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener, ColorPicker1.OnColorListener {
+public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener, ColorPicker1.OnColorListener , SaveDialog.OnSaveListener{
 
     private Toolbar toolbar = null;
     ArrayList<ColorSelect> cselect = null;
@@ -198,19 +201,12 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#E64A19")));
 
         loadAdapters();
+
+        RealmX.list();
     }
 
     private void loadAdapters() {
         listModel.clear();
-//        listModel.add(new Model("#254678"));
-//        listModel.add(new Model("#254600"));
-//        listModel.add(new Model("#250078"));
-//        listModel.add(new Model("#004678"));
-//        listModel.add(new Model("#200678"));
-//        listModel.add(new Model("#ff00ff"));
-//        listModel.add(new Model("#ff0000"));
-//        listModel.add(new Model("#00ff00"));
-
         LinearLayoutManager manager = new LinearLayoutManager(this);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(manager);
@@ -233,7 +229,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     @OnClick(R.id.fabAdd) void fabAddClick(){
         if(this.listModel.size() != 0)
-            (new SaveDialog()).show(getSupportFragmentManager(),getString(R.string.save_dialog));
+            (SaveDialog.newInstance(this)).show(getSupportFragmentManager(),getString(R.string.save_dialog));
     }
 
     @OnClick(R.id.image_layout) void updownImageClick(){
@@ -426,4 +422,17 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         startActivity(new Intent(Intent.ACTION_VIEW, uri));
     }
 
+    @Override
+    public void onSavedName(String name) {
+        Log.e("TAG", "onSavedName: " + name );
+
+        SavedObject object = new SavedObject();
+
+        object.setName(name);
+        RealmList<Model> mList = new RealmList<Model>();
+        mList.addAll(this.listModel);
+        object.setList(mList);
+
+        RealmX.save(object);
+    }
 }

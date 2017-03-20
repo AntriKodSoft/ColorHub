@@ -1,10 +1,12 @@
 package cheetatech.com.colorhub.models;
 
+import io.realm.RealmObject;
+
 /**
  * Created by erkan on 17.03.2017.
  */
 
-public class Model {
+public class Model extends RealmObject{
     private String colorCode;
 
     public Model(){}
