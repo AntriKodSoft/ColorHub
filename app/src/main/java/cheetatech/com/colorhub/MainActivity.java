@@ -354,6 +354,9 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
                 case 5:
                     startActivity(new Intent(MainActivity.this, AboutusActivity.class));
                     break;
+                case 6:
+                    startActivity(new Intent(MainActivity.this, AboutusActivity.class));
+                    break;
             }
         }
         else
@@ -432,7 +435,9 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         RealmList<Model> mList = new RealmList<Model>();
         mList.addAll(this.listModel);
         object.setList(mList);
-
         RealmX.save(object);
+        this.listModel.clear();
+        this.mAdapter.notifyDataSetChanged();
     }
+
 }

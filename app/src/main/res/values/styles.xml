@@ -28,6 +28,7 @@
     <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
         <item name="tabTextAppearance">@style/MyCustomTabText</item>
     </style>
+
     <style name="MyCustomTabText" parent="TextAppearance.AppCompat.Button">
         <item name="android:textSize">32sp</item>
     </style>
@@ -36,7 +37,7 @@
         <item name="android:layout_marginBottom">50dp</item>
     </style>
 
-<!--
+    <!--
     <declare-styleable name="GradientView">
         <attr name="pointerDrawable" format="reference"/>
         <attr name="radius" format="dimension"/>

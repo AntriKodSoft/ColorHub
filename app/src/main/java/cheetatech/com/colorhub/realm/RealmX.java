@@ -2,7 +2,9 @@ package cheetatech.com.colorhub.realm;
 
 import android.util.Log;
 
+import cheetatech.com.colorhub.models.Model;
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmResults;
 
 /**
@@ -50,8 +52,18 @@ public class RealmX {
 
         for (SavedObject s : res ) {
             Log.e("TAG", "list: " + s.getName() );
+            for (Model m : s.getList() ) {
+                Log.e("TAG", "list::: " +  m.getColorCode() );
+            }
+            Log.e("TAG", "---------------------" );
         }
 
         //closeRealm();
     }
+
+    public static RealmResults<SavedObject> getObject(String name){
+        RealmResults<SavedObject> res = realm.where(SavedObject.class).findAll();
+        return res;
+    }
+
 }

@@ -322,7 +322,6 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
 
     @Override
     public void onSavedName(String name) {
-        Log.e("TAG", "onSavedName: " + name );
         SavedObject object = new SavedObject();
 
         object.setName(name);
@@ -331,5 +330,8 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
         object.setList(mList);
 
         RealmX.save(object);
+
+        this.listModel.clear();
+        this.mAdapter.notifyDataSetChanged();
     }
 }

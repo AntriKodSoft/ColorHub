@@ -15,4 +15,5 @@ public class ColorHubApplication extends Application {
         super.onCreate();
         Realm.init(this);
     }
+
 }

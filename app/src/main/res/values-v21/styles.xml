@@ -12,8 +12,8 @@
     </style>
 
     <declare-styleable name="GradientView">
-        <attr name="pointerDrawable" format="reference"/>
-        <attr name="radius" format="dimension"/>
+        <attr name="pointerDrawable" format="reference" />
+        <attr name="radius" format="dimension" />
         <attr name="lockPointerInBounds" format="boolean" />
     </declare-styleable>
 
@@ -25,8 +25,6 @@
     <style name="colorpickerview__PickerDialogButtonStyle" parent="android:Widget.Material.Button.Borderless">
         <item name="android:textColor">?android:colorAccent</item>
     </style>
-
-
 
 
     <style name="colorpickerview__ColorPickerViewStyle">
