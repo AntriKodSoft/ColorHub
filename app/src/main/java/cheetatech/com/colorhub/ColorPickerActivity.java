@@ -32,6 +32,8 @@ import cheetatech.com.colorhub.dialog.SaveDialog;
 import cheetatech.com.colorhub.listeners.IOnFocusListenable;
 import cheetatech.com.colorhub.models.Model;
 import cheetatech.com.colorhub.realm.RealmX;
+import cheetatech.com.colorhub.realm.SavedObject;
+import io.realm.RealmList;
 import layout.ColorPicker1;
 import layout.ColorPicker3;
 
@@ -128,20 +130,12 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
 
         tabLayout.setOnTabSelectedListener(this);
 
+        RealmX.list();
         loadAdapters();
     }
 
     private void loadAdapters() {
         listModel.clear();
-//        listModel.add(new Model("#254678"));
-//        listModel.add(new Model("#254600"));
-//        listModel.add(new Model("#250078"));
-//        listModel.add(new Model("#004678"));
-//        listModel.add(new Model("#200678"));
-//        listModel.add(new Model("#ff00ff"));
-//        listModel.add(new Model("#ff0000"));
-//        listModel.add(new Model("#00ff00"));
-
         LinearLayoutManager manager = new LinearLayoutManager(this);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(manager);
@@ -155,8 +149,6 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
     protected void onStart() {
         super.onStart();
     }
-
-
 
     @OnClick(R.id.fabAdd) void fabAddClick(){
         if(listModel.size() != 0)
@@ -331,5 +323,13 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
     @Override
     public void onSavedName(String name) {
         Log.e("TAG", "onSavedName: " + name );
+        SavedObject object = new SavedObject();
+
+        object.setName(name);
+        RealmList<Model> mList = new RealmList<Model>();
+        mList.addAll(this.listModel);
+        object.setList(mList);
+
+        RealmX.save(object);
     }
 }
