@@ -1,6 +1,7 @@
 package layout;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -26,8 +27,24 @@ import cheetatech.com.colorhub.defines.ColorInfo;
 public class SocialColorFragment extends Fragment implements AdapterView.OnItemLongClickListener   {
 
 
+    private ColorPicker1.OnColorListener mListener = null;
+
     public SocialColorFragment() {
         // Required empty public constructor
+    }
+
+    public static SocialColorFragment newInstance(ColorPicker1.OnColorListener listener){
+        SocialColorFragment fragment = new SocialColorFragment();
+        fragment.setListener(listener);
+        return fragment;
+    }
+
+    public ColorPicker1.OnColorListener getListener() {
+        return this.mListener;
+    }
+
+    public void setListener(ColorPicker1.OnColorListener mListener) {
+        this.mListener = mListener;
     }
 
     @Override
@@ -48,7 +65,8 @@ public class SocialColorFragment extends Fragment implements AdapterView.OnItemL
 
         GridView gridView = (GridView) getView().findViewById(R.id.gridviewsocial);
         ColorArrayController controller  = ColorArrayController.getInstance();
-        GridViewArrayAdapter adapter = new GridViewArrayAdapter(getContext(),R.layout.grid_list,controller.getSocialList());
+        //GridViewArrayAdapter adapter = new GridViewArrayAdapter(getContext(),R.layout.grid_list,controller.getSocialList());
+        GridViewArrayAdapter adapter = new GridViewArrayAdapter(getContext(),R.layout.grid_list,controller.getSocialList(),this.mListener);
         gridView.setAdapter(adapter);
 
     }

@@ -27,11 +27,25 @@ public class MaterialColorFragment extends Fragment implements AdapterView.OnIte
 
     private GridView gridView = null;
     private ArrayList<ColorInfo> colorInfoArrayList = null;
-
+    private ColorPicker1.OnColorListener mListener = null;
+    private MaterialGridViewAdapter mAdapter = null;
     public MaterialColorFragment() {
         // Required empty public constructor
     }
 
+    public static MaterialColorFragment newInstance(ColorPicker1.OnColorListener listener){
+        MaterialColorFragment fragment = new MaterialColorFragment();
+        fragment.setListener(listener);
+        return fragment;
+    }
+
+    public void setListener(ColorPicker1.OnColorListener listener) {
+        this.mListener = listener;
+    }
+
+    public ColorPicker1.OnColorListener getListener() {
+        return this.mListener;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,9 +63,6 @@ public class MaterialColorFragment extends Fragment implements AdapterView.OnIte
 
         ListenerModel.getInstance().setListener(this);
 
-
-
-
         /*
         ColorArrayController controller  = ColorArrayController.getInstance();
         colorInfoArrayList = controller.getMaterialColorInfoList().get(0).getColorInfoList();
@@ -65,12 +76,8 @@ public class MaterialColorFragment extends Fragment implements AdapterView.OnIte
         //ColorArrayListAdapter adapter = new ColorArrayListAdapter(getContext(),R.layout.list_layout,colorInfoArrayList);
 
         gridView = (GridView) getView().findViewById(R.id.gridviewmaterial);
-        MaterialGridViewAdapter adapter = new MaterialGridViewAdapter(getContext(),R.layout.grid_list,colorInfoArrayList);
-
-        gridView.setAdapter(adapter);
-
-
-
+        mAdapter = new MaterialGridViewAdapter(getContext(),R.layout.grid_list,colorInfoArrayList,this.mListener);
+        gridView.setAdapter(mAdapter);
     }
 
     @Override
@@ -81,10 +88,15 @@ public class MaterialColorFragment extends Fragment implements AdapterView.OnIte
 
     @Override
     public void onSelectedColorIndex(int index) {
+        Log.e("TAG", "onSelectedColorIndex: " + index );
         MaterialGridViewAdapter.HeaderIndex = index;
         ColorArrayController controller  = ColorArrayController.getInstance();
-        colorInfoArrayList = controller.getMaterialColorInfoList().get(index).getColorInfoList();
-        MaterialGridViewAdapter adapter = new MaterialGridViewAdapter(getContext(),R.layout.grid_list,colorInfoArrayList);
-        gridView.setAdapter(adapter);
+        //colorInfoArrayList = controller.getMaterialColorInfoList().get(index).getColorInfoList();
+        colorInfoArrayList.clear();
+        colorInfoArrayList.addAll(controller.getMaterialColorInfoList().get(index).getColorInfoList());
+        mAdapter.notifyDataSetChanged();
+        //MaterialGridViewAdapter adapter = new MaterialGridViewAdapter(getContext(),R.layout.grid_list,colorInfoArrayList);
+        //MaterialGridViewAdapter adapter = new MaterialGridViewAdapter(getContext(),R.layout.grid_list,colorInfoArrayList,getListener());
+        //gridView.setAdapter(adapter);
     }
 }

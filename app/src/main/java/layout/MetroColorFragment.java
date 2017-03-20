@@ -1,5 +1,6 @@
 package layout;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
@@ -19,15 +20,29 @@ import cheetatech.com.colorhub.controller.ColorArrayController;
 public class MetroColorFragment extends Fragment implements AdapterView.OnItemLongClickListener  {
 
 
+    private ColorPicker1.OnColorListener mListener = null;
+
     public MetroColorFragment() {
         // Required empty public constructor
     }
 
+    public static MetroColorFragment newInstance(ColorPicker1.OnColorListener listener){
+        MetroColorFragment fragment = new MetroColorFragment();
+        fragment.setListener(listener);
+        return fragment;
+    }
+
+    public ColorPicker1.OnColorListener getListener() {
+        return mListener;
+    }
+
+    public void setListener(ColorPicker1.OnColorListener mListener) {
+        this.mListener = mListener;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_metro_color, container, false);
     }
 
@@ -35,16 +50,10 @@ public class MetroColorFragment extends Fragment implements AdapterView.OnItemLo
     public void onActivityCreated(Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
-
-        /*ColorArrayController controller  = ColorArrayController.getInstance();
-        setListAdapter(new ColorArrayListAdapter(getContext(),R.layout.list_layout,controller.getMetroList()));
-        getListView().setOnItemLongClickListener(this);
-        */
         GridView gridView = (GridView) getView().findViewById(R.id.gridviewmetro);
         ColorArrayController controller  = ColorArrayController.getInstance();
-        GridViewArrayAdapter adapter = new GridViewArrayAdapter(getContext(),R.layout.grid_list,controller.getMetroList());
+        GridViewArrayAdapter adapter = new GridViewArrayAdapter(getContext(),R.layout.grid_list,controller.getMetroList(),this.mListener);
         gridView.setAdapter(adapter);
-
     }
 
     @Override

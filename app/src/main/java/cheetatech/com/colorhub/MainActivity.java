@@ -1,106 +1,152 @@
 package cheetatech.com.colorhub;
 
-import android.*;
-import android.Manifest;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.telephony.TelephonyManager;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.ViewTreeObserver;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
-
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cheetatech.com.colorhub.adapters.DrawerListAdapter;
-import cheetatech.com.colorhub.adapters.GridViewArrayAdapter;
 import cheetatech.com.colorhub.adapters.NavigationBarAdapter;
+import cheetatech.com.colorhub.adapters.SaveListAdapter;
 import cheetatech.com.colorhub.adapters.ViewPagerAdapter;
-import cheetatech.com.colorhub.apprater.AppRater;
 import cheetatech.com.colorhub.controller.ColorArrayController;
 import cheetatech.com.colorhub.controller.DrawerListController;
 import cheetatech.com.colorhub.controller.ToolBarController;
 import cheetatech.com.colorhub.defines.BoardEditor;
+import cheetatech.com.colorhub.dialog.SaveDialog;
 import cheetatech.com.colorhub.drawer.ColorSelect;
-import cheetatech.com.colorhub.listeners.FloatButtonListener;
 import cheetatech.com.colorhub.listeners.ListenerModel;
-import hotchemi.android.rate.AppRate;
-import hotchemi.android.rate.OnClickButtonListener;
-import hotchemi.android.rate.StoreType;
+import cheetatech.com.colorhub.models.Model;
+import layout.ColorPicker1;
 import layout.FlatColorFragment;
-import layout.HomeFragment;
 import layout.HtmlColorFragment;
 import layout.MaterialColorFragment;
 import layout.MetroColorFragment;
 import layout.SocialColorFragment;
 
-public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener {
+public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener, ColorPicker1.OnColorListener {
 
     private Toolbar toolbar = null;
-    private TabLayout tabLayout = null;
-    private ViewPager viewPager = null;
-    private RelativeLayout relativeDrawer = null;
-
-    private DrawerLayout mDrawer = null;
-    private ListView drawerList = null;
     ArrayList<ColorSelect> cselect = null;
 
-    @BindView(R.id.fab)
+    @BindView(value = R.id.fab)
     FloatingActionButton fab;
 
     private DrawerListAdapter drawerListAdapter = null;
 
     private int currentPosition = 0;
-    private AdView mAdView = null;
+    Animation slideUp, slideDown, fadeIn, fadeOut ;
 
     private String facebook = "https://www.facebook.com/cheetatech/?fref=ts&ref=br_tf";
     private String twitter = "https://twitter.com/cheeta_tech";
     private String instagram = "https://www.instagram.com/cheetatechofficial/";
     private String web = "https://cheetatech.wordpress.com/";
 
+    @BindView(R.id.tablayout)
+    TabLayout tabLayout;
+
+    @BindView(R.id.pager)
+    ViewPager viewPager;
+
+    @BindView(R.id.drawer_layout)
+    DrawerLayout mDrawer;
+
+    @BindView(R.id.relative_layout)
+    RelativeLayout relativeDrawer;
+
+    @BindView(R.id.left_drawer)
+    ListView drawerList;
+
+    @BindView(R.id.image_up_down)
+    ImageView upDownImage;
+
+    @BindView(R.id.recyclerview)
+    RecyclerView mRecyclerView;
+
+    @BindView(R.id.saved_color_layout)
+    RelativeLayout mSavedLayout;
+
+    @BindView(R.id.image_layout)
+    RelativeLayout mImageLayout;
+
+    @BindView(R.id.fabAdd)
+    FloatingActionButton fabAddButton;
+
+    private SaveListAdapter mAdapter = null;
+    private List<Model> listModel = new ArrayList<>();
+    private int layoutStatus = 1; // close;
+    private int width, height, imageHeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        MobileAds.initialize(getApplicationContext(), getString(R.string.banner_commercial));
-        mAdView = (AdView) findViewById(R.id.adView);
+
+        slideUp = AnimationUtils.loadAnimation(this,R.anim.slide_up);
+        slideDown = AnimationUtils.loadAnimation(this,R.anim.slide_down);
+        fadeIn = AnimationUtils.loadAnimation(this,R.anim.fade_in);
+        fadeOut = AnimationUtils.loadAnimation(this,R.anim.fade_out);
+
+        if(fab.getVisibility() == View.INVISIBLE)
+            fab.setVisibility(View.VISIBLE);
+
+        if(fabAddButton.getVisibility() == View.VISIBLE)
+            fabAddButton.setVisibility(View.INVISIBLE);
+
+        ViewTreeObserver observer = mSavedLayout.getViewTreeObserver();
+        if(observer.isAlive()){
+            observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
+                        mSavedLayout.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                    } else {
+                        mSavedLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    }
+                    width = mSavedLayout.getMeasuredWidth();
+                    height = mSavedLayout.getMeasuredHeight();
+
+                    imageHeight = mImageLayout.getMeasuredHeight();
+                    if(imageHeight == -1)
+                        imageHeight = 100;
+                    Log.e("TAG","ImageLayout :  " + imageHeight);
+
+                    RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                            width, imageHeight);
+                    lp.setMargins(0, width, 0, 0);
+                    lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                    mSavedLayout.setLayoutParams(lp);
+                }
+            });
+        }
+
         // Color init
         ColorArrayController controller = ColorArrayController.getInstance();
         controller.setResource(getResources());
@@ -115,9 +161,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         cselect = controller.getMaterialNameColorSelectList();
         NavigationBarAdapter adapter = new NavigationBarAdapter(getApplicationContext(),1,cselect);
 
-        mDrawer = (DrawerLayout)findViewById(R.id.drawer_layout);
-        drawerList = (ListView) findViewById(R.id.left_drawer);
-        relativeDrawer = (RelativeLayout) findViewById(R.id.relative_layout);
         drawerList.setAdapter(adapter);
         drawerList.setOnItemClickListener(this);
 
@@ -145,12 +188,8 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
                 mDrawer.openDrawer(relativeDrawer);
             }
         });
-        viewPager = (ViewPager)findViewById(R.id.pager);
         setUpViewPager(viewPager);
-
-        tabLayout = (TabLayout)findViewById(R.id.tablayout);
         tabLayout.setupWithViewPager(viewPager);
-
         tabLayout.setOnTabSelectedListener(this);
 
         ToolBarController.getInstance().setToolBar(toolbar);
@@ -158,53 +197,27 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
         fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#E64A19")));
 
-        final int densityDpi = getResources().getDisplayMetrics().densityDpi;
-        Log.e("Dpi","Dpi is "+densityDpi);
+        loadAdapters();
+    }
 
-        /*
-        AppRate.with(this)
-                .setStoreType(StoreType.GOOGLEPLAY) //default is Google, other option is Amazon
-                .setInstallDays(3) // default 10, 0 means install day.
-                .setLaunchTimes(10) // default 10 times.
-                .setRemindInterval(2) // default 1 day.
-                .setShowLaterButton(true) // default true.
-                .setDebug(true) // default false.
-                .setCancelable(false) // default false.
-                .setOnClickButtonListener(new OnClickButtonListener() { // callback listener.
-                    @Override
-                    public void onClickButton(int which) {
-                        Log.d(MainActivity.class.getName(), Integer.toString(which));
-                        Log.e(MainActivity.class.getName(), Integer.toString(which) + " :: Ekooo");
-                    }
-                })
-                .setMessage(R.string.new_rate_dialog_message)
-                .setTitle(R.string.new_rate_dialog_title)
-                .setTextLater(R.string.new_rate_dialog_later)
-                .setTextNever(R.string.new_rate_dialog_never)
-                .setTextRateNow(R.string.new_rate_dialog_ok)
-                .monitor();
-        */
-        //AppRate.with(this).showRateDialog(this);
-        ////AppRate.showRateDialogIfMeetsConditions(this);
-        //new AppRater(this).show();
-        /* AppRate.with(this)
-                .setInstallDays(0) // default 10, 0 means install day.
-                .setLaunchTimes(3) // default 10
-                .setRemindInterval(2) // default 1
-                .setShowLaterButton(true) // default true
-                .setDebug(false) // default false
-                .setOnClickButtonListener(new OnClickButtonListener() { // callback listener.
-                    @Override
-                    public void onClickButton(int which) {
-                        Log.d(MainActivity.class.getName(), Integer.toString(which));
-                    }
-                })
-                .monitor();
+    private void loadAdapters() {
+        listModel.clear();
+//        listModel.add(new Model("#254678"));
+//        listModel.add(new Model("#254600"));
+//        listModel.add(new Model("#250078"));
+//        listModel.add(new Model("#004678"));
+//        listModel.add(new Model("#200678"));
+//        listModel.add(new Model("#ff00ff"));
+//        listModel.add(new Model("#ff0000"));
+//        listModel.add(new Model("#00ff00"));
 
-        // Show a dialog if meets conditions
-        //AppRate.showRateDialogIfMeetsConditions(this);
-        AppRate.with(this).showRateDialog(this);
-        */
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(manager);
+
+        mAdapter = new SaveListAdapter(listModel);
+        mRecyclerView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
     }
 
     @OnClick(R.id.fab) void fabClick(){
@@ -214,18 +227,114 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     @Override
     protected void onStart() {
         super.onStart();
-        loadAdv();
+    }
+
+
+
+    @OnClick(R.id.fabAdd) void fabAddClick(){
+        if(this.listModel.size() != 0)
+            (new SaveDialog()).show(getSupportFragmentManager(),getString(R.string.save_dialog));
+    }
+
+    @OnClick(R.id.image_layout) void updownImageClick(){
+        if(layoutStatus == 1){ // Will Open
+            if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                upDownImage.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.ic_action_down));
+            } else {
+                upDownImage.setBackground(ContextCompat.getDrawable(this, R.drawable.ic_action_down));
+            }
+
+            if(fabAddButton.getVisibility() == View.INVISIBLE)
+                fabAddButton.setVisibility(View.VISIBLE);
+
+            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                    width, height);
+            lp.setMargins(0, width, 0, 0);
+            lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+            mSavedLayout.setLayoutParams(lp);
+
+            mSavedLayout.clearAnimation();
+            mSavedLayout.startAnimation(slideUp);;
+            slideUp.setFillAfter(true);
+            slideUp.setFillEnabled(true);
+            slideUp.setFillBefore(true);
+            slideUp.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    Log.e("TAG", "onAnimationEnd: Click");
+                    RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                            width, height);
+                    lp.setMargins(0, width, 0, 0);
+                    lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                    mSavedLayout.setLayoutParams(lp);
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
+            layoutStatus = 2;
+            return;
+        }
+        if(layoutStatus == 2){
+            if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                upDownImage.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.ic_action_up));
+            } else {
+                upDownImage.setBackground(ContextCompat.getDrawable(this, R.drawable.ic_action_up));
+            }
+
+            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                    width, height);
+            lp.setMargins(0, width, 0, 0);
+            lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+
+            if(fabAddButton.getVisibility() == View.VISIBLE)
+                fabAddButton.setVisibility(View.INVISIBLE);
+
+
+            mSavedLayout.setLayoutParams(lp);
+
+            mSavedLayout.clearAnimation();
+            mSavedLayout.startAnimation(slideDown);
+            slideDown.setFillAfter(true);
+            slideDown.setFillEnabled(true);
+            slideDown.setFillBefore(true);
+            slideDown.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                }
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    mSavedLayout.clearAnimation();
+                    RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                            width, imageHeight);
+                    lp.setMargins(0, width, 0, 0);
+                    lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                    mSavedLayout.setLayoutParams(lp);
+                }
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+                }
+            });
+            layoutStatus = 1;
+            return;
+        }
     }
 
     public  void setUpViewPager(ViewPager viewPager)
     {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        //adapter.addFragment(new HomeFragment(),"Home");
-        adapter.addFragment(new FlatColorFragment(),"Flat");
-        adapter.addFragment(new MaterialColorFragment(),"Material");
-        adapter.addFragment(new SocialColorFragment(),"Social");
-        adapter.addFragment(new MetroColorFragment(),"Metro");
-        adapter.addFragment(new HtmlColorFragment(),"Html");
+        adapter.addFragment(FlatColorFragment.newInstance(this),"Flat");
+        adapter.addFragment(MaterialColorFragment.newInstance(this),"Material");
+        adapter.addFragment(SocialColorFragment.newInstance(this),"Social");
+        adapter.addFragment(MetroColorFragment.newInstance(this),"Metro");
+        adapter.addFragment(HtmlColorFragment.newInstance(this),"Html");
         viewPager.setAdapter(adapter);
     }
 
@@ -265,6 +374,23 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     }
 
     @Override
+    public void onAddColor(String color) {
+        if(!isInList(this.listModel,color)){
+            this.listModel.add(new Model(color));
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    private boolean isInList(List<Model> models,String color){
+        boolean hold = false;
+        for (Model m: models) {
+            if(m.getColorCode().equals(color))
+                return true;
+        }
+        return hold;
+    }
+
+    @Override
     public void onTabSelected(TabLayout.Tab tab) {
         currentPosition =  tab.getPosition();
         tabLayout.getTabAt(currentPosition).select();
@@ -300,30 +426,4 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         startActivity(new Intent(Intent.ACTION_VIEW, uri));
     }
 
-
-    public AdRequest getAdRequest() {
-        AdRequest ret = null;
-        //if (Util.TEST) {
-        if(BuildConfig.DEBUG){
-            ret = new AdRequest.Builder()
-                    .addTestDevice(getPhoneId())
-                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                    .addTestDevice("9552A433781FF6F1766BC1BDF72022E5")
-                    .build();
-        } else {
-            ret = new AdRequest.Builder().build();
-        }
-        return ret;
-    }
-
-    public String getPhoneId() {
-        return "0A02E72208689385EF8EE5F0CCCFE947";
-    }
-
-    private void loadAdv() {
-        if (getAdRequest() != null) {
-            AdRequest adRequest = getAdRequest();
-            mAdView.loadAd(adRequest);
-        }
-    }
 }

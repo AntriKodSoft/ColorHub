@@ -1,63 +1,57 @@
 package layout;
 
-import android.content.Context;
-import android.net.Uri;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
-import android.widget.ListView;
 
-import java.util.ArrayList;
-
+import butterknife.ButterKnife;
 import cheetatech.com.colorhub.R;
-import cheetatech.com.colorhub.adapters.ColorArrayListAdapter;
-import cheetatech.com.colorhub.adapters.ColorListAdapter;
 import cheetatech.com.colorhub.adapters.GridViewArrayAdapter;
 import cheetatech.com.colorhub.controller.ColorArrayController;
-import cheetatech.com.colorhub.defines.ColorInfo;
-
-/**
- *     <color name="colorDrawerBackground">#616161</color>
- <color name="colorDrawerText">#EEEEEE</color>
- * */
 
 public class FlatColorFragment extends Fragment implements AdapterView.OnItemLongClickListener  {
 
+    private ColorPicker1.OnColorListener mListener = null;
     public FlatColorFragment() {
-        // Required empty public constructor
+
     }
+
+    public static FlatColorFragment newInstance(ColorPicker1.OnColorListener listener) {
+        FlatColorFragment fragment = new FlatColorFragment();
+        fragment.setListener(listener);
+        return fragment;
+    }
+
+    public void setListener(ColorPicker1.OnColorListener listener) {
+        this.mListener = listener;
+    }
+
+    public ColorPicker1.OnColorListener getListener() {
+        return this.mListener;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_flat_color, container, false);
+        View view = inflater.inflate(R.layout.fragment_flat_color, container, false);
+        ButterKnife.bind(this,view);
+        return view;
     }
     @Override
     public void onActivityCreated(Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
 
-
-        /*
-        ColorArrayController controller  = ColorArrayController.getInstance();
-        setListAdapter(new ColorArrayListAdapter(getContext(),R.layout.list_layout,controller.getFlatList()));
-        getListView().setOnItemLongClickListener(this);
-        */
         ColorArrayController controller  = ColorArrayController.getInstance();
         GridView gridView = (GridView) getView().findViewById(R.id.gridviewflat);
-        GridViewArrayAdapter adapter = new GridViewArrayAdapter(getContext(),R.layout.grid_list,controller.getFlatList());
-
+        //GridViewArrayAdapter adapter = new GridViewArrayAdapter(getContext(),R.layout.grid_list,controller.getFlatList());
+        GridViewArrayAdapter adapter = new GridViewArrayAdapter(getContext(),R.layout.grid_list,controller.getFlatList(),this.mListener);
         gridView.setAdapter(adapter);
-
-
-
     }
 
     @Override

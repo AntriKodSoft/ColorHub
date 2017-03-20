@@ -50,6 +50,51 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/saved_color_layout"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/cheetatech_background"
+            android:visibility="visible"
+            >
+            <RelativeLayout
+                android:id="@+id/image_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/image_up_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/ic_action_up"
+                    android:visibility="visible"
+                    />
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/image_layout">
+
+            </android.support.v7.widget.RecyclerView>
+
+
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+
+
     <!-- start from here-->
     <!-- LinearLayout for give space fab and AdView-->
     <LinearLayout
@@ -75,13 +120,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|end"
                     android:layout_margin="@dimen/fab_margin"
-                    android:src="@drawable/ic_action_plus"
+                    android:src="@drawable/ic_action_pallette"
                     android:layout_marginBottom="50dp"
                     app:backgroundTint="@color/colorAccent"
+                    android:visibility="visible"
                     />
             </LinearLayout>
 
             <!-- LinearLayour for AdView-->
+            <!--
             <LinearLayout
                 android:layout_weight="1"
                 android:layout_width="match_parent"
@@ -99,15 +146,15 @@
                     ads:adUnitId="@string/banner_commercial">
                 </com.google.android.gms.ads.AdView>
             </LinearLayout>
+            -->
 
         </LinearLayout>
     </LinearLayout>
     <!-- end from here-->
 
-    <!--
-    <android.support.design.widget.FloatingActionButton
 
-        android:id="@+id/fab"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -115,9 +162,9 @@
         android:src="@drawable/ic_action_plus"
         android:layout_marginBottom="50dp"
         app:backgroundTint="@color/colorAccent"
-
+        android:visibility="invisible"
         />
-    -->
+
 
     <!-- ### -->
 

@@ -22,10 +22,26 @@ import cheetatech.com.colorhub.listeners.ListenerModel;
 
 public class HtmlColorFragment extends Fragment {
 
+    private ColorPicker1.OnColorListener mListener = null;
     private ArrayList<ColorInfo> colorInfoArrayList = null;
 
     public HtmlColorFragment() {
         // Required empty public constructor
+    }
+
+
+    public static HtmlColorFragment newInstance(ColorPicker1.OnColorListener listener) {
+        HtmlColorFragment fragment = new HtmlColorFragment();
+        fragment.setListener(listener);
+        return fragment;
+    }
+
+    public ColorPicker1.OnColorListener getListener() {
+        return mListener;
+    }
+
+    public void setListener(ColorPicker1.OnColorListener mListener) {
+        this.mListener = mListener;
     }
 
     public static HtmlColorFragment newInstance(String param1, String param2) {
@@ -51,16 +67,10 @@ public class HtmlColorFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         if(colorInfoArrayList == null)
             colorInfoArrayList = new ArrayList<ColorInfo>();
-
         GridView gridView = (GridView) getView().findViewById(R.id.gridview);
-
         ColorArrayController controller  = ColorArrayController.getInstance();
         colorInfoArrayList = controller.getHtmlList(); // getMaterialColorInfoList().get(0).getColorInfoList();
-        GridViewArrayAdapter adapter = new GridViewArrayAdapter(getContext(),R.layout.grid_list,colorInfoArrayList);
-
+        GridViewArrayAdapter adapter = new GridViewArrayAdapter(getContext(),R.layout.grid_list,colorInfoArrayList,this.mListener);
         gridView.setAdapter(adapter);
-
-        //setListAdapter(adapter);
-        //getListView().setOnItemLongClickListener(this);
     }
 }

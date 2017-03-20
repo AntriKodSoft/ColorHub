@@ -1,55 +1,24 @@
 package cheetatech.com.colorhub;
 
-import android.annotation.TargetApi;
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
-import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.BitmapRegionDecoder;
-import android.graphics.Color;
-import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.ListViewAutoScrollHelper;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.support.v7.widget.ViewUtils;
 import android.util.Log;
-import android.view.Display;
-import android.view.Surface;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.SeekBar;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.internal.zzf;
-import com.google.android.gms.clearcut.LogEventParcelable;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,18 +28,11 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cheetatech.com.colorhub.adapters.SaveListAdapter;
 import cheetatech.com.colorhub.adapters.ViewPagerAdapter;
-import cheetatech.com.colorhub.defines.BoardEditor;
-import cheetatech.com.colorhub.defines.ColorItem;
+import cheetatech.com.colorhub.dialog.SaveDialog;
 import cheetatech.com.colorhub.listeners.IOnFocusListenable;
 import cheetatech.com.colorhub.models.Model;
 import layout.ColorPicker1;
-import layout.ColorPicker2;
 import layout.ColorPicker3;
-import layout.FlatColorFragment;
-import layout.HtmlColorFragment;
-import layout.MaterialColorFragment;
-import layout.MetroColorFragment;
-import layout.SocialColorFragment;
 
 public class ColorPickerActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener , ColorPicker1.OnColorListener{
     private TabLayout tabLayout = null;
@@ -186,8 +148,6 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
         mAdapter = new SaveListAdapter(listModel);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
-
-
     }
 
     @Override
@@ -196,7 +156,8 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
     }
 
     @OnClick(R.id.fabAdd) void fabAddClick(){
-        Log.e("TAG","Fab Add Click");
+        if(listModel.size() != 0)
+            (new SaveDialog()).show(getSupportFragmentManager(),getString(R.string.save_dialog));
     }
 
     @OnClick(R.id.image_layout) void updownImageClick(){
@@ -262,7 +223,6 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
 
 
             mSavedLayout.setLayoutParams(lp);
-
             mSavedLayout.clearAnimation();
             mSavedLayout.startAnimation(slideDown);
             slideDown.setFillAfter(true);
@@ -297,7 +257,7 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(ColorPicker_1,"ColorPicker1");
         //adapter.addFragment(new ColorPicker2(),"ColorPicker2");
-        adapter.addFragment(new ColorPicker3(),"ColorPicker3");
+        adapter.addFragment(ColorPicker3.newInstance(this),"ColorPicker3");
         viewPager.setAdapter(adapter);
     }
     @Override

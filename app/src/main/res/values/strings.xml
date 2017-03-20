@@ -909,5 +909,9 @@
     <string name="title_activity_color_picker">ColorPickerActivity</string>
     <string name="title_activity_aboutus">AboutusActivity</string>
     <string name="add_color">Add</string>
+    <string name="palette_name">Palette Name</string>
+    <string name="save_button">Save</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="save_dialog">Save Dialog</string>
 
 </resources>

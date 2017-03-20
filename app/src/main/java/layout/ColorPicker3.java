@@ -17,6 +17,9 @@ import android.widget.Toast;
 
 import java.math.BigInteger;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cheetatech.com.colorhub.ColorPickerActivity;
 import cheetatech.com.colorhub.R;
 import cheetatech.com.colorhub.defines.BoardEditor;
@@ -26,20 +29,31 @@ import cheetatech.com.colorhub.view.ColorPickerView;
 
 public class ColorPicker3 extends Fragment implements ColorPickerView.OnColorChangedListener {
 
-    View colorView = null;
-    private TextView colorTextView = null;
-    private int colorText = 0;
 
-    private ColorPickerView mColorPickerView;
-    private ColorPanelView mOldColorPanelView;
-    private ColorPanelView mNewColorPanelView;
+    @BindView(R.id.colorView)
+    View colorView;
+
+    @BindView(R.id.color)
+    TextView colorTextView;
+
+    private int colorText = 0;
+    @BindView(R.id.colorpickerview__color_picker_view1)
+    ColorPickerView mColorPickerView;
+    //private ColorPickerView mColorPickerView;
+
+    private ColorPicker1.OnColorListener mListener = null;
 
     public ColorPicker3() {
-        // Required empty public constructor
     }
 
     public static ColorPicker3 newInstance(String param1, String param2) {
         ColorPicker3 fragment = new ColorPicker3();
+        return fragment;
+    }
+
+    public static ColorPicker3 newInstance(ColorPicker1.OnColorListener listener) {
+        ColorPicker3 fragment = new ColorPicker3();
+        fragment.setListener(listener);
         return fragment;
     }
 
@@ -52,19 +66,20 @@ public class ColorPicker3 extends Fragment implements ColorPickerView.OnColorCha
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_color_picker3, container, false);
+        View view = inflater.inflate(R.layout.fragment_color_picker3, container, false);
+        ButterKnife.bind(this,view);
+        return view;
     }
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        colorView = (View) getView().findViewById(R.id.colorView);
-        colorTextView = (TextView)getView().findViewById(R.id.color);
+//        colorView = (View) getView().findViewById(R.id.colorView);
+//        colorTextView = (TextView)getView().findViewById(R.id.color);
 
-        mColorPickerView = (ColorPickerView) getView().findViewById(R.id.colorpickerview__color_picker_view1);
+//        mColorPickerView = (ColorPickerView) getView().findViewById(R.id.colorpickerview__color_picker_view1);
 
         final int initialColor = 0xFFE12109;;
-
         mColorPickerView.setOnColorChangedListener(this);
         mColorPickerView.setColor(initialColor, true);
         colorView.setBackgroundColor(initialColor);
@@ -77,10 +92,13 @@ public class ColorPicker3 extends Fragment implements ColorPickerView.OnColorCha
                         " copied to clipboard...", Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 
+    @OnClick(R.id.add_button) void addColorButtonClick(){
+        String color = colorTextView.getText().toString();
+        if(mListener != null)
+            this.mListener.onAddColor(color);
+    }
 
     private String inverseColor(String hexColor)
     {
@@ -112,5 +130,9 @@ public class ColorPicker3 extends Fragment implements ColorPickerView.OnColorCha
         colorTextView.setText("#" + Integer.toHexString(newColor));
         colorTextView.setTextColor(Color.parseColor(inverseColor(Integer.toHexString(newColor))));
         colorView.setBackgroundColor(colorText);
+    }
+
+    public void setListener(ColorPicker1.OnColorListener listener) {
+        this.mListener = listener;
     }
 }
