@@ -914,5 +914,6 @@
     <string name="cancel_button">Cancel</string>
     <string name="save_dialog">Save Dialog</string>
     <string name="title_activity_your_color">YourColorActivity</string>
+    <string name="title_activity_color">ColorActivity</string>
 
 </resources>

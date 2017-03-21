@@ -157,92 +157,100 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
 
     @OnClick(R.id.image_layout) void updownImageClick(){
         if(layoutStatus == 1){ // Will Open
-            if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-                upDownImage.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.ic_action_down));
-            } else {
-                upDownImage.setBackground(ContextCompat.getDrawable(this, R.drawable.ic_action_down));
-            }
-
-            if(fabAddButton.getVisibility() == View.INVISIBLE)
-                fabAddButton.setVisibility(View.VISIBLE);
-
-            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                    width, height);
-            lp.setMargins(0, width, 0, 0);
-            lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-            mSavedLayout.setLayoutParams(lp);
-
-            mSavedLayout.clearAnimation();
-            mSavedLayout.startAnimation(slideUp);;
-            slideUp.setFillAfter(true);
-            slideUp.setFillEnabled(true);
-            slideUp.setFillBefore(true);
-            slideUp.setAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) {
-
-                }
-
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    Log.e("TAG", "onAnimationEnd: Click");
-                    RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                            width, height);
-                    lp.setMargins(0, width, 0, 0);
-                    lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-                    mSavedLayout.setLayoutParams(lp);
-                }
-
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-
-                }
-            });
+            openLayout();
             layoutStatus = 2;
             return;
         }
         if(layoutStatus == 2){
-            if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-                upDownImage.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.ic_action_up));
-            } else {
-                upDownImage.setBackground(ContextCompat.getDrawable(this, R.drawable.ic_action_up));
-            }
-
-            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                    width, height);
-            lp.setMargins(0, width, 0, 0);
-            lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-
-            if(fabAddButton.getVisibility() == View.VISIBLE)
-                fabAddButton.setVisibility(View.INVISIBLE);
-
-
-            mSavedLayout.setLayoutParams(lp);
-            mSavedLayout.clearAnimation();
-            mSavedLayout.startAnimation(slideDown);
-            slideDown.setFillAfter(true);
-            slideDown.setFillEnabled(true);
-            slideDown.setFillBefore(true);
-            slideDown.setAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) {
-                }
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    mSavedLayout.clearAnimation();
-                    RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                            width, imageHeight);
-                    lp.setMargins(0, width, 0, 0);
-                    lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-                    mSavedLayout.setLayoutParams(lp);
-                }
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-                }
-            });
+            closeLayout();
             layoutStatus = 1;
             return;
         }
+    }
+
+    private void closeLayout() {
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            upDownImage.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.ic_action_up));
+        } else {
+            upDownImage.setBackground(ContextCompat.getDrawable(this, R.drawable.ic_action_up));
+        }
+
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                width, height);
+        lp.setMargins(0, width, 0, 0);
+        lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+
+        if(fabAddButton.getVisibility() == View.VISIBLE)
+            fabAddButton.setVisibility(View.INVISIBLE);
+
+
+        mSavedLayout.setLayoutParams(lp);
+        mSavedLayout.clearAnimation();
+        mSavedLayout.startAnimation(slideDown);
+        slideDown.setFillAfter(true);
+        slideDown.setFillEnabled(true);
+        slideDown.setFillBefore(true);
+        slideDown.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                mSavedLayout.clearAnimation();
+                RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                        width, imageHeight);
+                lp.setMargins(0, width, 0, 0);
+                lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                mSavedLayout.setLayoutParams(lp);
+            }
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+        });
+    }
+
+    private void openLayout() {
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            upDownImage.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.ic_action_down));
+        } else {
+            upDownImage.setBackground(ContextCompat.getDrawable(this, R.drawable.ic_action_down));
+        }
+
+        if(fabAddButton.getVisibility() == View.INVISIBLE)
+            fabAddButton.setVisibility(View.VISIBLE);
+
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                width, height);
+        lp.setMargins(0, width, 0, 0);
+        lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        mSavedLayout.setLayoutParams(lp);
+
+        mSavedLayout.clearAnimation();
+        mSavedLayout.startAnimation(slideUp);;
+        slideUp.setFillAfter(true);
+        slideUp.setFillEnabled(true);
+        slideUp.setFillBefore(true);
+        slideUp.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                Log.e("TAG", "onAnimationEnd: Click");
+                RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                        width, height);
+                lp.setMargins(0, width, 0, 0);
+                lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                mSavedLayout.setLayoutParams(lp);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
     }
 
     public  void setUpViewPager(ViewPager viewPager)
@@ -333,5 +341,8 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
 
         this.listModel.clear();
         this.mAdapter.notifyDataSetChanged();
+
+        closeLayout();
+        layoutStatus = 1;
     }
 }

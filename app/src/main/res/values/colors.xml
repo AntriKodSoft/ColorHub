@@ -36,6 +36,7 @@
     <color name="colorSeaGreen">#2E8B57</color>
     <color name="colorWhiteSmoke">#F5F5F5</color>
     <color name="colorMetroOlive">#6D8764</color>
+    <color name="bottom_label">#757575</color>
 
 
 </resources>

@@ -25,7 +25,7 @@ public class DrawerListController {
             R.drawable.ic_action_rate2,
             R.drawable.ic_action_share,
             R.drawable.ic_action_about_us,
-            R.drawable.ic_action_about_us
+            R.drawable.ic_action_favorites
     };
 
     private ArrayList<NavigationSelect> navList = null;

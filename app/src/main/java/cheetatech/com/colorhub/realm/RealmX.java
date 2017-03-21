@@ -61,7 +61,7 @@ public class RealmX {
         //closeRealm();
     }
 
-    public static RealmResults<SavedObject> getObject(String name){
+    public static RealmResults<SavedObject> getObject(){
         RealmResults<SavedObject> res = realm.where(SavedObject.class).findAll();
         return res;
     }

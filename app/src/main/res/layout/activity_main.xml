@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_alignParentBottom="true"
-            android:background="@color/cheetatech_background"
+            android:background="@color/colorPrimary"
             android:visibility="visible"
             >
             <RelativeLayout
@@ -97,6 +97,21 @@
 
     <!-- start from here-->
     <!-- LinearLayout for give space fab and AdView-->
+    <!-- end from here-->
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_action_plus"
+        android:layout_marginBottom="50dp"
+        app:backgroundTint="@color/colorAccent"
+        android:visibility="invisible"
+        />
+
     <LinearLayout
         android:orientation="vertical"
         android:gravity="bottom"
@@ -150,20 +165,6 @@
 
         </LinearLayout>
     </LinearLayout>
-    <!-- end from here-->
-
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_action_plus"
-        android:layout_marginBottom="50dp"
-        app:backgroundTint="@color/colorAccent"
-        android:visibility="invisible"
-        />
 
 
     <!-- ### -->
