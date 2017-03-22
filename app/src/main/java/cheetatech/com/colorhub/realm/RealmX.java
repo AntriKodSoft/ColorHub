@@ -2,6 +2,8 @@ package cheetatech.com.colorhub.realm;
 
 import android.util.Log;
 
+import java.util.List;
+
 import cheetatech.com.colorhub.models.Model;
 import io.realm.Realm;
 import io.realm.RealmList;
@@ -24,6 +26,13 @@ public class RealmX {
 //            realm = Realm.getInstance(config);
         }
     }
+
+    public static Realm realm(){
+        if(realm == null)
+            getRealm();
+        return realm;
+    }
+
 
     public static void closeRealm(){
         if(realm != null){
@@ -64,6 +73,28 @@ public class RealmX {
     public static RealmResults<SavedObject> getObject(){
         RealmResults<SavedObject> res = realm.where(SavedObject.class).findAll();
         return res;
+    }
+
+    public static SavedObject getObject(String name){
+        SavedObject res = realm.where(SavedObject.class)
+                .equalTo("name",name)
+                .findFirst();
+        return res;
+    }
+
+    public static void setList(final String name, List<Model> list){
+        final RealmList<Model> realmList = new RealmList<>();
+        realmList.addAll(list);
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                SavedObject res = realm.where(SavedObject.class)
+                        .equalTo("name",name)
+                        .findFirst();
+                res.setList(realmList);
+                Log.e("TAG", "execute: execute" );
+            }
+        });
     }
 
 }

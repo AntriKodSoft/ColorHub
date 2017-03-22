@@ -1,5 +1,6 @@
 package cheetatech.com.colorhub.models;
 
+import cheetatech.com.colorhub.realm.RealmX;
 import io.realm.RealmObject;
 
 /**
@@ -19,7 +20,9 @@ public class Model extends RealmObject{
     }
 
     public void setColorCode(String colorCode) {
+        RealmX.realm().beginTransaction();
         this.colorCode = colorCode;
+        RealmX.realm().commitTransaction();
     }
 
 }

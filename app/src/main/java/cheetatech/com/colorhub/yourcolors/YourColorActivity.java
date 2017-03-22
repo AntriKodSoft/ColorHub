@@ -57,6 +57,18 @@ public class YourColorActivity extends AppCompatActivity {
         loadAdapters();
     }
 
+
+    @Override
+    protected void onResume() {
+        if(mAdapter != null){
+            RealmResults<SavedObject> list = RealmX.getObject();
+            modelList.clear();
+            modelList.addAll(list);
+            mAdapter.notifyDataSetChanged();
+        }
+        super.onResume();
+    }
+
     private void loadAdapters() {
 
 

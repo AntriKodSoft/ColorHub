@@ -75,7 +75,7 @@ public class YourColorAdapter extends RecyclerView.Adapter<YourColorAdapter.View
 
             SavedObject object = this.mDataset.get(position);
             holder.mPaletteName.setText(object.getName());
-
+            holder.mLayout.removeAllViews();
             for (Model m: object.getList()) {
                 LinearLayout l1 = new LinearLayout(context);
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);

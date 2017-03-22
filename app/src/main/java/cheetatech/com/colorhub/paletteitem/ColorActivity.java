@@ -22,10 +22,13 @@ import cheetatech.com.colorhub.adapters.ColorAdapter;
 import cheetatech.com.colorhub.adapters.YourColorAdapter;
 import cheetatech.com.colorhub.listeners.RecyclerItemClickListener;
 import cheetatech.com.colorhub.models.Model;
+import cheetatech.com.colorhub.realm.RealmX;
 import cheetatech.com.colorhub.realm.SavedObject;
 import cheetatech.com.colorhub.yourcolors.YourColorActivity;
+import layout.ColorPicker1;
+import layout.ColorPickerArrange;
 
-public class ColorActivity extends AppCompatActivity {
+public class ColorActivity extends AppCompatActivity implements ColorPickerArrange.OnColorListener {
 
     @BindView(R.id.recyclerview)
     RecyclerView mRecyclerView;
@@ -76,17 +79,35 @@ public class ColorActivity extends AppCompatActivity {
 
         mAdapter = new ColorAdapter(colorList);
         mRecyclerView.setAdapter(mAdapter);
-
+        final ColorPickerArrange.OnColorListener listener = this;
         mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 Log.e("TAG","Clicked item position " + position);
-//                ColorBus.getInstance().setSavedObject(modelList.get(position));
+
+                Model model = colorList.get(position);
+
+                ColorPickerArrange colorPicker1 = ColorPickerArrange.newInstance(model,position,listener);
+                getSupportFragmentManager().beginTransaction().replace(R.id.container,colorPicker1).addToBackStack(null).commit();
+
+
+//                ColorBus.(getInstance).setSavedObject(modelList.get(position));
 //                startActivity(new Intent(YourColorActivity.this, ColorActivity.class));
             }
         }));
-
     }
 
 
+    @Override
+    public void onAddColor(String color) {
+
+    }
+
+    @Override
+    public void onChangeColor(int position, Model model) {
+        this.colorList.remove(position);
+        this.colorList.add(model);
+        //RealmX.getObject();
+        this.mAdapter.notifyDataSetChanged();
+    }
 }

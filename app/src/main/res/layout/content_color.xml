@@ -11,7 +11,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="cheetatech.com.colorhub.paletteitem.ColorActivity"
-    tools:showIn="@layout/activity_color">
+    tools:showIn="@layout/activity_color"
+    >
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview"
@@ -19,5 +20,11 @@
         android:layout_height="match_parent">
     </android.support.v7.widget.RecyclerView>
 
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="false"
+        />
 
 </RelativeLayout>

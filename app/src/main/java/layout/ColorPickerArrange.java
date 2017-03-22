@@ -3,16 +3,12 @@ package layout;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Rect;
-import android.net.Uri;
+import android.hardware.SensorEventListener;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutCompat;
-import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -21,8 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.GridView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -33,63 +27,115 @@ import java.math.BigInteger;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cheetatech.com.colorhub.ColorPickerActivity;
 import cheetatech.com.colorhub.R;
-import cheetatech.com.colorhub.adapters.GridViewArrayAdapter;
-import cheetatech.com.colorhub.controller.ColorArrayController;
+import cheetatech.com.colorhub.Util;
 import cheetatech.com.colorhub.defines.BoardEditor;
-import cheetatech.com.colorhub.defines.ColorItem;
 import cheetatech.com.colorhub.listeners.IOnFocusListenable;
+import cheetatech.com.colorhub.models.Model;
+
+/**
+ * Created by erkan on 22.03.2017.
+ */
+
+public class ColorPickerArrange extends Fragment implements IOnFocusListenable {
 
 
-public class ColorPicker1 extends Fragment implements IOnFocusListenable {
+    @BindView(R.id.colorView2)
+    RelativeLayout colorViewLayout;
+
+    @BindView(R.id.textViewColor)
+    TextView textViewColor ;
+
+    @BindView(R.id.redSeekBar)
+    SeekBar redSeekBar;
+
+    @BindView(R.id.greenSeekBar)
+    SeekBar greenSeekBar;
+
+    @BindView(R.id.blueSeekBar)
+    SeekBar blueSeekBar;
+
+    @BindView(R.id.opacitySeekBar)
+    SeekBar opacitySeekBar;
+
+    @BindView(R.id.redToolTip)
+    TextView redToolTip;
+
+    @BindView(R.id.greenToolTip)
+    TextView greenToolTip;
+
+    @BindView(R.id.blueToolTip)
+    TextView blueToolTip;
+
+    @BindView(R.id.opacityToolTip)
+    TextView opacityToolTip;
 
 
-    View colorViewLayout = null;
-    TextView textViewColor = null;
-    SeekBar redSeekBar, greenSeekBar, blueSeekBar,opacitySeekBar;
-    TextView redToolTip, greenToolTip, blueToolTip,opacityToolTip;
     ClipboardManager clipBoard;
     ClipData clip;
     Window window;
     Display display;
     int red, green, blue, seekBarLeft,opacity;
     Rect thumbRect;
-    String s1 = "FF00AB";
-    String s2 = "FFFFFF";
+
+    private int mPosition;
+    private Model mModel = null;
+
 
     public interface OnColorListener{
         void onAddColor(String color);
+        void onChangeColor(int position,Model model);
     }
 
-    private OnColorListener mListener;
+    private ColorPickerArrange.OnColorListener mListener;
 
-    public ColorPicker1() {
+    public ColorPickerArrange() {
         // Required empty public constructor
     }
 
-    public OnColorListener getListener() {
+    public ColorPickerArrange.OnColorListener getListener() {
         return mListener;
     }
 
-    public void setListener(OnColorListener mListener) {
+    public void setListener(ColorPickerArrange.OnColorListener mListener) {
         this.mListener = mListener;
     }
 
-    public static ColorPicker1 newInstance(OnColorListener listener) {
-        ColorPicker1 fragment = new ColorPicker1();
+    public static ColorPickerArrange newInstance(ColorPickerArrange.OnColorListener listener) {
+        ColorPickerArrange fragment = new ColorPickerArrange();
         fragment.setListener(listener);
         return fragment;
     }
 
-    public static ColorPicker1 newInstance(String param1, String param2) {
-        ColorPicker1 fragment = new ColorPicker1();
+    public static ColorPickerArrange newInstance(Model model, int position, ColorPickerArrange.OnColorListener listener) {
+        ColorPickerArrange fragment = new ColorPickerArrange();
+        fragment.setListener(listener);
+        fragment.setModel(model);
+        fragment.setPosition(position);
         return fragment;
+    }
+
+    public int getPosition() {
+        return mPosition;
+    }
+
+    public void setPosition(int mPosition) {
+        this.mPosition = mPosition;
+    }
+
+    public Model getModel() {
+        return mModel;
+    }
+
+    public void setModel(Model mModel) {
+        this.mModel = mModel;
     }
 
     @OnClick(R.id.add_color_button) void addColorClick(){
         String color = textViewColor.getText().toString();
+        this.mModel.setColorCode(color);
         this.mListener.onAddColor(color);
+        this.mListener.onChangeColor(this.mPosition, this.mModel);
     }
 
     @Override
@@ -116,27 +162,25 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
         super.onActivityCreated(savedInstanceState);
         display = ((WindowManager) getActivity().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
 
-        red = green = blue = 120;
-        opacity = 255;
+        // initialize;
+        if(mModel != null){
+            Util.ColorX colorX = Util.stringToDec(mModel.getColorCode());
+            red = colorX.getRed();
+            green = colorX.getGreen();
+            blue = colorX.getBlue();
+            opacity = colorX.getOpacity();
+            //colorX.toString();
+        }else{
+            red = green = blue = 120;
+            opacity = 255;
+        }
 
+        //
         clipBoard = (ClipboardManager)getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
         window = getActivity().getWindow();
 
-        redSeekBar = (SeekBar)getView().findViewById(R.id.redSeekBar);
-        greenSeekBar = (SeekBar)getView().findViewById(R.id.greenSeekBar);
-        blueSeekBar = (SeekBar)getView().findViewById(R.id.blueSeekBar);
-
-        opacitySeekBar = (SeekBar)getView().findViewById(R.id.opacitySeekBar);
-
         seekBarLeft = redSeekBar.getPaddingLeft();
 
-        redToolTip = (TextView)getView().findViewById(R.id.redToolTip);
-        greenToolTip = (TextView)getView().findViewById(R.id.greenToolTip);
-        blueToolTip = (TextView)getView().findViewById(R.id.blueToolTip);
-
-        opacityToolTip = (TextView)getView().findViewById(R.id.opacityToolTip);
-
-        textViewColor = (TextView) getView().findViewById(R.id.textViewColor);
         textViewColor.setTextColor(Color.parseColor(inverseColor(red,green,blue)));
 
 
@@ -145,17 +189,10 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
         blueSeekBar.setProgress(blue);
         opacitySeekBar.setProgress(opacity);
 
-        //colorView.setBackgroundColor(Color.argb(opacity,red, green, blue));
-        colorViewLayout = (View) getView().findViewById(R.id.colorView);
         colorViewLayout.setBackgroundColor(Color.argb(opacity,red, green, blue));
 
         textViewColor.setText(String.format("#%02x%02x%02x%02x", opacity, red, green, blue));
         textViewColor.setTextColor(Color.parseColor(inverseColor(red,green,blue)));
-        /*
-        setProgressBar(red,green,blue,opacity);
-        onWindowFocusChanged(true);
-        */
-
 
         textViewColor.setOnClickListener(new View.OnClickListener() {
             @Override
