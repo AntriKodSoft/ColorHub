@@ -263,9 +263,9 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
         if(ColorPicker_1 == null)
             ColorPicker_1 = ColorPicker1.newInstance(this);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(ColorPicker_1,"ColorPicker X");
+        adapter.addFragment(ColorPicker_1,"ColorPalette X");
         //adapter.addFragment(new ColorPicker2(),"ColorPicker2");
-        adapter.addFragment(ColorPicker3.newInstance(this),"ColorPicker Y");
+        adapter.addFragment(ColorPicker3.newInstance(this),"ColorPalette Y");
         viewPager.setAdapter(adapter);
     }
     @Override

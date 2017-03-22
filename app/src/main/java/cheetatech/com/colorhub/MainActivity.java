@@ -109,7 +109,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     private SaveListAdapter mAdapter = null;
     private List<Model> listModel = new ArrayList<>();
-    private int layoutStatus = 1; // close;
     private int width, height, imageHeight;
 
     @Override
