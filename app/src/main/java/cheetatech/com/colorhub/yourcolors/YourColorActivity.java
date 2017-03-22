@@ -1,5 +1,7 @@
 package cheetatech.com.colorhub.yourcolors;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +17,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cheetatech.com.colorhub.MainActivity;
 import cheetatech.com.colorhub.R;
 import cheetatech.com.colorhub.adapters.YourColorAdapter;
 import cheetatech.com.colorhub.listeners.RecyclerItemClickListener;
@@ -70,8 +73,6 @@ public class YourColorActivity extends AppCompatActivity implements YourColorAda
     }
 
     private void loadAdapters() {
-
-
         RealmResults<SavedObject> list = RealmX.getObject();
         modelList.addAll(list);
 
@@ -98,21 +99,13 @@ public class YourColorActivity extends AppCompatActivity implements YourColorAda
 
     @Override
     public void onItemDelete(String name, int position) {
-        Log.e("TAG", "onItemDelete: onItemDelete" );
         try {
             RealmX.deleteObject(name);
-            if(mAdapter != null){
-                RealmResults<SavedObject> list = RealmX.getObject();
-                for (SavedObject o: list
-                     ) {
-                    Log.e("TAG", "onItemDelete: " + o.getName() );
-                }
-                //modelList.remove(position);
-                modelList.clear();
-                modelList.addAll(list);
-                mAdapter.notifyDataSetChanged();
-            }
-
+            RealmResults<SavedObject> list = RealmX.getObject();
+            modelList.clear();
+            modelList.addAll(list);
+            mAdapter = new YourColorAdapter(modelList,this);
+            mRecyclerView.setAdapter(mAdapter);
         }catch (IllegalStateException ex){
             ex.printStackTrace();
         }
@@ -120,8 +113,36 @@ public class YourColorActivity extends AppCompatActivity implements YourColorAda
 
     @Override
     public void onClickedPosition(int position) {
-        Log.e("TAG","Clicked item position " + position);
         ColorBus.getInstance().setSavedObject(modelList.get(position));
         startActivity(new Intent(YourColorActivity.this, ColorActivity.class));
+    }
+
+    @Override
+    public void onDeleteAlert(final String name, final int position) {
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(YourColorActivity.this);
+
+        // set title
+        alertDialogBuilder.setTitle(getString(R.string.delete_saved_object));
+        alertDialogBuilder
+                .setMessage(getString(R.string.delete_file_ask))
+                .setCancelable(false)
+                .setPositiveButton(getString(R.string.answer_yes),new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        onItemDelete(name,position);
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton(getString(R.string.answer_no),new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
     }
 }

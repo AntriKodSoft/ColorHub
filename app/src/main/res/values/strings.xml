@@ -915,5 +915,9 @@
     <string name="save_dialog">Save Dialog</string>
     <string name="title_activity_your_color">YourColorActivity</string>
     <string name="title_activity_color">ColorActivity</string>
+    <string name="delete_saved_object">Delete File</string>
+    <string name="delete_file_ask">Delete Color Palette?</string>
+    <string name="answer_yes">Yes</string>
+    <string name="answer_no">No</string>
 
 </resources>

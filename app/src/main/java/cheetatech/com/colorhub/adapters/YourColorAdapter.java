@@ -37,6 +37,7 @@ public class YourColorAdapter extends RecyclerView.Adapter<YourColorAdapter.View
         void onItemDelete(String name);
         void onItemDelete(String name,int position);
         void onClickedPosition(int position);
+        void onDeleteAlert(String name,int position);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -118,9 +119,10 @@ public class YourColorAdapter extends RecyclerView.Adapter<YourColorAdapter.View
                     public void onClick(View view) {
                         Log.e("TAG", "onClick: Deleted" );
                         if(mListener != null){
-                            isDeleted = true;
-                            mListener.onItemDelete(object.getName(), position);
-                            notifyDataSetChanged();
+                            //isDeleted = true;
+                            mListener.onDeleteAlert(object.getName(), position);
+                            //mListener.onItemDelete(object.getName(), position);
+                            //notifyDataSetChanged();
                         }
                     }
                 });

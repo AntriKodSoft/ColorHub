@@ -5,4 +5,8 @@
     <string name="save_button">Save</string>
     <string name="cancel_button">Cancel</string>
     <string name="save_dialog">Save Dialog</string>
+    <string name="delete_saved_object">Delete File</string>
+    <string name="delete_file_ask">Delete Color Palette?</string>
+    <string name="answer_yes">Yes</string>
+    <string name="answer_no">No</string>
 </resources>
