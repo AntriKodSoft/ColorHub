@@ -44,4 +44,10 @@ public class SavedObject extends RealmObject {
         this.list = list;
     }
 
+    public void setNameQuery(String name){
+        RealmX.realm().beginTransaction();
+        this.name = name;
+        RealmX.realm().commitTransaction();
+    }
+
 }

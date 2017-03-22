@@ -9,4 +9,5 @@
     <string name="delete_file_ask">Delete Color Palette?</string>
     <string name="answer_yes">Yes</string>
     <string name="answer_no">No</string>
+    <string name="edit_dialog">Edit Palette Name</string>
 </resources>
