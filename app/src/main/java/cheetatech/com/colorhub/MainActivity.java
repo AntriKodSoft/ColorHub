@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
@@ -15,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.AndroidException;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -24,6 +26,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +39,7 @@ import cheetatech.com.colorhub.adapters.NavigationBarAdapter;
 import cheetatech.com.colorhub.adapters.SaveListAdapter;
 import cheetatech.com.colorhub.adapters.ViewPagerAdapter;
 import cheetatech.com.colorhub.adapters.YourColorAdapter;
+import cheetatech.com.colorhub.ads.AdsUtils;
 import cheetatech.com.colorhub.controller.ColorArrayController;
 import cheetatech.com.colorhub.controller.DrawerListController;
 import cheetatech.com.colorhub.controller.ToolBarController;
@@ -205,6 +209,18 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         loadAdapters();
 
         RealmX.list();
+        loadAds();
+    }
+
+    private void loadAds() {
+        AdsUtils.getInstance().increaseInteraction();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                AdsUtils.getInstance().showAds();
+            }
+        },3000);
     }
 
     private void loadAdapters() {
@@ -235,17 +251,12 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     }
 
     @OnClick(R.id.image_layout) void updownImageClick(){
-
-        //if(layoutStatus == 1){ // Will Open
         if(!isOpen()) {
             openLayout();
-            //layoutStatus = 2;
             return;
         }
-        //if(layoutStatus == 2){
         if(isOpen()){
             closeLayout();
-            //layoutStatus = 1;
             return;
         }
     }
@@ -353,6 +364,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
         if(currentPosition != 1 )
         {
+            AdsUtils.getInstance().increaseInteraction();
             switch (i)
             {
                 case 2:
@@ -365,10 +377,10 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
                     shareApp();
                     break;
                 case 5:
-                    startActivity(new Intent(MainActivity.this, AboutusActivity.class));
+                    startActivity(new Intent(MainActivity.this, YourColorActivity.class));
                     break;
                 case 6:
-                    startActivity(new Intent(MainActivity.this, YourColorActivity.class));
+                    startActivity(new Intent(MainActivity.this, AboutusActivity.class));
                     break;
             }
         }
@@ -388,9 +400,12 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     @Override
     public void onAddColor(String color) {
         if(!isInList(this.listModel,color)){
-            Log.e("TAG", "onAddColor: " + color + " : " + mSavedLayout.getMeasuredHeight() );
+            AdsUtils.getInstance().increaseInteraction();
             this.listModel.add(new Model(color));
             mAdapter.notifyDataSetChanged();
+            onMessage(getString(R.string.success_add_color));
+        }else{
+            onMessage(getString(R.string.allready_added_color));
         }
     }
 
@@ -416,6 +431,10 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         currentPosition =  tab.getPosition();
         tabLayout.getTabAt(currentPosition).select();
         viewPager.setCurrentItem(currentPosition);
+    }
+
+    private void onMessage(String msg){
+        Toast.makeText(MainActivity.this,msg,Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -449,10 +468,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     @Override
     public void onSavedName(String name) {
-        Log.e("TAG", "onSavedName: " + name );
-
         SavedObject object = new SavedObject();
-
         object.setName(name);
         RealmList<Model> mList = new RealmList<Model>();
         mList.addAll(this.listModel);
@@ -461,7 +477,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         this.listModel.clear();
         this.mAdapter.notifyDataSetChanged();
         closeLayout();
-        layoutStatus = 1;
+        AdsUtils.getInstance().increaseInteraction();
     }
 
 }

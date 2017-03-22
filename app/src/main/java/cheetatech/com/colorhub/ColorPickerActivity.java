@@ -19,6 +19,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cheetatech.com.colorhub.adapters.SaveListAdapter;
 import cheetatech.com.colorhub.adapters.ViewPagerAdapter;
+import cheetatech.com.colorhub.ads.AdsUtils;
 import cheetatech.com.colorhub.dialog.SaveDialog;
 import cheetatech.com.colorhub.listeners.IOnFocusListenable;
 import cheetatech.com.colorhub.models.Model;
@@ -261,9 +263,9 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
         if(ColorPicker_1 == null)
             ColorPicker_1 = ColorPicker1.newInstance(this);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(ColorPicker_1,"ColorPicker1");
+        adapter.addFragment(ColorPicker_1,"ColorPicker X");
         //adapter.addFragment(new ColorPicker2(),"ColorPicker2");
-        adapter.addFragment(ColorPicker3.newInstance(this),"ColorPicker3");
+        adapter.addFragment(ColorPicker3.newInstance(this),"ColorPicker Y");
         viewPager.setAdapter(adapter);
     }
     @Override
@@ -317,9 +319,17 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
     @Override
     public void onAddColor(String color) {
         if(!isInList(this.listModel,color)){
+            AdsUtils.getInstance().increaseInteraction();
             this.listModel.add(new Model(color));
             mAdapter.notifyDataSetChanged();
+            onMessage(getString(R.string.success_add_color));
+        }else{
+            onMessage(getString(R.string.allready_added_color));
         }
+    }
+
+    private void onMessage(String msg){
+        Toast.makeText(ColorPickerActivity.this, msg, Toast.LENGTH_SHORT).show();
     }
 
     private boolean isInList(List<Model> models,String color){
@@ -342,5 +352,6 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
         this.listModel.clear();
         this.mAdapter.notifyDataSetChanged();
         closeLayout();
+        AdsUtils.getInstance().increaseInteraction();
     }
 }

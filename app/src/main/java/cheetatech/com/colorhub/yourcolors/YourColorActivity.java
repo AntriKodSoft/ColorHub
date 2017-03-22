@@ -20,6 +20,7 @@ import butterknife.ButterKnife;
 import cheetatech.com.colorhub.MainActivity;
 import cheetatech.com.colorhub.R;
 import cheetatech.com.colorhub.adapters.YourColorAdapter;
+import cheetatech.com.colorhub.ads.AdsUtils;
 import cheetatech.com.colorhub.listeners.RecyclerItemClickListener;
 import cheetatech.com.colorhub.models.Model;
 import cheetatech.com.colorhub.paletteitem.ColorActivity;
@@ -109,6 +110,7 @@ public class YourColorActivity extends AppCompatActivity implements YourColorAda
         }catch (IllegalStateException ex){
             ex.printStackTrace();
         }
+        AdsUtils.getInstance().increaseInteraction();
     }
 
     @Override

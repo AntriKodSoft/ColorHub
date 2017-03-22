@@ -2,6 +2,7 @@ package cheetatech.com.colorhub;
 
 import android.app.Application;
 
+import cheetatech.com.colorhub.ads.AdsUtils;
 import io.realm.Realm;
 
 /**
@@ -14,6 +15,8 @@ public class ColorHubApplication extends Application {
     public void onCreate(){
         super.onCreate();
         Realm.init(this);
+        // Initialize for first time...
+        AdsUtils.getInstance().setContext(this);
     }
 
 }

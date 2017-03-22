@@ -13,4 +13,5 @@
     <string name="delete_this_color">Delete This Color</string>
     <string name="success_add_color">Successfully added color</string>
     <string name="allready_added_color">Already added this color</string>
+    <string name="admob_inter_app_pub">ca-app-pub-8446606602742080/5303685851</string>
 </resources>

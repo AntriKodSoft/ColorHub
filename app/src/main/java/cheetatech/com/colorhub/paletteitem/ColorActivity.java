@@ -21,6 +21,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cheetatech.com.colorhub.R;
 import cheetatech.com.colorhub.adapters.ColorAdapter;
+import cheetatech.com.colorhub.ads.AdsUtils;
 import cheetatech.com.colorhub.dialog.EditDialog;
 import cheetatech.com.colorhub.listeners.RecyclerItemClickListener;
 import cheetatech.com.colorhub.models.Model;
@@ -125,6 +126,7 @@ public class ColorActivity extends AppCompatActivity implements ColorPickerArran
         Log.e("TAG", "onEditedName: " + name);
         object.setNameQuery(name);
         getSupportActionBar().setTitle(object.getName());
+        AdsUtils.getInstance().increaseInteraction();
     }
 
     @Override
@@ -133,6 +135,7 @@ public class ColorActivity extends AppCompatActivity implements ColorPickerArran
         Model model = colorList.get(position);
         ColorPickerArrange colorPicker1 = ColorPickerArrange.newInstance(model,position,this);
         getSupportFragmentManager().beginTransaction().replace(R.id.container,colorPicker1).addToBackStack(null).commit();
+        AdsUtils.getInstance().increaseInteraction();
     }
 
     @Override
@@ -142,6 +145,7 @@ public class ColorActivity extends AppCompatActivity implements ColorPickerArran
         colorList.clear();
         colorList.addAll(object.getList());
         mAdapter.notifyDataSetChanged();
+        AdsUtils.getInstance().increaseInteraction();
     }
 
     @Override
@@ -186,6 +190,7 @@ public class ColorActivity extends AppCompatActivity implements ColorPickerArran
         colorList.addAll(object.getList());
         mAdapter.notifyDataSetChanged();
         onMessage(getString(R.string.success_add_color));
+        AdsUtils.getInstance().increaseInteraction();
     }
 
     private void onMessage(String msg){
