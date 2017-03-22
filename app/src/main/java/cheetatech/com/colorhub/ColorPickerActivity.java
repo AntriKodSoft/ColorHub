@@ -65,7 +65,6 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
 
     Animation slideUp, slideDown, fadeIn, fadeOut ;
     private int i = 0;
-    private int layoutStatus = 1; // close;
     private int width, height, imageHeight;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,18 +155,22 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
     }
 
     @OnClick(R.id.image_layout) void updownImageClick(){
-        if(layoutStatus == 1){ // Will Open
+        if(!isOpen()){ // Will Open
             openLayout();
-            layoutStatus = 2;
             return;
         }
-        if(layoutStatus == 2){
+        if(isOpen()){
             closeLayout();
-            layoutStatus = 1;
             return;
         }
     }
-
+    private boolean isOpen(){
+        int height = mSavedLayout.getMeasuredHeight();
+        if(height > 150)
+            return true;
+        else
+            return false;
+    }
     private void closeLayout() {
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
             upDownImage.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.ic_action_up));
@@ -331,18 +334,13 @@ public class ColorPickerActivity extends AppCompatActivity implements TabLayout.
     @Override
     public void onSavedName(String name) {
         SavedObject object = new SavedObject();
-
         object.setName(name);
         RealmList<Model> mList = new RealmList<Model>();
         mList.addAll(this.listModel);
         object.setList(mList);
-
         RealmX.save(object);
-
         this.listModel.clear();
         this.mAdapter.notifyDataSetChanged();
-
         closeLayout();
-        layoutStatus = 1;
     }
 }

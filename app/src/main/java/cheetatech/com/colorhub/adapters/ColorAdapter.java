@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -27,6 +28,13 @@ public class ColorAdapter  extends RecyclerView.Adapter<ColorAdapter.ViewHolder>
     private int sayac = 0;
     private List<Model> mDataset;
     private Context context;
+    private OnColorAdapterListener mListener = null;
+
+    public interface OnColorAdapterListener{
+        void onItemClicked(int position);
+        void onDeleteItemFromList(int position);
+        void onAskDeleteItem(int position);
+    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -35,6 +43,9 @@ public class ColorAdapter  extends RecyclerView.Adapter<ColorAdapter.ViewHolder>
 
         @BindView(R.id.color_text)
         TextView mColorText;
+
+        @BindView(R.id.delete_list_item)
+        ImageButton mDeleteItemButton;
 
         public ViewHolder(View v) {
             super(v);
@@ -57,10 +68,14 @@ public class ColorAdapter  extends RecyclerView.Adapter<ColorAdapter.ViewHolder>
         this.mDataset = myDataset;
     }
 
+    public ColorAdapter(List<Model> myDataset,OnColorAdapterListener mListener){
+        this.mDataset = myDataset;
+        this.mListener = mListener;
+    }
+
+
     @Override
     public ColorAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Log.e("TAG","viewType " + viewType + " sayac : " + sayac++);
-        Log.e("TAG","_init_ " + 1);
         int layout = R.layout.color_list_item;
         View v = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
         context = parent.getContext();
@@ -69,7 +84,7 @@ public class ColorAdapter  extends RecyclerView.Adapter<ColorAdapter.ViewHolder>
     }
 
     @Override
-    public void onBindViewHolder(ColorAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(ColorAdapter.ViewHolder holder, final int position) {
         Log.e("TAG","_init_ " + 2);
         if(context != null){
             Model model = this.mDataset.get(position);
@@ -77,6 +92,24 @@ public class ColorAdapter  extends RecyclerView.Adapter<ColorAdapter.ViewHolder>
             holder.mLayout.setBackgroundColor(Color.parseColor(color));
             holder.mColorText.setText(color);
             holder.mColorText.setTextColor(Color.WHITE);
+
+            holder.mDeleteItemButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(mListener != null)
+                        mListener.onAskDeleteItem(position);
+                        //mListener.onDeleteItemFromList(position);
+                }
+            });
+
+            holder.mLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(mListener != null)
+                        mListener.onItemClicked(position);
+                }
+            });
+
         }
     }
 
@@ -88,48 +121,5 @@ public class ColorAdapter  extends RecyclerView.Adapter<ColorAdapter.ViewHolder>
     @Override
     public int getItemCount() {
         return mDataset.size();
-    }
-
-    private String inverseColor(String color)
-    {
-        //String color = "#FF34FBCC";
-
-        String R = color.substring(3,5);
-        String G = color.substring(5,7);
-        String B = color.substring(7);
-        int red, green, blue;
-        try {
-            red = Integer.parseInt(R);
-            green = Integer.parseInt(G);
-            blue = Integer.parseInt(B);
-        }catch (NumberFormatException e){
-            red = green = blue = 0;
-            e.printStackTrace();
-        }
-
-        Log.e("TAG","R: " + R + " G: " + G + " B: " + B);
-
-        String ff = "FF";
-//        String r = String.format("%02x", R);
-//        String g = String.format("%02x", G);
-//        String b = String.format("%02x", B);
-        String r = String.format("%02x", red);
-        String g = String.format("%02x", green);
-        String b = String.format("%02x", blue);
-
-        BigInteger ri = new BigInteger(r,16);
-        BigInteger gi = new BigInteger(g,16);
-        BigInteger bi = new BigInteger(b,16);
-
-        BigInteger fi = new BigInteger(ff,16);
-
-        BigInteger rs = ri.xor(fi);
-        BigInteger gs = gi.xor(fi);
-        BigInteger bs = bi.xor(fi);
-
-
-        String res = String.format("#%02x%02x%02x",rs,gs,bs);
-        res = res.toUpperCase();
-        return res;
     }
 }

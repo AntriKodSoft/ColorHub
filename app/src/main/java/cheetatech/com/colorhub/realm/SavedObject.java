@@ -40,6 +40,13 @@ public class SavedObject extends RealmObject {
         return list;
     }
 
+    public void addList(List<Model> lists){
+        RealmX.realm().beginTransaction();
+        this.list.clear();
+        this.list.addAll(lists);
+        RealmX.realm().commitTransaction();
+    }
+
     public void setList(RealmList<Model> list) {
         this.list = list;
     }

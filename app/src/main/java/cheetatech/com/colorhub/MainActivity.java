@@ -235,14 +235,17 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     }
 
     @OnClick(R.id.image_layout) void updownImageClick(){
-        if(layoutStatus == 1){ // Will Open
+
+        //if(layoutStatus == 1){ // Will Open
+        if(!isOpen()) {
             openLayout();
-            layoutStatus = 2;
+            //layoutStatus = 2;
             return;
         }
-        if(layoutStatus == 2){
+        //if(layoutStatus == 2){
+        if(isOpen()){
             closeLayout();
-            layoutStatus = 1;
+            //layoutStatus = 1;
             return;
         }
     }
@@ -385,9 +388,18 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     @Override
     public void onAddColor(String color) {
         if(!isInList(this.listModel,color)){
+            Log.e("TAG", "onAddColor: " + color + " : " + mSavedLayout.getMeasuredHeight() );
             this.listModel.add(new Model(color));
             mAdapter.notifyDataSetChanged();
         }
+    }
+
+    private boolean isOpen(){
+        int height = mSavedLayout.getMeasuredHeight();
+        if(height > 150)
+            return true;
+        else
+            return false;
     }
 
     private boolean isInList(List<Model> models,String color){

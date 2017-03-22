@@ -10,6 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         >
+        <ImageButton
+            android:id="@+id/delete_list_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_delete"
+            android:background="@color/colorAccentDark"
+            android:layout_centerVertical="true"
+            android:padding="2dp"
+            android:layout_marginLeft="4dp"
+            />
 
         <TextView
             android:id="@+id/color_text"
