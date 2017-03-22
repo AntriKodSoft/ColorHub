@@ -79,7 +79,8 @@ public class GridViewArrayAdapter extends ArrayAdapter<ColorInfo>  {
     public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        ViewHolder holder;        View view = convertView;
+        ViewHolder holder;
+        View view = convertView;
         if (view != null) {
             holder = (ViewHolder) view.getTag();
         } else {
@@ -88,8 +89,7 @@ public class GridViewArrayAdapter extends ArrayAdapter<ColorInfo>  {
             view.setTag(holder);
         }
 
-
-        if(position != colorInfos.size()-1 ) {
+        //if(position != colorInfos.size()-1 ) {
 
             holder.btnCopy.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -115,8 +115,8 @@ public class GridViewArrayAdapter extends ArrayAdapter<ColorInfo>  {
                 }
             });
 
-        }else
-            view.setVisibility(View.GONE);
+//        }else
+//            view.setVisibility(View.GONE);
         return view;
     }
 

@@ -28,7 +28,7 @@ import io.realm.RealmResults;
 
 import static cheetatech.com.colorhub.realm.RealmX.getObject;
 
-public class YourColorActivity extends AppCompatActivity {
+public class YourColorActivity extends AppCompatActivity implements YourColorAdapter.OnItemDelete{
 
 
     @BindView(R.id.recyclerview)
@@ -79,17 +79,49 @@ public class YourColorActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setHasFixedSize(true);
 
-        mAdapter = new YourColorAdapter(modelList);
+        mAdapter = new YourColorAdapter(modelList,this);
         mRecyclerView.setAdapter(mAdapter);
 
-        mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                Log.e("TAG","Clicked item position " + position);
-                ColorBus.getInstance().setSavedObject(modelList.get(position));
-                startActivity(new Intent(YourColorActivity.this, ColorActivity.class));
-            }
-        }));
+//        mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(View view, int position) {
+//                Log.e("TAG","Clicked item position " + position);
+//                ColorBus.getInstance().setSavedObject(modelList.get(position));
+//                startActivity(new Intent(YourColorActivity.this, ColorActivity.class));
+//            }
+//        }));
     }
 
+    @Override
+    public void onItemDelete(String name) {
+    }
+
+    @Override
+    public void onItemDelete(String name, int position) {
+        Log.e("TAG", "onItemDelete: onItemDelete" );
+        try {
+            RealmX.deleteObject(name);
+            if(mAdapter != null){
+                RealmResults<SavedObject> list = RealmX.getObject();
+                for (SavedObject o: list
+                     ) {
+                    Log.e("TAG", "onItemDelete: " + o.getName() );
+                }
+                //modelList.remove(position);
+                modelList.clear();
+                modelList.addAll(list);
+                mAdapter.notifyDataSetChanged();
+            }
+
+        }catch (IllegalStateException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onClickedPosition(int position) {
+        Log.e("TAG","Clicked item position " + position);
+        ColorBus.getInstance().setSavedObject(modelList.get(position));
+        startActivity(new Intent(YourColorActivity.this, ColorActivity.class));
+    }
 }

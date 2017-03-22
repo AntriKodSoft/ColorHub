@@ -8,6 +8,7 @@ import cheetatech.com.colorhub.models.Model;
 import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmResults;
+import io.realm.internal.Collection;
 
 /**
  * Created by erkan on 20.03.2017.
@@ -97,4 +98,14 @@ public class RealmX {
         });
     }
 
+    public static void deleteObject(final String name) {
+
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                RealmResults<SavedObject> list = realm.where(SavedObject.class).equalTo("name",name).findAll();
+                list.deleteAllFromRealm();
+            }
+        });
+    }
 }

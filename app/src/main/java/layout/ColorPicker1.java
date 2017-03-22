@@ -45,7 +45,7 @@ import cheetatech.com.colorhub.listeners.IOnFocusListenable;
 public class ColorPicker1 extends Fragment implements IOnFocusListenable {
 
 
-    View colorViewLayout = null;
+    RelativeLayout colorViewLayout = null;
     TextView textViewColor = null;
     SeekBar redSeekBar, greenSeekBar, blueSeekBar,opacitySeekBar;
     TextView redToolTip, greenToolTip, blueToolTip,opacityToolTip;
@@ -146,7 +146,7 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
         opacitySeekBar.setProgress(opacity);
 
         //colorView.setBackgroundColor(Color.argb(opacity,red, green, blue));
-        colorViewLayout = (View) getView().findViewById(R.id.colorView);
+        colorViewLayout = (RelativeLayout) getView().findViewById(R.id.colorView2);
         colorViewLayout.setBackgroundColor(Color.argb(opacity,red, green, blue));
 
         textViewColor.setText(String.format("#%02x%02x%02x%02x", opacity, red, green, blue));

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cheetatech.com.colorhub.R;
 import cheetatech.com.colorhub.models.Model;
+import cheetatech.com.colorhub.realm.RealmX;
 import cheetatech.com.colorhub.realm.SavedObject;
 
 /**
@@ -27,6 +29,15 @@ public class YourColorAdapter extends RecyclerView.Adapter<YourColorAdapter.View
     private int sayac = 0;
     private List<SavedObject> mDataset;
     private Context context;
+    private boolean isDeleted = false;
+
+    private OnItemDelete mListener = null;
+
+    public interface OnItemDelete{
+        void onItemDelete(String name);
+        void onItemDelete(String name,int position);
+        void onClickedPosition(int position);
+    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -35,6 +46,13 @@ public class YourColorAdapter extends RecyclerView.Adapter<YourColorAdapter.View
 
         @BindView(R.id.color_palette_name)
         TextView mPaletteName;
+
+        @BindView(R.id.delete_saved_query)
+        ImageButton mDeleteButton;
+
+        @BindView(R.id.palette_share)
+        ImageButton mShareButton;
+
 
         public ViewHolder(View v) {
             super(v);
@@ -57,10 +75,13 @@ public class YourColorAdapter extends RecyclerView.Adapter<YourColorAdapter.View
         this.mDataset = myDataset;
     }
 
+    public YourColorAdapter(List<SavedObject> myDataset, OnItemDelete listener){
+        this.mDataset = myDataset;
+        this.mListener = listener;
+    }
+
     @Override
     public YourColorAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Log.e("TAG","viewType " + viewType + " sayac : " + sayac++);
-        Log.e("TAG","_init_ " + 1);
         int layout = R.layout.your_color_item;
         View v = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
         context = parent.getContext();
@@ -69,43 +90,50 @@ public class YourColorAdapter extends RecyclerView.Adapter<YourColorAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(YourColorAdapter.ViewHolder holder, int position) {
-        Log.e("TAG","_init_ " + 2);
+    public void onBindViewHolder(YourColorAdapter.ViewHolder holder, final int position) {
         if(context != null){
+            if(!isDeleted){
+                final SavedObject object = this.mDataset.get(position);
+                holder.mPaletteName.setText(object.getName());
+                holder.mLayout.removeAllViews();
+                for (Model m: object.getList()) {
+                    LinearLayout l1 = new LinearLayout(context);
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
+                    params.weight = 1.0f;
+                    l1.setLayoutParams(params);
+                    l1.setBackgroundColor(Color.parseColor(m.getColorCode()));
+                    holder.mLayout.addView(l1);
+                }
 
-            SavedObject object = this.mDataset.get(position);
-            holder.mPaletteName.setText(object.getName());
-            holder.mLayout.removeAllViews();
-            for (Model m: object.getList()) {
-                LinearLayout l1 = new LinearLayout(context);
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
-                params.weight = 1.0f;
-                l1.setLayoutParams(params);
-                l1.setBackgroundColor(Color.parseColor(m.getColorCode()));
-                holder.mLayout.addView(l1);
+                holder.mLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(mListener != null)
+                            mListener.onClickedPosition(position);
+                    }
+                });
+
+                holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Log.e("TAG", "onClick: Deleted" );
+                        if(mListener != null){
+                            isDeleted = true;
+                            mListener.onItemDelete(object.getName(), position);
+                            notifyDataSetChanged();
+                        }
+                    }
+                });
+
+                holder.mShareButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
             }
-//            LinearLayout l1 = new LinearLayout(context);
-//            l1.setBackgroundColor(Color.GREEN);
-//            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
-//            params.weight = 1.0f;
-//            l1.setLayoutParams(params);
-//            holder.mLayout.addView(l1);
-//            LinearLayout l2 = new LinearLayout(context);
-//            l2.setBackgroundColor(Color.GRAY);
-//            l2.setLayoutParams(params);
-//            holder.mLayout.addView(l2);
 
-            //holder.
-//            LinearLayout l1 = new LinearLayout(context);
-//            l1.setBackgroundColor(Color.GREEN);
-//            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
-//            params.weight = 1.0f;
-//            l1.setLayoutParams(params);
-//            holder.mLayout.addView(l1);
-//            LinearLayout l2 = new LinearLayout(context);
-//            l2.setBackgroundColor(Color.GRAY);
-//            l2.setLayoutParams(params);
-//            holder.mLayout.addView(l2);
+
         }
     }
 

@@ -16,6 +16,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:gravity="center"
+            android:layout_above="@+id/form_label"
             >
         </LinearLayout>
 
@@ -37,6 +38,15 @@
             android:layout_marginLeft="5dp"
             android:textSize="16sp"
             android:layout_centerVertical="true"
+            />
+
+        <ImageButton
+            android:id="@+id/delete_saved_query"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_action_delete"
+            android:layout_toLeftOf="@+id/palette_share"
+            android:layout_marginRight="4dp"
             />
 
         <ImageButton

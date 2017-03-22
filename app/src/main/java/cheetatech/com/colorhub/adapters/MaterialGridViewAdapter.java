@@ -97,7 +97,7 @@ public class MaterialGridViewAdapter extends ArrayAdapter<ColorInfo>  {
             view.setTag(holder);
         }
 
-        if(position != colorInfos.size()-1 ) {
+        //if(position != colorInfos.size()-1 ) {
 
             holder.btnCopy.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -130,8 +130,8 @@ public class MaterialGridViewAdapter extends ArrayAdapter<ColorInfo>  {
                 }
             });
 
-        }else
-            view.setVisibility(View.GONE);
+//        }else
+//            view.setVisibility(View.GONE);
         return view;
     }
 
