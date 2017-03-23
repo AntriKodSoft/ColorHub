@@ -75,11 +75,18 @@ public class GridViewArrayAdapter extends ArrayAdapter<ColorInfo>  {
         }
     }
 
+    static class ViewHolderAds{
+        public ViewHolderAds(View view){
+            ButterKnife.bind(this,view);
+        }
+    }
+
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        ViewHolder holder;
+        ViewHolder holder = null;
+        ViewHolderAds holderAds = null;
         View view = convertView;
         if (view != null) {
             holder = (ViewHolder) view.getTag();
@@ -89,34 +96,30 @@ public class GridViewArrayAdapter extends ArrayAdapter<ColorInfo>  {
             view.setTag(holder);
         }
 
-        //if(position != colorInfos.size()-1 ) {
-
-            holder.btnCopy.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Log.d("TAG", "Clicked Image Button Erkan Erkan " + position);
-                    BoardEditor.getInstance().copyToClipBoard(colorInfos.get(position).getColorCode());
-                    Toast.makeText(BoardEditor.getInstance().getContext(), "Color " + colorInfos.get(position).getColorCode() +
-                            " copied to clipboard...", Toast.LENGTH_SHORT).show();
+        holder.btnCopy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("TAG", "Clicked Image Button Erkan Erkan " + position);
+                BoardEditor.getInstance().copyToClipBoard(colorInfos.get(position).getColorCode());
+                Toast.makeText(BoardEditor.getInstance().getContext(), "Color " + colorInfos.get(position).getColorCode() +
+                        " copied to clipboard...", Toast.LENGTH_SHORT).show();
+            }
+        });
+        if (holder.mLayout != null)
+            holder.mLayout.setBackgroundColor(Color.parseColor(colorInfos.get(position).getColorCode()));
+        holder.textColorCode.setText(colorInfos.get(position).getColorCode());
+        holder.textColorName.setText(colorInfos.get(position).getColorName());
+        holder.mColorAddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ColorInfo colorInfo = colorInfos.get(position);
+                Log.e("TAG", "onClick: colorInfos " + colorInfo.getColorCode() +  " : " + colorInfo.getColorName());
+                if(mListener != null){
+                    mListener.onAddColor(colorInfo.getColorCode());
                 }
-            });
-            if (holder.mLayout != null)
-                holder.mLayout.setBackgroundColor(Color.parseColor(colorInfos.get(position).getColorCode()));
-            holder.textColorCode.setText(colorInfos.get(position).getColorCode());
-            holder.textColorName.setText(colorInfos.get(position).getColorName());
-            holder.mColorAddButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ColorInfo colorInfo = colorInfos.get(position);
-                    Log.e("TAG", "onClick: colorInfos " + colorInfo.getColorCode() +  " : " + colorInfo.getColorName());
-                    if(mListener != null){
-                        mListener.onAddColor(colorInfo.getColorCode());
-                    }
-                }
-            });
+            }
+        });
 
-//        }else
-//            view.setVisibility(View.GONE);
         return view;
     }
 

@@ -277,7 +277,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                Log.e("TAG", "onAnimationEnd: Click");
                 RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
                         width, height);
                 lp.setMargins(0, width, 0, 0);
