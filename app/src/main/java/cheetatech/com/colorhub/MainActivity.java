@@ -53,6 +53,7 @@ import cheetatech.com.colorhub.realm.SavedObject;
 import cheetatech.com.colorhub.yourcolors.YourColorActivity;
 import io.realm.RealmList;
 import layout.ColorPicker1;
+import layout.ColorPicker3;
 import layout.FlatColorFragment;
 import layout.HtmlColorFragment;
 import layout.MaterialColorFragment;
@@ -354,6 +355,8 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         adapter.addFragment(SocialColorFragment.newInstance(this),"Social");
         adapter.addFragment(MetroColorFragment.newInstance(this),"Metro");
         adapter.addFragment(HtmlColorFragment.newInstance(this),"Html");
+        adapter.addFragment(ColorPicker1.newInstance(this),"ColorPalette X");
+        adapter.addFragment(ColorPicker3.newInstance(this),"ColorPalette Y");
         viewPager.setAdapter(adapter);
     }
 
@@ -367,7 +370,9 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
             switch (i)
             {
                 case 2:
-                    startActivity(new Intent(MainActivity.this, ColorPickerActivity.class));
+                    currentPosition = 5;
+                    viewPager.setCurrentItem(5);
+                    //startActivity(new Intent(MainActivity.this, ColorPickerActivity.class));
                     break;
                 case 3:
                     openUrl("https://play.google.com/store/apps/details?id=cheetatech.com.colorhub");
