@@ -51,6 +51,9 @@ import cheetatech.com.colorhub.models.Model;
 import cheetatech.com.colorhub.realm.RealmX;
 import cheetatech.com.colorhub.realm.SavedObject;
 import cheetatech.com.colorhub.yourcolors.YourColorActivity;
+import es.dmoral.toasty.Toasty;
+import hotchemi.android.rate.AppRate;
+import hotchemi.android.rate.OnClickButtonListener;
 import io.realm.RealmList;
 import layout.ColorPicker1;
 import layout.ColorPicker3;
@@ -202,6 +205,25 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
         RealmX.list();
         loadAds();
+        initAppRateDialog();
+    }
+
+    private void initAppRateDialog() {
+        AppRate.with(this)
+                .setInstallDays(0) // default 10, 0 means install day.
+                .setLaunchTimes(2) // default 10
+                .setRemindInterval(2) // default 1
+                .setShowLaterButton(true) // default true
+                .setDebug(false) // default false
+                .setOnClickButtonListener(new OnClickButtonListener() { // callback listener.
+                    @Override
+                    public void onClickButton(int which) {
+                        Log.d(MainActivity.class.getName(), Integer.toString(which));
+                    }
+                })
+                .monitor();
+        // Show a dialog if meets conditions
+        AppRate.showRateDialogIfMeetsConditions(this);
     }
 
     private void loadAds() {
@@ -392,9 +414,9 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
             AdsUtils.getInstance().increaseInteraction();
             this.listModel.add(new Model(color));
             mAdapter.notifyDataSetChanged();
-            onMessage(getString(R.string.success_add_color));
+            Toasty.success(MainActivity.this,"",Toast.LENGTH_SHORT).show();
         }else{
-            onMessage(getString(R.string.allready_added_color));
+            Toasty.warning(MainActivity.this,"",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -467,6 +489,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         this.mAdapter.notifyDataSetChanged();
         closeLayout();
         AdsUtils.getInstance().increaseInteraction();
+        Toasty.success(MainActivity.this,getString(R.string.success_add_palette),Toast.LENGTH_SHORT).show();
     }
 
 }
