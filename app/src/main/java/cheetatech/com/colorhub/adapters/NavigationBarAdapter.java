@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cheetatech.com.colorhub.R;
 import cheetatech.com.colorhub.drawer.ColorSelect;
@@ -17,7 +18,7 @@ public class NavigationBarAdapter extends ArrayAdapter<ColorSelect> {
 
     private Context context = null;
     private int resource;
-    private ArrayList<ColorSelect> colorSelect;
+    private List<ColorSelect> colorSelect;
 
 
     public NavigationBarAdapter(Context context, int resource, ColorSelect[] objects) {
@@ -27,7 +28,7 @@ public class NavigationBarAdapter extends ArrayAdapter<ColorSelect> {
 
     }
 
-    public NavigationBarAdapter(Context context, int resource, ArrayList<ColorSelect> objects) {
+    public NavigationBarAdapter(Context context, int resource, List<ColorSelect> objects) {
         super(context, resource, objects);
         this.context = context;
         this.resource = resource;

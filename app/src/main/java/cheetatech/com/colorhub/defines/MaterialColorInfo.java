@@ -2,23 +2,24 @@ package cheetatech.com.colorhub.defines;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MaterialColorInfo {
-    private ArrayList<ColorInfo> colorInfoList;
+    private List<ColorInfo> colorInfoList;
 
     public MaterialColorInfo()
     {
         colorInfoList = new ArrayList<ColorInfo>();
     }
 
-    public MaterialColorInfo(ArrayList<ColorInfo> colorInfos)
+    public MaterialColorInfo(List<ColorInfo> colorInfos)
     {
         if(this.colorInfoList == null)
             this.colorInfoList = new ArrayList<ColorInfo>();
         for(int i = 0; i < colorInfos.size(); i++)
         this.colorInfoList.add(colorInfos.get(i));
     }
-    public ArrayList<ColorInfo> getColorInfoList()
+    public List<ColorInfo> getColorInfoList()
     {
         return this.colorInfoList;
     }
@@ -29,7 +30,7 @@ public class MaterialColorInfo {
         return this.colorInfoList.get(index);
     }
 
-    public void setColorInfoList(ArrayList<ColorInfo> colorInfoList)
+    public void setColorInfoList(List<ColorInfo> colorInfoList)
     {
         this.colorInfoList = colorInfoList;
     }

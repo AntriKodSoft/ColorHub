@@ -66,7 +66,7 @@ import layout.SocialColorFragment;
 public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener, ColorPicker1.OnColorListener , SaveDialog.OnSaveListener{
 
     private Toolbar toolbar = null;
-    ArrayList<ColorSelect> cselect = null;
+    List<ColorSelect> cselect = null;
 
     private DrawerListAdapter drawerListAdapter = null;
 

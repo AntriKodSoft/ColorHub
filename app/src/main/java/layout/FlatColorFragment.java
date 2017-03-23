@@ -49,7 +49,6 @@ public class FlatColorFragment extends Fragment implements AdapterView.OnItemLon
 
         ColorArrayController controller  = ColorArrayController.getInstance();
         GridView gridView = (GridView) getView().findViewById(R.id.gridviewflat);
-        //GridViewArrayAdapter adapter = new GridViewArrayAdapter(getContext(),R.layout.grid_list,controller.getFlatList());
         GridViewArrayAdapter adapter = new GridViewArrayAdapter(getContext(),R.layout.grid_list,controller.getFlatList(),this.mListener);
         gridView.setAdapter(adapter);
     }
