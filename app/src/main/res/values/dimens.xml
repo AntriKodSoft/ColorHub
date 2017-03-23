@@ -3,4 +3,15 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="gap">10dp</dimen>
+    <dimen name="radius">3dp</dimen>
+    <dimen name="gap_small">5dp</dimen>
+    <dimen name="gap_large">10dp</dimen>
+    <dimen name="text">20sp</dimen>
+    <!-- This is the minimum padding the ColorPickerView will have, if no padding is set this is used. -->
+    <dimen name="colorpickerview__required_padding">6dp</dimen>
+
+    <dimen name="colorpickerview__dialog_preview_width">65dp</dimen>
+    <dimen name="colorpickerview__dialog_preview_height">32dp</dimen>
 </resources>

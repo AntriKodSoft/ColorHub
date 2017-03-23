@@ -4,8 +4,12 @@
     <color name="colorPrimaryDark">#508764</color>
     <color name="colorAccent">#E64A19</color>
     <color name="colorDarkGrey">#FF2B2C43</color>
-
     <color name="colorPrimaryText">#F5F5F5</color>
+
+    <color name="colorAccentDark">#e63519</color>
+
+
+    <color name="picker_background">#ff7c7c7c</color>
 
     <color name="colorAccent2">#FF4081</color>
     <color name="colorSoftBlue">#B2EBF2</color>
@@ -35,6 +39,18 @@
     <color name="colorSeaGreen">#2E8B57</color>
     <color name="colorWhiteSmoke">#F5F5F5</color>
     <color name="colorMetroOlive">#6D8764</color>
+    <color name="bottom_label">#757575</color>
+
+
+    <!-- For expandable fab button color-->
+    <color name="black_semi_transparent">#B2000000</color>
+    <color name="background">#e5e5e5</color>
+    <color name="half_black">#808080</color>
+    <color name="white_pressed">#f1f1f1</color>
+    <color name="pink">#e91e63</color>
+    <color name="pink_pressed">#ec407a</color>
+    <color name="blue_semi_transparent">#805677fc</color>
+    <color name="blue_semi_transparent_pressed">#80738ffe</color>
 
 
 </resources>

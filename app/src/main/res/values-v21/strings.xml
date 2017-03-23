@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="add_color">Add</string>
+    <string name="palette_name">Palette Name</string>
+    <string name="save_button">Save</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="save_dialog">Save Dialog</string>
+    <string name="delete_saved_object">Delete File</string>
+    <string name="delete_file_ask">Delete Color Palette?</string>
+    <string name="answer_yes">Yes</string>
+    <string name="answer_no">No</string>
+    <string name="edit_dialog">Edit Palette Name</string>
+    <string name="delete_this_color">Delete This Color</string>
+    <string name="success_add_color">Successfully added color</string>
+    <string name="allready_added_color">Already added this color</string>
+    <string name="admob_inter_app_pub">ca-app-pub-8446606602742080/5303685851</string>
+</resources>
