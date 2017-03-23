@@ -6,9 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.DialogFragment;
-import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 
 import butterknife.BindString;
 import butterknife.BindView;
@@ -72,7 +70,6 @@ public class EditDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        //return super.onCreateDialog(savedInstanceState);
         Dialog dialog = new Dialog(getActivity(), R.style.CustomDialog);
         View view = getActivity().getLayoutInflater().inflate(R.layout.fragment_edit_palette, null);
         dialog.getWindow().setContentView(view);

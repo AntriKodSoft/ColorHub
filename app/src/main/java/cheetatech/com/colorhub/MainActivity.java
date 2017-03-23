@@ -376,17 +376,17 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
             switch (i)
             {
                 case 2:
+                    startActivity(new Intent(MainActivity.this, YourColorActivity.class));
+                    break;
+                case 3:
                     currentPosition = 5;
                     viewPager.setCurrentItem(5);
                     break;
-                case 3:
+                case 4:
                     openUrl("https://play.google.com/store/apps/details?id=cheetatech.com.colorhub");
                     break;
-                case 4:
-                    shareApp();
-                    break;
                 case 5:
-                    startActivity(new Intent(MainActivity.this, YourColorActivity.class));
+                    shareApp();
                     break;
                 case 6:
                     startActivity(new Intent(MainActivity.this, AboutusActivity.class));

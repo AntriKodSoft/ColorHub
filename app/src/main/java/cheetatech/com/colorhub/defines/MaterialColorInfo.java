@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MaterialColorInfo {
-    private List<ColorInfo> colorInfoList;
+    private List<ColorInfo> colorInfoList = new ArrayList<ColorInfo>();
 
     public MaterialColorInfo()
     {
@@ -14,10 +14,7 @@ public class MaterialColorInfo {
 
     public MaterialColorInfo(List<ColorInfo> colorInfos)
     {
-        if(this.colorInfoList == null)
-            this.colorInfoList = new ArrayList<ColorInfo>();
-        for(int i = 0; i < colorInfos.size(); i++)
-        this.colorInfoList.add(colorInfos.get(i));
+        this.colorInfoList.addAll(colorInfos);
     }
     public List<ColorInfo> getColorInfoList()
     {

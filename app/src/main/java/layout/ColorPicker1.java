@@ -3,16 +3,11 @@ package layout;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Rect;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutCompat;
-import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -21,8 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.GridView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -30,15 +23,10 @@ import android.widget.Toast;
 
 import java.math.BigInteger;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cheetatech.com.colorhub.ColorPickerActivity;
 import cheetatech.com.colorhub.R;
-import cheetatech.com.colorhub.adapters.GridViewArrayAdapter;
-import cheetatech.com.colorhub.controller.ColorArrayController;
 import cheetatech.com.colorhub.defines.BoardEditor;
-import cheetatech.com.colorhub.defines.ColorItem;
 import cheetatech.com.colorhub.listeners.IOnFocusListenable;
 
 
