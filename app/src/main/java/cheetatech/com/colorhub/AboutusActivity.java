@@ -20,7 +20,6 @@ public class AboutusActivity extends AppCompatActivity  implements View.OnClickL
     private String[] email = new String[]{
             "https://www.linkedin.com/in/erkan-g%C3%BCzeler-95b47252",
             "https://tr.linkedin.com/in/ali-guvenbas",
-            "https://tr.linkedin.com/in/cihat-celik-87343092",
             "https://www.behance.net/nagihanozkar",
             "https://www.linkedin.com/in/itır-başar-104889b5"
     };
@@ -35,8 +34,6 @@ public class AboutusActivity extends AppCompatActivity  implements View.OnClickL
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("TAG","onBackPressed");
-                //onBackPressed();
                 onBackPressed();
             }
         });
@@ -46,7 +43,6 @@ public class AboutusActivity extends AppCompatActivity  implements View.OnClickL
         ((FloatingActionButton) findViewById(R.id.fab)).setOnClickListener(this);
         ((ImageView)findViewById(R.id.steam_1)).setOnClickListener(this);
         ((ImageView)findViewById(R.id.steam_2)).setOnClickListener(this);
-        ((ImageView)findViewById(R.id.steam_3)).setOnClickListener(this);
         ((ImageView)findViewById(R.id.gteam_1)).setOnClickListener(this);
         ((ImageView)findViewById(R.id.gteam_2)).setOnClickListener(this);
     }
@@ -67,9 +63,6 @@ public class AboutusActivity extends AppCompatActivity  implements View.OnClickL
                 break;
             case R.id.steam_2 :
                 openUrl(email[1]);
-                break;
-            case R.id.steam_3 :
-                openUrl(email[2]);
                 break;
             case R.id.gteam_1 :
                 openUrl(email[3]);

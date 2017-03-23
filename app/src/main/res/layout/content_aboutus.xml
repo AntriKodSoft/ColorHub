@@ -136,13 +136,6 @@
                     android:src="@drawable/developer2"
                     android:id="@+id/steam_2"
                     />
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:src="@drawable/developer3"
-                    android:id="@+id/steam_3"
-                    />
 
             </LinearLayout>
 
