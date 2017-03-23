@@ -1,5 +1,7 @@
 package cheetatech.com.colorhub;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -440,6 +442,39 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         currentPosition =  tab.getPosition();
         tabLayout.getTabAt(currentPosition).select();
         viewPager.setCurrentItem(currentPosition);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(mDrawer.isDrawerOpen(relativeDrawer)){
+            Log.e("TAG", "onBackPressed: Opennnn " );
+            mDrawer.closeDrawer(relativeDrawer);
+            return;
+        }
+        if(isOpen()){
+            closeLayout();
+            return;
+        }
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+
+        // set title
+        alertDialogBuilder.setTitle(getString(R.string.exit_app));
+        alertDialogBuilder
+                .setMessage(getString(R.string.exit_app_ask))
+                .setCancelable(false)
+                .setPositiveButton(getString(R.string.answer_yes),new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        dialog.dismiss();
+                        finish();
+                    }
+                })
+                .setNegativeButton(getString(R.string.answer_no),new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
     @Override
