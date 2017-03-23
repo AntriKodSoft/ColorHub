@@ -9,7 +9,7 @@ ColorHub is an Android Application that you select Material, Flat, Social, Metro
 
 [![Licence](https://img.shields.io/aur/license/yaourt.svg)](https://github.com/CheetaTech/ColorHub/blob/master/LICENCE)
 
-![ColorHub Screenshots](/img/screenshot.png) 
+![ColorHub Screenshots](/img/screenshot2.png)
 
 
 
@@ -20,7 +20,9 @@ ColorHub is an Android Application that you select Material, Flat, Social, Metro
   * See Color's name and _HEX_ Code in GridView.
   * Copy Color _HEX_ Code to the clipboard with button that is in the right bottom on the GridView.
   * Create your _Colors_ with **`Color Picker`** page. This Hex code includes **`Alpha`** Channel. 
-
+  * Save your selected color to **Your Colors** section.
+  * Easily select color and add dynamic layout palette then save it your **Your Colors**
+  * UI/UX improvement works.
 
 
 ## Contributors
@@ -44,13 +46,20 @@ We are developing this application in public to bring you a tool that _you_ want
  
 ## ChangeLog  
 
-### [v1.0.1] (https://github.com/CheetaTech/ColorHub/releases/tag/v1.0.1)
+### [v1.1.0](https://github.com/CheetaTech/ColorHub/releases/tag/v1.1.0)
+
+  * Added database to save color palettes.
+  * Added new 2 color palettes.
+  * Added dynamic layout to save selected colors.
+  * UI/UX improvement.
+
+### [v1.0.1](https://github.com/CheetaTech/ColorHub/releases/tag/v1.0.1)
 
   * Select Color from different color palettes. (Flat, Social, Material, Metro, HTML).
   * Create your own color from Color Picker page.
   * Copy Color **`HEX`** code to the clipboard.
 
-### [v1.0.0] (https://github.com/CheetaTech/ColorHub/releases/tag/v1.0.0)
+### [v1.0.0](https://github.com/CheetaTech/ColorHub/releases/tag/v1.0.0)
 
   * Initial Release
 
