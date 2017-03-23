@@ -30,7 +30,6 @@ public class ColorPicker3 extends Fragment implements ColorPickerView.OnColorCha
     private int colorText = 0;
     @BindView(R.id.colorpickerview__color_picker_view1)
     ColorPickerView mColorPickerView;
-    //private ColorPickerView mColorPickerView;
 
     private ColorPicker1.OnColorListener mListener = null;
 
@@ -64,11 +63,6 @@ public class ColorPicker3 extends Fragment implements ColorPickerView.OnColorCha
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-//        colorView = (View) getView().findViewById(R.id.colorView);
-//        colorTextView = (TextView)getView().findViewById(R.id.color);
-
-//        mColorPickerView = (ColorPickerView) getView().findViewById(R.id.colorpickerview__color_picker_view1);
 
         final int initialColor = 0xFFE12109;;
         mColorPickerView.setOnColorChangedListener(this);
