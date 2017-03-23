@@ -25,7 +25,6 @@ import cheetatech.com.colorhub.models.Model;
 
 public class ColorAdapter  extends RecyclerView.Adapter<ColorAdapter.ViewHolder>{
 
-    private int sayac = 0;
     private List<Model> mDataset;
     private Context context;
     private OnColorAdapterListener mListener = null;
@@ -98,7 +97,6 @@ public class ColorAdapter  extends RecyclerView.Adapter<ColorAdapter.ViewHolder>
                 public void onClick(View view) {
                     if(mListener != null)
                         mListener.onAskDeleteItem(position);
-                        //mListener.onDeleteItemFromList(position);
                 }
             });
 

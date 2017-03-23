@@ -1,17 +1,11 @@
 package layout;
 
-import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,11 +14,8 @@ import java.math.BigInteger;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cheetatech.com.colorhub.ColorPickerActivity;
 import cheetatech.com.colorhub.R;
 import cheetatech.com.colorhub.defines.BoardEditor;
-import cheetatech.com.colorhub.defines.ColorItem;
-import cheetatech.com.colorhub.view.ColorPanelView;
 import cheetatech.com.colorhub.view.ColorPickerView;
 
 public class ColorPicker3 extends Fragment implements ColorPickerView.OnColorChangedListener {
@@ -39,7 +30,6 @@ public class ColorPicker3 extends Fragment implements ColorPickerView.OnColorCha
     private int colorText = 0;
     @BindView(R.id.colorpickerview__color_picker_view1)
     ColorPickerView mColorPickerView;
-    //private ColorPickerView mColorPickerView;
 
     private ColorPicker1.OnColorListener mListener = null;
 
@@ -73,11 +63,6 @@ public class ColorPicker3 extends Fragment implements ColorPickerView.OnColorCha
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-//        colorView = (View) getView().findViewById(R.id.colorView);
-//        colorTextView = (TextView)getView().findViewById(R.id.color);
-
-//        mColorPickerView = (ColorPickerView) getView().findViewById(R.id.colorpickerview__color_picker_view1);
 
         final int initialColor = 0xFFE12109;;
         mColorPickerView.setOnColorChangedListener(this);

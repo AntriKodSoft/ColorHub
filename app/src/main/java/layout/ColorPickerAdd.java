@@ -88,7 +88,6 @@ public class ColorPickerAdd extends Fragment implements IOnFocusListenable {
     private OnColorPickerAddListener mListener;
 
     public ColorPickerAdd() {
-        // Required empty public constructor
     }
 
     public OnColorPickerAddListener getListener() {
@@ -154,27 +153,12 @@ public class ColorPickerAdd extends Fragment implements IOnFocusListenable {
         red = green = blue = 120;
         opacity = 255;
 
-        // initialize;
-//        if(mModel != null){
-//            Util.ColorX colorX = Util.stringToDec(mModel.getColorCode());
-//            red = colorX.getRed();
-//            green = colorX.getGreen();
-//            blue = colorX.getBlue();
-//            opacity = colorX.getOpacity();
-//            //colorX.toString();
-//        }else{
-//            red = green = blue = 120;
-//            opacity = 255;
-//        }
-
-        //
         clipBoard = (ClipboardManager)getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
         window = getActivity().getWindow();
 
         seekBarLeft = redSeekBar.getPaddingLeft();
 
         textViewColor.setTextColor(Color.parseColor(inverseColor(red,green,blue)));
-
 
         redSeekBar.setProgress(red);
         greenSeekBar.setProgress(green);

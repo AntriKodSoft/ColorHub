@@ -33,7 +33,7 @@
             android:background="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabMode="fixed"
+            app:tabMode="scrollable"
             app:tabTextColor="@color/colorPrimaryText"
             app:tabGravity="fill"
             style="@style/MyCustomTabLayout"
@@ -65,7 +65,8 @@
             <RelativeLayout
                 android:id="@+id/image_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                >
                 <ImageView
                     android:id="@+id/image_up_down"
                     android:layout_width="wrap_content"
@@ -83,7 +84,8 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/image_layout">
+                android:layout_below="@+id/image_layout"
+                >
 
             </android.support.v7.widget.RecyclerView>
 
@@ -109,7 +111,7 @@
         android:src="@drawable/ic_action_plus"
         android:layout_marginBottom="50dp"
         app:backgroundTint="@color/colorAccent"
-        android:visibility="invisible"
+        android:visibility="visible"
         />
 
     <LinearLayout
@@ -138,7 +140,7 @@
                     android:src="@drawable/ic_action_pallette"
                     android:layout_marginBottom="50dp"
                     app:backgroundTint="@color/colorAccent"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     />
             </LinearLayout>
 

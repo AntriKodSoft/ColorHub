@@ -2,7 +2,6 @@ package cheetatech.com.colorhub.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,11 +15,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import cheetatech.com.colorhub.R;
-import cheetatech.com.colorhub.controller.ToolBarController;
 import cheetatech.com.colorhub.defines.BoardEditor;
 import cheetatech.com.colorhub.defines.ColorInfo;
-import cheetatech.com.colorhub.listeners.FloatButtonListener;
-import cheetatech.com.colorhub.listeners.ListenerModel;
 
 
 public class ColorArrayListAdapter extends ArrayAdapter<ColorInfo>  {

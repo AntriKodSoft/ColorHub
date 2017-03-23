@@ -1,5 +1,7 @@
 package cheetatech.com.colorhub;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -51,8 +53,12 @@ import cheetatech.com.colorhub.models.Model;
 import cheetatech.com.colorhub.realm.RealmX;
 import cheetatech.com.colorhub.realm.SavedObject;
 import cheetatech.com.colorhub.yourcolors.YourColorActivity;
+import es.dmoral.toasty.Toasty;
+import hotchemi.android.rate.AppRate;
+import hotchemi.android.rate.OnClickButtonListener;
 import io.realm.RealmList;
 import layout.ColorPicker1;
+import layout.ColorPicker3;
 import layout.FlatColorFragment;
 import layout.HtmlColorFragment;
 import layout.MaterialColorFragment;
@@ -62,10 +68,7 @@ import layout.SocialColorFragment;
 public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener, ColorPicker1.OnColorListener , SaveDialog.OnSaveListener{
 
     private Toolbar toolbar = null;
-    ArrayList<ColorSelect> cselect = null;
-
-    @BindView(value = R.id.fab)
-    FloatingActionButton fab;
+    List<ColorSelect> cselect = null;
 
     private DrawerListAdapter drawerListAdapter = null;
 
@@ -121,9 +124,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         slideDown = AnimationUtils.loadAnimation(this,R.anim.slide_down);
         fadeIn = AnimationUtils.loadAnimation(this,R.anim.fade_in);
         fadeOut = AnimationUtils.loadAnimation(this,R.anim.fade_out);
-
-        if(fab.getVisibility() == View.INVISIBLE)
-            fab.setVisibility(View.VISIBLE);
 
         if(fabAddButton.getVisibility() == View.VISIBLE)
             fabAddButton.setVisibility(View.INVISIBLE);
@@ -203,12 +203,29 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         ToolBarController.getInstance().setToolBar(toolbar);
         ToolBarController.getInstance().setTabLayout(tabLayout);
 
-        fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#E64A19")));
-
         loadAdapters();
 
         RealmX.list();
         loadAds();
+        initAppRateDialog();
+    }
+
+    private void initAppRateDialog() {
+        AppRate.with(this)
+                .setInstallDays(0) // default 10, 0 means install day.
+                .setLaunchTimes(2) // default 10
+                .setRemindInterval(2) // default 1
+                .setShowLaterButton(true) // default true
+                .setDebug(false) // default false
+                .setOnClickButtonListener(new OnClickButtonListener() { // callback listener.
+                    @Override
+                    public void onClickButton(int which) {
+                        Log.d(MainActivity.class.getName(), Integer.toString(which));
+                    }
+                })
+                .monitor();
+        // Show a dialog if meets conditions
+        AppRate.showRateDialogIfMeetsConditions(this);
     }
 
     private void loadAds() {
@@ -224,24 +241,17 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     private void loadAdapters() {
         listModel.clear();
-        LinearLayoutManager manager = new LinearLayoutManager(this);
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(manager);
-
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new SaveListAdapter(listModel);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
-    }
-
-    @OnClick(R.id.fab) void fabClick(){
-        startActivity(new Intent(MainActivity.this, ColorPickerActivity.class));
     }
 
     @Override
     protected void onStart() {
         super.onStart();
     }
-
 
 
     @OnClick(R.id.fabAdd) void fabAddClick(){
@@ -267,14 +277,14 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
             upDownImage.setBackground(ContextCompat.getDrawable(this, R.drawable.ic_action_down));
         }
 
-        if(fabAddButton.getVisibility() == View.INVISIBLE)
-            fabAddButton.setVisibility(View.VISIBLE);
-
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
                 width, height);
         lp.setMargins(0, width, 0, 0);
         lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         mSavedLayout.setLayoutParams(lp);
+
+        if(fabAddButton.getVisibility() == View.INVISIBLE)
+            fabAddButton.setVisibility(View.VISIBLE);
 
         mSavedLayout.clearAnimation();
         mSavedLayout.startAnimation(slideUp);;
@@ -289,7 +299,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                Log.e("TAG", "onAnimationEnd: Click");
                 RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
                         width, height);
                 lp.setMargins(0, width, 0, 0);
@@ -354,6 +363,8 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         adapter.addFragment(SocialColorFragment.newInstance(this),"Social");
         adapter.addFragment(MetroColorFragment.newInstance(this),"Metro");
         adapter.addFragment(HtmlColorFragment.newInstance(this),"Html");
+        adapter.addFragment(ColorPicker1.newInstance(this),"ColorPalette X");
+        adapter.addFragment(ColorPicker3.newInstance(this),"ColorPalette Y");
         viewPager.setAdapter(adapter);
     }
 
@@ -367,16 +378,17 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
             switch (i)
             {
                 case 2:
-                    startActivity(new Intent(MainActivity.this, ColorPickerActivity.class));
+                    startActivity(new Intent(MainActivity.this, YourColorActivity.class));
                     break;
                 case 3:
-                    openUrl("https://play.google.com/store/apps/details?id=cheetatech.com.colorhub");
+                    currentPosition = 5;
+                    viewPager.setCurrentItem(5);
                     break;
                 case 4:
-                    shareApp();
+                    openUrl("https://play.google.com/store/apps/details?id=cheetatech.com.colorhub");
                     break;
                 case 5:
-                    startActivity(new Intent(MainActivity.this, YourColorActivity.class));
+                    shareApp();
                     break;
                 case 6:
                     startActivity(new Intent(MainActivity.this, AboutusActivity.class));
@@ -402,9 +414,9 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
             AdsUtils.getInstance().increaseInteraction();
             this.listModel.add(new Model(color));
             mAdapter.notifyDataSetChanged();
-            onMessage(getString(R.string.success_add_color));
+            Toasty.success(MainActivity.this,"",Toast.LENGTH_SHORT).show();
         }else{
-            onMessage(getString(R.string.allready_added_color));
+            Toasty.warning(MainActivity.this,"",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -432,8 +444,37 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         viewPager.setCurrentItem(currentPosition);
     }
 
-    private void onMessage(String msg){
-        Toast.makeText(MainActivity.this,msg,Toast.LENGTH_SHORT).show();
+    @Override
+    public void onBackPressed() {
+        if(mDrawer.isDrawerOpen(relativeDrawer)){
+            Log.e("TAG", "onBackPressed: Opennnn " );
+            mDrawer.closeDrawer(relativeDrawer);
+            return;
+        }
+        if(isOpen()){
+            closeLayout();
+            return;
+        }
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+
+        // set title
+        alertDialogBuilder.setTitle(getString(R.string.exit_app));
+        alertDialogBuilder
+                .setMessage(getString(R.string.exit_app_ask))
+                .setCancelable(false)
+                .setPositiveButton(getString(R.string.answer_yes),new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        dialog.dismiss();
+                        finish();
+                    }
+                })
+                .setNegativeButton(getString(R.string.answer_no),new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
     @Override
@@ -477,6 +518,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         this.mAdapter.notifyDataSetChanged();
         closeLayout();
         AdsUtils.getInstance().increaseInteraction();
+        Toasty.success(MainActivity.this,getString(R.string.success_add_palette),Toast.LENGTH_SHORT).show();
     }
 
 }

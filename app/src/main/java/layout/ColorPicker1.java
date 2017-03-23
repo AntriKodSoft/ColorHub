@@ -3,16 +3,11 @@ package layout;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Rect;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutCompat;
-import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -21,8 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.GridView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -30,15 +23,10 @@ import android.widget.Toast;
 
 import java.math.BigInteger;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cheetatech.com.colorhub.ColorPickerActivity;
 import cheetatech.com.colorhub.R;
-import cheetatech.com.colorhub.adapters.GridViewArrayAdapter;
-import cheetatech.com.colorhub.controller.ColorArrayController;
 import cheetatech.com.colorhub.defines.BoardEditor;
-import cheetatech.com.colorhub.defines.ColorItem;
 import cheetatech.com.colorhub.listeners.IOnFocusListenable;
 
 
@@ -55,8 +43,6 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
     Display display;
     int red, green, blue, seekBarLeft,opacity;
     Rect thumbRect;
-    String s1 = "FF00AB";
-    String s2 = "FFFFFF";
 
     public interface OnColorListener{
         void onAddColor(String color);
@@ -65,7 +51,6 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
     private OnColorListener mListener;
 
     public ColorPicker1() {
-        // Required empty public constructor
     }
 
     public OnColorListener getListener() {
@@ -145,22 +130,16 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
         blueSeekBar.setProgress(blue);
         opacitySeekBar.setProgress(opacity);
 
-        //colorView.setBackgroundColor(Color.argb(opacity,red, green, blue));
         colorViewLayout = (RelativeLayout) getView().findViewById(R.id.colorView2);
         colorViewLayout.setBackgroundColor(Color.argb(opacity,red, green, blue));
 
         textViewColor.setText(String.format("#%02x%02x%02x%02x", opacity, red, green, blue));
         textViewColor.setTextColor(Color.parseColor(inverseColor(red,green,blue)));
-        /*
-        setProgressBar(red,green,blue,opacity);
-        onWindowFocusChanged(true);
-        */
 
 
         textViewColor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //addToView(new ColorItem(red,green,blue,opacity));
                 BoardEditor.getInstance().copyToClipBoard(textViewColor.getText().toString());
                 Toast.makeText(BoardEditor.getInstance().getContext(), "Color " + textViewColor.getText().toString() +
                         " copied to clipboard...", Toast.LENGTH_SHORT).show();
@@ -220,7 +199,6 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
                 else
                     greenToolTip.setText(green+"");
 
-                //colorView.setBackgroundColor(Color.argb(opacity,red, green, blue));
                 colorViewLayout.setBackgroundColor(Color.argb(opacity,red, green, blue));
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -258,7 +236,6 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
                 else
                     blueToolTip.setText(blue+"");
 
-                //colorView.setBackgroundColor(Color.argb(opacity,red, green, blue));
                 colorViewLayout.setBackgroundColor(Color.argb(opacity,red, green, blue));
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -296,11 +273,7 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
                 else
                     opacityToolTip.setText(opacity+"");
 
-
-                //colorView.setBackgroundColor(Color.argb(opacity,red, green, blue));
                 colorViewLayout.setBackgroundColor(Color.argb(opacity,red, green, blue));
-
-
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 
                     if (display.getRotation() == Surface.ROTATION_0)
@@ -321,11 +294,7 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
             }
         });
 
-
-
-
     }
-
 
     private boolean setValue(int viewValue)
     {

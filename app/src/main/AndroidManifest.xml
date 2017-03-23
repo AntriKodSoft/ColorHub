@@ -46,11 +46,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ColorPickerActivity"
-            android:label="@string/title_activity_color_picker"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".AboutusActivity"
             android:label="@string/title_activity_aboutus"
             android:screenOrientation="portrait"

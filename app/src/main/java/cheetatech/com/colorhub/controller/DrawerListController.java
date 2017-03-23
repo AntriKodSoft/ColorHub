@@ -12,19 +12,19 @@ public class DrawerListController {
     private String[] nameList = new String[]{
             null,
             null,
+            "Your Colors",
             "Color Picker",
             "Rate This App",
             "Share This App",
-            "Your Colors",
             "About Us"
     };
     private int[] idList = new int[]{
             -1,
             -1,
+            R.drawable.ic_action_favorites,
             R.drawable.ic_action_color_palette,
             R.drawable.ic_action_rate2,
             R.drawable.ic_action_share,
-            R.drawable.ic_action_favorites,
             R.drawable.ic_action_about_us
     };
 

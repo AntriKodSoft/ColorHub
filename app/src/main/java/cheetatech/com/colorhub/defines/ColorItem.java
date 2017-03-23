@@ -59,6 +59,5 @@ public class ColorItem {
         String str = "#" + Integer.toHexString(this.colour);
         return str;
     }
-
-
+    
 }

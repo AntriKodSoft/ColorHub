@@ -4,6 +4,8 @@ package cheetatech.com.colorhub.controller;
 import android.content.res.Resources;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import cheetatech.com.colorhub.R;
 import cheetatech.com.colorhub.defines.ColorInfo;
@@ -11,14 +13,14 @@ import cheetatech.com.colorhub.defines.MaterialColorInfo;
 import cheetatech.com.colorhub.drawer.ColorSelect;
 
 public class ColorArrayController {
-    private ArrayList<ColorInfo> materialList = null;
-    private ArrayList<ColorInfo> flatList = null;
-    private ArrayList<ColorInfo> socialList = null;
-    private ArrayList<ColorInfo> metroList = null;
-    private ArrayList<ColorInfo> htmlList = null;
+    private List<ColorInfo> materialList = null;
+    private List<ColorInfo> flatList = null;
+    private List<ColorInfo> socialList = null;
+    private List<ColorInfo> metroList = null;
+    private List<ColorInfo> htmlList = null;
     private String[] headerColorList = null;
 
-    private ArrayList<MaterialColorInfo> materialColorInfoList = null;
+    private List<MaterialColorInfo> materialColorInfoList = null;
 
     private Resources resources = null;
 
@@ -49,9 +51,6 @@ public class ColorArrayController {
         initHtml();
     }
 
-
-
-
     public void setResource(Resources resource)
     {
         this.resources = resource;
@@ -78,16 +77,15 @@ public class ColorArrayController {
         for(int i = 0; i < arrayId.length; i++)
         {
             String[] colorCodes = resources.getStringArray(arrayId[i]);
-            ArrayList<ColorInfo> list  = new ArrayList<ColorInfo>();
+            List<ColorInfo> list  = new ArrayList<ColorInfo>();
             for(int j = 0; j< colorCodes.length;j++)
                 list.add(new ColorInfo(colorNames[j],colorCodes[j].toUpperCase()));
-            //list.add(new ColorInfo("#000",""));
             materialColorInfoList.add(new MaterialColorInfo(list));
             list.clear();
         }
     }
 
-    public ArrayList<MaterialColorInfo> getMaterialColorInfoList()
+    public List<MaterialColorInfo> getMaterialColorInfoList()
     {
         return this.materialColorInfoList;
     }
@@ -101,7 +99,6 @@ public class ColorArrayController {
         String[] colorNames = resources.getStringArray(R.array.FlatColorName);
         for(int i = 0; i< colorCodes.length;i++)
             flatList.add(new ColorInfo(colorNames[i],colorCodes[i].toUpperCase()));
-        //flatList.add(new ColorInfo("#000",""));
     }
     public void initSocial()
     {
@@ -112,8 +109,6 @@ public class ColorArrayController {
         String[] colorNames = resources.getStringArray(R.array.SocialColorName);
         for(int i = 0; i< colorCodes.length;i++)
             socialList.add(new ColorInfo(colorNames[i],colorCodes[i].toUpperCase()));
-        //socialList.add(new ColorInfo("#000",""));
-
     }
     public void initMetro()
     {
@@ -124,15 +119,15 @@ public class ColorArrayController {
         String[] colorNames = resources.getStringArray(R.array.MetroColorName);
         for(int i = 0; i< colorCodes.length;i++)
             metroList.add(new ColorInfo(colorNames[i],colorCodes[i].toUpperCase()));
-        //metroList.add(new ColorInfo("#000",""));
     }
 
-    public ArrayList<String> getMaterialNameList()
+    public List<String> getMaterialNameList()
     {
-        ArrayList<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<String>();
         String[] colorNames = resources.getStringArray(R.array.MaterialColorNames);
-        for(int i = 0; i< colorNames.length;i++)
-            list.add(colorNames[i]);
+        list = Arrays.asList(colorNames);
+//        for(int i = 0; i< colorNames.length;i++)
+//            list.add(colorNames[i]);
         return list;
     }
 
@@ -143,16 +138,16 @@ public class ColorArrayController {
         htmlList.clear();
         String[] colorCodes = resources.getStringArray(R.array.HtmlColorCode);
         String[] colorNames = resources.getStringArray(R.array.HtmlColorName);
+        //htmlList.addAll()
         for(int i = 0; i< colorCodes.length;i++)
             htmlList.add(new ColorInfo(colorNames[i],colorCodes[i].toUpperCase()));
-        //metroList.add(new ColorInfo("#000",""));
     }
 
 
 
-    public ArrayList<ColorSelect> getMaterialNameColorSelectList()
+    public List<ColorSelect> getMaterialNameColorSelectList()
     {
-        ArrayList<ColorSelect> list = new ArrayList<ColorSelect>();
+        List<ColorSelect> list = new ArrayList<ColorSelect>();
         String[] colorNames = resources.getStringArray(R.array.MaterialColorNames);
         for(int i = 0; i< colorNames.length;i++)
             list.add(new ColorSelect(colorNames[i]));
@@ -163,7 +158,7 @@ public class ColorArrayController {
     {
         this.materialList = list;
     }
-    public ArrayList<ColorInfo> getMaterialList()
+    public List<ColorInfo> getMaterialList()
     {
         return this.materialList;
     }
@@ -172,31 +167,31 @@ public class ColorArrayController {
     {
         this.flatList = list;
     }
-    public ArrayList<ColorInfo> getFlatList()
+    public List<ColorInfo> getFlatList()
     {
         return this.flatList;
     }
-    public void setSocialList(ArrayList<ColorInfo> list)
+    public void setSocialList(List<ColorInfo> list)
     {
         this.socialList = list;
     }
-    public ArrayList<ColorInfo> getSocialList()
+    public List<ColorInfo> getSocialList()
     {
         return this.socialList;
     }
-    public void setMetroList(ArrayList<ColorInfo> list)
+    public void setMetroList(List<ColorInfo> list)
     {
         this.metroList = list;
     }
-    public ArrayList<ColorInfo> getMetroList()
+    public List<ColorInfo> getMetroList()
     {
         return this.metroList;
     }
-    public void setHtmlList(ArrayList<ColorInfo> list)
+    public void setHtmlList(List<ColorInfo> list)
     {
         this.htmlList = list;
     }
-    public ArrayList<ColorInfo> getHtmlList()
+    public List<ColorInfo> getHtmlList()
     {
         return this.htmlList;
     }

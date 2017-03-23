@@ -2,10 +2,7 @@ package cheetatech.com.colorhub.drawer;
 
 
 public class ColorSelect {
-
     private String title;
-
-    public ColorSelect(){}
     public ColorSelect(String title)
     {
         this.title = title;
@@ -14,5 +11,4 @@ public class ColorSelect {
     {
         return this.title;
     }
-
 }

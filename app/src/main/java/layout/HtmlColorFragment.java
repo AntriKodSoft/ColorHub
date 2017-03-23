@@ -1,34 +1,27 @@
 package layout;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.GridView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cheetatech.com.colorhub.R;
-import cheetatech.com.colorhub.adapters.ColorArrayListAdapter;
 import cheetatech.com.colorhub.adapters.GridViewArrayAdapter;
 import cheetatech.com.colorhub.controller.ColorArrayController;
 import cheetatech.com.colorhub.defines.ColorInfo;
-import cheetatech.com.colorhub.listeners.ListenerModel;
 
 public class HtmlColorFragment extends Fragment {
 
     private ColorPicker1.OnColorListener mListener = null;
-    private ArrayList<ColorInfo> colorInfoArrayList = null;
+    private List<ColorInfo> colorInfoArrayList = null;
 
     public HtmlColorFragment() {
-        // Required empty public constructor
     }
-
 
     public static HtmlColorFragment newInstance(ColorPicker1.OnColorListener listener) {
         HtmlColorFragment fragment = new HtmlColorFragment();
@@ -57,7 +50,6 @@ public class HtmlColorFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_html_color, container, false);
     }
 
@@ -69,7 +61,7 @@ public class HtmlColorFragment extends Fragment {
             colorInfoArrayList = new ArrayList<ColorInfo>();
         GridView gridView = (GridView) getView().findViewById(R.id.gridview);
         ColorArrayController controller  = ColorArrayController.getInstance();
-        colorInfoArrayList = controller.getHtmlList(); // getMaterialColorInfoList().get(0).getColorInfoList();
+        colorInfoArrayList = controller.getHtmlList();
         GridViewArrayAdapter adapter = new GridViewArrayAdapter(getContext(),R.layout.grid_list,colorInfoArrayList,this.mListener);
         gridView.setAdapter(adapter);
     }

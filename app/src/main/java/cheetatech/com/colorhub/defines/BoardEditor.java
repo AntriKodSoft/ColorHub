@@ -3,8 +3,6 @@ package cheetatech.com.colorhub.defines;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.telecom.Connection;
-import android.view.View;
 
 public class BoardEditor {
     private static BoardEditor ourInstance = null;
@@ -19,9 +17,7 @@ public class BoardEditor {
 
     private BoardEditor() {
     }
-    public BoardEditor(Context context) {
-        this.context = context;
-    }
+
     public Context getContext()
     {
         return this.context;
@@ -37,9 +33,4 @@ public class BoardEditor {
         ClipData clip = ClipData.newPlainText("text",text);
         clipMan.setPrimaryClip(clip);
     }
-
-
-
-
-
 }

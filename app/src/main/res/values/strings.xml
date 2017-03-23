@@ -924,5 +924,10 @@
     <string name="success_add_color">Successfully added color</string>
     <string name="allready_added_color">Already added this color</string>
     <string name="admob_inter_app_pub">ca-app-pub-8446606602742080/5303685851</string>
+    <string name="success_add_palette">Successfully Added to Your Colors</string>
+    <string name="success_delete_item">Successfully Delete Item</string>
+    <string name="success_edit_name">Successfully Edited Palette Name</string>
+    <string name="exit_app">Exit Application</string>
+    <string name="exit_app_ask">Exit ColorHub?</string>
 
 </resources>

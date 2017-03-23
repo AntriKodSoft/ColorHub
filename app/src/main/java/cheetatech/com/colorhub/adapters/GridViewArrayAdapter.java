@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,26 +30,12 @@ import layout.ColorPicker1;
 public class GridViewArrayAdapter extends ArrayAdapter<ColorInfo>  {
     private Context context = null;
     private int resource;
-    private ArrayList<ColorInfo> colorInfos;
+    private List<ColorInfo> colorInfos;
     public static int HeaderIndex = -1;
     public static boolean isMaterial = false;
     private ColorPicker1.OnColorListener mListener = null;
 
-    public GridViewArrayAdapter(Context context, int resource, ColorInfo[] objects) {
-        super(context, resource, objects);
-        this.context = context;
-        this.resource = resource;
-
-    }
-
-    public GridViewArrayAdapter(Context context, int resource, ArrayList<ColorInfo> objects) {
-        super(context, resource, objects);
-        this.context = context;
-        this.resource = resource;
-        this.colorInfos = objects;
-    }
-
-    public GridViewArrayAdapter(Context context, int resource, ArrayList<ColorInfo> objects, ColorPicker1.OnColorListener listener) {
+    public GridViewArrayAdapter(Context context, int resource, List<ColorInfo> objects, ColorPicker1.OnColorListener listener) {
         super(context, resource, objects);
         this.context = context;
         this.resource = resource;
@@ -75,11 +62,17 @@ public class GridViewArrayAdapter extends ArrayAdapter<ColorInfo>  {
         }
     }
 
+    static class ViewHolderAds{
+        public ViewHolderAds(View view){
+            ButterKnife.bind(this,view);
+        }
+    }
+
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        ViewHolder holder;
+        ViewHolder holder = null;
         View view = convertView;
         if (view != null) {
             holder = (ViewHolder) view.getTag();
@@ -89,34 +82,30 @@ public class GridViewArrayAdapter extends ArrayAdapter<ColorInfo>  {
             view.setTag(holder);
         }
 
-        //if(position != colorInfos.size()-1 ) {
-
-            holder.btnCopy.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Log.d("TAG", "Clicked Image Button Erkan Erkan " + position);
-                    BoardEditor.getInstance().copyToClipBoard(colorInfos.get(position).getColorCode());
-                    Toast.makeText(BoardEditor.getInstance().getContext(), "Color " + colorInfos.get(position).getColorCode() +
-                            " copied to clipboard...", Toast.LENGTH_SHORT).show();
+        holder.btnCopy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("TAG", "Clicked Image Button Erkan Erkan " + position);
+                BoardEditor.getInstance().copyToClipBoard(colorInfos.get(position).getColorCode());
+                Toast.makeText(BoardEditor.getInstance().getContext(), "Color " + colorInfos.get(position).getColorCode() +
+                        " copied to clipboard...", Toast.LENGTH_SHORT).show();
+            }
+        });
+        if (holder.mLayout != null)
+            holder.mLayout.setBackgroundColor(Color.parseColor(colorInfos.get(position).getColorCode()));
+        holder.textColorCode.setText(colorInfos.get(position).getColorCode());
+        holder.textColorName.setText(colorInfos.get(position).getColorName());
+        holder.mColorAddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ColorInfo colorInfo = colorInfos.get(position);
+                Log.e("TAG", "onClick: colorInfos " + colorInfo.getColorCode() +  " : " + colorInfo.getColorName());
+                if(mListener != null){
+                    mListener.onAddColor(colorInfo.getColorCode());
                 }
-            });
-            if (holder.mLayout != null)
-                holder.mLayout.setBackgroundColor(Color.parseColor(colorInfos.get(position).getColorCode()));
-            holder.textColorCode.setText(colorInfos.get(position).getColorCode());
-            holder.textColorName.setText(colorInfos.get(position).getColorName());
-            holder.mColorAddButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ColorInfo colorInfo = colorInfos.get(position);
-                    Log.e("TAG", "onClick: colorInfos " + colorInfo.getColorCode() +  " : " + colorInfo.getColorName());
-                    if(mListener != null){
-                        mListener.onAddColor(colorInfo.getColorCode());
-                    }
-                }
-            });
+            }
+        });
 
-//        }else
-//            view.setVisibility(View.GONE);
         return view;
     }
 

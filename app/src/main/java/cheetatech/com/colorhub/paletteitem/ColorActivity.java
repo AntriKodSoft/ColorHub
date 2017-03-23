@@ -2,6 +2,7 @@ package cheetatech.com.colorhub.paletteitem;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,6 +28,7 @@ import cheetatech.com.colorhub.listeners.RecyclerItemClickListener;
 import cheetatech.com.colorhub.models.Model;
 import cheetatech.com.colorhub.realm.SavedObject;
 import cheetatech.com.colorhub.yourcolors.YourColorActivity;
+import es.dmoral.toasty.Toasty;
 import layout.ColorPickerAdd;
 import layout.ColorPickerArrange;
 
@@ -71,34 +73,22 @@ public class ColorActivity extends AppCompatActivity implements ColorPickerArran
     }
 
     @OnClick(R.id.fab_add_palette) void fabAddColorClick(){
-        ColorPickerAdd colorPicker1 = ColorPickerAdd.newInstance(this);
-        getSupportFragmentManager().beginTransaction().replace(R.id.container,colorPicker1).addToBackStack(null).commit();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container,ColorPickerAdd.newInstance(this))
+                .addToBackStack(null)
+                .commit();
         collapse();
     }
 
     private void loadAdapters() {
-
         colorList.clear();
         colorList.addAll(object.getList());
-
         LinearLayoutManager manager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setHasFixedSize(true);
-
         mAdapter = new ColorAdapter(colorList,this);
         mRecyclerView.setAdapter(mAdapter);
-        final ColorPickerArrange.OnColorListener listener = this;
-        mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-//                collapse();
-//                Model model = colorList.get(position);
-//                ColorPickerArrange colorPicker1 = ColorPickerArrange.newInstance(model,position,listener);
-//                getSupportFragmentManager().beginTransaction().replace(R.id.container,colorPicker1).addToBackStack(null).commit();
-//                ColorBus.(getInstance).setSavedObject(modelList.get(position));
-//                startActivity(new Intent(YourColorActivity.this, ColorActivity.class));
-            }
-        }));
     }
 
 
@@ -109,32 +99,30 @@ public class ColorActivity extends AppCompatActivity implements ColorPickerArran
 
     @Override
     public void onAddColor(String color) {
-
     }
 
     @Override
     public void onChangeColor(int position, Model model) {
         this.colorList.set(position,model);
-        /// /this.colorList.remove(position);
-        //this.colorList.add(model);
-        //RealmX.getObject();
         this.mAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onEditedName(String name) {
-        Log.e("TAG", "onEditedName: " + name);
         object.setNameQuery(name);
         getSupportActionBar().setTitle(object.getName());
         AdsUtils.getInstance().increaseInteraction();
+        Toasty.success(ColorActivity.this,getString(R.string.success_edit_name),Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onItemClicked(int position) {
         collapse();
-        Model model = colorList.get(position);
-        ColorPickerArrange colorPicker1 = ColorPickerArrange.newInstance(model,position,this);
-        getSupportFragmentManager().beginTransaction().replace(R.id.container,colorPicker1).addToBackStack(null).commit();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container,ColorPickerArrange.newInstance(colorList.get(position),position,this))
+                .addToBackStack(null)
+                .commit();
         AdsUtils.getInstance().increaseInteraction();
     }
 
@@ -146,13 +134,12 @@ public class ColorActivity extends AppCompatActivity implements ColorPickerArran
         colorList.addAll(object.getList());
         mAdapter.notifyDataSetChanged();
         AdsUtils.getInstance().increaseInteraction();
+        Toasty.success(ColorActivity.this,getString(R.string.success_delete_item),Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onAskDeleteItem(final int position) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ColorActivity.this);
-
-        // set title
         alertDialogBuilder.setTitle(getString(R.string.delete_saved_object));
         alertDialogBuilder
                 .setMessage(getString(R.string.delete_this_color))
@@ -168,11 +155,7 @@ public class ColorActivity extends AppCompatActivity implements ColorPickerArran
                         dialog.cancel();
                     }
                 });
-
-        // create alert dialog
         AlertDialog alertDialog = alertDialogBuilder.create();
-
-        // show it
         alertDialog.show();
     }
 
@@ -180,7 +163,7 @@ public class ColorActivity extends AppCompatActivity implements ColorPickerArran
     public void onAddNewColor(String color) {
         for (Model m: colorList) {
             if(m.getColorCode().equals(color)){
-                onMessage(getString(R.string.allready_added_color));
+                Toasty.info(ColorActivity.this,getString(R.string.allready_added_color),Toast.LENGTH_SHORT).show();
                 return;
             }
         }
@@ -189,12 +172,7 @@ public class ColorActivity extends AppCompatActivity implements ColorPickerArran
         colorList.clear();
         colorList.addAll(object.getList());
         mAdapter.notifyDataSetChanged();
-        onMessage(getString(R.string.success_add_color));
+        Toasty.success(ColorActivity.this,getString(R.string.success_add_color),Toast.LENGTH_SHORT).show();
         AdsUtils.getInstance().increaseInteraction();
     }
-
-    private void onMessage(String msg){
-        Toast.makeText(ColorActivity.this,msg,Toast.LENGTH_SHORT).show();
-    }
-
 }

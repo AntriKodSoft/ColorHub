@@ -1,27 +1,16 @@
 package layout;
 
-import android.content.Context;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ListView;
-
-import java.util.ArrayList;
 
 import cheetatech.com.colorhub.R;
-import cheetatech.com.colorhub.adapters.ColorArrayListAdapter;
-import cheetatech.com.colorhub.adapters.ColorListAdapter;
 import cheetatech.com.colorhub.adapters.GridViewArrayAdapter;
 import cheetatech.com.colorhub.controller.ColorArrayController;
-import cheetatech.com.colorhub.defines.ColorInfo;
 
 
 public class SocialColorFragment extends Fragment implements AdapterView.OnItemLongClickListener   {
