@@ -239,10 +239,8 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     private void loadAdapters() {
         listModel.clear();
-        LinearLayoutManager manager = new LinearLayoutManager(this);
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(manager);
-
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new SaveListAdapter(listModel);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
@@ -442,10 +440,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         currentPosition =  tab.getPosition();
         tabLayout.getTabAt(currentPosition).select();
         viewPager.setCurrentItem(currentPosition);
-    }
-
-    private void onMessage(String msg){
-        Toast.makeText(MainActivity.this,msg,Toast.LENGTH_SHORT).show();
     }
 
     @Override

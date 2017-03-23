@@ -4,6 +4,7 @@ package cheetatech.com.colorhub.controller;
 import android.content.res.Resources;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cheetatech.com.colorhub.R;
 import cheetatech.com.colorhub.defines.ColorInfo;
@@ -143,9 +144,9 @@ public class ColorArrayController {
         htmlList.clear();
         String[] colorCodes = resources.getStringArray(R.array.HtmlColorCode);
         String[] colorNames = resources.getStringArray(R.array.HtmlColorName);
+        //htmlList.addAll()
         for(int i = 0; i< colorCodes.length;i++)
             htmlList.add(new ColorInfo(colorNames[i],colorCodes[i].toUpperCase()));
-        //metroList.add(new ColorInfo("#000",""));
     }
 
 
