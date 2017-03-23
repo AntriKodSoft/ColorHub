@@ -65,9 +65,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     private Toolbar toolbar = null;
     ArrayList<ColorSelect> cselect = null;
 
-    @BindView(value = R.id.fab)
-    FloatingActionButton fab;
-
     private DrawerListAdapter drawerListAdapter = null;
 
     private int currentPosition = 0;
@@ -122,9 +119,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         slideDown = AnimationUtils.loadAnimation(this,R.anim.slide_down);
         fadeIn = AnimationUtils.loadAnimation(this,R.anim.fade_in);
         fadeOut = AnimationUtils.loadAnimation(this,R.anim.fade_out);
-
-        if(fab.getVisibility() == View.INVISIBLE)
-            fab.setVisibility(View.VISIBLE);
 
         if(fabAddButton.getVisibility() == View.VISIBLE)
             fabAddButton.setVisibility(View.INVISIBLE);
@@ -204,8 +198,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         ToolBarController.getInstance().setToolBar(toolbar);
         ToolBarController.getInstance().setTabLayout(tabLayout);
 
-        fab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#E64A19")));
-
         loadAdapters();
 
         RealmX.list();
@@ -234,15 +226,10 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         mAdapter.notifyDataSetChanged();
     }
 
-    @OnClick(R.id.fab) void fabClick(){
-        startActivity(new Intent(MainActivity.this, ColorPickerActivity.class));
-    }
-
     @Override
     protected void onStart() {
         super.onStart();
     }
-
 
 
     @OnClick(R.id.fabAdd) void fabAddClick(){
@@ -268,14 +255,14 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
             upDownImage.setBackground(ContextCompat.getDrawable(this, R.drawable.ic_action_down));
         }
 
-        if(fabAddButton.getVisibility() == View.INVISIBLE)
-            fabAddButton.setVisibility(View.VISIBLE);
-
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
                 width, height);
         lp.setMargins(0, width, 0, 0);
         lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         mSavedLayout.setLayoutParams(lp);
+
+        if(fabAddButton.getVisibility() == View.INVISIBLE)
+            fabAddButton.setVisibility(View.VISIBLE);
 
         mSavedLayout.clearAnimation();
         mSavedLayout.startAnimation(slideUp);;
@@ -372,7 +359,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
                 case 2:
                     currentPosition = 5;
                     viewPager.setCurrentItem(5);
-                    //startActivity(new Intent(MainActivity.this, ColorPickerActivity.class));
                     break;
                 case 3:
                     openUrl("https://play.google.com/store/apps/details?id=cheetatech.com.colorhub");
