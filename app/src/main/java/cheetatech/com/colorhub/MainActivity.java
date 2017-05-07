@@ -76,9 +76,9 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     Animation slideUp, slideDown, fadeIn, fadeOut ;
 
     private String facebook = "https://www.facebook.com/cheetatech/?fref=ts&ref=br_tf";
-    private String twitter = "https://twitter.com/cheeta_tech";
+    private String twitter = "https://twitter.com/antri_kod";
     private String instagram = "https://www.instagram.com/cheetatechofficial/";
-    private String web = "https://cheetatech.wordpress.com/";
+    private String web = "http://www.antrikod.com";
 
     @BindView(R.id.tablayout)
     TabLayout tabLayout;
@@ -224,7 +224,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
                     }
                 })
                 .monitor();
-        // Show a dialog if meets conditions
         AppRate.showRateDialogIfMeetsConditions(this);
     }
 

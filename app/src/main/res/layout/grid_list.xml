@@ -9,70 +9,132 @@
     android:descendantFocusability="blocksDescendants"
     android:focusable="false"
     >
-    
+
     <RelativeLayout
-        android:id="@+id/rootColorLayout"
-        android:layout_width="wrap_content"
+        android:id="@+id/borderLayout"
+        android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:padding="5dp"
-        android:background="@android:color/holo_green_light"
+        android:background="@drawable/color_background"
         >
 
-
-
-        <TextView
-            android:id="@+id/colorName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="#FF00FF"
-            android:textSize="18sp"
-            android:clickable="false"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:textAllCaps="false"
+        <RelativeLayout
+            android:id="@+id/rootColorLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="0dp"
+            android:background="@drawable/color_background2"
+            android:layout_above="@+id/blankRelativeLayout"
             >
 
-        </TextView>
+            <!--
 
-        <TextView
-            android:id="@+id/colorCode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            <TextView
+                android:id="@+id/colorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#FF00FF"
+                android:textSize="18sp"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:textAllCaps="false"
+                >
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/colorCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="##########"
+                android:layout_gravity="left"
+                android:textSize="18sp"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="true"
+                android:textAllCaps="true"
+                >
+            </TextView>
+            -->
+            <ImageButton
+                android:id="@+id/add_color_image_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_touch_app_white_24dp"
+                android:layout_centerInParent="true"
+                android:padding="17dp"
+                />
+
+
+            <!--
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonCopy"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_copy_icon"
+                android:background="@android:color/transparent"
+                />
+
+            -->
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/blankRelativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
             android:layout_alignParentBottom="true"
-            android:text="##########"
-            android:layout_gravity="left"
-            android:textSize="18sp"
-            android:clickable="false"
-            android:focusable="false"
-            android:focusableInTouchMode="true"
-            android:textAllCaps="true"
             >
-        </TextView>
 
-        <ImageButton
-            android:id="@+id/add_color_image_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_touch_app_white_24dp"
-            android:layout_centerInParent="true"
-            android:padding="17dp"
-            />
+            <TextView
+                android:id="@+id/colorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#FF00FF"
+                android:textSize="14sp"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:textAllCaps="false"
+                android:layout_above="@+id/colorCode"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="3dp"
+                >
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonCopy"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/ic_copy_icon"
-            android:background="@android:color/transparent"
-            />
+            </TextView>
 
+            <TextView
+                android:id="@+id/colorCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="##########"
+                android:layout_gravity="left"
+                android:textSize="14sp"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="true"
+                android:textAllCaps="true"
+                android:layout_marginLeft="3dp"
+                >
+            </TextView>
+
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonCopy"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_copy_icon"
+                android:background="@android:color/transparent"
+                />
+        </RelativeLayout>
 
     </RelativeLayout>
-    
-
-
 
 </RelativeLayout>
 
