@@ -25,38 +25,6 @@
             android:background="@drawable/color_background2"
             android:layout_above="@+id/blankRelativeLayout"
             >
-
-            <!--
-
-            <TextView
-                android:id="@+id/colorName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="#FF00FF"
-                android:textSize="18sp"
-                android:clickable="false"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:textAllCaps="false"
-                >
-
-            </TextView>
-
-            <TextView
-                android:id="@+id/colorCode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:text="##########"
-                android:layout_gravity="left"
-                android:textSize="18sp"
-                android:clickable="false"
-                android:focusable="false"
-                android:focusableInTouchMode="true"
-                android:textAllCaps="true"
-                >
-            </TextView>
-            -->
             <ImageButton
                 android:id="@+id/add_color_image_button"
                 android:layout_width="wrap_content"
@@ -65,27 +33,13 @@
                 android:layout_centerInParent="true"
                 android:padding="17dp"
                 />
-
-
-            <!--
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/buttonCopy"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/ic_copy_icon"
-                android:background="@android:color/transparent"
-                />
-
-            -->
         </RelativeLayout>
 
 
         <RelativeLayout
             android:id="@+id/blankRelativeLayout"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="70dp"
             android:layout_alignParentBottom="true"
             >
 
