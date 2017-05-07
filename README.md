@@ -32,6 +32,8 @@ ColorHub is an Android Application that you select Material, Flat, Social, Metro
   * [Erkan Güzeler](https://www.linkedin.com/in/erkan-g%C3%BCzeler-95b47252)
   * [Ali Güvenbaş](https://tr.linkedin.com/in/ali-guvenbas)
 
+
+
 ### Graphics
 
   * [Nagihan Özkar](https://www.behance.net/nagihanozkar)
