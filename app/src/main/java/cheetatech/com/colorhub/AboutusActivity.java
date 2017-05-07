@@ -14,8 +14,8 @@ import android.widget.TextView;
 
 public class AboutusActivity extends AppCompatActivity  implements View.OnClickListener{
 
-    private String cheetatechUrl = "https://cheetatech.wordpress.com/";
-    private String cheetatechEmail = "cheetatech@gmail.com";
+    private String antrikodUrl = "http://www.antrikod.com"; // "https://cheetatech.wordpress.com/";
+    private String antrikodEmail = "info@antrikod.com"; // "cheetatech@gmail.com";
     private String subjectEmail = "Need Help";
     private String[] email = new String[]{
             "https://www.linkedin.com/in/erkan-g%C3%BCzeler-95b47252",
@@ -52,7 +52,7 @@ public class AboutusActivity extends AppCompatActivity  implements View.OnClickL
         switch (view.getId())
         {
             case R.id.link_web_text :
-                openUrl(cheetatechUrl);
+                openUrl(antrikodUrl);
                 break;
             case R.id.fab :
                 sendEmail();
@@ -74,7 +74,7 @@ public class AboutusActivity extends AppCompatActivity  implements View.OnClickL
     }
 
     private void openCheetaTech() {
-        Uri uri = Uri.parse(cheetatechUrl); // missing 'http://' will cause crashed
+        Uri uri = Uri.parse(antrikodUrl); // missing 'http://' will cause crashed
         startActivity(new Intent(Intent.ACTION_VIEW, uri));
     }
 
@@ -87,7 +87,7 @@ public class AboutusActivity extends AppCompatActivity  implements View.OnClickL
     {
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("plain/text");
-        intent.putExtra(Intent.EXTRA_EMAIL, new String[] { cheetatechEmail });
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[] { antrikodEmail });
         intent.putExtra(Intent.EXTRA_SUBJECT, subjectEmail);
         //intent.putExtra(Intent.EXTRA_TEXT, "mail body");
         startActivity(Intent.createChooser(intent, ""));
