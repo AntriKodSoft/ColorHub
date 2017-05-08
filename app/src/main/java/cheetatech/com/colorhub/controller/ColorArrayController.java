@@ -123,11 +123,8 @@ public class ColorArrayController {
 
     public List<String> getMaterialNameList()
     {
-        List<String> list = new ArrayList<String>();
         String[] colorNames = resources.getStringArray(R.array.MaterialColorNames);
-        list = Arrays.asList(colorNames);
-//        for(int i = 0; i< colorNames.length;i++)
-//            list.add(colorNames[i]);
+        List<String> list = Arrays.asList(colorNames);
         return list;
     }
 
@@ -138,7 +135,6 @@ public class ColorArrayController {
         htmlList.clear();
         String[] colorCodes = resources.getStringArray(R.array.HtmlColorCode);
         String[] colorNames = resources.getStringArray(R.array.HtmlColorName);
-        //htmlList.addAll()
         for(int i = 0; i< colorCodes.length;i++)
             htmlList.add(new ColorInfo(colorNames[i],colorCodes[i].toUpperCase()));
     }
@@ -208,9 +204,4 @@ public class ColorArrayController {
 
         return  headerColorList[index];
     }
-
-
-
-
-
 }

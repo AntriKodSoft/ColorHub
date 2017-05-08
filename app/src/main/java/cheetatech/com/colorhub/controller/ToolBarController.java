@@ -41,7 +41,4 @@ public class ToolBarController {
         this.tabLayout.setTabTextColors(color,color);
         toolbar.setTitleTextColor(color);
     }
-
-
-
 }
