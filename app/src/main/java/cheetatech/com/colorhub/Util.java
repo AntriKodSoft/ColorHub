@@ -1,6 +1,7 @@
 package cheetatech.com.colorhub;
 
 
+import android.content.res.Resources;
 import android.util.Log;
 
 import java.math.BigInteger;
@@ -16,8 +17,6 @@ public class Util{
 
 
     public static ColorX stringToDec(String color){
-
-        //String color = "#FF34FBCC";
 
         String O = color.substring(1,3);
         String R = color.substring(3,5);
@@ -43,8 +42,6 @@ public class Util{
 
     public String inverseColor(String color)
     {
-        //String color = "#FF34FBCC";
-
         String O = color.substring(1,3);
         String R = color.substring(3,5);
         String G = color.substring(5,7);
@@ -59,12 +56,7 @@ public class Util{
             e.printStackTrace();
         }
 
-        Log.e("TAG","R: " + R + " G: " + G + " B: " + B);
-
         String ff = "FF";
-//        String r = String.format("%02x", R);
-//        String g = String.format("%02x", G);
-//        String b = String.format("%02x", B);
         String r = String.format("%02x", red);
         String g = String.format("%02x", green);
         String b = String.format("%02x", blue);
@@ -79,11 +71,21 @@ public class Util{
         BigInteger gs = gi.xor(fi);
         BigInteger bs = bi.xor(fi);
 
-
         String res = String.format("#%02x%02x%02x",rs,gs,bs);
         res = res.toUpperCase();
         return res;
     }
+
+    public static int dpToPx(int dp)
+    {
+        return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
+    }
+
+    public static int pxToDp(int px)
+    {
+        return (int) (px / Resources.getSystem().getDisplayMetrics().density);
+    }
+
 
     public static class ColorX{
         private int red;

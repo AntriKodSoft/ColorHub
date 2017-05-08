@@ -1,6 +1,5 @@
 package layout;
 
-import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Color;
@@ -8,6 +7,7 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import java.math.BigInteger;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cheetatech.com.colorhub.R;
@@ -33,16 +34,36 @@ import cheetatech.com.colorhub.listeners.IOnFocusListenable;
 public class ColorPicker1 extends Fragment implements IOnFocusListenable {
 
 
-    RelativeLayout colorViewLayout = null;
-    TextView textViewColor = null;
-    SeekBar redSeekBar, greenSeekBar, blueSeekBar,opacitySeekBar;
-    TextView redToolTip, greenToolTip, blueToolTip,opacityToolTip;
-    ClipboardManager clipBoard;
-    ClipData clip;
-    Window window;
-    Display display;
-    int red, green, blue, seekBarLeft,opacity;
-    Rect thumbRect;
+    @BindView(R.id.textViewColor)
+    TextView textViewColor;
+
+    @BindView(R.id.colorView2)
+    RelativeLayout colorViewLayout;
+
+    @BindView(R.id.redSeekBar)
+    SeekBar redSeekBar;
+    @BindView(R.id.greenSeekBar)
+    SeekBar greenSeekBar;
+    @BindView(R.id.blueSeekBar)
+    SeekBar blueSeekBar;
+    @BindView(R.id.opacitySeekBar)
+    SeekBar opacitySeekBar;
+
+    @BindView(R.id.redToolTip)
+    TextView redToolTip;
+    @BindView(R.id.greenToolTip)
+    TextView greenToolTip;
+    @BindView(R.id.blueToolTip)
+    TextView blueToolTip;
+    @BindView(R.id.opacityToolTip)
+    TextView opacityToolTip;
+
+    private ClipboardManager clipBoard;
+
+    private Window window;
+    private Display display;
+    private int red, green, blue, seekBarLeft,opacity;
+    private Rect thumbRect;
 
     public interface OnColorListener{
         void onAddColor(String color);
@@ -107,35 +128,13 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
         clipBoard = (ClipboardManager)getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
         window = getActivity().getWindow();
 
-        redSeekBar = (SeekBar)getView().findViewById(R.id.redSeekBar);
-        greenSeekBar = (SeekBar)getView().findViewById(R.id.greenSeekBar);
-        blueSeekBar = (SeekBar)getView().findViewById(R.id.blueSeekBar);
-
-        opacitySeekBar = (SeekBar)getView().findViewById(R.id.opacitySeekBar);
-
         seekBarLeft = redSeekBar.getPaddingLeft();
-
-        redToolTip = (TextView)getView().findViewById(R.id.redToolTip);
-        greenToolTip = (TextView)getView().findViewById(R.id.greenToolTip);
-        blueToolTip = (TextView)getView().findViewById(R.id.blueToolTip);
-
-        opacityToolTip = (TextView)getView().findViewById(R.id.opacityToolTip);
-
-        textViewColor = (TextView) getView().findViewById(R.id.textViewColor);
         textViewColor.setTextColor(Color.parseColor(inverseColor(red,green,blue)));
 
-
-        redSeekBar.setProgress(red);
-        greenSeekBar.setProgress(green);
-        blueSeekBar.setProgress(blue);
-        opacitySeekBar.setProgress(opacity);
-
-        colorViewLayout = (RelativeLayout) getView().findViewById(R.id.colorView2);
         colorViewLayout.setBackgroundColor(Color.argb(opacity,red, green, blue));
 
         textViewColor.setText(String.format("#%02x%02x%02x%02x", opacity, red, green, blue));
         textViewColor.setTextColor(Color.parseColor(inverseColor(red,green,blue)));
-
 
         textViewColor.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,17 +145,15 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
             }
         });
 
-
         redSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                Log.e("TAG","onRedProgressChanged" + red);
                 red = progress;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     thumbRect = seekBar.getThumb().getBounds();
                 }
-
                 redToolTip.setX(seekBarLeft + thumbRect.left);
-
                 if (progress<10)
                     redToolTip.setText("  " + red);
                 else if (progress<100)
@@ -293,6 +290,14 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
 
             }
         });
+
+
+        // set the colors
+        redSeekBar.setProgress(red);
+        greenSeekBar.setProgress(green);
+        blueSeekBar.setProgress(blue);
+        opacitySeekBar.setProgress(opacity);
+        onWindowFocusChanged(true);
 
     }
 

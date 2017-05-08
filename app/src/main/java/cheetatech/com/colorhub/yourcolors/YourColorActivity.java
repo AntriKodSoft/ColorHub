@@ -76,22 +76,11 @@ public class YourColorActivity extends AppCompatActivity implements YourColorAda
     private void loadAdapters() {
         RealmResults<SavedObject> list = RealmX.getObject();
         modelList.addAll(list);
-
         LinearLayoutManager manager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setHasFixedSize(true);
-
         mAdapter = new YourColorAdapter(modelList,this);
         mRecyclerView.setAdapter(mAdapter);
-
-//        mRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(View view, int position) {
-//                Log.e("TAG","Clicked item position " + position);
-//                ColorBus.getInstance().setSavedObject(modelList.get(position));
-//                startActivity(new Intent(YourColorActivity.this, ColorActivity.class));
-//            }
-//        }));
     }
 
     @Override
@@ -121,9 +110,7 @@ public class YourColorActivity extends AppCompatActivity implements YourColorAda
 
     @Override
     public void onDeleteAlert(final String name, final int position) {
-
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(YourColorActivity.this);
-
         // set title
         alertDialogBuilder.setTitle(getString(R.string.delete_saved_object));
         alertDialogBuilder
@@ -140,10 +127,8 @@ public class YourColorActivity extends AppCompatActivity implements YourColorAda
                         dialog.cancel();
                     }
                 });
-
         // create alert dialog
         AlertDialog alertDialog = alertDialogBuilder.create();
-
         // show it
         alertDialog.show();
     }

@@ -7,11 +7,6 @@ import java.util.List;
 public class MaterialColorInfo {
     private List<ColorInfo> colorInfoList = new ArrayList<ColorInfo>();
 
-    public MaterialColorInfo()
-    {
-        colorInfoList = new ArrayList<ColorInfo>();
-    }
-
     public MaterialColorInfo(List<ColorInfo> colorInfos)
     {
         this.colorInfoList.addAll(colorInfos);
@@ -31,5 +26,4 @@ public class MaterialColorInfo {
     {
         this.colorInfoList = colorInfoList;
     }
-
 }
