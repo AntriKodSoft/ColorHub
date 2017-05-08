@@ -7,7 +7,7 @@ ColorHub is an Android Application that you select Material, Flat, Social, Metro
 <img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge.png" width="150px"/>
 </a>  
 
-[![Licence](https://img.shields.io/aur/license/yaourt.svg)](https://github.com/CheetaTech/ColorHub/blob/master/LICENCE)
+[![Licence](https://img.shields.io/aur/license/yaourt.svg)](https://github.com/AntriKodSoft/ColorHub/blob/master/LICENCE)
 
 ![ColorHub Screenshots](/img/screenshot2.png)
 
@@ -42,10 +42,15 @@ ColorHub is an Android Application that you select Material, Flat, Social, Metro
 
 ## Collaborate
 
-We are developing this application in public to bring you a tool that _you_ want to use. Please feel free to open [issues](https://github.com/CheetaTech/ColorHub/issues) and [contact](http://www.antrikod.com/) us for any suggestion and advice . See our [website](http://www.antrikod.com/) for more. 
+We are developing this application in public to bring you a tool that _you_ want to use. Please feel free to open [issues](https://github.com/AntriKodSoft/ColorHub/issues) and [contact](http://www.antrikod.com/) us for any suggestion and advice . See our [website](http://www.antrikod.com/) for more. 
 
  
 ## ChangeLog  
+
+### [v1.2.0](https://github.com/AntriKodSoft/ColorHub/releases/tag/v1.2.0)
+  
+  * Designed new Color shown UI.
+  * Improve functionality.
 
 ### [v1.1.0](https://github.com/AntriKodSoft/ColorHub/releases/tag/v1.1.0)
 
