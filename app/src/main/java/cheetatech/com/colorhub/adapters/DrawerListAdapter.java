@@ -1,7 +1,6 @@
 package cheetatech.com.colorhub.adapters;
 
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,28 +11,17 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import cheetatech.com.colorhub.R;
-import cheetatech.com.colorhub.drawer.ColorSelect;
 import cheetatech.com.colorhub.drawer.NavigationSelect;
 
 
 public class DrawerListAdapter extends ArrayAdapter<NavigationSelect> {
 
     private Context context = null;
-    private int resource;
     private ArrayList<NavigationSelect> navigationSelects;
-
-
-    public DrawerListAdapter(Context context, int resource, NavigationSelect[] objects) {
-        super(context, resource, objects);
-        this.context = context;
-        this.resource = resource;
-
-    }
 
     public DrawerListAdapter(Context context, int resource, ArrayList<NavigationSelect> objects) {
         super(context, resource, objects);
         this.context = context;
-        this.resource = resource;
         this.navigationSelects = objects;
     }
 

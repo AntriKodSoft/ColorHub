@@ -42,6 +42,7 @@ import cheetatech.com.colorhub.adapters.SaveListAdapter;
 import cheetatech.com.colorhub.adapters.ViewPagerAdapter;
 import cheetatech.com.colorhub.adapters.YourColorAdapter;
 import cheetatech.com.colorhub.ads.AdsUtils;
+import cheetatech.com.colorhub.controller.AnimControl;
 import cheetatech.com.colorhub.controller.ColorArrayController;
 import cheetatech.com.colorhub.controller.DrawerListController;
 import cheetatech.com.colorhub.controller.ToolBarController;
@@ -113,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     private SaveListAdapter mAdapter = null;
     private List<Model> listModel = new ArrayList<>();
     private int width, height, imageHeight;
+    private AnimControl animControl = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,10 +122,15 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+
+        if(animControl == null){
+            animControl = new AnimControl(getApplicationContext(), mSavedLayout, mImageLayout, upDownImage,fabAddButton);
+        }
+
+
+        /*
         slideUp = AnimationUtils.loadAnimation(this,R.anim.slide_up);
         slideDown = AnimationUtils.loadAnimation(this,R.anim.slide_down);
-        fadeIn = AnimationUtils.loadAnimation(this,R.anim.fade_in);
-        fadeOut = AnimationUtils.loadAnimation(this,R.anim.fade_out);
 
         if(fabAddButton.getVisibility() == View.VISIBLE)
             fabAddButton.setVisibility(View.INVISIBLE);
@@ -141,11 +148,10 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
                     width = mSavedLayout.getMeasuredWidth();
                     height = mSavedLayout.getMeasuredHeight();
 
-                    imageHeight = mImageLayout.getMeasuredHeight();
-                    if(imageHeight == -1)
+                    if((imageHeight = mImageLayout.getMeasuredHeight()) == -1 )
                         imageHeight = 100;
-                    Log.e("TAG","ImageLayout :  " + imageHeight);
 
+                    Log.e("TAG","ImageLayout :  " + imageHeight);
                     RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
                             width, imageHeight);
                     lp.setMargins(0, width, 0, 0);
@@ -154,6 +160,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
                 }
             });
         }
+        */
 
         // Color init
         ColorArrayController controller = ColorArrayController.getInstance();
@@ -233,7 +240,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                AdsUtils.getInstance().showAds();
+                AdsUtils.getInstance().showAdsWithRunnable();
             }
         },3000);
     }
@@ -260,11 +267,13 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     @OnClick(R.id.image_layout) void updownImageClick(){
         if(!isOpen()) {
-            openLayout();
+            animControl.openLayout();
+            //openLayout();
             return;
         }
         if(isOpen()){
-            closeLayout();
+            animControl.closeLayout();
+            //closeLayout();
             return;
         }
     }
@@ -327,9 +336,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         if(fabAddButton.getVisibility() == View.VISIBLE)
             fabAddButton.setVisibility(View.INVISIBLE);
 
-
         mSavedLayout.setLayoutParams(lp);
-
         mSavedLayout.clearAnimation();
         mSavedLayout.startAnimation(slideDown);
         slideDown.setFillAfter(true);
@@ -451,7 +458,8 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
             return;
         }
         if(isOpen()){
-            closeLayout();
+            animControl.closeLayout();
+            //closeLayout();
             return;
         }
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
@@ -515,7 +523,8 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         RealmX.save(object);
         this.listModel.clear();
         this.mAdapter.notifyDataSetChanged();
-        closeLayout();
+        animControl.closeLayout();
+        //closeLayout();
         AdsUtils.getInstance().increaseInteraction();
         Toasty.success(MainActivity.this,getString(R.string.success_add_palette),Toast.LENGTH_SHORT).show();
     }
