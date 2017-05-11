@@ -70,12 +70,8 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     private Toolbar toolbar = null;
     List<ColorSelect> cselect = null;
-
     private DrawerListAdapter drawerListAdapter = null;
-
     private int currentPosition = 0;
-    Animation slideUp, slideDown, fadeIn, fadeOut ;
-
     private String facebook = "https://www.facebook.com/cheetatech/?fref=ts&ref=br_tf";
     private String twitter = "https://twitter.com/antri_kod";
     private String instagram = "https://www.instagram.com/cheetatechofficial/";
@@ -113,7 +109,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     private SaveListAdapter mAdapter = null;
     private List<Model> listModel = new ArrayList<>();
-    private int width, height, imageHeight;
     private AnimControl animControl = null;
 
     @Override
@@ -122,51 +117,13 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-
         if(animControl == null){
             animControl = new AnimControl(getApplicationContext(), mSavedLayout, mImageLayout, upDownImage,fabAddButton);
         }
-
-
-        /*
-        slideUp = AnimationUtils.loadAnimation(this,R.anim.slide_up);
-        slideDown = AnimationUtils.loadAnimation(this,R.anim.slide_down);
-
-        if(fabAddButton.getVisibility() == View.VISIBLE)
-            fabAddButton.setVisibility(View.INVISIBLE);
-
-        ViewTreeObserver observer = mSavedLayout.getViewTreeObserver();
-        if(observer.isAlive()){
-            observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                @Override
-                public void onGlobalLayout() {
-                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-                        mSavedLayout.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                    } else {
-                        mSavedLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                    }
-                    width = mSavedLayout.getMeasuredWidth();
-                    height = mSavedLayout.getMeasuredHeight();
-
-                    if((imageHeight = mImageLayout.getMeasuredHeight()) == -1 )
-                        imageHeight = 100;
-
-                    Log.e("TAG","ImageLayout :  " + imageHeight);
-                    RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                            width, imageHeight);
-                    lp.setMargins(0, width, 0, 0);
-                    lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-                    mSavedLayout.setLayoutParams(lp);
-                }
-            });
-        }
-        */
-
         // Color init
         ColorArrayController controller = ColorArrayController.getInstance();
         controller.setResource(getResources());
         controller.init();
-
         // Board
         BoardEditor.getInstance().setContext(getApplicationContext());
         // nav bar
@@ -268,97 +225,12 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     @OnClick(R.id.image_layout) void updownImageClick(){
         if(!isOpen()) {
             animControl.openLayout();
-            //openLayout();
             return;
         }
         if(isOpen()){
             animControl.closeLayout();
-            //closeLayout();
             return;
         }
-    }
-
-    private void openLayout(){
-        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-            upDownImage.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.ic_action_down));
-        } else {
-            upDownImage.setBackground(ContextCompat.getDrawable(this, R.drawable.ic_action_down));
-        }
-
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                width, height);
-        lp.setMargins(0, width, 0, 0);
-        lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-        mSavedLayout.setLayoutParams(lp);
-
-        if(fabAddButton.getVisibility() == View.INVISIBLE)
-            fabAddButton.setVisibility(View.VISIBLE);
-
-        mSavedLayout.clearAnimation();
-        mSavedLayout.startAnimation(slideUp);;
-        slideUp.setFillAfter(true);
-        slideUp.setFillEnabled(true);
-        slideUp.setFillBefore(true);
-        slideUp.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                        width, height);
-                lp.setMargins(0, width, 0, 0);
-                lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-                mSavedLayout.setLayoutParams(lp);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-    }
-
-    private void closeLayout(){
-        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-            upDownImage.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.ic_action_up));
-        } else {
-            upDownImage.setBackground(ContextCompat.getDrawable(this, R.drawable.ic_action_up));
-        }
-
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                width, height);
-        lp.setMargins(0, width, 0, 0);
-        lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-
-        if(fabAddButton.getVisibility() == View.VISIBLE)
-            fabAddButton.setVisibility(View.INVISIBLE);
-
-        mSavedLayout.setLayoutParams(lp);
-        mSavedLayout.clearAnimation();
-        mSavedLayout.startAnimation(slideDown);
-        slideDown.setFillAfter(true);
-        slideDown.setFillEnabled(true);
-        slideDown.setFillBefore(true);
-        slideDown.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-            }
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                mSavedLayout.clearAnimation();
-                RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                        width, imageHeight);
-                lp.setMargins(0, width, 0, 0);
-                lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-                mSavedLayout.setLayoutParams(lp);
-            }
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-            }
-        });
     }
 
     public  void setUpViewPager(ViewPager viewPager)
@@ -524,7 +396,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         this.listModel.clear();
         this.mAdapter.notifyDataSetChanged();
         animControl.closeLayout();
-        //closeLayout();
         AdsUtils.getInstance().increaseInteraction();
         Toasty.success(MainActivity.this,getString(R.string.success_add_palette),Toast.LENGTH_SHORT).show();
     }

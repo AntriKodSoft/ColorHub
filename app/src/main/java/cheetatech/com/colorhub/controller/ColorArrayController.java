@@ -51,6 +51,7 @@ public class ColorArrayController {
         initHtml();
     }
 
+
     public void setResource(Resources resource)
     {
         this.resources = resource;

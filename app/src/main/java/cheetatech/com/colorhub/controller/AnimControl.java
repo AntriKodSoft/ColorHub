@@ -30,10 +30,6 @@ public class AnimControl {
 
     private Animation slideUp, slideDown;
 
-    public AnimControl(){
-
-    }
-
     public AnimControl(Context context,RelativeLayout savedLayout, RelativeLayout imageLayout, ImageView updownImage,FloatingActionButton fab){
         this.context = context;
         this.savedLayout = savedLayout;
