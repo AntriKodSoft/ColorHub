@@ -62,6 +62,10 @@
         <activity
             android:name=".paletteitem.ColorActivity"
             android:label="@string/title_activity_color"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MainPage"
+            android:label="@string/title_activity_main_page"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

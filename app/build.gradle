@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
+apply plugin: 'kotlin-android'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -29,6 +30,9 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 
+    //KotterKnife
+    //compile 'com.jakewharton:kotterknife:0.1.0-SNAPSHOT'
+
     compile 'com.getbase:floatingactionbutton:1.10.1'
     compile 'com.github.GrenderG:Toasty:1.1.4'
     compile 'com.github.hotchemi:android-rate:1.0.1'
@@ -37,6 +41,12 @@ dependencies {
     compile 'com.github.hotchemi:android-rate:1.0.1'
     compile 'com.google.firebase:firebase-ads:9.4.0'
     compile 'com.google.android.gms:play-services-appindexing:9.4.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    //compile 'com.jakewharton:kotterknife:0.1.0-SNAPSHOT'
+    //implementation 'com.android.support:support-v4:25.4.0'
 }
 
 

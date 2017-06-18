@@ -929,5 +929,6 @@
     <string name="success_edit_name">Successfully Edited Palette Name</string>
     <string name="exit_app">Exit Application</string>
     <string name="exit_app_ask">Exit ColorHub?</string>
+    <string name="title_activity_main_page">MainPage</string>
 
 </resources>
