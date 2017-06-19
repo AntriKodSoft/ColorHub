@@ -22,6 +22,8 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,9 +58,10 @@ import layout.HtmlColorFragment;
 import layout.MainFragment;
 import layout.MaterialColorFragment;
 import layout.MetroColorFragment;
+import layout.RootFragment;
 import layout.SocialColorFragment;
 
-public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener, ColorPicker1.OnColorListener , SaveDialog.OnSaveListener{
+public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener, ColorPicker1.OnColorListener , SaveDialog.OnSaveListener, RootFragment.OnFragmentInteractionListener{
 
     private Toolbar toolbar = null;
     List<ColorSelect> cselect = null;
@@ -228,7 +231,8 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     public  void setUpViewPager(ViewPager viewPager)
     {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(MainFragment.Companion.newInstance(this),"FlatXY");
+        adapter.addFragment(RootFragment.Companion.newInstance(),"Root");
+        //adapter.addFragment(MainFragment.Companion.newInstance(this),"FlatXY");
         adapter.addFragment(FlatColorFragment.newInstance(this),"Flat");
         adapter.addFragment(MaterialColorFragment.newInstance(this),"Material");
         adapter.addFragment(SocialColorFragment.newInstance(this),"Social");
@@ -317,36 +321,44 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     @Override
     public void onBackPressed() {
-        if(mDrawer.isDrawerOpen(relativeDrawer)){
-            Log.e("TAG", "onBackPressed: Opennnn " );
-            mDrawer.closeDrawer(relativeDrawer);
-            return;
-        }
-        if(isOpen()){
-            animControl.closeLayout();
-            //closeLayout();
-            return;
-        }
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
 
-        // set title
-        alertDialogBuilder.setTitle(getString(R.string.exit_app));
-        alertDialogBuilder
-                .setMessage(getString(R.string.exit_app_ask))
-                .setCancelable(false)
-                .setPositiveButton(getString(R.string.answer_yes),new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,int id) {
-                        dialog.dismiss();
-                        finish();
-                    }
-                })
-                .setNegativeButton(getString(R.string.answer_no),new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
+        //
+        if(viewPager.getCurrentItem() == 0 && getSupportFragmentManager().getBackStackEntryCount() > 0 ){
+            getSupportFragmentManager().popBackStack();
+        }else {
+
+
+            if (mDrawer.isDrawerOpen(relativeDrawer)) {
+                Log.e("TAG", "onBackPressed: Opennnn ");
+                mDrawer.closeDrawer(relativeDrawer);
+                return;
+            }
+            if (isOpen()) {
+                animControl.closeLayout();
+                //closeLayout();
+                return;
+            }
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+
+            // set title
+            alertDialogBuilder.setTitle(getString(R.string.exit_app));
+            alertDialogBuilder
+                    .setMessage(getString(R.string.exit_app_ask))
+                    .setCancelable(false)
+                    .setPositiveButton(getString(R.string.answer_yes), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                            finish();
+                        }
+                    })
+                    .setNegativeButton(getString(R.string.answer_no), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+        }
     }
 
     @Override
@@ -393,4 +405,8 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         Toasty.success(MainActivity.this,getString(R.string.success_add_palette),Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void onFragmentInteraction(@NotNull Uri uri) {
+
+    }
 }

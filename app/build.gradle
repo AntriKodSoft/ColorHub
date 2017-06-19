@@ -47,6 +47,7 @@ dependencies {
 
     //compile 'com.jakewharton:kotterknife:0.1.0-SNAPSHOT'
     //implementation 'com.android.support:support-v4:25.4.0'
+    //implementation 'com.android.support:support-v4:25.4.0'
 }
 
 
