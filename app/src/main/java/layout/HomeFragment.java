@@ -38,11 +38,6 @@ public class HomeFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
-
     }
-
-
-
-
-
+    
 }

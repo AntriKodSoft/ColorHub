@@ -50,23 +50,72 @@ class MainFragment : Fragment(){
                 )
 
         var manager = GridLayoutManager(activity.applicationContext, 2)
-        mRecyclerView.layoutManager = manager
-        mRecyclerView.setHasFixedSize(true)
+        with(mRecyclerView){
+            layoutManager = manager
+            setHasFixedSize(true)
+        }
 
         var adapter = MainPageAdapter(mlist, object: OnItemSelect{
             override fun onItemSelected(position: Int) {
                 println("PositionXXXX: " + position)
 
-                var fragment = FlatColorFragment.newInstance(object :ColorPicker1.OnColorListener{
-                    override fun onAddColor(color: String?) {
+                var fragment : Fragment? = null;
+                fragment = when(position){
+                    0 ->  FlatColorFragment.newInstance(object :ColorPicker1.OnColorListener{
+                        override fun onAddColor(color: String?) {
 
+                        }
+                    })
+
+                    1 -> MaterialRootFragment.newInstance();
+//                    1 -> MaterialColorFragment.newInstance {  object : ColorPicker1.OnColorListener{
+//                        override fun onAddColor(color: String?) {
+//                            println("Material Fragment")
+//                        }
+//                    }}
+
+                    2 -> SocialColorFragment.newInstance {  object : ColorPicker1.OnColorListener{
+                        override fun onAddColor(color: String?) {
+                            println("SocialColorFragment Fragment")
+                        }
+                    }}
+
+                    3 -> MetroColorFragment.newInstance {  object : ColorPicker1.OnColorListener{
+                        override fun onAddColor(color: String?) {
+                            println("MetroColorFragment Fragment")
+                        }
+                    }}
+
+                    4 -> HtmlColorFragment.newInstance {  object : ColorPicker1.OnColorListener{
+                        override fun onAddColor(color: String?) {
+                            println("HtmlColorFragment Fragment")
+                        }
+                    }}
+
+                    5 -> ColorPicker1.newInstance {  object : ColorPicker1.OnColorListener{
+                        override fun onAddColor(color: String?) {
+                            println("ColorPicker1 Fragment")
+                        }
+                    }}
+
+                    6 -> ColorPicker3.newInstance {  object : ColorPicker1.OnColorListener{
+                        override fun onAddColor(color: String?) {
+                            println("ColorPicker3 Fragment")
+                        }
+                    }}
+
+                    else -> {
+                        null
                     }
-                })
+                }
+
                 val transaction = fragmentManager.beginTransaction()
-                transaction.add(R.id.root_frame, fragment)
-                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                transaction.addToBackStack(null)
-                transaction.commit()
+                with(transaction){
+                    add(R.id.root_frame, fragment)
+                    setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    addToBackStack(null)
+                    commit()
+                }
 
             }
         } );

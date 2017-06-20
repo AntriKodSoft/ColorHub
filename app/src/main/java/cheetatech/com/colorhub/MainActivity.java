@@ -57,11 +57,12 @@ import layout.FlatColorFragment;
 import layout.HtmlColorFragment;
 import layout.MainFragment;
 import layout.MaterialColorFragment;
+import layout.MaterialRootFragment;
 import layout.MetroColorFragment;
 import layout.RootFragment;
 import layout.SocialColorFragment;
 
-public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener, ColorPicker1.OnColorListener , SaveDialog.OnSaveListener, RootFragment.OnFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener, ColorPicker1.OnColorListener , SaveDialog.OnSaveListener, RootFragment.OnFragmentInteractionListener, MaterialRootFragment.OnFragmentInteractionListener{
 
     private Toolbar toolbar = null;
     List<ColorSelect> cselect = null;
