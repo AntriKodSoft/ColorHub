@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import cheetatech.com.colorhub.R
@@ -56,20 +57,16 @@ class MainPageAdapter : RecyclerView.Adapter<MainPageAdapter.ViewHolder>{
         holder?.mColorText?.setText(model?.name)
         holder?.mColorText?.setTextColor(Color.parseColor(model?.colorCode))
 
-
         var gd = holder?.mBorderLayout?.background?.current as GradientDrawable
         gd.setStroke(Util.dpToPx(2), Color.parseColor(model?.colorCode))
 
         holder?.mMainColorLayout.setBackgroundColor(Color.parseColor(model?.colorCode))
 
-        var layerDrawable = ContextCompat.getDrawable(mContext, R.drawable.ic_triangle).current as LayerDrawable
-        var rotateDrawable = layerDrawable.findDrawableByLayerId(R.id.triangle_shape).current as RotateDrawable
-        var gradientDrawable =  rotateDrawable.drawable.current as GradientDrawable
+        var gradientDrawable = ((holder?.mTriangleLayout.background as LayerDrawable).findDrawableByLayerId(R.id.triangle_shape) as RotateDrawable).drawable as GradientDrawable
         with(gradientDrawable){
-            setColor(Color.parseColor(mDataset?.get(position)?.colorCode))
+            setColor(Color.parseColor(model?.colorCode))
             setStroke(Util.dpToPx(2),Color.parseColor(model?.colorCode))
         }
-
         holder?.mRelativeLayout?.setOnClickListener { v ->
             this.itemSelectListener?.onItemSelected(position)
         }
@@ -84,6 +81,6 @@ class MainPageAdapter : RecyclerView.Adapter<MainPageAdapter.ViewHolder>{
         var mRelativeLayout = view.findViewById(R.id.relative_layout_main_page) as RelativeLayout
         var mBorderLayout = view.findViewById(R.id.border_relative_layout) as RelativeLayout
         var mMainColorLayout = view.findViewById(R.id.relative_layout_main_page) as RelativeLayout
-        //var mTriangleLayout = view.findViewById(R.id.triangle_image_view) as ImageView
+        var mTriangleLayout = view.findViewById(R.id.triangle_image_view) as ImageView
     }
 }

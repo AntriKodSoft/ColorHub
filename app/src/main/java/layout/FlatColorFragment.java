@@ -14,7 +14,7 @@ import cheetatech.com.colorhub.R;
 import cheetatech.com.colorhub.adapters.GridViewArrayAdapter;
 import cheetatech.com.colorhub.controller.ColorArrayController;
 
-public class FlatColorFragment extends Fragment implements AdapterView.OnItemLongClickListener  {
+public class FlatColorFragment extends Fragment  {
 
     private ColorPicker1.OnColorListener mListener = null;
     public FlatColorFragment() {
@@ -53,8 +53,4 @@ public class FlatColorFragment extends Fragment implements AdapterView.OnItemLon
         gridView.setAdapter(adapter);
     }
 
-    @Override
-    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-        return false;
-    }
 }

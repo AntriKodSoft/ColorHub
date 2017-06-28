@@ -30,16 +30,13 @@ class MainFragment : Fragment(){
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        var v = inflater!!.inflate(R.layout.fragment_main, container, false)
-        ButterKnife.bind(this,v)
-        return v
+        return inflater!!.inflate(R.layout.fragment_main, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         var mRecyclerView = view?.findViewById(R.id.main_page_recycler_view) as RecyclerView
-
 
         var mlist : MutableList<MainPageModel> = mutableListOf(MainPageModel("Flat","#2980B9"),
                 MainPageModel("Material","#F44336"),
@@ -58,8 +55,6 @@ class MainFragment : Fragment(){
 
         var adapter = MainPageAdapter(context, mlist, object: OnItemSelect{
             override fun onItemSelected(position: Int) {
-                println("PositionXXXX: " + position)
-                println("ColorCode is " + mlist[position].colorCode)
                 var fragment : Fragment? = null;
                 fragment = when(position){
                     0 ->  FlatColorFragment.newInstance(object :ColorPicker1.OnColorListener{
@@ -69,11 +64,6 @@ class MainFragment : Fragment(){
                     })
 
                     1 -> MaterialRootFragment.newInstance();
-//                    1 -> MaterialColorFragment.newInstance {  object : ColorPicker1.OnColorListener{
-//                        override fun onAddColor(color: String?) {
-//                            println("Material Fragment")
-//                        }
-//                    }}
 
                     2 -> SocialColorFragment.newInstance {  object : ColorPicker1.OnColorListener{
                         override fun onAddColor(color: String?) {
