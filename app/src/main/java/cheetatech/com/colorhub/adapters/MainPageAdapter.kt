@@ -1,14 +1,19 @@
 package cheetatech.com.colorhub.adapters
 
+import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.LayerDrawable
+import android.graphics.drawable.RotateDrawable
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import cheetatech.com.colorhub.R
+import cheetatech.com.colorhub.Util
 import cheetatech.com.colorhub.listeners.OnItemSelect
 import cheetatech.com.colorhub.models.MainPageModel
 
@@ -20,8 +25,10 @@ class MainPageAdapter : RecyclerView.Adapter<MainPageAdapter.ViewHolder>{
 
     private var mDataset: MutableList<MainPageModel>? = null
     private var itemSelectListener : OnItemSelect? = null
+    private var mContext: Context? = null;
 
-    constructor(dataset: MutableList<MainPageModel>?, itemSelectedListener : OnItemSelect? ){
+    constructor(context: Context, dataset: MutableList<MainPageModel>?, itemSelectedListener : OnItemSelect? ){
+        this.mContext = context;
         this.mDataset = dataset
         this.itemSelectListener = itemSelectedListener
     }
@@ -47,11 +54,25 @@ class MainPageAdapter : RecyclerView.Adapter<MainPageAdapter.ViewHolder>{
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         var model = this.mDataset?.get(position)
         holder?.mColorText?.setText(model?.name)
+        holder?.mColorText?.setTextColor(Color.parseColor(model?.colorCode))
+
+
+        var gd = holder?.mBorderLayout?.background?.current as GradientDrawable
+        gd.setStroke(Util.dpToPx(2), Color.parseColor(model?.colorCode))
+
+        holder?.mMainColorLayout.setBackgroundColor(Color.parseColor(model?.colorCode))
+
+        var layerDrawable = ContextCompat.getDrawable(mContext, R.drawable.ic_triangle).current as LayerDrawable
+        var rotateDrawable = layerDrawable.findDrawableByLayerId(R.id.triangle_shape).current as RotateDrawable
+        var gradientDrawable =  rotateDrawable.drawable.current as GradientDrawable
+        with(gradientDrawable){
+            setColor(Color.parseColor(mDataset?.get(position)?.colorCode))
+            setStroke(Util.dpToPx(2),Color.parseColor(model?.colorCode))
+        }
 
         holder?.mRelativeLayout?.setOnClickListener { v ->
             this.itemSelectListener?.onItemSelected(position)
         }
-
     }
 
     override fun getItemCount(): Int {
@@ -61,5 +82,8 @@ class MainPageAdapter : RecyclerView.Adapter<MainPageAdapter.ViewHolder>{
     class ViewHolder(view: View): RecyclerView.ViewHolder(view){
         var mColorText = view.findViewById(R.id.text_view_page) as TextView
         var mRelativeLayout = view.findViewById(R.id.relative_layout_main_page) as RelativeLayout
+        var mBorderLayout = view.findViewById(R.id.border_relative_layout) as RelativeLayout
+        var mMainColorLayout = view.findViewById(R.id.relative_layout_main_page) as RelativeLayout
+        //var mTriangleLayout = view.findViewById(R.id.triangle_image_view) as ImageView
     }
 }

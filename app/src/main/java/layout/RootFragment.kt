@@ -30,6 +30,7 @@ class RootFragment : Fragment() {
             }
         }), "ROOT_TAG")
 
+
         transaction.commit()
         return v
     }

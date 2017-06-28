@@ -1,6 +1,7 @@
 package layout
 
 import android.content.Context
+import android.content.res.Resources
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
@@ -40,13 +41,13 @@ class MainFragment : Fragment(){
         var mRecyclerView = view?.findViewById(R.id.main_page_recycler_view) as RecyclerView
 
 
-        var mlist : MutableList<MainPageModel> = mutableListOf(MainPageModel("Flat"),
-                MainPageModel("Material"),
-                MainPageModel("Social"),
-                MainPageModel("Metro"),
-                MainPageModel("Html"),
-                MainPageModel("ColorPalette X"),
-                MainPageModel("ColorPalette Y")
+        var mlist : MutableList<MainPageModel> = mutableListOf(MainPageModel("Flat","#2980B9"),
+                MainPageModel("Material","#F44336"),
+                MainPageModel("Social","#3AAF85"),
+                MainPageModel("Metro","#FA6800"),
+                MainPageModel("Html","#FF1493"),
+                MainPageModel("ColorPalette X","#ADFF2F"),
+                MainPageModel("ColorPalette Y","#AA00FF")
                 )
 
         var manager = GridLayoutManager(activity.applicationContext, 2)
@@ -55,10 +56,10 @@ class MainFragment : Fragment(){
             setHasFixedSize(true)
         }
 
-        var adapter = MainPageAdapter(mlist, object: OnItemSelect{
+        var adapter = MainPageAdapter(context, mlist, object: OnItemSelect{
             override fun onItemSelected(position: Int) {
                 println("PositionXXXX: " + position)
-
+                println("ColorCode is " + mlist[position].colorCode)
                 var fragment : Fragment? = null;
                 fragment = when(position){
                     0 ->  FlatColorFragment.newInstance(object :ColorPicker1.OnColorListener{

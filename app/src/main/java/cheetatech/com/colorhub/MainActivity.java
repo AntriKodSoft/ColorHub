@@ -231,6 +231,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     public  void setUpViewPager(ViewPager viewPager)
     {
+
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(RootFragment.Companion.newInstance(),"Root");
         //adapter.addFragment(MainFragment.Companion.newInstance(this),"FlatXY");
