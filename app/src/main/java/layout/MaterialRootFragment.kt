@@ -65,6 +65,9 @@ class MaterialRootFragment : Fragment() {
         }
 
         var adapter = MaterialRootAdapter(materialList, object : OnItemSelect{
+            override fun onAddColor(color: String) {
+            }
+
             override fun onItemSelected(position: Int) {
                 println("OnItem SelectedXYXY");
             }

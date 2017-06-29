@@ -27,10 +27,8 @@ class ColorKotlinAdapter : RecyclerView.Adapter<ColorKotlinAdapter.ViewHolder>{
 
     private var mDataset: MutableList<ColorData>? = null
     private var itemSelectListener : OnItemSelect? = null
-    private var mContext: Context? = null
 
-    constructor(context: Context, dataset: MutableList<ColorData>?, itemSelectedListener : OnItemSelect? ){
-        this.mContext = context;
+    constructor(dataset: MutableList<ColorData>?, itemSelectedListener : OnItemSelect? ){
         this.mDataset = dataset
         this.itemSelectListener = itemSelectedListener
     }
@@ -47,94 +45,50 @@ class ColorKotlinAdapter : RecyclerView.Adapter<ColorKotlinAdapter.ViewHolder>{
     }
 
     fun remove(item: ColorData) {
-        val position = mDataset!!?.indexOf(item)
+        val position = mDataset!!.indexOf(item)
         mDataset?.removeAt(position)
         notifyItemRemoved(position)
     }
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
 
+        var model = mDataset?.get(position)
+
         holder?.mButtonCopy?.setOnClickListener(View.OnClickListener {
-            BoardEditor.getInstance().copyToClipBoard(mDataset?.get(position)?.code)
-            Toast.makeText(BoardEditor.getInstance().context, "Color " + mDataset?.get(position)?.code +
+            BoardEditor.getInstance().copyToClipBoard(model?.code)
+            Toast.makeText(BoardEditor.getInstance().context, "Color " + model?.code +
                     " copied to clipboard...", Toast.LENGTH_SHORT).show()
         })
 
-        holder?.mLayout?.setBackgroundColor(Color.parseColor(mDataset?.get(position)?.code))
+        holder?.mLayout?.setBackgroundColor(Color.parseColor(model?.code))
+
         var gd = holder?.mLayout?.background?.current as GradientDrawable
-        gd?.setColor(Color.parseColor(mDataset?.get(position)?.code))
+        gd.setColor(Color.parseColor(model?.code))
 
 
-        var gd2 = holder?.mLayout?.background?.current as GradientDrawable
-        gd2?.setColor(Color.parseColor(mDataset?.get(position)?.code))
+        var gd2 = holder.mLayout.background?.current as GradientDrawable
+        gd2.setColor(Color.parseColor(model?.code))
 
-        var gd3 = holder?.mBorderLayout?.background?.current as GradientDrawable
-        gd3?.setColor(Color.parseColor(mDataset?.get(position)?.code))
+        var gd3 = holder.mBorderLayout.background?.current as GradientDrawable
+        gd3.setColor(Color.parseColor(model?.code))
 
 
-        holder?.mColorCode.setText(mDataset?.get(position)?.code)
+        holder.mColorCode.setText(model?.code)
+        holder.mColorName.setText(model?.name)
 
-//        val holder: ViewHolder
-//        var view: View? = convertView
-//        if (view != null) {
-//            holder = view.tag as ViewHolder
-//        } else {
-//            view = inflater.inflate(this.resource, parent, false)
-//            holder = ViewHolder(view)
-//            view!!.tag = holder
-//        }
-//        holder.btnCopy.setOnClickListener(View.OnClickListener {
-//            BoardEditor.getInstance().copyToClipBoard(colorInfos.get(position).getColorCode())
-//            Toast.makeText(BoardEditor.getInstance().context, "Color " + colorInfos.get(position).getColorCode() +
-//                    " copied to clipboard...", Toast.LENGTH_SHORT).show()
-//        })
-//
-////        if (holder.mLayout != null)
-////            holder.mLayout.setBackgroundColor(Color.parseColor(colorInfos.get(position).getColorCode()));
-//
-//        if (holder.mLayout != null) {
-//            val gd = holder.mLayout.getBackground().getCurrent()
-//            gd?.setColor(Color.parseColor(colorInfos.get(position).getColorCode()))
-//        }
-//
-//
-//        if (holder.mBorderLayout != null) {
-//            val gd = holder.mBorderLayout.getBackground().getCurrent()
-//            gd?.setStroke(Util.dpToPx(2), Color.parseColor(colorInfos.get(position).getColorCode()))
-//        }
-//
-//        holder.textColorCode.setText(colorInfos.get(position).getColorCode())
-//
+        holder.mColorAddButton.setOnClickListener({
+            var dataSet = mDataset?.get(position)
+            itemSelectListener?.onAddColor(dataSet!!.code)
+        })
 
-        // ????? 
-//        var colorName = ""
-//        colorName = if (position == 0) ColorArrayController.getInstance().getHeaderColorName(HeaderIndex) else colorInfos.get(position).getColorName()
-//        holder.textColorName.setText(colorName)
-//
-//        holder.mColorAddButton.setOnClickListener(View.OnClickListener {
-//            val colorInfo = colorInfos.get(position)
-//            if (mListener != null) {
-//                mListener.onAddColor(colorInfo.getColorCode())
-//            }
-//        })
+        var gd4 = holder?.mBorderLayout.background?.current as GradientDrawable
+        gd4.setStroke(Util.dpToPx(2), Color.parseColor(model?.code))
 
-//        var model = this.mDataset?.get(position)
-//        holder?.mColorText?.setText(model?.name)
-//        holder?.mColorText?.setTextColor(Color.parseColor(model?.colorCode))
-//
-//        var gd = holder?.mBorderLayout?.background?.current as GradientDrawable
-//        gd.setStroke(Util.dpToPx(2), Color.parseColor(model?.colorCode))
-//
-//        holder?.mMainColorLayout.setBackgroundColor(Color.parseColor(model?.colorCode))
-//
-//        var gradientDrawable = ((holder?.mTriangleLayout.background as LayerDrawable).findDrawableByLayerId(R.id.triangle_shape) as RotateDrawable).drawable as GradientDrawable
-//        with(gradientDrawable){
-//            setColor(Color.parseColor(model?.colorCode))
-//            setStroke(Util.dpToPx(2), Color.parseColor(model?.colorCode))
-//        }
-//        holder?.mRelativeLayout?.setOnClickListener { v ->
-//            this.itemSelectListener?.onItemSelected(position)
-//        }
+        var gradientDrawable = ((holder?.mTriangleLayout.background as LayerDrawable).findDrawableByLayerId(R.id.triangle_shape) as RotateDrawable).drawable as GradientDrawable
+        with(gradientDrawable){
+            setColor(Color.parseColor(model?.code))
+            setStroke(Util.dpToPx(2), Color.parseColor(model?.code))
+        }
     }
 
     override fun getItemCount(): Int {
@@ -148,12 +102,6 @@ class ColorKotlinAdapter : RecyclerView.Adapter<ColorKotlinAdapter.ViewHolder>{
         var mLayout = view.findViewById(R.id.rootColorLayout) as RelativeLayout
         var mBorderLayout = view.findViewById(R.id.borderLayout) as RelativeLayout
         var mColorAddButton = view.findViewById(R.id.add_color_image_button) as ImageView
-
-
-//        var mColorText = view.findViewById(R.id.text_view_page) as TextView
-//        var mRelativeLayout = view.findViewById(R.id.relative_layout_main_page) as RelativeLayout
-//        var mBorderLayout = view.findViewById(R.id.border_relative_layout) as RelativeLayout
-//        var mMainColorLayout = view.findViewById(R.id.relative_layout_main_page) as RelativeLayout
-//        var mTriangleLayout = view.findViewById(R.id.triangle_image_view) as ImageView
+        var mTriangleLayout = view.findViewById(R.id.triangle_item_image_view) as ImageView
     }
 }

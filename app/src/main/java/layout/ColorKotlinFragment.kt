@@ -11,12 +11,14 @@ import android.view.View
 import android.view.ViewGroup
 
 import cheetatech.com.colorhub.R
+import cheetatech.com.colorhub.adapters.ColorKotlinAdapter
 import cheetatech.com.colorhub.defines.ColorData
+import cheetatech.com.colorhub.listeners.OnItemSelect
 import cheetatech.com.colorhub.models.MainPageModel
 
 class ColorKotlinFragment : Fragment() {
 
-    private var mColorListener: ColorPicker1.OnColorListener? = null
+    private var mColorListener: OnItemSelect? = null
     private var mListener: OnFragmentInteractionListener? = null
     private var mList: MutableList<ColorData>? = null
 
@@ -32,20 +34,23 @@ class ColorKotlinFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         var mRecyclerView = view?.findViewById(R.id.flat_color_recycler_view) as RecyclerView
-        var mlist : MutableList<MainPageModel> = mutableListOf(MainPageModel("Flat","#2980B9"),
-                MainPageModel("Material","#F44336"),
-                MainPageModel("Social","#3AAF85"),
-                MainPageModel("Metro","#FA6800"),
-                MainPageModel("Html","#FF1493"),
-                MainPageModel("ColorPalette X","#ADFF2F"),
-                MainPageModel("ColorPalette Y","#AA00FF")
-        )
 
         var manager = GridLayoutManager(activity.applicationContext, 2)
         with(mRecyclerView){
             layoutManager = manager
             setHasFixedSize(true)
         }
+        this.mList = mutableListOf(ColorData(name = "X1", code = "#FF00FF"), ColorData(name = "X1", code = "#FFF0FF"),ColorData(name = "X1", code = "#FF000F"))
+        var adapter = ColorKotlinAdapter(this.mList, object : OnItemSelect{
+            override fun onAddColor(color: String) {
+                println("ColorKotlinAdapter onAddColor")
+            }
+
+            override fun onItemSelected(position: Int) {
+                println("ColorKotlinAdapter onItemSelected")
+            }
+
+        })
     }
 
     fun onButtonPressed(uri: Uri) {
@@ -73,12 +78,12 @@ class ColorKotlinFragment : Fragment() {
 
     companion object {
 
-        fun newInstance(mutableList: MutableList<ColorData>, listener: ColorPicker1.OnColorListener ): ColorKotlinFragment {
+        fun newInstance(/*mutableList: MutableList<ColorData> ,*/listener: OnItemSelect ): ColorKotlinFragment {
             val fragment = ColorKotlinFragment()
             val args = Bundle()
             fragment.arguments = args
             fragment.setListener(listener)
-            fragment.setList(mutableList)
+            //fragment.setList(mutableList)
             return fragment
         }
     }
@@ -87,5 +92,5 @@ class ColorKotlinFragment : Fragment() {
         this.mList = mutableList
     }
 
-    private fun  setListener(listener: ColorPicker1.OnColorListener) {this.mColorListener = listener}
+    private fun  setListener(listener: OnItemSelect) {this.mColorListener = listener}
 }

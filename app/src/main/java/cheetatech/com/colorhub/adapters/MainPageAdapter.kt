@@ -25,10 +25,10 @@ import cheetatech.com.colorhub.models.MainPageModel
 class MainPageAdapter : RecyclerView.Adapter<MainPageAdapter.ViewHolder>{
 
     private var mDataset: MutableList<MainPageModel>? = null
-    private var itemSelectListener : OnItemSelect? = null
+    private var itemSelectListener : OnItemSelect
     private var mContext: Context? = null;
 
-    constructor(context: Context, dataset: MutableList<MainPageModel>?, itemSelectedListener : OnItemSelect? ){
+    constructor(context: Context, dataset: MutableList<MainPageModel>?, itemSelectedListener : OnItemSelect ){
         this.mContext = context;
         this.mDataset = dataset
         this.itemSelectListener = itemSelectedListener

@@ -5,4 +5,5 @@ package cheetatech.com.colorhub.listeners
  */
 interface OnItemSelect {
     fun onItemSelected(position: Int)
+    fun onAddColor(color: String)
 }

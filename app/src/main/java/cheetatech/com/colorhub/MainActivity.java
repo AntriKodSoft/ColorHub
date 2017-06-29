@@ -51,6 +51,7 @@ import es.dmoral.toasty.Toasty;
 import hotchemi.android.rate.AppRate;
 import hotchemi.android.rate.OnClickButtonListener;
 import io.realm.RealmList;
+import layout.ColorKotlinFragment;
 import layout.ColorPicker1;
 import layout.ColorPicker3;
 import layout.FlatColorFragment;
@@ -62,7 +63,7 @@ import layout.MetroColorFragment;
 import layout.RootFragment;
 import layout.SocialColorFragment;
 
-public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener, ColorPicker1.OnColorListener , SaveDialog.OnSaveListener, RootFragment.OnFragmentInteractionListener, MaterialRootFragment.OnFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener, ColorPicker1.OnColorListener , SaveDialog.OnSaveListener, RootFragment.OnFragmentInteractionListener, MaterialRootFragment.OnFragmentInteractionListener, ColorKotlinFragment.OnFragmentInteractionListener{
 
     private Toolbar toolbar = null;
     List<ColorSelect> cselect = null;

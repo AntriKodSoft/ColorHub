@@ -13,6 +13,8 @@ import android.view.ViewGroup
 import butterknife.ButterKnife
 import cheetatech.com.colorhub.R
 import cheetatech.com.colorhub.adapters.MainPageAdapter
+import cheetatech.com.colorhub.controller.ColorLists
+import cheetatech.com.colorhub.defines.ColorData
 import cheetatech.com.colorhub.listeners.OnItemSelect
 import cheetatech.com.colorhub.models.MainPageModel
 
@@ -36,6 +38,17 @@ class MainFragment : Fragment(){
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        if(activity.resources == null)
+            print("NULL")
+        else{
+            print("Not NULL")
+        }
+
+        var lists = ColorLists(activity.resources)
+
+        //var mColorList : MutableList<ColorData> = mutableListOf()
+
+
         var mRecyclerView = view?.findViewById(R.id.main_page_recycler_view) as RecyclerView
 
         var mlist : MutableList<MainPageModel> = mutableListOf(MainPageModel("Flat","#2980B9"),
@@ -54,6 +67,10 @@ class MainFragment : Fragment(){
         }
 
         var adapter = MainPageAdapter(context, mlist, object: OnItemSelect{
+            override fun onAddColor(color: String) {
+
+            }
+
             override fun onItemSelected(position: Int) {
                 var fragment : Fragment? = null;
                 fragment = when(position){
@@ -65,11 +82,21 @@ class MainFragment : Fragment(){
 
                     1 -> MaterialRootFragment.newInstance();
 
-                    2 -> SocialColorFragment.newInstance {  object : ColorPicker1.OnColorListener{
-                        override fun onAddColor(color: String?) {
-                            println("SocialColorFragment Fragment")
+                    2 -> ColorKotlinFragment.newInstance(/*lists.flatList!!*/ object : OnItemSelect{
+                        override fun onItemSelected(position: Int) {
+
                         }
-                    }}
+
+                        override fun onAddColor(color: String) {
+
+                        }
+
+                    })
+//                    2 -> SocialColorFragment.newInstance {  object : ColorPicker1.OnColorListener{
+//                        override fun onAddColor(color: String?) {
+//                            println("SocialColorFragment Fragment")
+//                        }
+//                    }}
 
                     3 -> MetroColorFragment.newInstance {  object : ColorPicker1.OnColorListener{
                         override fun onAddColor(color: String?) {
