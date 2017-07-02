@@ -38,17 +38,7 @@ class MainFragment : Fragment(){
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        if(activity.resources == null)
-            print("NULL")
-        else{
-            print("Not NULL")
-        }
-
         var lists = ColorLists(activity.resources)
-
-        //var mColorList : MutableList<ColorData> = mutableListOf()
-
-
         var mRecyclerView = view?.findViewById(R.id.main_page_recycler_view) as RecyclerView
 
         var mlist : MutableList<MainPageModel> = mutableListOf(MainPageModel("Flat","#2980B9"),
@@ -62,7 +52,7 @@ class MainFragment : Fragment(){
 
         var manager = GridLayoutManager(activity.applicationContext, 2)
         with(mRecyclerView){
-            layoutManager = manager
+            layoutManager = manager as RecyclerView.LayoutManager?
             setHasFixedSize(true)
         }
 
@@ -74,15 +64,7 @@ class MainFragment : Fragment(){
             override fun onItemSelected(position: Int) {
                 var fragment : Fragment? = null;
                 fragment = when(position){
-                    0 ->  FlatColorFragment.newInstance(object :ColorPicker1.OnColorListener{
-                        override fun onAddColor(color: String?) {
-
-                        }
-                    })
-
-                    1 -> MaterialRootFragment.newInstance();
-
-                    2 -> ColorKotlinFragment.newInstance(/*lists.flatList!!*/ object : OnItemSelect{
+                    0 ->  ColorKotlinFragment.newInstance(lists.flatList!!, object : OnItemSelect{
                         override fun onItemSelected(position: Int) {
 
                         }
@@ -92,23 +74,41 @@ class MainFragment : Fragment(){
                         }
 
                     })
-//                    2 -> SocialColorFragment.newInstance {  object : ColorPicker1.OnColorListener{
-//                        override fun onAddColor(color: String?) {
-//                            println("SocialColorFragment Fragment")
-//                        }
-//                    }}
 
-                    3 -> MetroColorFragment.newInstance {  object : ColorPicker1.OnColorListener{
-                        override fun onAddColor(color: String?) {
-                            println("MetroColorFragment Fragment")
-                        }
-                    }}
+                    1 -> MaterialRootFragment.newInstance();
 
-                    4 -> HtmlColorFragment.newInstance {  object : ColorPicker1.OnColorListener{
-                        override fun onAddColor(color: String?) {
-                            println("HtmlColorFragment Fragment")
+                    2 -> ColorKotlinFragment.newInstance(lists.socialList!!, object : OnItemSelect{
+                        override fun onItemSelected(position: Int) {
+
                         }
-                    }}
+
+                        override fun onAddColor(color: String) {
+
+                        }
+
+                    })
+
+                    3 -> ColorKotlinFragment.newInstance(lists.metroList!!, object : OnItemSelect{
+                        override fun onItemSelected(position: Int) {
+
+                        }
+
+                        override fun onAddColor(color: String) {
+
+                        }
+
+                    })
+
+                    4 -> ColorKotlinFragment.newInstance(lists.htmlList!!, object : OnItemSelect{
+                        override fun onItemSelected(position: Int) {
+
+                        }
+
+                        override fun onAddColor(color: String) {
+
+                        }
+
+                    })
 
                     5 -> ColorPicker1.newInstance {  object : ColorPicker1.OnColorListener{
                         override fun onAddColor(color: String?) {

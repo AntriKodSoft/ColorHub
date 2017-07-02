@@ -24,11 +24,10 @@ class ColorLists (res: Resources){
         this.htmlList = generateList(R.array.HtmlColorCode, R.array.HtmlColorName)
     }
     fun generateList(arrCode: Int, arrName: Int) : MutableList<ColorData>? {
-        var list: MutableList<ColorData>? = null
+        var list: MutableList<ColorData>? = mutableListOf()
         var codeList = resources?.getStringArray(arrCode)?.toMutableList()
         var nameList = resources?.getStringArray(arrName)?.toMutableList()
-        var s = codeList?.size
-        for (i in 0..codeList!!.size)
+        for (i in 0..codeList!!.size - 1)
             list?.add(ColorData(nameList!![i], codeList!![i].toUpperCase()))
         return list
     }

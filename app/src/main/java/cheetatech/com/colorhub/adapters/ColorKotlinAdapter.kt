@@ -2,6 +2,7 @@ package cheetatech.com.colorhub.adapters
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
 import android.graphics.drawable.RotateDrawable
@@ -25,10 +26,10 @@ import org.w3c.dom.Text
  */
 class ColorKotlinAdapter : RecyclerView.Adapter<ColorKotlinAdapter.ViewHolder>{
 
-    private var mDataset: MutableList<ColorData>? = null
+    private var mDataset: MutableList<ColorData> = mutableListOf()
     private var itemSelectListener : OnItemSelect? = null
 
-    constructor(dataset: MutableList<ColorData>?, itemSelectedListener : OnItemSelect? ){
+    constructor(dataset: MutableList<ColorData>, itemSelectedListener : OnItemSelect? ){
         this.mDataset = dataset
         this.itemSelectListener = itemSelectedListener
     }
@@ -62,26 +63,15 @@ class ColorKotlinAdapter : RecyclerView.Adapter<ColorKotlinAdapter.ViewHolder>{
 
         holder?.mLayout?.setBackgroundColor(Color.parseColor(model?.code))
 
-        var gd = holder?.mLayout?.background?.current as GradientDrawable
-        gd.setColor(Color.parseColor(model?.code))
+        holder?.mColorCode?.setText(model?.code)
+        holder?.mColorName?.setText(model?.name)
 
-
-        var gd2 = holder.mLayout.background?.current as GradientDrawable
-        gd2.setColor(Color.parseColor(model?.code))
-
-        var gd3 = holder.mBorderLayout.background?.current as GradientDrawable
-        gd3.setColor(Color.parseColor(model?.code))
-
-
-        holder.mColorCode.setText(model?.code)
-        holder.mColorName.setText(model?.name)
-
-        holder.mColorAddButton.setOnClickListener({
+        holder?.mColorAddButton?.setOnClickListener({
             var dataSet = mDataset?.get(position)
             itemSelectListener?.onAddColor(dataSet!!.code)
         })
 
-        var gd4 = holder?.mBorderLayout.background?.current as GradientDrawable
+        var gd4 = holder?.mBorderLayout?.background?.current as GradientDrawable
         gd4.setStroke(Util.dpToPx(2), Color.parseColor(model?.code))
 
         var gradientDrawable = ((holder?.mTriangleLayout.background as LayerDrawable).findDrawableByLayerId(R.id.triangle_shape) as RotateDrawable).drawable as GradientDrawable

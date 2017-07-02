@@ -33,15 +33,15 @@ class ColorKotlinFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        var mRecyclerView = view?.findViewById(R.id.flat_color_recycler_view) as RecyclerView
+        var mRecyclerView = view?.findViewById(R.id.kotlin_color_recycler_view) as RecyclerView
 
         var manager = GridLayoutManager(activity.applicationContext, 2)
         with(mRecyclerView){
             layoutManager = manager
             setHasFixedSize(true)
         }
-        this.mList = mutableListOf(ColorData(name = "X1", code = "#FF00FF"), ColorData(name = "X1", code = "#FFF0FF"),ColorData(name = "X1", code = "#FF000F"))
-        var adapter = ColorKotlinAdapter(this.mList, object : OnItemSelect{
+        //this.mList = mutableListOf(ColorData(name = "X1", code = "#FF00FF"), ColorData(name = "X1", code = "#FFF0FF"),ColorData(name = "X1", code = "#FF000F"))
+        var adapter = ColorKotlinAdapter(this.mList!!, object : OnItemSelect{
             override fun onAddColor(color: String) {
                 println("ColorKotlinAdapter onAddColor")
             }
@@ -51,6 +51,9 @@ class ColorKotlinFragment : Fragment() {
             }
 
         })
+
+        mRecyclerView.adapter = adapter
+
     }
 
     fun onButtonPressed(uri: Uri) {
@@ -78,12 +81,12 @@ class ColorKotlinFragment : Fragment() {
 
     companion object {
 
-        fun newInstance(/*mutableList: MutableList<ColorData> ,*/listener: OnItemSelect ): ColorKotlinFragment {
+        fun newInstance(mutableList: MutableList<ColorData> ,listener: OnItemSelect ): ColorKotlinFragment {
             val fragment = ColorKotlinFragment()
             val args = Bundle()
             fragment.arguments = args
             fragment.setListener(listener)
-            //fragment.setList(mutableList)
+            fragment.setList(mutableList)
             return fragment
         }
     }
