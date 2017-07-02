@@ -53,15 +53,9 @@ import hotchemi.android.rate.OnClickButtonListener;
 import io.realm.RealmList;
 import layout.ColorKotlinFragment;
 import layout.ColorPicker1;
-import layout.ColorPicker3;
 import layout.FlatColorFragment;
-import layout.HtmlColorFragment;
-import layout.MainFragment;
-import layout.MaterialColorFragment;
 import layout.MaterialRootFragment;
-import layout.MetroColorFragment;
 import layout.RootFragment;
-import layout.SocialColorFragment;
 
 public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener, ColorPicker1.OnColorListener , SaveDialog.OnSaveListener, RootFragment.OnFragmentInteractionListener, MaterialRootFragment.OnFragmentInteractionListener, ColorKotlinFragment.OnFragmentInteractionListener{
 
@@ -232,17 +226,9 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     public  void setUpViewPager(ViewPager viewPager)
     {
-
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(RootFragment.Companion.newInstance(),"Root");
-        //adapter.addFragment(MainFragment.Companion.newInstance(this),"FlatXY");
         adapter.addFragment(FlatColorFragment.newInstance(this),"Flat");
-        adapter.addFragment(MaterialColorFragment.newInstance(this),"Material");
-        adapter.addFragment(SocialColorFragment.newInstance(this),"Social");
-        adapter.addFragment(MetroColorFragment.newInstance(this),"Metro");
-        adapter.addFragment(HtmlColorFragment.newInstance(this),"Html");
-        adapter.addFragment(ColorPicker1.newInstance(this),"ColorPalette X");
-        adapter.addFragment(ColorPicker3.newInstance(this),"ColorPalette Y");
         viewPager.setAdapter(adapter);
     }
 
