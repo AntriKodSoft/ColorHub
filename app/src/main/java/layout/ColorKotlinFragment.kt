@@ -44,6 +44,7 @@ class ColorKotlinFragment : Fragment() {
         var adapter = ColorKotlinAdapter(this.mList!!, object : OnItemSelect{
             override fun onAddColor(color: String) {
                 println("ColorKotlinAdapter onAddColor")
+                mColorListener?.onAddColor(color)
             }
 
             override fun onItemSelected(position: Int) {

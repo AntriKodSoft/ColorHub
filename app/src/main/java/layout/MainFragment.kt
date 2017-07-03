@@ -16,6 +16,7 @@ import cheetatech.com.colorhub.adapters.MainPageAdapter
 import cheetatech.com.colorhub.controller.ColorLists
 import cheetatech.com.colorhub.defines.ColorData
 import cheetatech.com.colorhub.listeners.OnItemSelect
+import cheetatech.com.colorhub.listeners.RecyclerItemClickListener
 import cheetatech.com.colorhub.models.MainPageModel
 
 class MainFragment : Fragment(){
@@ -62,66 +63,24 @@ class MainFragment : Fragment(){
             }
 
             override fun onItemSelected(position: Int) {
+            }
+        })
+
+        mRecyclerView.adapter = adapter
+
+        mRecyclerView.addOnItemTouchListener(object : RecyclerItemClickListener(context, object : OnItemClickListener{
+            override fun onItemClick(view: View?, position: Int) {
+                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                println("Clicked Item Pos is " + position)
                 var fragment : Fragment? = null;
                 fragment = when(position){
-                    0 ->  ColorKotlinFragment.newInstance(lists.flatList!!, object : OnItemSelect{
-                        override fun onItemSelected(position: Int) {
-
-                        }
-
-                        override fun onAddColor(color: String) {
-
-                        }
-
-                    })
-
-                    1 -> MaterialRootFragment.newInstance();
-
-                    2 -> ColorKotlinFragment.newInstance(lists.socialList!!, object : OnItemSelect{
-                        override fun onItemSelected(position: Int) {
-
-                        }
-
-                        override fun onAddColor(color: String) {
-
-                        }
-
-                    })
-
-                    3 -> ColorKotlinFragment.newInstance(lists.metroList!!, object : OnItemSelect{
-                        override fun onItemSelected(position: Int) {
-
-                        }
-
-                        override fun onAddColor(color: String) {
-
-                        }
-
-                    })
-
-                    4 -> ColorKotlinFragment.newInstance(lists.htmlList!!, object : OnItemSelect{
-                        override fun onItemSelected(position: Int) {
-
-                        }
-
-                        override fun onAddColor(color: String) {
-
-                        }
-
-                    })
-
-                    5 -> ColorPicker1.newInstance {  object : ColorPicker1.OnColorListener{
-                        override fun onAddColor(color: String?) {
-                            println("ColorPicker1 Fragment")
-                        }
-                    }}
-
-                    6 -> ColorPicker3.newInstance {  object : ColorPicker1.OnColorListener{
-                        override fun onAddColor(color: String?) {
-                            println("ColorPicker3 Fragment")
-                        }
-                    }}
-
+                    0 ->  ColorKotlinFragment.newInstance(lists.flatList!!, itemListener)
+                    1 -> MaterialRootFragment.newInstance(lists.materialLists, itemListener);
+                    2 -> ColorKotlinFragment.newInstance(lists.socialList!!, itemListener)
+                    3 -> ColorKotlinFragment.newInstance(lists.metroList!!, itemListener)
+                    4 -> ColorKotlinFragment.newInstance(lists.htmlList!!, itemListener)
+                    5 -> ColorPicker1.newInstance(itemListener)
+                    6 -> ColorPicker3.newInstance (itemListener)
                     else -> {
                         null
                     }
@@ -134,11 +93,23 @@ class MainFragment : Fragment(){
                     addToBackStack(null)
                     commit()
                 }
-
             }
-        } );
 
-        mRecyclerView.adapter = adapter
+        }){})
+
+
+    }
+
+    var itemListener = object : OnItemSelect{
+        override fun onAddColor(color: String) {
+            println("Data geldi... " + color)
+            mColorListener?.onAddColor(color)
+        }
+
+        override fun onItemSelected(position: Int) {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+
     }
 
     override fun onAttach(context: Context?) {

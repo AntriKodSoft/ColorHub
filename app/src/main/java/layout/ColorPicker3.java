@@ -3,6 +3,7 @@ package layout;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cheetatech.com.colorhub.R;
 import cheetatech.com.colorhub.defines.BoardEditor;
+import cheetatech.com.colorhub.listeners.OnItemSelect;
 import cheetatech.com.colorhub.view.ColorPickerView;
 
 public class ColorPicker3 extends Fragment implements ColorPickerView.OnColorChangedListener {
@@ -32,6 +34,7 @@ public class ColorPicker3 extends Fragment implements ColorPickerView.OnColorCha
     ColorPickerView mColorPickerView;
 
     private ColorPicker1.OnColorListener mListener = null;
+    private OnItemSelect mItemListener = null;
 
     public ColorPicker3() {
     }
@@ -44,6 +47,12 @@ public class ColorPicker3 extends Fragment implements ColorPickerView.OnColorCha
     public static ColorPicker3 newInstance(ColorPicker1.OnColorListener listener) {
         ColorPicker3 fragment = new ColorPicker3();
         fragment.setListener(listener);
+        return fragment;
+    }
+
+    public static ColorPicker3 newInstance(OnItemSelect listener) {
+        ColorPicker3 fragment = new ColorPicker3();
+        fragment.setItemListener(listener);
         return fragment;
     }
 
@@ -80,9 +89,13 @@ public class ColorPicker3 extends Fragment implements ColorPickerView.OnColorCha
     }
 
     @OnClick(R.id.add_button) void addColorButtonClick(){
+
         String color = colorTextView.getText().toString();
+        Log.e("TAG","addColorButtonClick YYY..." + color);
         if(mListener != null)
             this.mListener.onAddColor(color);
+        if(mItemListener != null)
+            this.mItemListener.onAddColor(color);
     }
 
     private String inverseColor(String hexColor)
@@ -119,5 +132,9 @@ public class ColorPicker3 extends Fragment implements ColorPickerView.OnColorCha
 
     public void setListener(ColorPicker1.OnColorListener listener) {
         this.mListener = listener;
+    }
+
+    public void setItemListener(OnItemSelect itemListener) {
+        this.mItemListener = itemListener;
     }
 }

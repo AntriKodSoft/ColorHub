@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentTransaction
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -13,14 +14,19 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 
 import cheetatech.com.colorhub.R
+import cheetatech.com.colorhub.adapters.ColorKotlinAdapter
 import cheetatech.com.colorhub.adapters.MainPageAdapter
+import cheetatech.com.colorhub.adapters.MaterialKotlinAdapter
 import cheetatech.com.colorhub.adapters.MaterialRootAdapter
+import cheetatech.com.colorhub.defines.ColorData
 import cheetatech.com.colorhub.listeners.OnItemSelect
 import cheetatech.com.colorhub.models.MaterialRootModel
 
 class MaterialRootFragment : Fragment() {
 
     private var mListener: OnFragmentInteractionListener? = null
+    private var materialLists : MutableList<MutableList<ColorData>> ? = null
+    private var mItemSelectListener: OnItemSelect? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,26 +42,27 @@ class MaterialRootFragment : Fragment() {
 
         var mRecyclerView = view?.findViewById(R.id.material_root_recycler_view) as RecyclerView
 
-        var materialList: MutableList<MaterialRootModel> = mutableListOf<MaterialRootModel>(
-                MaterialRootModel(name = "Red", code = "#f44336"),
-                MaterialRootModel(name = "Pink", code = "#E91E63"),
-                MaterialRootModel(name = "Purple", code = "#9C27B0"),
-                MaterialRootModel(name = "Deep Purple", code = "#673AB7"),
-                MaterialRootModel(name = "Indigo", code = "#3F51B5"),
-                MaterialRootModel(name = "Blue", code = "#2196F3"),
-                MaterialRootModel(name = "Light Blue", code = "#03A9F4"),
-                MaterialRootModel(name = "Cyan", code = "#00BCD4"),
-                MaterialRootModel(name = "Teal", code = "#009688"),
-                MaterialRootModel(name = "Green", code = "#4CAF50"),
-                MaterialRootModel(name = "Light Green", code = "#8BC34A"),
-                MaterialRootModel(name = "Lime", code = "#CDDC39"),
-                MaterialRootModel(name = "Yellow", code = "#FFEB3B"),
-                MaterialRootModel(name = "Amber", code = "#FFC107"),
-                MaterialRootModel(name = "Orange", code = "#FF9800"),
-                MaterialRootModel(name = "Deep Orange", code = "#FF5722"),
-                MaterialRootModel(name = "Brown", code = "#795548"),
-                MaterialRootModel(name = "Grey", code = "#9E9E9E"),
-                MaterialRootModel(name = "Blue Grey", code = "#607D8B")
+
+        var materialList: MutableList<ColorData> = mutableListOf<ColorData>(
+                ColorData(name = "Red", code = "#f44336"),
+                ColorData(name = "Pink", code = "#E91E63"),
+                ColorData(name = "Purple", code = "#9C27B0"),
+                ColorData(name = "Deep Purple", code = "#673AB7"),
+                ColorData(name = "Indigo", code = "#3F51B5"),
+                ColorData(name = "Blue", code = "#2196F3"),
+                ColorData(name = "Light Blue", code = "#03A9F4"),
+                ColorData(name = "Cyan", code = "#00BCD4"),
+                ColorData(name = "Teal", code = "#009688"),
+                ColorData(name = "Green", code = "#4CAF50"),
+                ColorData(name = "Light Green", code = "#8BC34A"),
+                ColorData(name = "Lime", code = "#CDDC39"),
+                ColorData(name = "Yellow", code = "#FFEB3B"),
+                ColorData(name = "Amber", code = "#FFC107"),
+                ColorData(name = "Orange", code = "#FF9800"),
+                ColorData(name = "Deep Orange", code = "#FF5722"),
+                ColorData(name = "Brown", code = "#795548"),
+                ColorData(name = "Grey", code = "#9E9E9E"),
+                ColorData(name = "Blue Grey", code = "#607D8B")
                 )
 
         var manager = LinearLayoutManager(activity.applicationContext)
@@ -64,22 +71,35 @@ class MaterialRootFragment : Fragment() {
             setHasFixedSize(true)
         }
 
-        var adapter = MaterialRootAdapter(materialList, object : OnItemSelect{
+        var adapter = MaterialKotlinAdapter(materialList, object : OnItemSelect{
             override fun onAddColor(color: String) {
             }
 
             override fun onItemSelected(position: Int) {
-                println("OnItem SelectedXYXY");
+                var fragment = ColorKotlinFragment.newInstance(materialLists?.get(position) as MutableList<ColorData>, object : OnItemSelect{
+                    override fun onItemSelected(position: Int) {
+
+                    }
+
+                    override fun onAddColor(color: String) {
+                        mItemSelectListener?.onAddColor(color)
+                    }
+
+                })
+                val transaction = fragmentManager.beginTransaction()
+                with(transaction){
+                    add(R.id.root_frame, fragment)
+                    setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    addToBackStack(null)
+                    commit()
+                }
             }
         })
 
         mRecyclerView.adapter = adapter
 
-
-
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     fun onButtonPressed(uri: Uri) {
         if (mListener != null) {
             mListener!!.onFragmentInteraction(uri)
@@ -105,8 +125,10 @@ class MaterialRootFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(): MaterialRootFragment {
+        fun newInstance(matLists : MutableList<MutableList<ColorData>> ? , mlistener: OnItemSelect): MaterialRootFragment {
             val fragment = MaterialRootFragment()
+            fragment.materialLists = matLists
+            fragment.mItemSelectListener = mlistener
             return fragment
         }
     }

@@ -42,6 +42,6 @@
             android:textSize="18dp"
             android:textColor="@color/colorAccent"
             />
-
     </RelativeLayout>
+
 </RelativeLayout>

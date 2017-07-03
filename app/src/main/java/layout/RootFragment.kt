@@ -9,11 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 
 import cheetatech.com.colorhub.R
+import cheetatech.com.colorhub.listeners.OnItemSelect
 
 
 class RootFragment : Fragment() {
     private var mListener: OnFragmentInteractionListener? = null
-
+    private var mItemListener: OnItemSelect? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -27,6 +28,7 @@ class RootFragment : Fragment() {
         transaction.replace(R.id.root_frame, MainFragment.Companion.newInstance(object :ColorPicker1.OnColorListener{
             override fun onAddColor(color: String?) {
                 println("Root Element Color Listener")
+                mItemListener?.onAddColor(color!!)
             }
         }), "ROOT_TAG")
 
@@ -61,10 +63,11 @@ class RootFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(): RootFragment {
+        fun newInstance(listener: OnItemSelect): RootFragment {
             val fragment = RootFragment()
             val args = Bundle()
             fragment.arguments = args
+            fragment.mItemListener = listener
             return fragment
         }
     }

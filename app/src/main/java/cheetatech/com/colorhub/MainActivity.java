@@ -43,6 +43,7 @@ import cheetatech.com.colorhub.defines.BoardEditor;
 import cheetatech.com.colorhub.dialog.SaveDialog;
 import cheetatech.com.colorhub.drawer.ColorSelect;
 import cheetatech.com.colorhub.listeners.ListenerModel;
+import cheetatech.com.colorhub.listeners.OnItemSelect;
 import cheetatech.com.colorhub.models.Model;
 import cheetatech.com.colorhub.realm.RealmX;
 import cheetatech.com.colorhub.realm.SavedObject;
@@ -57,7 +58,7 @@ import layout.FlatColorFragment;
 import layout.MaterialRootFragment;
 import layout.RootFragment;
 
-public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener, ColorPicker1.OnColorListener , SaveDialog.OnSaveListener, RootFragment.OnFragmentInteractionListener, MaterialRootFragment.OnFragmentInteractionListener, ColorKotlinFragment.OnFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener , SaveDialog.OnSaveListener, RootFragment.OnFragmentInteractionListener, MaterialRootFragment.OnFragmentInteractionListener, ColorKotlinFragment.OnFragmentInteractionListener, ColorPicker1.OnColorListener{
 
     private Toolbar toolbar = null;
     List<ColorSelect> cselect = null;
@@ -165,6 +166,27 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         initAppRateDialog();
     }
 
+    OnItemSelect listener = new OnItemSelect() {
+        @Override
+        public void onItemSelected(int position) {
+
+        }
+
+        @Override
+        public void onAddColor(@NotNull String color) {
+
+//            Log.e("TAG","onAddColor MainActivity " + color );
+//            if(!isInList(listModel,color)){
+//                AdsUtils.getInstance().increaseInteraction();
+//                listModel.add(new Model(color));
+//                mAdapter.notifyDataSetChanged();
+//                Toasty.success(MainActivity.this,"",Toast.LENGTH_SHORT).show();
+//            }else{
+//                Toasty.warning(MainActivity.this,"",Toast.LENGTH_SHORT).show();
+//            }
+        }
+    };
+
     private void initAppRateDialog() {
         AppRate.with(this)
                 .setInstallDays(0) // default 10, 0 means install day.
@@ -227,8 +249,8 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     public  void setUpViewPager(ViewPager viewPager)
     {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(RootFragment.Companion.newInstance(),"Root");
-        adapter.addFragment(FlatColorFragment.newInstance(this),"Flat");
+        adapter.addFragment(RootFragment.Companion.newInstance(listener),"Root");
+//        adapter.addFragment(FlatColorFragment.newInstance(listener),"Flat");
         viewPager.setAdapter(adapter);
     }
 
@@ -272,17 +294,17 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         startActivity(sendIntent);
     }
 
-    @Override
-    public void onAddColor(String color) {
-        if(!isInList(this.listModel,color)){
-            AdsUtils.getInstance().increaseInteraction();
-            this.listModel.add(new Model(color));
-            mAdapter.notifyDataSetChanged();
-            Toasty.success(MainActivity.this,"",Toast.LENGTH_SHORT).show();
-        }else{
-            Toasty.warning(MainActivity.this,"",Toast.LENGTH_SHORT).show();
-        }
-    }
+//    @Override
+//    public void onAddColor(String color) {
+//        if(!isInList(this.listModel,color)){
+//            AdsUtils.getInstance().increaseInteraction();
+//            this.listModel.add(new Model(color));
+//            mAdapter.notifyDataSetChanged();
+//            Toasty.success(MainActivity.this,"",Toast.LENGTH_SHORT).show();
+//        }else{
+//            Toasty.warning(MainActivity.this,"",Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
     private boolean isOpen(){
         int height = mSavedLayout.getMeasuredHeight();
@@ -397,5 +419,19 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     @Override
     public void onFragmentInteraction(@NotNull Uri uri) {
 
+    }
+
+    @Override
+    public void onAddColor(String color) {
+        //
+        Log.e("TAG","onAddColor MainActivity " + color );
+        if(!isInList(listModel,color)){
+            AdsUtils.getInstance().increaseInteraction();
+            listModel.add(new Model(color));
+            mAdapter.notifyDataSetChanged();
+            Toasty.success(MainActivity.this,"",Toast.LENGTH_SHORT).show();
+        }else{
+            Toasty.warning(MainActivity.this,"",Toast.LENGTH_SHORT).show();
+        }
     }
 }
