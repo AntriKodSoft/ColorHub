@@ -930,5 +930,6 @@
     <string name="exit_app">Exit Application</string>
     <string name="exit_app_ask">Exit ColorHub?</string>
     <string name="title_activity_main_page">MainPage</string>
+    <string name="title_activity_your_color_kotlin">YourColorKotlinActivity</string>
 
 </resources>

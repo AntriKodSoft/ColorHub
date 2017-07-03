@@ -66,6 +66,10 @@
         <activity
             android:name=".MainPage"
             android:label="@string/title_activity_main_page"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".yourcolors.YourColorKotlinActivity"
+            android:label="@string/title_activity_your_color_kotlin"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
