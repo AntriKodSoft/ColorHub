@@ -1,0 +1,41 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="layout.MaterialUIFragment"
+    android:clickable="true"
+    android:background="@android:color/white"
+    >
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/buttons_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="5dp"
+            >
+
+            <!--
+            <ToggleButton
+                android:id="@+id/toggleButton1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/toggle_button_selector"
+                android:textOff=""
+                android:textOn=""
+                android:layout_margin="5dp"
+                />
+
+            -->
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+</FrameLayout>

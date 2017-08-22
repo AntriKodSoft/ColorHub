@@ -17,7 +17,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cheetatech.com.colorhub.R;
 import cheetatech.com.colorhub.models.Model;
-import cheetatech.com.colorhub.realm.RealmX;
 import cheetatech.com.colorhub.realm.SavedObject;
 
 /**
@@ -26,7 +25,6 @@ import cheetatech.com.colorhub.realm.SavedObject;
 
 public class YourColorAdapter extends RecyclerView.Adapter<YourColorAdapter.ViewHolder>{
 
-    private int sayac = 0;
     private List<SavedObject> mDataset;
     private Context context;
     private boolean isDeleted = false;

@@ -48,7 +48,8 @@ class MainFragment : Fragment(){
                 MainPageModel("Metro","#FA6800"),
                 MainPageModel("Html","#FF1493"),
                 MainPageModel("ColorPalette X","#ADFF2F"),
-                MainPageModel("ColorPalette Y","#AA00FF")
+                MainPageModel("ColorPalette Y","#AA00FF"),
+                MainPageModel("MaterialUI","#AA00FF")
                 )
 
         var manager = GridLayoutManager(activity.applicationContext, 2)
@@ -70,7 +71,6 @@ class MainFragment : Fragment(){
 
         mRecyclerView.addOnItemTouchListener(object : RecyclerItemClickListener(context, object : OnItemClickListener{
             override fun onItemClick(view: View?, position: Int) {
-                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                 println("Clicked Item Pos is " + position)
                 var fragment : Fragment? = null;
                 fragment = when(position){
@@ -81,6 +81,7 @@ class MainFragment : Fragment(){
                     4 -> ColorKotlinFragment.newInstance(lists.htmlList!!, itemListener)
                     5 -> ColorPicker1.newInstance(itemListener)
                     6 -> ColorPicker3.newInstance (itemListener)
+                    7 -> MaterialUIFragment.newInstance()
                     else -> {
                         null
                     }
@@ -102,7 +103,6 @@ class MainFragment : Fragment(){
 
     var itemListener = object : OnItemSelect{
         override fun onAddColor(color: String) {
-            println("Data geldi... " + color)
             mColorListener?.onAddColor(color)
         }
 

@@ -56,9 +56,10 @@ import layout.ColorKotlinFragment;
 import layout.ColorPicker1;
 import layout.FlatColorFragment;
 import layout.MaterialRootFragment;
+import layout.MaterialUIFragment;
 import layout.RootFragment;
 
-public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener , SaveDialog.OnSaveListener, RootFragment.OnFragmentInteractionListener, MaterialRootFragment.OnFragmentInteractionListener, ColorKotlinFragment.OnFragmentInteractionListener, ColorPicker1.OnColorListener{
+public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener , SaveDialog.OnSaveListener, RootFragment.OnFragmentInteractionListener, MaterialRootFragment.OnFragmentInteractionListener, ColorKotlinFragment.OnFragmentInteractionListener, ColorPicker1.OnColorListener, MaterialUIFragment.OnFragmentInteractionListener{
 
     private Toolbar toolbar = null;
     List<ColorSelect> cselect = null;
