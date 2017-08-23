@@ -1,6 +1,10 @@
 package layout
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.StateListDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -9,6 +13,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ToggleButton
 import cheetatech.com.colorhub.R
@@ -38,7 +43,7 @@ class MaterialUIFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         var linearLayout = view?.findViewById(R.id.buttons_layout) as LinearLayout
-
+        var buttonList : MutableList<Button> ? = mutableListOf()
         for(i in 0 .. 18){
             var button = ToggleButton(activity.applicationContext)
             with(button){
@@ -54,7 +59,22 @@ class MaterialUIFragment : Fragment() {
             var vParams = LinearLayout.LayoutParams(px, px)
             vParams.setMargins(margin,margin,margin,margin)
             linearLayout.addView(button, vParams)
+            buttonList?.add(button)
         }
+
+        var btn = buttonList?.get(0)
+        var drawable = btn?.background?.current as StateListDrawable
+
+        var array = IntArray(1)
+        array.set(0, android.R.attr.state_pressed)
+
+        var stateList = StateListDrawable()
+        stateList.addState(array, ColorDrawable(Color.BLACK))
+        stateList.addState(IntArray(1), ColorDrawable(Color.GREEN))
+        btn.setBackgroundDrawable(stateList)
+
+
+
         // load Recyclerview
         loadRecyclerView();
     }
