@@ -41,7 +41,6 @@ class MainFragment : Fragment(){
 
         var lists = ColorLists(activity.resources)
         var mRecyclerView = view?.findViewById(R.id.main_page_recycler_view) as RecyclerView
-
         var mlist : MutableList<MainPageModel> = mutableListOf(MainPageModel("Flat","#2980B9"),
                 MainPageModel("Material","#F44336"),
                 MainPageModel("Social","#3AAF85"),
@@ -81,7 +80,7 @@ class MainFragment : Fragment(){
                     4 -> ColorKotlinFragment.newInstance(lists.htmlList!!, itemListener)
                     5 -> ColorPicker1.newInstance(itemListener)
                     6 -> ColorPicker3.newInstance (itemListener)
-                    7 -> MaterialUIFragment.newInstance()
+                    7 -> MaterialUIFragment.newInstance(lists, itemListener)
                     else -> {
                         null
                     }

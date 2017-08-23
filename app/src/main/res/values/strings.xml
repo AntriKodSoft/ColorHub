@@ -284,21 +284,21 @@
 
     <!-- Material Color Pink -->
     <string-array name="MaterialColorCodePink">
-        <item>#E91E63</item>
-        <item>#FCE4EC</item>
-        <item>#F8BBD0</item>
-        <item>#F48FB1</item>
-        <item>#F06292</item>
-        <item>#EC407A</item>
-        <item>#E91E63</item>
-        <item>#D81B60</item>
-        <item>#C2185B</item>
-        <item>#AD1457</item>
-        <item>#880E4F</item>
-        <item>#FF80AB</item>
-        <item>#FF4081</item>
-        <item>#F50057</item>
-        <item>#C51162</item>
+        <item>#FFE91E63</item>
+        <item>#FFFCE4EC</item>
+        <item>#FFF8BBD0</item>
+        <item>#FFF48FB1</item>
+        <item>#FFF06292</item>
+        <item>#FFEC407A</item>
+        <item>#FFE91E63</item>
+        <item>#FFD81B60</item>
+        <item>#FFC2185B</item>
+        <item>#FFAD1457</item>
+        <item>#FF880E4F</item>
+        <item>#FFFF80AB</item>
+        <item>#FFFF4081</item>
+        <item>#FFF50057</item>
+        <item>#FFC51162</item>
     </string-array>
     <!-- Material Color Purple -->
 

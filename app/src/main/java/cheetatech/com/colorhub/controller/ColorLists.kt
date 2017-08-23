@@ -24,26 +24,36 @@ class ColorLists (res: Resources){
         this.socialList = generateList(R.array.SocialColorCode, R.array.SocialColorName)
         this.metroList = generateList(R.array.MetroColorCode, R.array.MetroColorName)
         this.htmlList = generateList(R.array.HtmlColorCode, R.array.HtmlColorName)
-        this.materialLists = generateMaterialList(R.array.MaterialColorCodeName)
+        //this.materialLists = generateMaterialList(R.array.MaterialColorNames)
+        //this.materialLists = generateList()
+        generateList()
+        println("sadfasdf")
     }
-    fun generateMaterialList(id: Int) : MutableList<MutableList<ColorData>> {
-        var mlist: MutableList<MutableList<ColorData>> = mutableListOf()
 
+    fun generateList(){
+        this.materialLists = mutableListOf()
         val arrayId = intArrayOf(R.array.MaterialColorCodeRed, R.array.MaterialColorCodePink, R.array.MaterialColorCodePurple, R.array.MaterialColorCodeDeepPurple, R.array.MaterialColorCodeIndigo, R.array.MaterialColorCodeBlue, R.array.MaterialColorCodeLightBlue, R.array.MaterialColorCodeCyan, R.array.MaterialColorCodeTeal, R.array.MaterialColorCodeGreen, R.array.MaterialColorCodeLightGreen, R.array.MaterialColorCodeLime, R.array.MaterialColorCodeYellow, R.array.MaterialColorCodeAmber, R.array.MaterialColorCodeOrange, R.array.MaterialColorCodeDeepOrange, R.array.MaterialColorCodeBrown, R.array.MaterialColorCodeGrey, R.array.MaterialColorCodeBlueGrey)
-        var nameList = resources?.getStringArray(id)?.toMutableList()
-        var j: Int = 0
-        for(i in 0..arrayId.size-1){
-            var codeList = resources?.getStringArray(arrayId[i])?.toMutableList()
-            var list: MutableList<ColorData>? = mutableListOf()
-            var name = nameList?.get(j) ?: ""
-            for (f in 0..codeList!!.size - 1)
-                list?.add(ColorData(name, codeList!![f].toUpperCase()))
-            if (list != null) {
-                mlist?.add(list)
+        var nameList = resources?.getStringArray(R.array.MaterialColorNames)?.toMutableList() // Red, Pink color names
+        var detailNameList = resources?.getStringArray(R.array.MaterialColorCodeName)?.toMutableList() // 50 - 100 - 200 color names
+        for(i in 0 .. arrayId.size.minus(1)){
+            var arrId = arrayId.get(i)
+            var list = resources?.getStringArray(arrId)?.toMutableList()
+            var colorDataList: MutableList<ColorData>? = mutableListOf()
+            for(j in 0 ..list?.size?.minus(1)!!){
+                if(j == 0){
+                    var name = nameList?.get(i) ?: ""
+                    colorDataList?.add(ColorData(name, list.get(j).toUpperCase()))
+                }else{
+                    var name = detailNameList?.get(j) ?: ""
+                    colorDataList?.add(ColorData(name, list.get(j).toUpperCase()))
+                }
+            }
+            if(colorDataList != null){
+                this.materialLists?.add(colorDataList)
             }
         }
-        return mlist
     }
+
     fun generateList(arrCode: Int, arrName: Int) : MutableList<ColorData>? {
         var list: MutableList<ColorData>? = mutableListOf()
         var codeList = resources?.getStringArray(arrCode)?.toMutableList()
