@@ -43,7 +43,7 @@ class MaterialUIFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         var linearLayout = view?.findViewById(R.id.buttons_layout) as LinearLayout
-        var buttonList : MutableList<Button> ? = mutableListOf()
+        var buttonList : MutableList<ToggleButton> ? = mutableListOf()
         for(i in 0 .. 18){
             var button = ToggleButton(activity.applicationContext)
             with(button){
@@ -59,24 +59,44 @@ class MaterialUIFragment : Fragment() {
             var vParams = LinearLayout.LayoutParams(px, px)
             vParams.setMargins(margin,margin,margin,margin)
             linearLayout.addView(button, vParams)
+            button.setBackgroundDrawable(loadButtonDrawable(i))
             buttonList?.add(button)
         }
-
-        var btn = buttonList?.get(0)
-        var drawable = btn?.background?.current as StateListDrawable
-
-        var array = IntArray(1)
-        array.set(0, android.R.attr.state_pressed)
-
-        var stateList = StateListDrawable()
-        stateList.addState(array, ColorDrawable(Color.BLACK))
-        stateList.addState(IntArray(1), ColorDrawable(Color.GREEN))
-        btn.setBackgroundDrawable(stateList)
-
-
-
         // load Recyclerview
         loadRecyclerView();
+    }
+
+    fun loadButtonDrawable(i : Int): StateListDrawable{
+
+        var pushColor : String = "FF00FF"
+        var nopushColor: String = "FFFF00"
+        if(colorLists != null){
+            nopushColor = colorLists?.materialLists?.get(i)?.get(0)?.code!!
+            pushColor = colorLists?.materialLists?.get(i)?.get(8)?.code!!
+        }
+
+
+        var array = IntArray(1)
+        array.set(0, android.R.attr.state_checked)
+
+        var pushDrawable = GradientDrawable()
+        with(pushDrawable){
+            shape = GradientDrawable.OVAL
+            setStroke(resources.getDimensionPixelSize(R.dimen.circle_button_margin),Color.GRAY)
+            setColor(Color.parseColor(pushColor))
+        }
+
+        var noPushDrawable = GradientDrawable()
+        with(noPushDrawable){
+            shape = GradientDrawable.OVAL
+            setColor(Color.parseColor(nopushColor))
+        }
+
+        var stateList = StateListDrawable()
+        stateList.addState(intArrayOf(android.R.attr.state_checked), pushDrawable)
+        stateList.addState(IntArray(1), noPushDrawable)
+
+        return stateList
     }
 
     var onClickListener = View.OnClickListener{ view ->
