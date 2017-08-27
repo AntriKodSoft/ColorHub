@@ -23,21 +23,16 @@ class RootFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
         var v = inflater!!.inflate(R.layout.fragment_root, container, false)
-
         var transaction = fragmentManager.beginTransaction()
         transaction.replace(R.id.root_frame, MainFragment.Companion.newInstance(object :ColorPicker1.OnColorListener{
             override fun onAddColor(color: String?) {
-                println("Root Element Color Listener")
                 mItemListener?.onAddColor(color!!)
             }
         }), "ROOT_TAG")
-
-
         transaction.commit()
         return v
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     fun onButtonPressed(uri: Uri) {
         if (mListener != null) {
             mListener!!.onFragmentInteraction(uri)

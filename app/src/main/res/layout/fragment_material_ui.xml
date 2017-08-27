@@ -23,19 +23,6 @@
                 android:orientation="vertical"
                 android:padding="5dp"
                 >
-                <!--
-                <ToggleButton
-                    android:id="@+id/toggleButton1"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/toggle_button_selector"
-                    android:textOff=""
-                    android:textOn=""
-                    android:layout_margin="5dp"
-                    />
-
-                -->
-
             </LinearLayout>
         </ScrollView>
 

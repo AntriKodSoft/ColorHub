@@ -41,14 +41,14 @@ class MainFragment : Fragment(){
 
         var lists = ColorLists(activity.resources)
         var mRecyclerView = view?.findViewById(R.id.main_page_recycler_view) as RecyclerView
-        var mlist : MutableList<MainPageModel> = mutableListOf(MainPageModel("Flat","#2980B9"),
+        var mlist : MutableList<MainPageModel> = mutableListOf(
+                MainPageModel("Flat","#2980B9"),
                 MainPageModel("Material","#F44336"),
                 MainPageModel("Social","#3AAF85"),
                 MainPageModel("Metro","#FA6800"),
                 MainPageModel("Html","#FF1493"),
                 MainPageModel("ColorPalette X","#ADFF2F"),
-                MainPageModel("ColorPalette Y","#AA00FF"),
-                MainPageModel("MaterialUI","#AA00FF")
+                MainPageModel("ColorPalette Y","#AA00FF")
                 )
 
         var manager = GridLayoutManager(activity.applicationContext, 2)
@@ -74,13 +74,12 @@ class MainFragment : Fragment(){
                 var fragment : Fragment? = null;
                 fragment = when(position){
                     0 ->  ColorKotlinFragment.newInstance(lists.flatList!!, itemListener)
-                    1 -> MaterialRootFragment.newInstance(lists.materialLists, itemListener);
+                    1 -> MaterialUIFragment.newInstance(lists, itemListener)
                     2 -> ColorKotlinFragment.newInstance(lists.socialList!!, itemListener)
                     3 -> ColorKotlinFragment.newInstance(lists.metroList!!, itemListener)
                     4 -> ColorKotlinFragment.newInstance(lists.htmlList!!, itemListener)
                     5 -> ColorPicker1.newInstance(itemListener)
                     6 -> ColorPicker3.newInstance (itemListener)
-                    7 -> MaterialUIFragment.newInstance(lists, itemListener)
                     else -> {
                         null
                     }
@@ -106,7 +105,6 @@ class MainFragment : Fragment(){
         }
 
         override fun onItemSelected(position: Int) {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         }
 
     }

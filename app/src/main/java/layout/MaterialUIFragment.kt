@@ -29,6 +29,7 @@ class MaterialUIFragment : Fragment() {
     private var mList: MutableList<ColorData>? = mutableListOf()
     private var colorLists: ColorLists? = null
     private var adapter :ColorKotlinAdapter? = null
+    private var buttonList : MutableList<ToggleButton> ? = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +44,7 @@ class MaterialUIFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         var linearLayout = view?.findViewById(R.id.buttons_layout) as LinearLayout
-        var buttonList : MutableList<ToggleButton> ? = mutableListOf()
+        buttonList?.clear()
         for(i in 0 .. 18){
             var button = ToggleButton(activity.applicationContext)
             with(button){
@@ -101,11 +102,21 @@ class MaterialUIFragment : Fragment() {
 
     var onClickListener = View.OnClickListener{ view ->
         var id = view?.id
+        var btn = view as ToggleButton
+        btn.isChecked = true
+        buttonControl(btn)
         mList?.clear();
         var flist = colorLists?.materialLists?.get(id as Int);
         if (flist != null)
             mList?.addAll(flist)
         adapter?.notifyDataSetChanged()
+    }
+
+    fun  buttonControl(btn: ToggleButton){
+        var size = buttonList?.size?.minus(1)
+        for (i in 0 ..size as Int){
+            buttonList?.get(i)?.isChecked =  if(btn.id == buttonList?.get(i)?.id) true else false
+        }
     }
 
     private fun loadRecyclerView() {

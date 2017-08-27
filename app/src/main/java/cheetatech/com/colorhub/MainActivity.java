@@ -175,16 +175,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
         @Override
         public void onAddColor(@NotNull String color) {
-
-//            Log.e("TAG","onAddColor MainActivity " + color );
-//            if(!isInList(listModel,color)){
-//                AdsUtils.getInstance().increaseInteraction();
-//                listModel.add(new Model(color));
-//                mAdapter.notifyDataSetChanged();
-//                Toasty.success(MainActivity.this,"",Toast.LENGTH_SHORT).show();
-//            }else{
-//                Toasty.warning(MainActivity.this,"",Toast.LENGTH_SHORT).show();
-//            }
         }
     };
 
@@ -251,7 +241,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(RootFragment.Companion.newInstance(listener),"Root");
-//        adapter.addFragment(FlatColorFragment.newInstance(listener),"Flat");
         viewPager.setAdapter(adapter);
     }
 
@@ -295,33 +284,17 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         startActivity(sendIntent);
     }
 
-//    @Override
-//    public void onAddColor(String color) {
-//        if(!isInList(this.listModel,color)){
-//            AdsUtils.getInstance().increaseInteraction();
-//            this.listModel.add(new Model(color));
-//            mAdapter.notifyDataSetChanged();
-//            Toasty.success(MainActivity.this,"",Toast.LENGTH_SHORT).show();
-//        }else{
-//            Toasty.warning(MainActivity.this,"",Toast.LENGTH_SHORT).show();
-//        }
-//    }
-
     private boolean isOpen(){
         int height = mSavedLayout.getMeasuredHeight();
-        if(height > 150)
-            return true;
-        else
-            return false;
+        return (height > 150) ? true : false;
     }
 
     private boolean isInList(List<Model> models,String color){
-        boolean hold = false;
         for (Model m: models) {
             if(m.getColorCode().equals(color))
                 return true;
         }
-        return hold;
+        return false;
     }
 
     @Override
@@ -333,25 +306,18 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     @Override
     public void onBackPressed() {
-
-        //
         if(viewPager.getCurrentItem() == 0 && getSupportFragmentManager().getBackStackEntryCount() > 0 ){
             getSupportFragmentManager().popBackStack();
         }else {
-
-
             if (mDrawer.isDrawerOpen(relativeDrawer)) {
-                Log.e("TAG", "onBackPressed: Opennnn ");
                 mDrawer.closeDrawer(relativeDrawer);
                 return;
             }
             if (isOpen()) {
                 animControl.closeLayout();
-                //closeLayout();
                 return;
             }
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
-
             // set title
             alertDialogBuilder.setTitle(getString(R.string.exit_app));
             alertDialogBuilder
@@ -419,13 +385,10 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     @Override
     public void onFragmentInteraction(@NotNull Uri uri) {
-
     }
 
     @Override
     public void onAddColor(String color) {
-        //
-        Log.e("TAG","onAddColor MainActivity " + color );
         if(!isInList(listModel,color)){
             AdsUtils.getInstance().increaseInteraction();
             listModel.add(new Model(color));
