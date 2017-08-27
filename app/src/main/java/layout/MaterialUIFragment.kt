@@ -61,6 +61,7 @@ class MaterialUIFragment : Fragment() {
             vParams.setMargins(margin,margin,margin,margin)
             linearLayout.addView(button, vParams)
             button.setBackgroundDrawable(loadButtonDrawable(i))
+            button.isChecked = if( i == 0) true else false
             buttonList?.add(button)
         }
         // load Recyclerview
