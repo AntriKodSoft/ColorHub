@@ -62,7 +62,6 @@ import layout.RootFragment;
 public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener , SaveDialog.OnSaveListener, RootFragment.OnFragmentInteractionListener, MaterialRootFragment.OnFragmentInteractionListener, ColorKotlinFragment.OnFragmentInteractionListener, ColorPicker1.OnColorListener, MaterialUIFragment.OnFragmentInteractionListener{
 
     private Toolbar toolbar = null;
-    List<ColorSelect> cselect = null;
     private DrawerListAdapter drawerListAdapter = null;
     private int currentPosition = 0;
     private String facebook = "https://www.facebook.com/cheetatech/?fref=ts&ref=br_tf";
@@ -123,10 +122,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
         drawerListAdapter = new DrawerListAdapter(getApplicationContext(),1, DrawerListController.getInstance().getNavList());
 
-        cselect = controller.getMaterialNameColorSelectList();
-        NavigationBarAdapter adapter = new NavigationBarAdapter(getApplicationContext(),1,cselect);
-
-        drawerList.setAdapter(adapter);
+        drawerList.setAdapter(drawerListAdapter);
         drawerList.setOnItemClickListener(this);
 
 
@@ -138,18 +134,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if(currentPosition != 1) // Material List
-                {
-                    cselect.clear();
-                    drawerList.setAdapter(drawerListAdapter);
-                }
-                else{
-
-                    cselect = ColorArrayController.getInstance().getMaterialNameColorSelectList();
-                    NavigationBarAdapter adapter = new NavigationBarAdapter(getApplicationContext(),1,cselect);
-                    drawerList.setAdapter(adapter);
-                }
                 mDrawer.openDrawer(relativeDrawer);
             }
         });
@@ -257,16 +241,12 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
                     startActivity(new Intent(MainActivity.this, YourColorActivity.class));
                     break;
                 case 3:
-                    currentPosition = 5;
-                    viewPager.setCurrentItem(5);
-                    break;
-                case 4:
                     openUrl("https://play.google.com/store/apps/details?id=cheetatech.com.colorhub");
                     break;
-                case 5:
+                case 4:
                     shareApp();
                     break;
-                case 6:
+                case 5:
                     startActivity(new Intent(MainActivity.this, AboutusActivity.class));
                     break;
             }
@@ -349,14 +329,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     @OnClick(R.id.icon_browser) void clickBrowser(){
         openUrl(web);
-    }
-
-    @OnClick(R.id.icon_facebook) void clickFacebook(){
-        openUrl(facebook);
-    }
-
-    @OnClick(R.id.icon_instagram) void clickInstagram(){
-        openUrl(instagram);
     }
 
     @OnClick(R.id.icon_twitter) void clickTwitter(){
