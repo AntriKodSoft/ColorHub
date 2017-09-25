@@ -12,7 +12,7 @@ public class DrawerListController {
     private String[] nameList = new String[]{
             null,
             null,
-            "Your Colors",
+            // "Your Colors",
             "Rate This App",
             "Share This App",
             "About Us"
@@ -20,7 +20,7 @@ public class DrawerListController {
     private int[] idList = new int[]{
             -1,
             -1,
-            R.drawable.ic_action_favorites,
+            // R.drawable.ic_action_favorites,
             R.drawable.ic_action_rate2,
             R.drawable.ic_action_share,
             R.drawable.ic_action_about_us

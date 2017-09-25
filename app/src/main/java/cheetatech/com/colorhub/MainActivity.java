@@ -1,6 +1,7 @@
 package cheetatech.com.colorhub;
 
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -52,14 +53,17 @@ import es.dmoral.toasty.Toasty;
 import hotchemi.android.rate.AppRate;
 import hotchemi.android.rate.OnClickButtonListener;
 import io.realm.RealmList;
+import layout.ColorDetailFragment;
 import layout.ColorKotlinFragment;
 import layout.ColorPicker1;
 import layout.FlatColorFragment;
 import layout.MaterialRootFragment;
 import layout.MaterialUIFragment;
 import layout.RootFragment;
+import layout.RootYourColorFragment;
+import layout.YourColorKotlinFragment;
 
-public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener , SaveDialog.OnSaveListener, RootFragment.OnFragmentInteractionListener, MaterialRootFragment.OnFragmentInteractionListener, ColorKotlinFragment.OnFragmentInteractionListener, ColorPicker1.OnColorListener, MaterialUIFragment.OnFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener , SaveDialog.OnSaveListener, RootFragment.OnFragmentInteractionListener, MaterialRootFragment.OnFragmentInteractionListener, ColorKotlinFragment.OnFragmentInteractionListener, ColorPicker1.OnColorListener, MaterialUIFragment.OnFragmentInteractionListener, YourColorKotlinFragment.OnFragmentInteractionListener, ColorDetailFragment.OnFragmentInteractionListener, RootYourColorFragment.OnFragmentInteractionListener{
 
     private Toolbar toolbar = null;
     private DrawerListAdapter drawerListAdapter = null;
@@ -140,6 +144,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         setUpViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setOnTabSelectedListener(this);
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
 
         ToolBarController.getInstance().setToolBar(toolbar);
         ToolBarController.getInstance().setTabLayout(tabLayout);
@@ -225,6 +230,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(RootFragment.Companion.newInstance(listener),"Root");
+        adapter.addFragment(RootYourColorFragment.Companion.newInstance(),"Your Color");
         viewPager.setAdapter(adapter);
     }
 
@@ -237,16 +243,18 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
             AdsUtils.getInstance().increaseInteraction();
             switch (i)
             {
+                /*
                 case 2:
                     startActivity(new Intent(MainActivity.this, YourColorActivity.class));
                     break;
-                case 3:
+                    */
+                case 2:
                     openUrl("https://play.google.com/store/apps/details?id=cheetatech.com.colorhub");
                     break;
-                case 4:
+                case 3:
                     shareApp();
                     break;
-                case 5:
+                case 4:
                     startActivity(new Intent(MainActivity.this, AboutusActivity.class));
                     break;
             }
@@ -282,11 +290,19 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         currentPosition =  tab.getPosition();
         tabLayout.getTabAt(currentPosition).select();
         viewPager.setCurrentItem(currentPosition);
+        if(currentPosition == 1){ // your color position
+            android.support.v4.app.Fragment fragment = getSupportFragmentManager().findFragmentByTag("ROOT_YOUR_COLOR_TAG");
+
+            if(fragment != null){
+                ((YourColorKotlinFragment)fragment).refreshValues();
+            }
+
+        }
     }
 
     @Override
     public void onBackPressed() {
-        if(viewPager.getCurrentItem() == 0 && getSupportFragmentManager().getBackStackEntryCount() > 0 ){
+        if(/*viewPager.getCurrentItem() == 0 && */getSupportFragmentManager().getBackStackEntryCount() > 0 ){
             getSupportFragmentManager().popBackStack();
         }else {
             if (mDrawer.isDrawerOpen(relativeDrawer)) {
