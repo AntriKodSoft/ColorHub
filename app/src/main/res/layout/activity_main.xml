@@ -176,6 +176,8 @@
 
 
 
+    <!--
+
     <RelativeLayout
         android:id="@+id/relative_layout"
         android:layout_width="match_parent"
@@ -261,4 +263,5 @@
 
         </RelativeLayout>
     </RelativeLayout>
+    -->
 </android.support.v4.widget.DrawerLayout>

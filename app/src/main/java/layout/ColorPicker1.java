@@ -88,12 +88,6 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
         this.mListener = mListener;
     }
 
-//    public static ColorPicker1 newInstance(OnColorListener listener) {
-//        ColorPicker1 fragment = new ColorPicker1();
-//        fragment.setListener(listener);
-//        return fragment;
-//    }
-
     public static ColorPicker1 newInstance(OnItemSelect selectListener) {
         ColorPicker1 fragment = new ColorPicker1();
         fragment.setItemListener(selectListener);
@@ -106,7 +100,6 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
     }
 
     @OnClick(R.id.add_color_button) void addColorClick(){
-        Log.e("TAG","AddClickButtonClicked");
         String color = textViewColor.getText().toString();
         if(this.mListener != null)
             this.mListener.onAddColor(color);

@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6D8764</color>  <!--B2EBF2-->
-    <color name="colorPrimaryDark">#508764</color>
-    <color name="colorAccent">#E64A19</color>
+    <color name="colorPrimary">@color/redpc</color>  <!--B2EBF2-->
+    <color name="colorPrimaryDark">@color/redsc</color>
+    <color name="colorAccent">#FFC107</color>
     <color name="colorDarkGrey">#FF2B2C43</color>
     <color name="colorPrimaryText">#F5F5F5</color>
 
-    <color name="colorAccentDark">#e63519</color>
+    <color name="colorAccentDark">#FFA000</color>
 
+    <color name="redpc">#F44336</color>
+    <color name="redsc">#D32f2f</color>
 
     <color name="picker_background">#ff7c7c7c</color>
 

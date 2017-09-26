@@ -51,6 +51,8 @@ import cheetatech.com.colorhub.listeners.OnItemSelect;
 import cheetatech.com.colorhub.models.Model;
 import cheetatech.com.colorhub.realm.RealmX;
 import cheetatech.com.colorhub.realm.SavedObject;
+import cheetatech.com.colorhub.social.Links;
+import cheetatech.com.colorhub.social.Social;
 import cheetatech.com.colorhub.yourcolors.YourColorActivity;
 import es.dmoral.toasty.Toasty;
 import hotchemi.android.rate.AppRate;
@@ -70,8 +72,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     private Toolbar toolbar = null;
     private int currentPosition = 0;
-    private String twitter = "https://twitter.com/antri_kod";
-    private String web = "http://www.antrikod.com";
 
     @BindView(R.id.tablayout)
     TabLayout tabLayout;
@@ -81,12 +81,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawer;
-
-    @BindView(R.id.relative_layout)
-    RelativeLayout relativeDrawer;
-
-    @BindView(R.id.left_drawer)
-    ListView drawerList;
 
     @BindView(R.id.image_up_down)
     ImageView upDownImage;
@@ -143,16 +137,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         initAppRateDialog();
     }
 
-    OnItemSelect listener = new OnItemSelect() {
-        @Override
-        public void onItemSelected(int position) {
 
-        }
-
-        @Override
-        public void onAddColor(@NotNull String color) {
-        }
-    };
 
 
     @Override
@@ -167,16 +152,16 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_rate_this_app:
-                openUrl("https://play.google.com/store/apps/details?id=cheetatech.com.colorhub");
+                Social.Companion.openUrl(Links.APP_URL, MainActivity.this);
                 return true;
             case R.id.action_share_this_app:
-                shareApp();
+                Social.Companion.shareApp(MainActivity.this);
                 return true;
             case R.id.action_about_us:
                 startActivity(new Intent(MainActivity.this, AboutusActivity.class));
                 return true;
             case R.id.action_more_app:
-                openUrl("https://play.google.com/store/apps/dev?id=7898216932904579846");
+                Social.Companion.openUrl(Links.ANTRIKOD_PLAY_STORE, MainActivity.this);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -241,6 +226,16 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
             return;
         }
     }
+    OnItemSelect listener = new OnItemSelect() {
+        @Override
+        public void onItemSelected(int position) {
+
+        }
+
+        @Override
+        public void onAddColor(@NotNull String color) {
+        }
+    };
 
     public  void setUpViewPager(ViewPager viewPager)
     {
@@ -252,15 +247,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-    }
-
-    private void shareApp() {
-        Intent sendIntent = new Intent();
-        sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT,
-                "Hey check out Color Hub app at: https://play.google.com/store/apps/details?id=cheetatech.com.colorhub");
-        sendIntent.setType("text/plain");
-        startActivity(sendIntent);
     }
 
     private boolean isOpen(){
@@ -293,7 +279,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     @Override
     public void onBackPressed() {
-        if(/*viewPager.getCurrentItem() == 0 && */getSupportFragmentManager().getBackStackEntryCount() > 0 ){
+        if(getSupportFragmentManager().getBackStackEntryCount() > 0 ){
             getSupportFragmentManager().popBackStack();
         }else {
             if (isOpen()) {
@@ -328,19 +314,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
-    }
-
-    @OnClick(R.id.icon_browser) void clickBrowser(){
-        openUrl(web);
-    }
-
-    @OnClick(R.id.icon_twitter) void clickTwitter(){
-        openUrl(twitter);
-    }
-
-    private void openUrl(String url) {
-        Uri uri = Uri.parse(url); // missing 'http://' will cause crashed
-        startActivity(new Intent(Intent.ACTION_VIEW, uri));
     }
 
     @Override
