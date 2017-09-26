@@ -16,6 +16,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -167,6 +170,35 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         }
     };
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_rate_this_app:
+                openUrl("https://play.google.com/store/apps/details?id=cheetatech.com.colorhub");
+                return true;
+            case R.id.action_share_this_app:
+                shareApp();
+                return true;
+            case R.id.action_about_us:
+                startActivity(new Intent(MainActivity.this, AboutusActivity.class));
+                return true;
+            case R.id.action_more_app:
+                openUrl("https://play.google.com/store/apps/dev?id=7898216932904579846");
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     private void initAppRateDialog() {
         AppRate.with(this)
                 .setInstallDays(0) // default 10, 0 means install day.
@@ -229,8 +261,8 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     public  void setUpViewPager(ViewPager viewPager)
     {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(RootFragment.Companion.newInstance(listener),"Root");
-        adapter.addFragment(RootYourColorFragment.Companion.newInstance(),"Your Color");
+        adapter.addFragment(RootFragment.Companion.newInstance(listener),"", getResources().getDrawable(R.drawable.ic_action_home_dark));
+        adapter.addFragment(RootYourColorFragment.Companion.newInstance(),"",getResources().getDrawable(R.drawable.ic_favorite_dark));
         viewPager.setAdapter(adapter);
     }
 
@@ -243,11 +275,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
             AdsUtils.getInstance().increaseInteraction();
             switch (i)
             {
-                /*
-                case 2:
-                    startActivity(new Intent(MainActivity.this, YourColorActivity.class));
-                    break;
-                    */
                 case 2:
                     openUrl("https://play.google.com/store/apps/details?id=cheetatech.com.colorhub");
                     break;

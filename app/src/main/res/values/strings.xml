@@ -931,5 +931,9 @@
     <string name="exit_app_ask">Exit ColorHub?</string>
     <string name="title_activity_main_page">MainPage</string>
     <string name="title_activity_your_color_kotlin">YourColorKotlinActivity</string>
+    <string name="action_about_us">About Us</string>
+    <string name="action_share_this_app">Share This App</string>
+    <string name="action_rate_this_app">Rate This App</string>
+    <string name="action_more_app">More</string>
 
 </resources>

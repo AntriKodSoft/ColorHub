@@ -51,7 +51,7 @@ class MainFragment : Fragment(){
                 MainPageModel("ColorPalette Y","#AA00FF")
                 )
 
-        var manager = GridLayoutManager(activity.applicationContext, 2)
+        var manager = GridLayoutManager(activity.applicationContext, 1)
         with(mRecyclerView){
             layoutManager = manager as RecyclerView.LayoutManager?
             setHasFixedSize(true)
@@ -70,7 +70,6 @@ class MainFragment : Fragment(){
 
         mRecyclerView.addOnItemTouchListener(object : RecyclerItemClickListener(context, object : OnItemClickListener{
             override fun onItemClick(view: View?, position: Int) {
-                println("Clicked Item Pos is " + position)
                 var fragment : Fragment? = null;
                 fragment = when(position){
                     0 ->  ColorKotlinFragment.newInstance(lists.flatList!!, itemListener)

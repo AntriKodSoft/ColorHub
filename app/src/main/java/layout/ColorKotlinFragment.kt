@@ -35,20 +35,17 @@ class ColorKotlinFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         var mRecyclerView = view?.findViewById(R.id.kotlin_color_recycler_view) as RecyclerView
 
-        var manager = GridLayoutManager(activity.applicationContext, 2)
+        var manager = GridLayoutManager(activity.applicationContext, 1)
         with(mRecyclerView){
             layoutManager = manager
             setHasFixedSize(true)
         }
-        //this.mList = mutableListOf(ColorData(name = "X1", code = "#FF00FF"), ColorData(name = "X1", code = "#FFF0FF"),ColorData(name = "X1", code = "#FF000F"))
         var adapter = ColorKotlinAdapter(this.mList!!, object : OnItemSelect{
             override fun onAddColor(color: String) {
-                println("ColorKotlinAdapter onAddColor")
                 mColorListener?.onAddColor(color)
             }
 
             override fun onItemSelected(position: Int) {
-                println("ColorKotlinAdapter onItemSelected")
             }
 
         })

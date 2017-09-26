@@ -121,7 +121,7 @@ class MaterialUIFragment : Fragment() {
     private fun loadRecyclerView() {
         var mRecyclerView = view?.findViewById(R.id.kotlin_materialui_view) as RecyclerView
 
-        var manager = GridLayoutManager(activity.applicationContext, 2)
+        var manager = GridLayoutManager(activity.applicationContext, 1)
         with(mRecyclerView){
             layoutManager = manager
             setHasFixedSize(true)

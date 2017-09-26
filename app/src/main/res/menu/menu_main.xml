@@ -3,8 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="cheetatech.com.colorhub.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_rate_this_app"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/action_rate_this_app"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_share_this_app"
+        android:orderInCategory="100"
+        android:title="@string/action_share_this_app"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_about_us"
+        android:orderInCategory="100"
+        android:title="@string/action_about_us"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_more_app"
+        android:orderInCategory="100"
+        android:title="@string/action_more_app"
         app:showAsAction="never" />
 </menu>
