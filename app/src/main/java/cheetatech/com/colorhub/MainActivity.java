@@ -69,11 +69,8 @@ import layout.YourColorKotlinFragment;
 public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener , SaveDialog.OnSaveListener, RootFragment.OnFragmentInteractionListener, MaterialRootFragment.OnFragmentInteractionListener, ColorKotlinFragment.OnFragmentInteractionListener, ColorPicker1.OnColorListener, MaterialUIFragment.OnFragmentInteractionListener, YourColorKotlinFragment.OnFragmentInteractionListener, ColorDetailFragment.OnFragmentInteractionListener, RootYourColorFragment.OnFragmentInteractionListener{
 
     private Toolbar toolbar = null;
-    private DrawerListAdapter drawerListAdapter = null;
     private int currentPosition = 0;
-    private String facebook = "https://www.facebook.com/cheetatech/?fref=ts&ref=br_tf";
     private String twitter = "https://twitter.com/antri_kod";
-    private String instagram = "https://www.instagram.com/cheetatechofficial/";
     private String web = "http://www.antrikod.com";
 
     @BindView(R.id.tablayout)
@@ -127,23 +124,10 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         BoardEditor.getInstance().setContext(getApplicationContext());
         // nav bar
 
-        drawerListAdapter = new DrawerListAdapter(getApplicationContext(),1, DrawerListController.getInstance().getNavList());
-
-        drawerList.setAdapter(drawerListAdapter);
-        drawerList.setOnItemClickListener(this);
-
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
-        toolbar.setNavigationIcon(R.drawable.ic_action_menu_);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mDrawer.openDrawer(relativeDrawer);
-            }
-        });
         setUpViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setOnTabSelectedListener(this);
@@ -268,26 +252,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        mDrawer.closeDrawer(relativeDrawer);
-
-        if(currentPosition != 1 )
-        {
-            AdsUtils.getInstance().increaseInteraction();
-            switch (i)
-            {
-                case 2:
-                    openUrl("https://play.google.com/store/apps/details?id=cheetatech.com.colorhub");
-                    break;
-                case 3:
-                    shareApp();
-                    break;
-                case 4:
-                    startActivity(new Intent(MainActivity.this, AboutusActivity.class));
-                    break;
-            }
-        }
-        else
-            ListenerModel.getInstance().setListenerIndex(i);
     }
 
     private void shareApp() {
@@ -332,10 +296,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         if(/*viewPager.getCurrentItem() == 0 && */getSupportFragmentManager().getBackStackEntryCount() > 0 ){
             getSupportFragmentManager().popBackStack();
         }else {
-            if (mDrawer.isDrawerOpen(relativeDrawer)) {
-                mDrawer.closeDrawer(relativeDrawer);
-                return;
-            }
             if (isOpen()) {
                 animControl.closeLayout();
                 return;
