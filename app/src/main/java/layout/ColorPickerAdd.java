@@ -27,7 +27,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cheetatech.com.colorhub.R;
-import cheetatech.com.colorhub.Util;
 import cheetatech.com.colorhub.defines.BoardEditor;
 import cheetatech.com.colorhub.listeners.IOnFocusListenable;
 import cheetatech.com.colorhub.models.Model;

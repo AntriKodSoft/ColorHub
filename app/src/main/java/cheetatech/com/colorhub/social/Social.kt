@@ -11,7 +11,7 @@ class Social {
 
     companion object{
         fun openUrl(url: String, activity: Activity){
-            var uri = Uri.parse(url);
+            var uri = Uri.parse(url)
             activity.startActivity(Intent(Intent.ACTION_VIEW, uri))
         }
 

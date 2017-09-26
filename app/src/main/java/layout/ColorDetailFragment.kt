@@ -2,19 +2,15 @@ package layout
 
 import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.net.Uri
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-
 import cheetatech.com.colorhub.R
 import cheetatech.com.colorhub.adapters.ColorAdapter
 import cheetatech.com.colorhub.ads.AdsUtils
@@ -53,17 +49,17 @@ class ColorDetailFragment : Fragment() ,ColorPickerArrange.OnColorListener, Edit
 
         mObject = ColorBus.getInstance().savedObject
 
-        loadAdapters();
+        loadAdapters()
 
         fabEdit = view?.findViewById(R.id.fab_edit) as com.getbase.floatingactionbutton.FloatingActionButton
         fabAddPalette = view?.findViewById(R.id.fab_add_palette) as com.getbase.floatingactionbutton.FloatingActionButton
 
-        fabEdit?.setOnClickListener(View.OnClickListener { v ->
+        fabEdit?.setOnClickListener({ v ->
             (EditDialog.newInstance(mObject?.name, this as EditDialog.OnEditListener)).show(activity.supportFragmentManager, "EditDialog")
             collapse()
         })
 
-        fabAddPalette?.setOnClickListener(View.OnClickListener { v ->
+        fabAddPalette?.setOnClickListener({ v ->
             activity.supportFragmentManager
                     .beginTransaction()
                     .add(R.id.root_your_color_frame, ColorPickerAdd.newInstance(this as ColorPickerAdd.OnColorPickerAddListener))
@@ -81,21 +77,15 @@ class ColorDetailFragment : Fragment() ,ColorPickerArrange.OnColorListener, Edit
         mObject?.list?.let { colorList.addAll(it) }
 
         val manager = LinearLayoutManager(activity)
-        mRecyclerView?.setLayoutManager(manager)
+        mRecyclerView?.layoutManager = manager
         mRecyclerView?.setHasFixedSize(true)
         mAdapter = ColorAdapter(colorList, this)
-        mRecyclerView?.setAdapter(mAdapter)
+        mRecyclerView?.adapter = mAdapter
     }
 
     private fun collapse() {
         if(fabMenu != null && (fabMenu as FloatingActionsMenu).isExpanded){
             fabMenu?.collapse()
-        }
-    }
-
-    fun onButtonPressed(uri: Uri) {
-        if (mListener != null) {
-            mListener!!.onFragmentInteraction(uri)
         }
     }
 
@@ -157,7 +147,7 @@ class ColorDetailFragment : Fragment() ,ColorPickerArrange.OnColorListener, Edit
         colorList.removeAt(position)
         mObject?.addList(colorList)
         colorList.clear()
-        mObject?.getList()?.let { colorList.addAll(it) }
+        mObject?.list?.let { colorList.addAll(it) }
         mAdapter?.notifyDataSetChanged()
         AdsUtils.getInstance().increaseInteraction()
         Toasty.success(activity, getString(R.string.success_delete_item), Toast.LENGTH_SHORT).show()
@@ -189,7 +179,7 @@ class ColorDetailFragment : Fragment() ,ColorPickerArrange.OnColorListener, Edit
         colorList.add(Model(color))
         mObject?.addList(colorList)
         colorList.clear()
-        mObject?.getList()?.let { colorList.addAll(it) }
+        mObject?.list?.let { colorList.addAll(it) }
         mAdapter?.notifyDataSetChanged()
         Toasty.success(activity, getString(R.string.success_add_color), Toast.LENGTH_SHORT).show()
         AdsUtils.getInstance().increaseInteraction()
@@ -200,7 +190,7 @@ class ColorDetailFragment : Fragment() ,ColorPickerArrange.OnColorListener, Edit
 
     override fun onChangeColor(position: Int, model: Model?) {
         if (model != null) {
-            this.colorList?.set(position, model)
+            this.colorList.set(position, model)
             this.mAdapter?.notifyDataSetChanged()
         }
     }

@@ -24,19 +24,9 @@ class RootFragment : Fragment() {
 
         var v = inflater!!.inflate(R.layout.fragment_root, container, false)
         var transaction = fragmentManager.beginTransaction()
-        transaction.replace(R.id.root_frame, MainFragment.Companion.newInstance(object :ColorPicker1.OnColorListener{
-            override fun onAddColor(color: String?) {
-                mItemListener?.onAddColor(color!!)
-            }
-        }), "ROOT_TAG")
+        transaction.replace(R.id.root_frame, MainFragment.Companion.newInstance(ColorPicker1.OnColorListener { color -> mItemListener?.onAddColor(color!!) }), "ROOT_TAG")
         transaction.commit()
         return v
-    }
-
-    fun onButtonPressed(uri: Uri) {
-        if (mListener != null) {
-            mListener!!.onFragmentInteraction(uri)
-        }
     }
 
     override fun onAttach(context: Context?) {

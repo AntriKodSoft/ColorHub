@@ -1,8 +1,6 @@
 package cheetatech.com.colorhub.adapters
 
-import android.content.Context
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
 import android.graphics.drawable.RotateDrawable
@@ -11,78 +9,69 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import butterknife.BindView
 import cheetatech.com.colorhub.R
 import cheetatech.com.colorhub.Util
-import cheetatech.com.colorhub.controller.ColorArrayController
 import cheetatech.com.colorhub.defines.BoardEditor
 import cheetatech.com.colorhub.defines.ColorData
 import cheetatech.com.colorhub.listeners.OnItemSelect
-import cheetatech.com.colorhub.models.MainPageModel
-import org.w3c.dom.Text
 
 /**
  * Created by coderkan on 28.06.2017.
  */
-class ColorKotlinAdapter : RecyclerView.Adapter<ColorKotlinAdapter.ViewHolder>{
+class ColorKotlinAdapter(dataset: MutableList<ColorData>, itemSelectedListener: OnItemSelect?) : RecyclerView.Adapter<ColorKotlinAdapter.ViewHolder>() {
 
-    private var mDataset: MutableList<ColorData> = mutableListOf()
-    private var itemSelectListener : OnItemSelect? = null
-
-    constructor(dataset: MutableList<ColorData>, itemSelectedListener : OnItemSelect? ){
-        this.mDataset = dataset
-        this.itemSelectListener = itemSelectedListener
-    }
+    private var mDataset: MutableList<ColorData> = dataset
+    private var itemSelectListener : OnItemSelect? = itemSelectedListener
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
         val layout = R.layout.grid_list
         val v: View = LayoutInflater.from(parent?.context).inflate(layout, parent, false)
-        return ViewHolder(v);
+        return ViewHolder(v)
     }
 
     fun add(position: Int, item: ColorData) {
-        mDataset?.add(position, item)
+        mDataset.add(position, item)
         notifyItemInserted(position)
     }
 
     fun remove(item: ColorData) {
-        val position = mDataset!!.indexOf(item)
-        mDataset?.removeAt(position)
+        val position = mDataset.indexOf(item)
+        mDataset.removeAt(position)
         notifyItemRemoved(position)
     }
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
 
-        var model = mDataset?.get(position)
+        var model = mDataset.get(position)
 
-        holder?.mButtonCopy?.setOnClickListener(View.OnClickListener {
-            BoardEditor.getInstance().copyToClipBoard(model?.code)
-            Toast.makeText(BoardEditor.getInstance().context, "Color " + model?.code +
+        holder?.mButtonCopy?.setOnClickListener({
+            BoardEditor.getInstance().copyToClipBoard(model.code)
+            Toast.makeText(BoardEditor.getInstance().context, "Color " + model.code +
                     " copied to clipboard...", Toast.LENGTH_SHORT).show()
         })
 
-        holder?.mLayout?.setBackgroundColor(Color.parseColor(model?.code))
+        holder?.mLayout?.setBackgroundColor(Color.parseColor(model.code))
 
-        holder?.mColorCode?.setText(model?.code)
-        holder?.mColorName?.setText(model?.name)
+        holder?.mColorCode?.text = model.code
+        holder?.mColorName?.text = model?.name
 
         holder?.mColorAddButton?.setOnClickListener({
-            var dataSet = mDataset?.get(position)
-            itemSelectListener?.onAddColor(dataSet!!.code)
+            var dataSet = mDataset.get(position)
+            itemSelectListener?.onAddColor(dataSet.code)
         })
 
         var gd4 = holder?.mBorderLayout?.background?.current as GradientDrawable
-        gd4.setStroke(Util.dpToPx(2), Color.parseColor(model?.code))
+        gd4.setStroke(Util.dpToPx(2), Color.parseColor(model.code))
 
-        var gradientDrawable = ((holder?.mTriangleLayout.background as LayerDrawable).findDrawableByLayerId(R.id.triangle_shape) as RotateDrawable).drawable as GradientDrawable
+        var gradientDrawable = ((holder.mTriangleLayout.background as LayerDrawable).findDrawableByLayerId(R.id.triangle_shape) as RotateDrawable).drawable as GradientDrawable
         with(gradientDrawable){
-            setColor(Color.parseColor(model?.code))
-            setStroke(Util.dpToPx(2), Color.parseColor(model?.code))
+            setColor(Color.parseColor(model.code))
+            setStroke(Util.dpToPx(2), Color.parseColor(model.code))
         }
     }
 
     override fun getItemCount(): Int {
-        return mDataset!!?.size;
+        return mDataset.size
     }
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view){

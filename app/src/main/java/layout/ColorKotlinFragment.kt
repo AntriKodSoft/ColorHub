@@ -9,12 +9,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import cheetatech.com.colorhub.R
 import cheetatech.com.colorhub.adapters.ColorKotlinAdapter
 import cheetatech.com.colorhub.defines.ColorData
 import cheetatech.com.colorhub.listeners.OnItemSelect
-import cheetatech.com.colorhub.models.MainPageModel
 
 class ColorKotlinFragment : Fragment() {
 
@@ -52,12 +50,6 @@ class ColorKotlinFragment : Fragment() {
 
         mRecyclerView.adapter = adapter
 
-    }
-
-    fun onButtonPressed(uri: Uri) {
-        if (mListener != null) {
-            mListener!!.onFragmentInteraction(uri)
-        }
     }
 
     override fun onAttach(context: Context?) {

@@ -11,7 +11,6 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.math.BigInteger;
 import java.util.List;
 
 import butterknife.BindView;

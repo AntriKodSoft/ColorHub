@@ -5,22 +5,15 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-
 import cheetatech.com.colorhub.R
-import cheetatech.com.colorhub.adapters.ColorKotlinAdapter
-import cheetatech.com.colorhub.adapters.MainPageAdapter
 import cheetatech.com.colorhub.adapters.MaterialKotlinAdapter
-import cheetatech.com.colorhub.adapters.MaterialRootAdapter
 import cheetatech.com.colorhub.defines.ColorData
 import cheetatech.com.colorhub.listeners.OnItemSelect
-import cheetatech.com.colorhub.models.MaterialRootModel
 
 class MaterialRootFragment : Fragment() {
 
@@ -98,12 +91,6 @@ class MaterialRootFragment : Fragment() {
 
         mRecyclerView.adapter = adapter
 
-    }
-
-    fun onButtonPressed(uri: Uri) {
-        if (mListener != null) {
-            mListener!!.onFragmentInteraction(uri)
-        }
     }
 
     override fun onAttach(context: Context?) {

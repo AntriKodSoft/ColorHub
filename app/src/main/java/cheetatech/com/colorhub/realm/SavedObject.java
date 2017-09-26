@@ -1,8 +1,5 @@
 package cheetatech.com.colorhub.realm;
 
-import android.support.v4.widget.ListViewAutoScrollHelper;
-import android.view.Display;
-
 import java.util.List;
 
 import cheetatech.com.colorhub.models.Model;

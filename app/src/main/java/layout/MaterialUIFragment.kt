@@ -59,11 +59,11 @@ class MaterialUIFragment : Fragment() {
             vParams.setMargins(margin,margin,margin,margin)
             linearLayout.addView(button, vParams)
             button.setBackgroundDrawable(loadButtonDrawable(i))
-            button.isChecked = if( i == 0) true else false
+            button.isChecked = i == 0
             buttonList?.add(button)
         }
         // load Recyclerview
-        loadRecyclerView();
+        loadRecyclerView()
     }
 
     fun loadButtonDrawable(i : Int): StateListDrawable{
@@ -77,7 +77,7 @@ class MaterialUIFragment : Fragment() {
 
 
         var array = IntArray(1)
-        array.set(0, android.R.attr.state_checked)
+        array[0] = android.R.attr.state_checked
 
         var pushDrawable = GradientDrawable()
         with(pushDrawable){
@@ -104,8 +104,8 @@ class MaterialUIFragment : Fragment() {
         var btn = view as ToggleButton
         btn.isChecked = true
         buttonControl(btn)
-        mList?.clear();
-        var flist = colorLists?.materialLists?.get(id as Int);
+        mList?.clear()
+        var flist = colorLists?.materialLists?.get(id as Int)
         if (flist != null)
             mList?.addAll(flist)
         adapter?.notifyDataSetChanged()
@@ -114,7 +114,7 @@ class MaterialUIFragment : Fragment() {
     fun  buttonControl(btn: ToggleButton){
         var size = buttonList?.size?.minus(1)
         for (i in 0 ..size as Int){
-            buttonList?.get(i)?.isChecked =  if(btn.id == buttonList?.get(i)?.id) true else false
+            buttonList?.get(i)?.isChecked = btn.id == buttonList?.get(i)?.id
         }
     }
 
@@ -126,8 +126,8 @@ class MaterialUIFragment : Fragment() {
             layoutManager = manager
             setHasFixedSize(true)
         }
-        mList?.clear();
-        var flist = colorLists?.materialLists?.get(0); // Default 0
+        mList?.clear()
+        var flist = colorLists?.materialLists?.get(0) // Default 0
         if (flist != null) mList?.addAll(flist)
         adapter = ColorKotlinAdapter(this.mList!!, object : OnItemSelect {
             override fun onAddColor(color: String) {
@@ -137,12 +137,6 @@ class MaterialUIFragment : Fragment() {
             }
         })
         mRecyclerView.adapter = adapter
-    }
-
-    fun onButtonPressed(uri: Uri) {
-        if (mListener != null) {
-            mListener!!.onFragmentInteraction(uri)
-        }
     }
 
     override fun onAttach(context: Context?) {

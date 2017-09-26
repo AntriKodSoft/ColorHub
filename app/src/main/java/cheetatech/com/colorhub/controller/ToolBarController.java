@@ -1,7 +1,5 @@
 package cheetatech.com.colorhub.controller;
 
-import android.content.res.ColorStateList;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v7.widget.Toolbar;
 
