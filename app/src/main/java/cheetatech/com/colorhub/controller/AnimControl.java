@@ -24,7 +24,7 @@ public class AnimControl {
     private int width, height, imageHeight;
     private RelativeLayout savedLayout = null;
     private RelativeLayout imageLayout = null;
-    private ViewTreeObserver observer = null;
+
     private ImageView upDownImage = null;
     private FloatingActionButton fabAdButton = null;
 
@@ -43,7 +43,7 @@ public class AnimControl {
         loadAnimations(context);
         if(fabAdButton.getVisibility() == View.VISIBLE)
             fabAdButton.setVisibility(View.INVISIBLE);
-        observer = this.savedLayout.getViewTreeObserver();
+        ViewTreeObserver observer = this.savedLayout.getViewTreeObserver();
         if(observer != null && observer.isAlive())
             observer.addOnGlobalLayoutListener(globalLayoutListener);
     }
@@ -70,7 +70,7 @@ public class AnimControl {
             fabAdButton.setVisibility(View.VISIBLE);
 
         savedLayout.clearAnimation();
-        savedLayout.startAnimation(slideUp);;
+        savedLayout.startAnimation(slideUp);
         slideUp.setFillAfter(true);
         slideUp.setFillEnabled(true);
         slideUp.setFillBefore(true);

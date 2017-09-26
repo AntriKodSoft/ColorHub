@@ -24,5 +24,14 @@ class Social {
             activity.startActivity(sendIntent)
         }
 
+        fun sendEmail(activitiy: Activity){
+            val subjectEmail = "Need Help"
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "plain/text"
+            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(Links.ANTRIKOD_EMAIL))
+            intent.putExtra(Intent.EXTRA_SUBJECT, subjectEmail)
+            activitiy.startActivity(Intent.createChooser(intent, ""))
+        }
+
     }
 }

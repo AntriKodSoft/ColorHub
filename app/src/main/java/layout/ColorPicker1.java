@@ -59,8 +59,6 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
     @BindView(R.id.opacityToolTip)
     TextView opacityToolTip;
 
-    private ClipboardManager clipBoard;
-
     private Window window;
     private Display display;
     private int red, green, blue, seekBarLeft,opacity;
@@ -95,8 +93,7 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
     }
 
     public static ColorPicker1 newInstance(String param1, String param2) {
-        ColorPicker1 fragment = new ColorPicker1();
-        return fragment;
+        return new ColorPicker1();
     }
 
     @OnClick(R.id.add_color_button) void addColorClick(){
@@ -134,7 +131,7 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
         red = green = blue = 120;
         opacity = 255;
 
-        clipBoard = (ClipboardManager)getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipboardManager clipBoard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
         window = getActivity().getWindow();
 
         seekBarLeft = redSeekBar.getPaddingLeft();
@@ -335,8 +332,7 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
         BigInteger bs = bi.xor(fi);
 
 
-        String res = String.format("#%02x%02x%02x",rs,gs,bs);
-        return res;
+        return String.format("#%02x%02x%02x",rs,gs,bs);
     }
 
 

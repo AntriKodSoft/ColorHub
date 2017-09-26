@@ -389,8 +389,7 @@ public class ColorPickerArrange extends Fragment implements IOnFocusListenable {
         BigInteger bs = bi.xor(fi);
 
 
-        String res = String.format("#%02x%02x%02x",rs,gs,bs);
-        return res;
+        return String.format("#%02x%02x%02x",rs,gs,bs);
     }
 
 

@@ -1,28 +1,17 @@
 package cheetatech.com.colorhub;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class AboutusActivity extends AppCompatActivity  implements View.OnClickListener{
+import cheetatech.com.colorhub.social.Links;
+import cheetatech.com.colorhub.social.Social;
 
-    private String antrikodUrl = "http://www.antrikod.com"; // "https://cheetatech.wordpress.com/";
-    private String antrikodEmail = "info@antrikod.com"; // "cheetatech@gmail.com";
-    private String subjectEmail = "Need Help";
-    private String[] email = new String[]{
-            "https://www.linkedin.com/in/erkan-g%C3%BCzeler-95b47252",
-            "https://tr.linkedin.com/in/ali-guvenbas",
-            "https://www.behance.net/nagihanozkar",
-            "https://www.linkedin.com/in/itır-başar-104889b5"
-    };
+public class AboutusActivity extends AppCompatActivity  implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,44 +41,25 @@ public class AboutusActivity extends AppCompatActivity  implements View.OnClickL
         switch (view.getId())
         {
             case R.id.link_web_text :
-                openUrl(antrikodUrl);
+                Social.Companion.openUrl(Links.ANTRIKOD_URL, AboutusActivity.this);
                 break;
             case R.id.fab :
-                sendEmail();
+                Social.Companion.sendEmail(AboutusActivity.this);
                 break;
 
             case R.id.steam_1 :
-                openUrl(email[0]);
+                Social.Companion.openUrl(Links.PERSON_LINKS[0], AboutusActivity.this);
                 break;
             case R.id.steam_2 :
-                openUrl(email[1]);
+                Social.Companion.openUrl(Links.PERSON_LINKS[1], AboutusActivity.this);
                 break;
             case R.id.gteam_1 :
-                openUrl(email[3]);
+                Social.Companion.openUrl(Links.PERSON_LINKS[3], AboutusActivity.this);
                 break;
             case R.id.gteam_2 :
-                openUrl(email[4]);
+                Social.Companion.openUrl(Links.PERSON_LINKS[4], AboutusActivity.this);
                 break;
         }
     }
 
-    private void openCheetaTech() {
-        Uri uri = Uri.parse(antrikodUrl); // missing 'http://' will cause crashed
-        startActivity(new Intent(Intent.ACTION_VIEW, uri));
-    }
-
-    private void openUrl(String url) {
-        Uri uri = Uri.parse(url); // missing 'http://' will cause crashed
-        startActivity(new Intent(Intent.ACTION_VIEW, uri));
-    }
-
-    private void sendEmail()
-    {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("plain/text");
-        intent.putExtra(Intent.EXTRA_EMAIL, new String[] { antrikodEmail });
-        intent.putExtra(Intent.EXTRA_SUBJECT, subjectEmail);
-        //intent.putExtra(Intent.EXTRA_TEXT, "mail body");
-        startActivity(Intent.createChooser(intent, ""));
-    }
 }

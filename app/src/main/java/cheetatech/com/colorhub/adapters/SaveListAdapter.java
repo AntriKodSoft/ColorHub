@@ -37,7 +37,6 @@ import cheetatech.com.colorhub.models.Model;
 public class SaveListAdapter extends RecyclerView.Adapter<SaveListAdapter.ViewHolder>{
 
     private List<Model> mDataset;
-    private Context context;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -77,9 +76,8 @@ public class SaveListAdapter extends RecyclerView.Adapter<SaveListAdapter.ViewHo
     public SaveListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         int layout = R.layout.saved_list_item;
         View v = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
-        context = parent.getContext();
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+        Context context = parent.getContext();
+        return new ViewHolder(v);
     }
 
     @Override

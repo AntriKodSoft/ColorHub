@@ -82,7 +82,7 @@ import cheetatech.com.colorhub.drawable.AlphaPatternDrawable;
 public class ColorPickerView extends View{
 
 	public interface OnColorChangedListener{
-		public void onColorChanged(int newColor);		
+		void onColorChanged(int newColor);
 	}
 
 	private final static int 	DEFAULT_BORDER_COLOR = 0xFF6E6E6E;
@@ -884,8 +884,8 @@ public class ColorPickerView extends View{
 		//The need to be recreated because they depend on the size of the view.
 		mValShader = null;
 		mSatShader = null;
-		mAlphaShader = null;;
-		
+		mAlphaShader = null;
+
 		// Clear those bitmap caches since the size may have changed.
 		mSatValBackgroundCache = null;
 		mHueBackgroundCache = null;

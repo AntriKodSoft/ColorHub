@@ -1,7 +1,6 @@
 package cheetatech.com.colorhub;
 
 import android.app.AlertDialog;
-import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -34,26 +33,20 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cheetatech.com.colorhub.adapters.DrawerListAdapter;
-import cheetatech.com.colorhub.adapters.NavigationBarAdapter;
 import cheetatech.com.colorhub.adapters.SaveListAdapter;
 import cheetatech.com.colorhub.adapters.ViewPagerAdapter;
 import cheetatech.com.colorhub.ads.AdsUtils;
 import cheetatech.com.colorhub.controller.AnimControl;
 import cheetatech.com.colorhub.controller.ColorArrayController;
-import cheetatech.com.colorhub.controller.DrawerListController;
 import cheetatech.com.colorhub.controller.ToolBarController;
 import cheetatech.com.colorhub.defines.BoardEditor;
 import cheetatech.com.colorhub.dialog.SaveDialog;
-import cheetatech.com.colorhub.drawer.ColorSelect;
-import cheetatech.com.colorhub.listeners.ListenerModel;
 import cheetatech.com.colorhub.listeners.OnItemSelect;
 import cheetatech.com.colorhub.models.Model;
 import cheetatech.com.colorhub.realm.RealmX;
 import cheetatech.com.colorhub.realm.SavedObject;
 import cheetatech.com.colorhub.social.Links;
 import cheetatech.com.colorhub.social.Social;
-import cheetatech.com.colorhub.yourcolors.YourColorActivity;
 import es.dmoral.toasty.Toasty;
 import hotchemi.android.rate.AppRate;
 import hotchemi.android.rate.OnClickButtonListener;
@@ -61,7 +54,6 @@ import io.realm.RealmList;
 import layout.ColorDetailFragment;
 import layout.ColorKotlinFragment;
 import layout.ColorPicker1;
-import layout.FlatColorFragment;
 import layout.MaterialRootFragment;
 import layout.MaterialUIFragment;
 import layout.RootFragment;
@@ -69,9 +61,6 @@ import layout.RootYourColorFragment;
 import layout.YourColorKotlinFragment;
 
 public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener , SaveDialog.OnSaveListener, RootFragment.OnFragmentInteractionListener, MaterialRootFragment.OnFragmentInteractionListener, ColorKotlinFragment.OnFragmentInteractionListener, ColorPicker1.OnColorListener, MaterialUIFragment.OnFragmentInteractionListener, YourColorKotlinFragment.OnFragmentInteractionListener, ColorDetailFragment.OnFragmentInteractionListener, RootYourColorFragment.OnFragmentInteractionListener{
-
-    private Toolbar toolbar = null;
-    private int currentPosition = 0;
 
     @BindView(R.id.tablayout)
     TabLayout tabLayout;
@@ -118,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         BoardEditor.getInstance().setContext(getApplicationContext());
         // nav bar
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
@@ -223,7 +212,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         }
         if(isOpen()){
             animControl.closeLayout();
-            return;
         }
     }
     OnItemSelect listener = new OnItemSelect() {
@@ -251,7 +239,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     private boolean isOpen(){
         int height = mSavedLayout.getMeasuredHeight();
-        return (height > 150) ? true : false;
+        return height > 150;
     }
 
     private boolean isInList(List<Model> models,String color){
@@ -264,7 +252,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-        currentPosition =  tab.getPosition();
+        int currentPosition = tab.getPosition();
         tabLayout.getTabAt(currentPosition).select();
         viewPager.setCurrentItem(currentPosition);
         if(currentPosition == 1){ // your color position

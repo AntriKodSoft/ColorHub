@@ -428,15 +428,13 @@ public class GradientView extends View {
 
     protected void setColour(int selectedColor, boolean updatePointers) {
         Color.colorToHSV(selectedColor, mHSV);
-        if (true) {
-            mSelectedColorGradient[0] = getColorForGradient(mHSV);
-            mSelectedColor = Color.HSVToColor(mHSV);
-            buildShaders();
-            if (mLastX != Integer.MIN_VALUE) {
-                mHSV[2] = pointToValueBrightness(mLastX);
-            }
-            selectedColor = Color.HSVToColor(mHSV);
+        mSelectedColorGradient[0] = getColorForGradient(mHSV);
+        mSelectedColor = Color.HSVToColor(mHSV);
+        buildShaders();
+        if (mLastX != Integer.MIN_VALUE) {
+            mHSV[2] = pointToValueBrightness(mLastX);
         }
+        selectedColor = Color.HSVToColor(mHSV);
         if (updatePointers) {
             updatePointerPosition();
         }

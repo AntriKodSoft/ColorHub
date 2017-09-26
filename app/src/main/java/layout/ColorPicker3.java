@@ -29,7 +29,6 @@ public class ColorPicker3 extends Fragment implements ColorPickerView.OnColorCha
     @BindView(R.id.color)
     TextView colorTextView;
 
-    private int colorText = 0;
     @BindView(R.id.colorpickerview__color_picker_view1)
     ColorPickerView mColorPickerView;
 
@@ -40,8 +39,7 @@ public class ColorPicker3 extends Fragment implements ColorPickerView.OnColorCha
     }
 
     public static ColorPicker3 newInstance(String param1, String param2) {
-        ColorPicker3 fragment = new ColorPicker3();
-        return fragment;
+        return new ColorPicker3();
     }
 
     public static ColorPicker3 newInstance(ColorPicker1.OnColorListener listener) {
@@ -73,7 +71,7 @@ public class ColorPicker3 extends Fragment implements ColorPickerView.OnColorCha
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        final int initialColor = 0xFFE12109;;
+        final int initialColor = 0xFFE12109;
         mColorPickerView.setOnColorChangedListener(this);
         mColorPickerView.setColor(initialColor, true);
         colorView.setBackgroundColor(initialColor);
@@ -117,14 +115,13 @@ public class ColorPicker3 extends Fragment implements ColorPickerView.OnColorCha
         BigInteger gs = gi.xor(fi);
         BigInteger bs = bi.xor(fi);
 
-        String res = String.format("#%02x%02x%02x",rs,gs,bs);
-        return res;
+        return String.format("#%02x%02x%02x",rs,gs,bs);
     }
 
     @Override
     public void onColorChanged(int newColor) {
 
-        colorText = newColor;
+        int colorText = newColor;
         colorTextView.setText("#" + Integer.toHexString(newColor));
         colorTextView.setTextColor(Color.parseColor(inverseColor(Integer.toHexString(newColor))));
         colorView.setBackgroundColor(colorText);
