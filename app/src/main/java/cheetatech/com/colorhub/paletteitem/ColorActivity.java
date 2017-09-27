@@ -2,13 +2,11 @@ package cheetatech.com.colorhub.paletteitem;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -24,10 +22,8 @@ import cheetatech.com.colorhub.R;
 import cheetatech.com.colorhub.adapters.ColorAdapter;
 import cheetatech.com.colorhub.ads.AdsUtils;
 import cheetatech.com.colorhub.dialog.EditDialog;
-import cheetatech.com.colorhub.listeners.RecyclerItemClickListener;
 import cheetatech.com.colorhub.models.Model;
 import cheetatech.com.colorhub.realm.SavedObject;
-import cheetatech.com.colorhub.yourcolors.YourColorActivity;
 import es.dmoral.toasty.Toasty;
 import layout.ColorPickerAdd;
 import layout.ColorPickerArrange;

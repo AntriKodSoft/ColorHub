@@ -5,7 +5,6 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Rect;
-import android.hardware.SensorEventListener;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -389,8 +388,7 @@ public class ColorPickerArrange extends Fragment implements IOnFocusListenable {
         BigInteger bs = bi.xor(fi);
 
 
-        String res = String.format("#%02x%02x%02x",rs,gs,bs);
-        return res;
+        return String.format("#%02x%02x%02x",rs,gs,bs);
     }
 
 

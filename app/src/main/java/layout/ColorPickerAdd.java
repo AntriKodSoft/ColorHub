@@ -27,7 +27,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cheetatech.com.colorhub.R;
-import cheetatech.com.colorhub.Util;
 import cheetatech.com.colorhub.defines.BoardEditor;
 import cheetatech.com.colorhub.listeners.IOnFocusListenable;
 import cheetatech.com.colorhub.models.Model;
@@ -365,8 +364,7 @@ public class ColorPickerAdd extends Fragment implements IOnFocusListenable {
         BigInteger bs = bi.xor(fi);
 
 
-        String res = String.format("#%02x%02x%02x",rs,gs,bs);
-        return res;
+        return String.format("#%02x%02x%02x",rs,gs,bs);
     }
 
 

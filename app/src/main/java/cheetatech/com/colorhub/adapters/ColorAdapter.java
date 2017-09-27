@@ -11,7 +11,6 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.math.BigInteger;
 import java.util.List;
 
 import butterknife.BindView;
@@ -78,8 +77,7 @@ public class ColorAdapter  extends RecyclerView.Adapter<ColorAdapter.ViewHolder>
         int layout = R.layout.color_list_item;
         View v = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
         context = parent.getContext();
-        ColorAdapter.ViewHolder vh = new ColorAdapter.ViewHolder(v);
-        return vh;
+        return new ViewHolder(v);
     }
 
     @Override

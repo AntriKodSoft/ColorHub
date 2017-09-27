@@ -3,7 +3,7 @@ package cheetatech.com.colorhub.adapters;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
-import android.preference.PreferenceActivity;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,15 +15,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cheetatech.com.colorhub.R;
 import cheetatech.com.colorhub.Util;
-import cheetatech.com.colorhub.controller.ColorArrayController;
-import cheetatech.com.colorhub.controller.ToolBarController;
 import cheetatech.com.colorhub.defines.BoardEditor;
 import cheetatech.com.colorhub.defines.ColorInfo;
 import layout.ColorPicker1;
@@ -74,8 +71,9 @@ public class GridViewArrayAdapter extends ArrayAdapter<ColorInfo>  {
         }
     }
 
+    @NonNull
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         ViewHolder holder = null;

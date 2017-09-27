@@ -9,7 +9,8 @@
     android:paddingRight="10dp"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="cheetatech.com.colorhub.ColorPickerActivity"
+
+    android:background="@android:color/white"
     android:clickable="true"
     >
 

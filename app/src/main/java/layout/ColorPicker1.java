@@ -29,6 +29,7 @@ import butterknife.OnClick;
 import cheetatech.com.colorhub.R;
 import cheetatech.com.colorhub.defines.BoardEditor;
 import cheetatech.com.colorhub.listeners.IOnFocusListenable;
+import cheetatech.com.colorhub.listeners.OnItemSelect;
 
 
 public class ColorPicker1 extends Fragment implements IOnFocusListenable {
@@ -58,18 +59,21 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
     @BindView(R.id.opacityToolTip)
     TextView opacityToolTip;
 
-    private ClipboardManager clipBoard;
-
     private Window window;
     private Display display;
     private int red, green, blue, seekBarLeft,opacity;
     private Rect thumbRect;
+
+    public void setItemListener(OnItemSelect itemListener) {
+        this.mItemSelectListener = itemListener;
+    }
 
     public interface OnColorListener{
         void onAddColor(String color);
     }
 
     private OnColorListener mListener;
+    private OnItemSelect mItemSelectListener;
 
     public ColorPicker1() {
     }
@@ -82,20 +86,22 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
         this.mListener = mListener;
     }
 
-    public static ColorPicker1 newInstance(OnColorListener listener) {
+    public static ColorPicker1 newInstance(OnItemSelect selectListener) {
         ColorPicker1 fragment = new ColorPicker1();
-        fragment.setListener(listener);
+        fragment.setItemListener(selectListener);
         return fragment;
     }
 
     public static ColorPicker1 newInstance(String param1, String param2) {
-        ColorPicker1 fragment = new ColorPicker1();
-        return fragment;
+        return new ColorPicker1();
     }
 
     @OnClick(R.id.add_color_button) void addColorClick(){
         String color = textViewColor.getText().toString();
-        this.mListener.onAddColor(color);
+        if(this.mListener != null)
+            this.mListener.onAddColor(color);
+        if(this.mItemSelectListener != null)
+            this.mItemSelectListener.onAddColor(color);
     }
 
     @Override
@@ -125,7 +131,7 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
         red = green = blue = 120;
         opacity = 255;
 
-        clipBoard = (ClipboardManager)getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipboardManager clipBoard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
         window = getActivity().getWindow();
 
         seekBarLeft = redSeekBar.getPaddingLeft();
@@ -326,8 +332,7 @@ public class ColorPicker1 extends Fragment implements IOnFocusListenable {
         BigInteger bs = bi.xor(fi);
 
 
-        String res = String.format("#%02x%02x%02x",rs,gs,bs);
-        return res;
+        return String.format("#%02x%02x%02x",rs,gs,bs);
     }
 
 

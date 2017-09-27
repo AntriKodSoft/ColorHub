@@ -19,4 +19,8 @@
     <string name="success_edit_name">Successfully Edited Palette Name</string>
     <string name="exit_app">Exit Application</string>
     <string name="exit_app_ask">Exit ColorHub?</string>
+    <string name="action_about_us">About Us</string>
+    <string name="action_share_this_app">Share This App</string>
+    <string name="action_rate_this_app">Rate This App</string>
+    <string name="action_more_app">More</string>
 </resources>

@@ -51,6 +51,7 @@ public class ColorArrayController {
         initHtml();
     }
 
+
     public void setResource(Resources resource)
     {
         this.resources = resource;
@@ -124,8 +125,7 @@ public class ColorArrayController {
     public List<String> getMaterialNameList()
     {
         String[] colorNames = resources.getStringArray(R.array.MaterialColorNames);
-        List<String> list = Arrays.asList(colorNames);
-        return list;
+        return Arrays.asList(colorNames);
     }
 
     public void initHtml()

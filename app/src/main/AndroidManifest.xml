@@ -56,13 +56,10 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".yourcolors.YourColorActivity"
-            android:label="@string/title_activity_your_color"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".paletteitem.ColorActivity"
             android:label="@string/title_activity_color"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>

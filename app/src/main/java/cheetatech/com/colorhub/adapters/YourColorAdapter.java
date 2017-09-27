@@ -17,7 +17,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cheetatech.com.colorhub.R;
 import cheetatech.com.colorhub.models.Model;
-import cheetatech.com.colorhub.realm.RealmX;
 import cheetatech.com.colorhub.realm.SavedObject;
 
 /**
@@ -26,10 +25,8 @@ import cheetatech.com.colorhub.realm.SavedObject;
 
 public class YourColorAdapter extends RecyclerView.Adapter<YourColorAdapter.ViewHolder>{
 
-    private int sayac = 0;
     private List<SavedObject> mDataset;
     private Context context;
-    private boolean isDeleted = false;
 
     private OnItemDelete mListener = null;
 
@@ -86,13 +83,13 @@ public class YourColorAdapter extends RecyclerView.Adapter<YourColorAdapter.View
         int layout = R.layout.your_color_item;
         View v = LayoutInflater.from(parent.getContext()).inflate(layout, parent, false);
         context = parent.getContext();
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+        return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(YourColorAdapter.ViewHolder holder, final int position) {
         if(context != null){
+            boolean isDeleted = false;
             if(!isDeleted){
                 final SavedObject object = this.mDataset.get(position);
                 holder.mPaletteName.setText(object.getName());
@@ -119,10 +116,7 @@ public class YourColorAdapter extends RecyclerView.Adapter<YourColorAdapter.View
                     public void onClick(View view) {
                         Log.e("TAG", "onClick: Deleted" );
                         if(mListener != null){
-                            //isDeleted = true;
                             mListener.onDeleteAlert(object.getName(), position);
-                            //mListener.onItemDelete(object.getName(), position);
-                            //notifyDataSetChanged();
                         }
                     }
                 });

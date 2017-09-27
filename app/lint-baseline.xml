@@ -1,0 +1,3438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="4" by="lint 3.0 Canary 3">
+
+    <issue
+        id="GradleCompatible"
+        message="All com.android.support libraries must use the exact same version specification (mixing versions can lead to runtime crashes). Found versions 25.2.0, 25.1.1, 25.0.1. Examples include `com.android.support:animated-vector-drawable:25.2.0` and `com.android.support:design:25.1.1`">
+        <location
+            file="build.gradle"
+            line="34"/>
+    </issue>
+
+    <issue
+        id="RecyclerView"
+        message="Do not treat position as fixed; only use immediately and call `holder.getAdapterPosition()` to look it up later">
+        <location
+            file="src/main/java/cheetatech/com/colorhub/adapters/ColorAdapter.java"
+            line="86"/>
+    </issue>
+
+    <issue
+        id="RecyclerView"
+        message="Do not treat position as fixed; only use immediately and call `holder.getAdapterPosition()` to look it up later">
+        <location
+            file="src/main/java/cheetatech/com/colorhub/adapters/SaveListAdapter.java"
+            line="86"/>
+    </issue>
+
+    <issue
+        id="RecyclerView"
+        message="Do not treat position as fixed; only use immediately and call `holder.getAdapterPosition()` to look it up later">
+        <location
+            file="src/main/java/cheetatech/com/colorhub/adapters/YourColorAdapter.java"
+            line="92"/>
+    </issue>
+
+    <issue
+        id="CommitTransaction"
+        message="This transaction should be completed with a `commit()` call">
+        <location
+            file="src/main/java/layout/MainFragment.kt"
+            line="87"/>
+    </issue>
+
+    <issue
+        id="ScrollViewSize"
+        message="This LinearLayout should use `android:layout_height=&quot;wrap_content&quot;`">
+        <location
+            file="src/main/res/layout/fragment_material_ui.xml"
+            line="22"/>
+    </issue>
+
+    <issue
+        id="CustomViewStyleable"
+        message="By convention, the custom view (`ColorPanelView`) and the declare-styleable (`colorpickerview__ColorPickerView`) should have the same name (various editor features rely on this convention)">
+        <location
+            file="src/main/java/cheetatech/com/colorhub/view/ColorPanelView.java"
+            line="101"/>
+    </issue>
+
+    <issue
+        id="CustomViewStyleable"
+        message="By convention, the custom view (`ColorPickerView`) and the declare-styleable (`colorpickerview__ColorPickerView`) should have the same name (various editor features rely on this convention)">
+        <location
+            file="src/main/java/cheetatech/com/colorhub/view/ColorPickerView.java"
+            line="254"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="`&lt;ripple>` requires API level 21 (current min is 14)">
+        <location
+            file="src/main/res/drawable/about_button.xml"
+            line="1"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="`&lt;ripple>` requires API level 21 (current min is 14)">
+        <location
+            file="src/main/res/drawable/color_button.xml"
+            line="1"/>
+    </issue>
+
+    <issue
+        id="OldTargetApi"
+        message="Not targeting the latest versions of Android; compatibility &#xA;modes apply. Consider testing and updating this version. &#xA;Consult the android.os.Build.VERSION_CODES javadoc for details.">
+        <location
+            file="build.gradle"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `elevation` is only used in API level 21 and higher (current min is 14)">
+        <location
+            file="src/main/res/layout/content_color_picker.xml"
+            line="26"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `fontFamily` is only used in API level 16 and higher (current min is 14)">
+        <location
+            file="src/main/res/layout/content_color_picker.xml"
+            line="43"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `thumbTint` is only used in API level 21 and higher (current min is 14)">
+        <location
+            file="src/main/res/layout/content_color_picker.xml"
+            line="57"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `fontFamily` is only used in API level 16 and higher (current min is 14)">
+        <location
+            file="src/main/res/layout/content_color_picker.xml"
+            line="63"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `thumbTint` is only used in API level 21 and higher (current min is 14)">
+        <location
+            file="src/main/res/layout/content_color_picker.xml"
+            line="78"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `fontFamily` is only used in API level 16 and higher (current min is 14)">
+        <location
+            file="src/main/res/layout/content_color_picker.xml"
+            line="84"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `thumbTint` is only used in API level 21 and higher (current min is 14)">
+        <location
+            file="src/main/res/layout/content_color_picker.xml"
+            line="99"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `fontFamily` is only used in API level 16 and higher (current min is 14)">
+        <location
+            file="src/main/res/layout/content_color_picker.xml"
+            line="105"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `thumbTint` is only used in API level 21 and higher (current min is 14)">
+        <location
+            file="src/main/res/layout/content_color_picker.xml"
+            line="120"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `elevation` is only used in API level 21 and higher (current min is 14)">
+        <location
+            file="src/main/res/layout/fragment_color_picker1.xml"
+            line="30"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `fontFamily` is only used in API level 16 and higher (current min is 14)">
+        <location
+            file="src/main/res/layout/fragment_color_picker1.xml"
+            line="74"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `thumbTint` is only used in API level 21 and higher (current min is 14)">
+        <location
+            file="src/main/res/layout/fragment_color_picker1.xml"
+            line="88"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `fontFamily` is only used in API level 16 and higher (current min is 14)">
+        <location
+            file="src/main/res/layout/fragment_color_picker1.xml"
+            line="94"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `thumbTint` is only used in API level 21 and higher (current min is 14)">
+        <location
+            file="src/main/res/layout/fragment_color_picker1.xml"
+            line="109"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `fontFamily` is only used in API level 16 and higher (current min is 14)">
+        <location
+            file="src/main/res/layout/fragment_color_picker1.xml"
+            line="115"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `thumbTint` is only used in API level 21 and higher (current min is 14)">
+        <location
+            file="src/main/res/layout/fragment_color_picker1.xml"
+            line="130"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `fontFamily` is only used in API level 16 and higher (current min is 14)">
+        <location
+            file="src/main/res/layout/fragment_color_picker1.xml"
+            line="136"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `thumbTint` is only used in API level 21 and higher (current min is 14)">
+        <location
+            file="src/main/res/layout/fragment_color_picker1.xml"
+            line="151"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `elevation` is only used in API level 21 and higher (current min is 14)">
+        <location
+            file="src/main/res/layout/fragment_color_picker2.xml"
+            line="83"/>
+    </issue>
+
+    <issue
+        id="InflateParams"
+        message="Avoid passing `null` as the view root (needed to resolve layout parameters on the inflated layout&apos;s root element)">
+        <location
+            file="src/main/java/cheetatech/com/colorhub/dialog/EditDialog.java"
+            line="74"/>
+    </issue>
+
+    <issue
+        id="InflateParams"
+        message="Avoid passing `null` as the view root (needed to resolve layout parameters on the inflated layout&apos;s root element)">
+        <location
+            file="src/main/java/cheetatech/com/colorhub/dialog/SaveDialog.java"
+            line="63"/>
+    </issue>
+
+    <issue
+        id="UnknownIdInLayout"
+        message="The id &quot;`colorCode`&quot; is not referring to any views in this layout">
+        <location
+            file="src/main/res/layout/grid_list2.xml"
+            line="57"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of com.android.support:appcompat-v7 than 25.0.1 is available: 26.1.0">
+        <location
+            file="build.gradle"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of com.android.support:design than 25.1.1 is available: 26.1.0">
+        <location
+            file="build.gradle"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of com.android.support:palette-v7 than 25.0.1 is available: 26.1.0">
+        <location
+            file="build.gradle"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of com.android.support:recyclerview-v7 than 25.1.1 is available: 26.1.0">
+        <location
+            file="build.gradle"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of com.android.support:support-v4 than 25.0.1 is available: 26.1.0">
+        <location
+            file="build.gradle"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of com.android.support:support-v4 than 25.0.1 is available: 26.1.0">
+        <location
+            file="build.gradle"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of com.android.tools.build:gradle than 3.0.0-alpha3 is available: 3.0.0-beta6">
+        <location
+            file="build.gradle"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of com.google.firebase:firebase-ads than 10.0.0 is available: 11.4.0">
+        <location
+            file="build.gradle"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of com.jakewharton:butterknife than 8.5.1 is available: 8.7.0">
+        <location
+            file="build.gradle"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of com.jakewharton:butterknife-compiler than 8.5.1 is available: 8.7.0">
+        <location
+            file="build.gradle"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="Old buildToolsVersion 25.0.2; recommended version is 25.0.3 or later">
+        <location
+            file="build.gradle"/>
+    </issue>
+
+    <issue
+        id="SpUsage"
+        message="Should use &quot;`sp`&quot; instead of &quot;`dp`&quot; for text sizes">
+        <location
+            file="src/main/res/layout/grid_list2.xml"
+            line="63"/>
+    </issue>
+
+    <issue
+        id="SpUsage"
+        message="Should use &quot;`sp`&quot; instead of &quot;`dp`&quot; for text sizes">
+        <location
+            file="src/main/res/layout/main_page_item.xml"
+            line="42"/>
+    </issue>
+
+    <issue
+        id="PxUsage"
+        message="Avoid using &quot;`px`&quot; as units; use &quot;`dp`&quot; instead">
+        <location
+            file="src/main/res/layout/list_layout.xml"
+            line="22"/>
+    </issue>
+
+    <issue
+        id="PxUsage"
+        message="Avoid using &quot;`px`&quot; as units; use &quot;`dp`&quot; instead">
+        <location
+            file="src/main/res/layout/list_layout.xml"
+            line="38"/>
+    </issue>
+
+    <issue
+        id="WrongConstant"
+        message="Must be one of: PixelFormat.UNKNOWN, PixelFormat.TRANSLUCENT, PixelFormat.TRANSPARENT, PixelFormat.OPAQUE">
+        <location
+            file="src/main/java/cheetatech/com/colorhub/drawable/AlphaPatternDrawable.java"
+            line="67"/>
+    </issue>
+
+    <issue
+        id="AllowBackup"
+        message="On SDK version 23 and up, your app data will be automatically backed up, and restored on app install. Your GCM regid will not work across restores, so you must ensure that it is excluded from the back-up set. Use the attribute `android:fullBackupContent` to specify an `@xml` resource which configures which files to backup. More info: https://developer.android.com/training/backup/autosyncapi.html">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="11"/>
+    </issue>
+
+    <issue
+        id="ObsoleteLayoutParam"
+        message="Invalid layout param in a `RelativeLayout`: `layout_weight`">
+        <location
+            file="src/main/res/layout/activity_color_picker.xml"
+            line="51"/>
+    </issue>
+
+    <issue
+        id="ObsoleteLayoutParam"
+        message="Invalid layout param in a `LinearLayout`: `layout_below`">
+        <location
+            file="src/main/res/layout/content_aboutus.xml"
+            line="62"/>
+    </issue>
+
+    <issue
+        id="ObsoleteLayoutParam"
+        message="Invalid layout param in a `LinearLayout`: `layout_below`">
+        <location
+            file="src/main/res/layout/content_aboutus.xml"
+            line="88"/>
+    </issue>
+
+    <issue
+        id="ObsoleteLayoutParam"
+        message="Invalid layout param in a `LinearLayout`: `layout_below`">
+        <location
+            file="src/main/res/layout/content_aboutus.xml"
+            line="100"/>
+    </issue>
+
+    <issue
+        id="ObsoleteLayoutParam"
+        message="Invalid layout param in a `LinearLayout`: `layout_below`">
+        <location
+            file="src/main/res/layout/content_aboutus.xml"
+            line="121"/>
+    </issue>
+
+    <issue
+        id="ObsoleteLayoutParam"
+        message="Invalid layout param in a `LinearLayout`: `layout_below`">
+        <location
+            file="src/main/res/layout/content_aboutus.xml"
+            line="149"/>
+    </issue>
+
+    <issue
+        id="ObsoleteLayoutParam"
+        message="Invalid layout param in a `LinearLayout`: `layout_below`">
+        <location
+            file="src/main/res/layout/content_aboutus.xml"
+            line="170"/>
+    </issue>
+
+    <issue
+        id="ObsoleteLayoutParam"
+        message="Invalid layout param in a `LinearLayout`: `layout_below`">
+        <location
+            file="src/main/res/layout/fragment_color_picker2.xml"
+            line="66"/>
+    </issue>
+
+    <issue
+        id="ObsoleteLayoutParam"
+        message="Invalid layout param in a `LinearLayout`: `layout_above`">
+        <location
+            file="src/main/res/layout/fragment_color_picker2.xml"
+            line="82"/>
+    </issue>
+
+    <issue
+        id="ObsoleteLayoutParam"
+        message="Invalid layout param in a `LinearLayout`: `layout_above`">
+        <location
+            file="src/main/res/layout/fragment_color_picker3.xml"
+            line="63"/>
+    </issue>
+
+    <issue
+        id="StaticFieldLeak"
+        message="Do not place Android context classes in static fields (static reference to `AdsUtils` which has field `context` pointing to `Context`); this is a memory leak (and also breaks Instant Run)">
+        <location
+            file="src/main/java/cheetatech/com/colorhub/ads/AdsUtils.java"
+            line="26"/>
+    </issue>
+
+    <issue
+        id="StaticFieldLeak"
+        message="Do not place Android context classes in static fields (static reference to `BoardEditor` which has field `context` pointing to `Context`); this is a memory leak (and also breaks Instant Run)">
+        <location
+            file="src/main/java/cheetatech/com/colorhub/defines/BoardEditor.java"
+            line="8"/>
+    </issue>
+
+    <issue
+        id="StaticFieldLeak"
+        message="Do not place Android context classes in static fields; this is a memory leak (and also breaks Instant Run)">
+        <location
+            file="src/main/java/layout/ColorDetailFragment.kt"
+            line="130"/>
+    </issue>
+
+    <issue
+        id="StaticFieldLeak"
+        message="Do not place Android context classes in static fields (static reference to `Realm` which has field `applicationContext` pointing to `Context`); this is a memory leak (and also breaks Instant Run)">
+        <location
+            file="src/main/java/cheetatech/com/colorhub/realm/RealmX.java"
+            line="19"/>
+    </issue>
+
+    <issue
+        id="StaticFieldLeak"
+        message="Do not place Android context classes in static fields (static reference to `ToolBarController` which has field `toolbar` pointing to `Toolbar`); this is a memory leak (and also breaks Instant Run)">
+        <location
+            file="src/main/java/cheetatech/com/colorhub/controller/ToolBarController.java"
+            line="12"/>
+    </issue>
+
+    <issue
+        id="ViewHolder"
+        message="Unconditional layout inflation from view adapter: Should use View Holder pattern (use recycled view passed into this method as the second parameter) for smoother scrolling">
+        <location
+            file="src/main/java/cheetatech/com/colorhub/adapters/NavigationBarAdapter.java"
+            line="42"/>
+    </issue>
+
+    <issue
+        id="InefficientWeight"
+        message="Use a `layout_height` of `0dp` instead of `match_parent` for better performance">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="131"/>
+    </issue>
+
+    <issue
+        id="InefficientWeight"
+        message="Use a `layout_height` of `0dp` instead of `wrap_content` for better performance">
+        <location
+            file="src/main/res/layout/content_aboutus.xml"
+            line="34"/>
+    </issue>
+
+    <issue
+        id="InefficientWeight"
+        message="Use a `layout_height` of `0dp` instead of `match_parent` for better performance">
+        <location
+            file="src/main/res/layout/content_aboutus.xml"
+            line="40"/>
+    </issue>
+
+    <issue
+        id="InefficientWeight"
+        message="Use a `layout_height` of `0dp` instead of `wrap_content` for better performance">
+        <location
+            file="src/main/res/layout/fragment_color_picker2.xml"
+            line="24"/>
+    </issue>
+
+    <issue
+        id="InefficientWeight"
+        message="Use a `layout_height` of `0dp` instead of `match_parent` for better performance">
+        <location
+            file="src/main/res/layout/fragment_color_picker2.xml"
+            line="72"/>
+    </issue>
+
+    <issue
+        id="NestedWeights"
+        message="Nested weights are bad for performance">
+        <location
+            file="src/main/res/layout/content_aboutus.xml"
+            line="35"/>
+    </issue>
+
+    <issue
+        id="NestedWeights"
+        message="Nested weights are bad for performance">
+        <location
+            file="src/main/res/layout/content_aboutus.xml"
+            line="43"/>
+    </issue>
+
+    <issue
+        id="NestedWeights"
+        message="Nested weights are bad for performance">
+        <location
+            file="src/main/res/layout/content_aboutus.xml"
+            line="123"/>
+    </issue>
+
+    <issue
+        id="NestedWeights"
+        message="Nested weights are bad for performance">
+        <location
+            file="src/main/res/layout/content_aboutus.xml"
+            line="129"/>
+    </issue>
+
+    <issue
+        id="NestedWeights"
+        message="Nested weights are bad for performance">
+        <location
+            file="src/main/res/layout/fragment_color_picker2.xml"
+            line="42"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@color/colorDrawerBackground` with a theme that also paints a background (inferred theme is `@style/AppTheme_NoActionBar`)">
+        <location
+            file="src/main/res/layout/content_aboutus.xml"
+            line="14"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@android:color/white` with a theme that also paints a background (inferred theme is `@style/AppTheme`)">
+        <location
+            file="src/main/res/layout/fragment_color_detail.xml"
+            line="10"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@android:color/white` with a theme that also paints a background (inferred theme is `@style/AppTheme`)">
+        <location
+            file="src/main/res/layout/fragment_color_kotlin.xml"
+            line="5"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@android:color/white` with a theme that also paints a background (inferred theme is `@style/AppTheme`)">
+        <location
+            file="src/main/res/layout/fragment_color_picker1.xml"
+            line="13"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@android:color/white` with a theme that also paints a background (inferred theme is `@style/AppTheme`)">
+        <location
+            file="src/main/res/layout/fragment_color_picker3.xml"
+            line="4"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@android:color/white` with a theme that also paints a background (inferred theme is `@style/AppTheme`)">
+        <location
+            file="src/main/res/layout/fragment_flat_color.xml"
+            line="7"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@android:color/white` with a theme that also paints a background (inferred theme is `@style/AppTheme`)">
+        <location
+            file="src/main/res/layout/fragment_material_root.xml"
+            line="7"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@android:color/white` with a theme that also paints a background (inferred theme is `@style/AppTheme`)">
+        <location
+            file="src/main/res/layout/fragment_material_ui.xml"
+            line="7"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@android:color/white` with a theme that also paints a background (inferred theme is `@style/AppTheme`)">
+        <location
+            file="src/main/res/layout/fragment_root_your_color.xml"
+            line="9"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@android:color/white` with a theme that also paints a background (inferred theme is `@style/AppTheme`)">
+        <location
+            file="src/main/res/layout/fragment_your_color_kotlin.xml"
+            line="8"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@color/colorDrawerBackground` with a theme that also paints a background (inferred theme is `@style/AppTheme`)">
+        <location
+            file="src/main/res/layout/navigation_row.xml"
+            line="5"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.about_16` appears to be unused">
+        <location
+            file="src/main/res/drawable/about_16.xml"
+            line="3"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.about_button` appears to be unused">
+        <location
+            file="src/main/res/drawable/about_button.xml"
+            line="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.activity_color_picker` appears to be unused">
+        <location
+            file="src/main/res/layout/activity_color_picker.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.activity_main_page` appears to be unused">
+        <location
+            file="src/main/res/layout/activity_main_page.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.activity_your_color_kotlin` appears to be unused">
+        <location
+            file="src/main/res/layout/activity_your_color_kotlin.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.ads_item` appears to be unused">
+        <location
+            file="src/main/res/layout/ads_item.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.blue_thumb_default` appears to be unused">
+        <location
+            file="src/main/res/drawable-hdpi/blue_thumb_default.png"/>
+        <location
+            file="src/main/res/drawable-mdpi/blue_thumb_default.png"/>
+        <location
+            file="src/main/res/drawable-xhdpi/blue_thumb_default.png"/>
+        <location
+            file="src/main/res/drawable-xxhdpi/blue_thumb_default.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.blue_thumb_drawable` appears to be unused">
+        <location
+            file="src/main/res/drawable/blue_thumb_drawable.xml"
+            line="3"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.blue_thumb_pressed` appears to be unused">
+        <location
+            file="src/main/res/drawable-hdpi/blue_thumb_pressed.png"/>
+        <location
+            file="src/main/res/drawable-mdpi/blue_thumb_pressed.png"/>
+        <location
+            file="src/main/res/drawable-xhdpi/blue_thumb_pressed.png"/>
+        <location
+            file="src/main/res/drawable-xxhdpi/blue_thumb_pressed.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.border_shape` appears to be unused">
+        <location
+            file="src/main/res/drawable-xhdpi/border_shape.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.color_button` appears to be unused">
+        <location
+            file="src/main/res/drawable/color_button.xml"
+            line="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.color_button_16` appears to be unused">
+        <location
+            file="src/main/res/drawable/color_button_16.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.colorpickerview__btn_background` appears to be unused">
+        <location
+            file="src/main/res/drawable/colorpickerview__btn_background.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.colorpickerview__btn_background_pressed` appears to be unused">
+        <location
+            file="src/main/res/drawable/colorpickerview__btn_background_pressed.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.colorpickerview__dialog_color_picker` appears to be unused">
+        <location
+            file="src/main/res/layout/colorpickerview__dialog_color_picker.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.colorpickerview__preference_preview_layout` appears to be unused">
+        <location
+            file="src/main/res/layout/colorpickerview__preference_preview_layout.xml"
+            line="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.picker_background` appears to be unused">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="14"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.colorAccent2` appears to be unused">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="16"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.colorSoftBlue` appears to be unused">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="17"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.colorSoftGrey` appears to be unused">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="18"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.lightgrey` appears to be unused">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="24"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.dribble` appears to be unused">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="25"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.dribbledark` appears to be unused">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="26"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.black` appears to be unused">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="27"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.dialogcolor` appears to be unused">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="28"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.cheetatech_background` appears to be unused">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="29"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.cheetatech_background_dark` appears to be unused">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="30"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.cheetatech_text_color` appears to be unused">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="31"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.colorDrawerOldText` appears to be unused">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="35"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.colorAntiqueWhite` appears to be unused">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="39"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.colorSeaGreen` appears to be unused">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="41"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.colorWhiteSmoke` appears to be unused">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="42"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.colorMetroOlive` appears to be unused">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="43"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.background` appears to be unused">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="49"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.half_black` appears to be unused">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="50"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.white_pressed` appears to be unused">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="51"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.pink` appears to be unused">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="52"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.pink_pressed` appears to be unused">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="53"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.blue_semi_transparent` appears to be unused">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="54"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.blue_semi_transparent_pressed` appears to be unused">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="55"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.content_color_picker` appears to be unused">
+        <location
+            file="src/main/res/layout/content_color_picker.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.content_main_page` appears to be unused">
+        <location
+            file="src/main/res/layout/content_main_page.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.content_your_color_kotlin` appears to be unused">
+        <location
+            file="src/main/res/layout/content_your_color_kotlin.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.developer3` appears to be unused">
+        <location
+            file="src/main/res/drawable/developer3.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.dimen.gap` appears to be unused">
+        <location
+            file="src/main/res/values/dimens.xml"
+            line="7"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.dimen.radius` appears to be unused">
+        <location
+            file="src/main/res/values/dimens.xml"
+            line="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.dimen.gap_small` appears to be unused">
+        <location
+            file="src/main/res/values/dimens.xml"
+            line="9"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.dimen.gap_large` appears to be unused">
+        <location
+            file="src/main/res/values/dimens.xml"
+            line="10"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.dimen.text` appears to be unused">
+        <location
+            file="src/main/res/values/dimens.xml"
+            line="11"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.dimen.colorpickerview__required_padding` appears to be unused">
+        <location
+            file="src/main/res/values/dimens.xml"
+            line="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.dimen.colorpickerview__dialog_preview_width` appears to be unused">
+        <location
+            file="src/main/res/values/dimens.xml"
+            line="15"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.dimen.colorpickerview__dialog_preview_height` appears to be unused">
+        <location
+            file="src/main/res/values/dimens.xml"
+            line="16"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.drawer_item` appears to be unused">
+        <location
+            file="src/main/res/layout/drawer_item.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.drawer_item_logo` appears to be unused">
+        <location
+            file="src/main/res/layout/drawer_item_logo.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.drawer_text_item` appears to be unused">
+        <location
+            file="src/main/res/layout/drawer_text_item.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.anim.fade_in` appears to be unused">
+        <location
+            file="src/main/res/anim/fade_in.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.anim.fade_out` appears to be unused">
+        <location
+            file="src/main/res/anim/fade_out.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.fragment_color_picker2` appears to be unused">
+        <location
+            file="src/main/res/layout/fragment_color_picker2.xml"
+            line="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.gradient_background` appears to be unused">
+        <location
+            file="src/main/res/drawable/gradient_background.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.green_thumb_default` appears to be unused">
+        <location
+            file="src/main/res/drawable-hdpi/green_thumb_default.png"/>
+        <location
+            file="src/main/res/drawable-mdpi/green_thumb_default.png"/>
+        <location
+            file="src/main/res/drawable-xhdpi/green_thumb_default.png"/>
+        <location
+            file="src/main/res/drawable-xxhdpi/green_thumb_default.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.green_thumb_drawable` appears to be unused">
+        <location
+            file="src/main/res/drawable/green_thumb_drawable.xml"
+            line="3"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.green_thumb_pressed` appears to be unused">
+        <location
+            file="src/main/res/drawable-hdpi/green_thumb_pressed.png"/>
+        <location
+            file="src/main/res/drawable-mdpi/green_thumb_pressed.png"/>
+        <location
+            file="src/main/res/drawable-xhdpi/green_thumb_pressed.png"/>
+        <location
+            file="src/main/res/drawable-xxhdpi/green_thumb_pressed.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_action_browser` appears to be unused">
+        <location
+            file="src/main/res/drawable-hdpi/ic_action_browser.png"/>
+        <location
+            file="src/main/res/drawable-mdpi/ic_action_browser.png"/>
+        <location
+            file="src/main/res/drawable-xhdpi/ic_action_browser.png"/>
+        <location
+            file="src/main/res/drawable-xxhdpi/ic_action_browser.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_action_color_palette` appears to be unused">
+        <location
+            file="src/main/res/drawable-hdpi/ic_action_color_palette.png"/>
+        <location
+            file="src/main/res/drawable-mdpi/ic_action_color_palette.png"/>
+        <location
+            file="src/main/res/drawable-xhdpi/ic_action_color_palette.png"/>
+        <location
+            file="src/main/res/drawable-xxhdpi/ic_action_color_palette.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_action_favorites` appears to be unused">
+        <location
+            file="src/main/res/drawable-hdpi/ic_action_favorites.png"/>
+        <location
+            file="src/main/res/drawable-mdpi/ic_action_favorites.png"/>
+        <location
+            file="src/main/res/drawable-xhdpi/ic_action_favorites.png"/>
+        <location
+            file="src/main/res/drawable-xxhdpi/ic_action_favorites.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_action_menu_` appears to be unused">
+        <location
+            file="src/main/res/drawable-hdpi/ic_action_menu_.png"/>
+        <location
+            file="src/main/res/drawable-mdpi/ic_action_menu_.png"/>
+        <location
+            file="src/main/res/drawable-xhdpi/ic_action_menu_.png"/>
+        <location
+            file="src/main/res/drawable-xxhdpi/ic_action_menu_.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_action_rate` appears to be unused">
+        <location
+            file="src/main/res/drawable-hdpi/ic_action_rate.png"/>
+        <location
+            file="src/main/res/drawable-mdpi/ic_action_rate.png"/>
+        <location
+            file="src/main/res/drawable-xhdpi/ic_action_rate.png"/>
+        <location
+            file="src/main/res/drawable-xxhdpi/ic_action_rate.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_banner2` appears to be unused">
+        <location
+            file="src/main/res/drawable/ic_banner2.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_eraser` appears to be unused">
+        <location
+            file="src/main/res/drawable/ic_eraser.png"/>
+        <location
+            file="src/main/res/drawable-hdpi/ic_eraser.png"/>
+        <location
+            file="src/main/res/drawable-mdpi/ic_eraser.png"/>
+        <location
+            file="src/main/res/drawable-xhdpi/ic_eraser.png"/>
+        <location
+            file="src/main/res/drawable-xxhdpi/ic_eraser.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.ic_favorite_action` appears to be unused">
+        <location
+            file="src/main/res/drawable/ic_favorite_action.xml"
+            line="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.mipmap.ic_launcher_browser` appears to be unused">
+        <location
+            file="src/main/res/mipmap-hdpi/ic_launcher_browser.png"/>
+        <location
+            file="src/main/res/mipmap-mdpi/ic_launcher_browser.png"/>
+        <location
+            file="src/main/res/mipmap-xhdpi/ic_launcher_browser.png"/>
+        <location
+            file="src/main/res/mipmap-xxhdpi/ic_launcher_browser.png"/>
+        <location
+            file="src/main/res/mipmap-xxxhdpi/ic_launcher_browser.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.mipmap.ic_launcher_facebook` appears to be unused">
+        <location
+            file="src/main/res/mipmap-hdpi/ic_launcher_facebook.png"/>
+        <location
+            file="src/main/res/mipmap-mdpi/ic_launcher_facebook.png"/>
+        <location
+            file="src/main/res/mipmap-xhdpi/ic_launcher_facebook.png"/>
+        <location
+            file="src/main/res/mipmap-xxhdpi/ic_launcher_facebook.png"/>
+        <location
+            file="src/main/res/mipmap-xxxhdpi/ic_launcher_facebook.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.mipmap.ic_launcher_instagram` appears to be unused">
+        <location
+            file="src/main/res/mipmap-hdpi/ic_launcher_instagram.png"/>
+        <location
+            file="src/main/res/mipmap-mdpi/ic_launcher_instagram.png"/>
+        <location
+            file="src/main/res/mipmap-xhdpi/ic_launcher_instagram.png"/>
+        <location
+            file="src/main/res/mipmap-xxhdpi/ic_launcher_instagram.png"/>
+        <location
+            file="src/main/res/mipmap-xxxhdpi/ic_launcher_instagram.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.mipmap.ic_launcher_twitter` appears to be unused">
+        <location
+            file="src/main/res/mipmap-hdpi/ic_launcher_twitter.png"/>
+        <location
+            file="src/main/res/mipmap-mdpi/ic_launcher_twitter.png"/>
+        <location
+            file="src/main/res/mipmap-xhdpi/ic_launcher_twitter.png"/>
+        <location
+            file="src/main/res/mipmap-xxhdpi/ic_launcher_twitter.png"/>
+        <location
+            file="src/main/res/mipmap-xxxhdpi/ic_launcher_twitter.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.mipmap.ic_launcher_up` appears to be unused">
+        <location
+            file="src/main/res/mipmap-hdpi/ic_launcher_up.png"/>
+        <location
+            file="src/main/res/mipmap-mdpi/ic_launcher_up.png"/>
+        <location
+            file="src/main/res/mipmap-xhdpi/ic_launcher_up.png"/>
+        <location
+            file="src/main/res/mipmap-xxhdpi/ic_launcher_up.png"/>
+        <location
+            file="src/main/res/mipmap-xxxhdpi/ic_launcher_up.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.layout.list_layout` appears to be unused">
+        <location
+            file="src/main/res/layout/list_layout.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.pointer_arrows` appears to be unused">
+        <location
+            file="src/main/res/drawable/pointer_arrows.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.mipmap.pointer_arrows` appears to be unused">
+        <location
+            file="src/main/res/mipmap-xxhdpi/pointer_arrows.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.pointer_simple` appears to be unused">
+        <location
+            file="src/main/res/drawable/pointer_simple.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.mipmap.pointer_simple` appears to be unused">
+        <location
+            file="src/main/res/mipmap-xxhdpi/pointer_simple.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.red_thumb_default` appears to be unused">
+        <location
+            file="src/main/res/drawable-hdpi/red_thumb_default.png"/>
+        <location
+            file="src/main/res/drawable-mdpi/red_thumb_default.png"/>
+        <location
+            file="src/main/res/drawable-xhdpi/red_thumb_default.png"/>
+        <location
+            file="src/main/res/drawable-xxhdpi/red_thumb_default.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.red_thumb_drawable` appears to be unused">
+        <location
+            file="src/main/res/drawable/red_thumb_drawable.xml"
+            line="3"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.red_thumb_pressed` appears to be unused">
+        <location
+            file="src/main/res/drawable-hdpi/red_thumb_pressed.png"/>
+        <location
+            file="src/main/res/drawable-mdpi/red_thumb_pressed.png"/>
+        <location
+            file="src/main/res/drawable-xhdpi/red_thumb_pressed.png"/>
+        <location
+            file="src/main/res/drawable-xxhdpi/red_thumb_pressed.png"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.round_button` appears to be unused">
+        <location
+            file="src/main/res/drawable/round_button.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.anim.slide_down_fast` appears to be unused">
+        <location
+            file="src/main/res/anim/slide_down_fast.xml"
+            line="2"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.action_settings` appears to be unused">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="3"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.banner_com` appears to be unused">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="8"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.banner_commercial` appears to be unused">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="10"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.banner_commercialww` appears to be unused">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="11"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.contact_us` appears to be unused">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="15"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.new_rate_dialog_title` appears to be unused">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="18"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.new_rate_dialog_message` appears to be unused">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="19"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.new_rate_dialog_ok` appears to be unused">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="20"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.new_rate_dialog_later` appears to be unused">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="21"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.new_rate_dialog_never` appears to be unused">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="22"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.array.Planets` appears to be unused">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="48"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.title_activity_color_picker` appears to be unused">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="909"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.title_activity_your_color` appears to be unused">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="916"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.style.colorpickerview__ColorPickerViewStyle` appears to be unused">
+        <location
+            file="src/main/res/values-v21/styles.xml"
+            line="31"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.style.floating_action_button` appears to be unused">
+        <location
+            file="src/main/res/values/styles.xml"
+            line="37"/>
+        <location
+            file="src/main/res/values-v21/styles.xml"
+            line="11"/>
+    </issue>
+
+    <issue
+        id="UselessLeaf"
+        message="This `RelativeLayout` view is useless (no children, no `background`, no `id`, no `style`)">
+        <location
+            file="src/main/res/layout/ads_item.xml"
+            line="8"/>
+    </issue>
+
+    <issue
+        id="UselessParent"
+        message="This `RelativeLayout` layout or its `RelativeLayout` parent is possibly useless; transfer the `background` attribute to the other view">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="57"/>
+    </issue>
+
+    <issue
+        id="UselessParent"
+        message="This `LinearLayout` layout or its `LinearLayout` parent is useless">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="123"/>
+    </issue>
+
+    <issue
+        id="UselessParent"
+        message="This `LinearLayout` layout or its `LinearLayout` parent is useless">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="128"/>
+    </issue>
+
+    <issue
+        id="UselessParent"
+        message="This `RelativeLayout` layout or its `LinearLayout` parent is possibly useless">
+        <location
+            file="src/main/res/layout/color_list_item.xml"
+            line="8"/>
+    </issue>
+
+    <issue
+        id="UselessParent"
+        message="This `LinearLayout` layout or its `RelativeLayout` parent is useless; transfer the `background` attribute to the other view">
+        <location
+            file="src/main/res/layout/content_aboutus.xml"
+            line="18"/>
+    </issue>
+
+    <issue
+        id="UselessParent"
+        message="This `RelativeLayout` layout or its `RelativeLayout` parent is useless">
+        <location
+            file="src/main/res/layout/content_color_picker.xml"
+            line="14"/>
+    </issue>
+
+    <issue
+        id="UselessParent"
+        message="This `RelativeLayout` layout or its `RelativeLayout` parent is useless; transfer the `background` attribute to the other view">
+        <location
+            file="src/main/res/layout/fragment_color_picker1.xml"
+            line="17"/>
+    </issue>
+
+    <issue
+        id="UselessParent"
+        message="This `LinearLayout` layout or its `RelativeLayout` parent is useless">
+        <location
+            file="src/main/res/layout/fragment_color_picker2.xml"
+            line="13"/>
+    </issue>
+
+    <issue
+        id="UselessParent"
+        message="This `RelativeLayout` layout or its `LinearLayout` parent is possibly useless; transfer the `background` attribute to the other view">
+        <location
+            file="src/main/res/layout/fragment_color_picker2.xml"
+            line="77"/>
+    </issue>
+
+    <issue
+        id="UselessParent"
+        message="This `LinearLayout` layout or its `LinearLayout` parent is possibly useless; transfer the `background` attribute to the other view">
+        <location
+            file="src/main/res/layout/fragment_color_picker3.xml"
+            line="52"/>
+    </issue>
+
+    <issue
+        id="UselessParent"
+        message="This `RelativeLayout` layout or its `LinearLayout` parent is possibly useless; transfer the `background` attribute to the other view">
+        <location
+            file="src/main/res/layout/fragment_color_picker3.xml"
+            line="58"/>
+    </issue>
+
+    <issue
+        id="UselessParent"
+        message="This `RelativeLayout` layout or its `FrameLayout` parent is useless; transfer the `background` attribute to the other view">
+        <location
+            file="src/main/res/layout/fragment_material_ui.xml"
+            line="9"/>
+    </issue>
+
+    <issue
+        id="UselessParent"
+        message="This `RelativeLayout` layout or its `RelativeLayout` parent is possibly useless; transfer the `background` attribute to the other view">
+        <location
+            file="src/main/res/layout/main_page_item.xml"
+            line="9"/>
+    </issue>
+
+    <issue
+        id="UselessParent"
+        message="This `RelativeLayout` layout or its `RelativeLayout` parent is possibly useless; transfer the `background` attribute to the other view">
+        <location
+            file="src/main/res/layout/material_root_item.xml"
+            line="8"/>
+    </issue>
+
+    <issue
+        id="UselessParent"
+        message="This `RelativeLayout` layout or its `RelativeLayout` parent is useless">
+        <location
+            file="src/main/res/layout/your_color_item.xml"
+            line="8"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-hdpi/ic_action_about_us.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-mdpi/ic_action_about_us.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-xhdpi/ic_action_about_us.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-xxhdpi/ic_action_about_us.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-hdpi/ic_action_browser.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-mdpi/ic_action_browser.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-xhdpi/ic_action_browser.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-xxhdpi/ic_action_browser.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-hdpi/ic_action_color_palette.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-mdpi/ic_action_color_palette.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-xhdpi/ic_action_color_palette.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-xxhdpi/ic_action_color_palette.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-hdpi/ic_action_favorites.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-mdpi/ic_action_favorites.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-xhdpi/ic_action_favorites.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-xxhdpi/ic_action_favorites.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-hdpi/ic_action_rate.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-mdpi/ic_action_rate.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-xhdpi/ic_action_rate.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-xxhdpi/ic_action_rate.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-hdpi/ic_action_rate2.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-mdpi/ic_action_rate2.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-xhdpi/ic_action_rate2.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-xxhdpi/ic_action_rate2.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-hdpi/ic_action_share.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-mdpi/ic_action_share.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-xhdpi/ic_action_share.png"/>
+    </issue>
+
+    <issue
+        id="IconColors"
+        message="Action Bar icons should use a single gray color (`#333333` for light themes (with 60%/30% opacity for enabled/disabled), and `#FFFFFF` with opacity 80%/30% for dark themes">
+        <location
+            file="src/main/res/drawable-xxhdpi/ic_action_share.png"/>
+    </issue>
+
+    <issue
+        id="IconDuplicatesConfig"
+        message="The `ic_action_home_dark.png` icon has identical contents in the following configuration folders: drawable-mdpi, drawable">
+        <location
+            file="src/main/res/drawable/ic_action_home_dark.png"/>
+        <location
+            file="src/main/res/drawable-mdpi/ic_action_home_dark.png"/>
+    </issue>
+
+    <issue
+        id="IconDuplicatesConfig"
+        message="The `ic_favorite_dark.png` icon has identical contents in the following configuration folders: drawable-mdpi, drawable">
+        <location
+            file="src/main/res/drawable/ic_favorite_dark.png"/>
+        <location
+            file="src/main/res/drawable-mdpi/ic_favorite_dark.png"/>
+    </issue>
+
+    <issue
+        id="IconDuplicatesConfig"
+        message="The `pointer_arrows.png` icon has identical contents in the following configuration folders: drawable, mipmap-xxhdpi">
+        <location
+            file="src/main/res/mipmap-xxhdpi/pointer_arrows.png"/>
+        <location
+            file="src/main/res/drawable/pointer_arrows.png"/>
+    </issue>
+
+    <issue
+        id="IconDuplicatesConfig"
+        message="The `pointer_simple.png` icon has identical contents in the following configuration folders: drawable, mipmap-xxhdpi">
+        <location
+            file="src/main/res/mipmap-xxhdpi/pointer_simple.png"/>
+        <location
+            file="src/main/res/drawable/pointer_simple.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/antrikod_logo.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/antrikod_logo.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/developer1.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/developer1.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/developer2.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/developer2.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/developer3.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/developer3.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_action_home_dark.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_action_home_dark.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_banner2.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_banner2.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_eraser.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_eraser.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_favorite_dark.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_favorite_dark.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_touch_app_white_24dp.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_touch_app_white_24dp.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/pointer_arrows.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/pointer_arrows.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/pointer_simple.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/pointer_simple.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/uiux1.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/uiux1.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/uiux2.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/uiux2.png"/>
+    </issue>
+
+    <issue
+        id="IconDensities"
+        message="Missing the following drawables in `drawable-hdpi`: border_shape.xml (found in drawable-xhdpi)">
+        <location
+            file="src/main/res/drawable-hdpi"/>
+    </issue>
+
+    <issue
+        id="IconDensities"
+        message="Missing the following drawables in `drawable-mdpi`: border_shape.xml (found in drawable-xhdpi)">
+        <location
+            file="src/main/res/drawable-mdpi"/>
+    </issue>
+
+    <issue
+        id="IconDensities"
+        message="Missing the following drawables in `drawable-xxhdpi`: border_shape.xml (found in drawable-xhdpi)">
+        <location
+            file="src/main/res/drawable-xxhdpi"/>
+    </issue>
+
+    <issue
+        id="ButtonOrder"
+        message="Cancel button should be on the left (was &quot;Save | Cancel&quot;, should be &quot;Cancel | Save&quot;)">
+        <location
+            file="src/main/res/layout/fragment_edit_palette.xml"
+            line="42"/>
+    </issue>
+
+    <issue
+        id="ButtonOrder"
+        message="Cancel button should be on the left (was &quot;Save | Cancel&quot;, should be &quot;Cancel | Save&quot;)">
+        <location
+            file="src/main/res/layout/save_dialog.xml"
+            line="42"/>
+    </issue>
+
+    <issue
+        id="ButtonStyle"
+        message="Buttons in button bars should be borderless; use `style=&quot;?android:attr/buttonBarButtonStyle&quot;` (and `?android:attr/buttonBarStyle` on the parent)">
+        <location
+            file="src/main/res/layout/fragment_edit_palette.xml"
+            line="32"/>
+    </issue>
+
+    <issue
+        id="ButtonStyle"
+        message="Buttons in button bars should be borderless; use `style=&quot;?android:attr/buttonBarButtonStyle&quot;` (and `?android:attr/buttonBarStyle` on the parent)">
+        <location
+            file="src/main/res/layout/fragment_edit_palette.xml"
+            line="42"/>
+    </issue>
+
+    <issue
+        id="ButtonStyle"
+        message="Buttons in button bars should be borderless; use `style=&quot;?android:attr/buttonBarButtonStyle&quot;` (and `?android:attr/buttonBarStyle` on the parent)">
+        <location
+            file="src/main/res/layout/save_dialog.xml"
+            line="32"/>
+    </issue>
+
+    <issue
+        id="ButtonStyle"
+        message="Buttons in button bars should be borderless; use `style=&quot;?android:attr/buttonBarButtonStyle&quot;` (and `?android:attr/buttonBarStyle` on the parent)">
+        <location
+            file="src/main/res/layout/save_dialog.xml"
+            line="42"/>
+    </issue>
+
+    <issue
+        id="GoogleAppIndexingWarning"
+        message="App is not indexable by Google Search; consider adding at least one Activity with an ACTION-VIEW intent filter. See issue explanation for more details.">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="11"/>
+    </issue>
+
+    <issue
+        id="ClickableViewAccessibility"
+        message="`onTouch` should call `View#performClick` when a click is detected">
+        <location
+            file="src/main/java/layout/ColorPicker1.java"
+            line="121"/>
+    </issue>
+
+    <issue
+        id="ClickableViewAccessibility"
+        message="`onTouch` should call `View#performClick` when a click is detected">
+        <location
+            file="src/main/java/layout/ColorPickerAdd.java"
+            line="140"/>
+    </issue>
+
+    <issue
+        id="ClickableViewAccessibility"
+        message="`onTouch` should call `View#performClick` when a click is detected">
+        <location
+            file="src/main/java/layout/ColorPickerArrange.java"
+            line="152"/>
+    </issue>
+
+    <issue
+        id="ClickableViewAccessibility"
+        message="Custom view `GradientView` overrides `onTouchEvent` but not `performClick`">
+        <location
+            file="src/main/java/cheetatech/com/colorhub/colorpicker/GradientView.java"
+            line="283"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image">
+        <location
+            file="src/main/res/layout/activity_color_picker.xml"
+            line="66"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="70"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image">
+        <location
+            file="src/main/res/layout/color_list_item.xml"
+            line="13"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image">
+        <location
+            file="src/main/res/layout/content_aboutus.xml"
+            line="38"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image">
+        <location
+            file="src/main/res/layout/content_aboutus.xml"
+            line="126"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image">
+        <location
+            file="src/main/res/layout/content_aboutus.xml"
+            line="133"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image">
+        <location
+            file="src/main/res/layout/content_aboutus.xml"
+            line="175"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image">
+        <location
+            file="src/main/res/layout/content_aboutus.xml"
+            line="182"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image">
+        <location
+            file="src/main/res/layout/content_aboutus.xml"
+            line="189"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image">
+        <location
+            file="src/main/res/layout/drawer_item.xml"
+            line="13"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image">
+        <location
+            file="src/main/res/layout/drawer_item_logo.xml"
+            line="12"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image">
+        <location
+            file="src/main/res/layout/grid_list.xml"
+            line="28"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image">
+        <location
+            file="src/main/res/layout/grid_list.xml"
+            line="37"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image">
+        <location
+            file="src/main/res/layout/grid_list.xml"
+            line="91"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image">
+        <location
+            file="src/main/res/layout/grid_list2.xml"
+            line="30"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image">
+        <location
+            file="src/main/res/layout/list_layout.xml"
+            line="46"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image">
+        <location
+            file="src/main/res/layout/main_page_item.xml"
+            line="22"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image">
+        <location
+            file="src/main/res/layout/saved_list_item.xml"
+            line="19"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image">
+        <location
+            file="src/main/res/layout/your_color_item.xml"
+            line="43"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image">
+        <location
+            file="src/main/res/layout/your_color_item.xml"
+            line="52"/>
+    </issue>
+
+    <issue
+        id="KeyboardInaccessibleWidget"
+        message="&apos;clickable&apos; attribute found, please also add &apos;focusable&apos;">
+        <location
+            file="src/main/res/layout/fragment_color_kotlin.xml"
+            line="6"/>
+    </issue>
+
+    <issue
+        id="KeyboardInaccessibleWidget"
+        message="&apos;clickable&apos; attribute found, please also add &apos;focusable&apos;">
+        <location
+            file="src/main/res/layout/fragment_color_picker1.xml"
+            line="14"/>
+    </issue>
+
+    <issue
+        id="KeyboardInaccessibleWidget"
+        message="&apos;clickable&apos; attribute found, please also add &apos;focusable&apos;">
+        <location
+            file="src/main/res/layout/fragment_flat_color.xml"
+            line="6"/>
+    </issue>
+
+    <issue
+        id="KeyboardInaccessibleWidget"
+        message="&apos;clickable&apos; attribute found, please also add &apos;focusable&apos;">
+        <location
+            file="src/main/res/layout/fragment_material_root.xml"
+            line="6"/>
+    </issue>
+
+    <issue
+        id="KeyboardInaccessibleWidget"
+        message="&apos;clickable&apos; attribute found, please also add &apos;focusable&apos;">
+        <location
+            file="src/main/res/layout/fragment_material_ui.xml"
+            line="6"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPicker1.java"
+            line="167"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPicker1.java"
+            line="169"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPicker1.java"
+            line="171"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPicker1.java"
+            line="202"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPicker1.java"
+            line="204"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPicker1.java"
+            line="206"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPicker1.java"
+            line="239"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPicker1.java"
+            line="241"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPicker1.java"
+            line="243"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPicker1.java"
+            line="276"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPicker1.java"
+            line="278"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPicker1.java"
+            line="280"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPicker1.java"
+            line="360"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPicker1.java"
+            line="362"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPicker1.java"
+            line="364"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPicker1.java"
+            line="372"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPicker1.java"
+            line="374"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPicker1.java"
+            line="376"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPicker1.java"
+            line="384"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPicker1.java"
+            line="386"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPicker1.java"
+            line="388"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPicker1.java"
+            line="396"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPicker1.java"
+            line="398"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPicker1.java"
+            line="400"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPicker3.java"
+            line="128"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerAdd.java"
+            line="195"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerAdd.java"
+            line="197"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerAdd.java"
+            line="199"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerAdd.java"
+            line="230"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerAdd.java"
+            line="232"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerAdd.java"
+            line="234"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerAdd.java"
+            line="268"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerAdd.java"
+            line="270"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerAdd.java"
+            line="272"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerAdd.java"
+            line="306"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerAdd.java"
+            line="308"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerAdd.java"
+            line="310"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerAdd.java"
+            line="390"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerAdd.java"
+            line="392"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerAdd.java"
+            line="394"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerAdd.java"
+            line="402"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerAdd.java"
+            line="404"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerAdd.java"
+            line="406"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerAdd.java"
+            line="414"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerAdd.java"
+            line="416"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerAdd.java"
+            line="418"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerAdd.java"
+            line="426"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerAdd.java"
+            line="428"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerAdd.java"
+            line="430"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerArrange.java"
+            line="219"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerArrange.java"
+            line="221"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerArrange.java"
+            line="223"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerArrange.java"
+            line="254"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerArrange.java"
+            line="256"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerArrange.java"
+            line="258"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerArrange.java"
+            line="292"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerArrange.java"
+            line="294"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerArrange.java"
+            line="296"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerArrange.java"
+            line="330"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerArrange.java"
+            line="332"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerArrange.java"
+            line="334"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerArrange.java"
+            line="414"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerArrange.java"
+            line="416"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerArrange.java"
+            line="418"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerArrange.java"
+            line="426"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerArrange.java"
+            line="428"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerArrange.java"
+            line="430"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerArrange.java"
+            line="438"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerArrange.java"
+            line="440"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerArrange.java"
+            line="442"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerArrange.java"
+            line="450"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerArrange.java"
+            line="452"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="src/main/java/layout/ColorPickerArrange.java"
+            line="454"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;#FFA0B0C0&quot;, should use `@string` resource">
+        <location
+            file="src/main/res/layout/color_list_item.xml"
+            line="28"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;OK&quot;, should use `@string` resource">
+        <location
+            file="src/main/res/layout/colorpickerview__dialog_color_picker.xml"
+            line="44"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;?&quot;, should use `@string` resource">
+        <location
+            file="src/main/res/layout/colorpickerview__dialog_color_picker.xml"
+            line="64"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;Text&quot;, should use `@string` resource">
+        <location
+            file="src/main/res/layout/drawer_item.xml"
+            line="35"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;#FFABCD&quot;, should use `@string` resource">
+        <location
+            file="src/main/res/layout/fragment_color_picker1.xml"
+            line="37"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;#FFFFFFFF&quot;, should use `@string` resource">
+        <location
+            file="src/main/res/layout/fragment_color_picker2.xml"
+            line="87"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;#FFFFFFFF&quot;, should use `@string` resource">
+        <location
+            file="src/main/res/layout/fragment_color_picker3.xml"
+            line="67"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;#FF00FF&quot;, should use `@string` resource">
+        <location
+            file="src/main/res/layout/grid_list.xml"
+            line="59"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;##########&quot;, should use `@string` resource">
+        <location
+            file="src/main/res/layout/grid_list.xml"
+            line="78"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;#FF00FF&quot;, should use `@string` resource">
+        <location
+            file="src/main/res/layout/grid_list2.xml"
+            line="52"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;#FF00FF&quot;, should use `@string` resource">
+        <location
+            file="src/main/res/layout/list_layout.xml"
+            line="21"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;##########&quot;, should use `@string` resource">
+        <location
+            file="src/main/res/layout/list_layout.xml"
+            line="36"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;123456&quot;, should use `@string` resource">
+        <location
+            file="src/main/res/layout/main_page_item.xml"
+            line="36"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;500&quot;, should use `@string` resource">
+        <location
+            file="src/main/res/layout/material_root_item.xml"
+            line="21"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;#FF00F0&quot;, should use `@string` resource">
+        <location
+            file="src/main/res/layout/saved_list_item.xml"
+            line="45"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;My Color&quot;, should use `@string` resource">
+        <location
+            file="src/main/res/layout/your_color_item.xml"
+            line="35"/>
+    </issue>
+
+    <issue
+        id="RelativeOverlap"
+        message="`@id/fabAdd` can overlap `@id/saved_color_layout` if @id/fabAdd grows due to localized text expansion">
+        <location
+            file="src/main/res/layout/activity_color_picker.xml"
+            line="89"/>
+    </issue>
+
+    <issue
+        id="RtlSymmetry"
+        message="When you define `paddingLeft` you should probably also define `paddingRight` for right-to-left symmetry">
+        <location
+            file="src/main/res/layout/colorpickerview__dialog_color_picker.xml"
+            line="11"/>
+    </issue>
+
+    <issue
+        id="RtlSymmetry"
+        message="When you define `paddingRight` you should probably also define `paddingLeft` for right-to-left symmetry">
+        <location
+            file="src/main/res/layout/fragment_color_picker2.xml"
+            line="109"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_alignParentEnd=&quot;true&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/activity_color_picker.xml"
+            line="96"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Use &quot;`end`&quot; instead of &quot;`right`&quot; to ensure correct behavior in right-to-left locales">
+        <location
+            file="src/main/res/layout/activity_main.xml"
+            line="132"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_marginStart=&quot;4dp&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/color_list_item.xml"
+            line="21"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:paddingStart=&quot;16dp&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/colorpickerview__dialog_color_picker.xml"
+            line="11"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:paddingStart=&quot;2dp&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/colorpickerview__dialog_color_picker.xml"
+            line="34"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:paddingEnd=&quot;16dp&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/colorpickerview__dialog_color_picker.xml"
+            line="35"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Use &quot;`start`&quot; instead of &quot;`left`&quot; to ensure correct behavior in right-to-left locales">
+        <location
+            file="src/main/res/layout/content_aboutus.xml"
+            line="110"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Use &quot;`start`&quot; instead of &quot;`left`&quot; to ensure correct behavior in right-to-left locales">
+        <location
+            file="src/main/res/layout/content_aboutus.xml"
+            line="111"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Use &quot;`start`&quot; instead of &quot;`left`&quot; to ensure correct behavior in right-to-left locales">
+        <location
+            file="src/main/res/layout/content_aboutus.xml"
+            line="159"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Use &quot;`start`&quot; instead of &quot;`left`&quot; to ensure correct behavior in right-to-left locales">
+        <location
+            file="src/main/res/layout/content_aboutus.xml"
+            line="160"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_alignParentEnd=&quot;true&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/content_color.xml"
+            line="34"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_marginStart=&quot;1dp&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/content_color_picker.xml"
+            line="149"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_marginEnd=&quot;1dp&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/content_color_picker.xml"
+            line="193"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_marginStart=&quot;3dp&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/drawer_item.xml"
+            line="42"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_alignParentEnd=&quot;true&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/fragment_color_detail.xml"
+            line="38"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_marginStart=&quot;0dp&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/fragment_color_picker2.xml"
+            line="107"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:paddingEnd=&quot;0dp&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/fragment_color_picker2.xml"
+            line="109"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_marginStart=&quot;1dp&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/fragment_color_picker2.xml"
+            line="119"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_marginEnd=&quot;1dp&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/fragment_color_picker2.xml"
+            line="163"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_marginStart=&quot;10dp&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/fragment_edit_palette.xml"
+            line="39"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_marginEnd=&quot;5dp&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/fragment_edit_palette.xml"
+            line="40"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_marginEnd=&quot;10dp&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/fragment_edit_palette.xml"
+            line="49"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_marginStart=&quot;5dp&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/fragment_edit_palette.xml"
+            line="50"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_toEndOf=&quot;@+id/buttons_scrollview&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/fragment_material_ui.xml"
+            line="34"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_marginStart=&quot;3dp&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/grid_list.xml"
+            line="67"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Use &quot;`start`&quot; instead of &quot;`left`&quot; to ensure correct behavior in right-to-left locales">
+        <location
+            file="src/main/res/layout/grid_list.xml"
+            line="79"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_marginStart=&quot;3dp&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/grid_list.xml"
+            line="85"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_alignParentEnd=&quot;true&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/grid_list.xml"
+            line="96"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_marginStart=&quot;3dp&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/grid_list2.xml"
+            line="59"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Use &quot;`start`&quot; instead of &quot;`left`&quot; to ensure correct behavior in right-to-left locales">
+        <location
+            file="src/main/res/layout/list_layout.xml"
+            line="37"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_alignParentEnd=&quot;true&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/list_layout.xml"
+            line="51"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_marginStart=&quot;3dp&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/navigation_row.xml"
+            line="14"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_marginStart=&quot;10dp&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/save_dialog.xml"
+            line="39"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_marginEnd=&quot;5dp&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/save_dialog.xml"
+            line="40"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_marginEnd=&quot;10dp&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/save_dialog.xml"
+            line="49"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_marginStart=&quot;5dp&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/save_dialog.xml"
+            line="50"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_alignParentEnd=&quot;true&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/saved_list_item.xml"
+            line="24"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_marginEnd=&quot;5dp&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/saved_list_item.xml"
+            line="25"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_marginStart=&quot;5dp&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/saved_list_item.xml"
+            line="37"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_toStartOf=&quot;@+id/delete_saved_list&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/saved_list_item.xml"
+            line="38"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_marginStart=&quot;5dp&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/your_color_item.xml"
+            line="38"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_alignParentEnd=&quot;true&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/your_color_item.xml"
+            line="48"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_marginEnd=&quot;5dp&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/your_color_item.xml"
+            line="49"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_alignParentEnd=&quot;true&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/your_color_item.xml"
+            line="57"/>
+    </issue>
+
+    <issue
+        id="RtlHardcoded"
+        message="Consider adding `android:layout_marginEnd=&quot;5dp&quot;` to better support right-to-left layouts">
+        <location
+            file="src/main/res/layout/your_color_item.xml"
+            line="58"/>
+    </issue>
+
+</issues>

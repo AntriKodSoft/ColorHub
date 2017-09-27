@@ -11,6 +11,7 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:itemBackground">@color/colorBlueGray</item>
     </style>
 
     <style name="CustomDialog" parent="@style/Theme.AppCompat.Light.Dialog">
@@ -36,7 +37,6 @@
     <style name="floating_action_button">
         <item name="android:layout_marginBottom">50dp</item>
     </style>
-
 
 
     <style name="menu_labels_style">

@@ -2,6 +2,7 @@ package cheetatech.com.colorhub.ads;
 
 
 import android.content.Context;
+import android.os.Handler;
 import android.util.Log;
 
 
@@ -19,6 +20,7 @@ public class AdsUtils {
     private static InterstitialAd mInterstitialAd = null;
     private int mInteractionValue = 0;
     private static int INTERACT_THRESHOLD = 12;
+    private int DELAY = 2000;
 
 
     private static AdsUtils instance = null;
@@ -38,6 +40,23 @@ public class AdsUtils {
             return false;
         }
     }
+
+    public void showAdsWithRunnable(){
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if(mInterstitialAd.isLoaded()){
+                    mInterstitialAd.show();
+                    handler.removeCallbacks(this);
+                }else{
+                    requestNewInterstitial();
+                    handler.postDelayed(this,DELAY);
+                }
+            }
+        },DELAY);
+    }
+
 
 
     private void load(){
@@ -74,7 +93,10 @@ public class AdsUtils {
                     .addTestDevice("9552A433781FF6F1766BC1BDF72022E5")
                     .build();
         } else {
-            ret = new AdRequest.Builder().build();
+            ret = new AdRequest.Builder()
+                    .addTestDevice("0A02E72208689385EF8EE5F0CCCFE947")
+                    .addTestDevice("9552A433781FF6F1766BC1BDF72022E5")
+                    .build();
         }
         mInterstitialAd.loadAd(ret);
     }

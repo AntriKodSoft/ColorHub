@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:background="@android:color/transparent"
-    android:layout_height="200dp"
+    android:layout_height="wrap_content"
     android:id="@+id/rootColorLayout2"
     android:padding="5dp"
     android:orientation="vertical"
@@ -13,7 +13,7 @@
     <RelativeLayout
         android:id="@+id/borderLayout"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:background="@drawable/color_background"
         >
 
@@ -34,12 +34,21 @@
                 android:padding="17dp"
                 />
         </RelativeLayout>
-
+        <ImageView
+            android:id="@+id/triangle_item_image_view"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/ic_triangle"
+            android:rotation="180"
+            android:layout_marginTop="50dp"
+            android:layout_centerInParent="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
 
         <RelativeLayout
             android:id="@+id/blankRelativeLayout"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="90dp"
             android:layout_alignParentBottom="true"
             >
 
@@ -56,6 +65,7 @@
                 android:layout_above="@+id/colorCode"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="3dp"
+                android:layout_centerInParent="true"
                 >
 
             </TextView>
@@ -73,6 +83,7 @@
                 android:focusableInTouchMode="true"
                 android:textAllCaps="true"
                 android:layout_marginLeft="3dp"
+                android:layout_centerInParent="true"
                 >
             </TextView>
 

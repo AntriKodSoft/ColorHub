@@ -176,6 +176,8 @@
 
 
 
+    <!--
+
     <RelativeLayout
         android:id="@+id/relative_layout"
         android:layout_width="match_parent"
@@ -227,16 +229,27 @@
                     android:layout_weight="1"
                     android:src="@mipmap/ic_launcher_facebook"
                     android:background="@android:color/transparent"
+                    android:visibility="invisible"
                     />
 
                 <ImageButton
                     android:id="@+id/icon_twitter"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:src="@mipmap/ic_launcher_twitter"
                     android:background="@android:color/transparent"
+                    android:layout_weight="1"
                     />
+
+                <ImageButton
+                    android:id="@+id/icon_browser"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/ic_launcher_browser"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    />
+
                 <ImageButton
                     android:id="@+id/icon_instagram"
                     android:layout_width="match_parent"
@@ -244,21 +257,11 @@
                     android:layout_weight="1"
                     android:src="@mipmap/ic_launcher_instagram"
                     android:background="@android:color/transparent"
-
-                    />
-                <ImageButton
-                    android:id="@+id/icon_browser"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:src="@mipmap/ic_launcher_browser"
-                    android:background="@android:color/transparent"
+                    android:visibility="invisible"
                     />
             </LinearLayout>
 
         </RelativeLayout>
     </RelativeLayout>
-
-
-
+    -->
 </android.support.v4.widget.DrawerLayout>
