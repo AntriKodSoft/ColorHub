@@ -9,7 +9,6 @@
     android:paddingRight="10dp"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="cheetatech.com.colorhub.ColorPickerActivity"
     tools:showIn="@layout/activity_color_picker">
     <RelativeLayout
         xmlns:tools="http://schemas.android.com/tools"

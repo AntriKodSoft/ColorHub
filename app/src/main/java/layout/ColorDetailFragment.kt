@@ -54,12 +54,12 @@ class ColorDetailFragment : Fragment() ,ColorPickerArrange.OnColorListener, Edit
         fabEdit = view?.findViewById(R.id.fab_edit) as com.getbase.floatingactionbutton.FloatingActionButton
         fabAddPalette = view?.findViewById(R.id.fab_add_palette) as com.getbase.floatingactionbutton.FloatingActionButton
 
-        fabEdit?.setOnClickListener({ v ->
+        fabEdit?.setOnClickListener({
             (EditDialog.newInstance(mObject?.name, this as EditDialog.OnEditListener)).show(activity.supportFragmentManager, "EditDialog")
             collapse()
         })
 
-        fabAddPalette?.setOnClickListener({ v ->
+        fabAddPalette?.setOnClickListener({
             activity.supportFragmentManager
                     .beginTransaction()
                     .add(R.id.root_your_color_frame, ColorPickerAdd.newInstance(this as ColorPickerAdd.OnColorPickerAddListener))
@@ -137,13 +137,11 @@ class ColorDetailFragment : Fragment() ,ColorPickerArrange.OnColorListener, Edit
 
     override fun onEditedName(name: String?) {
         mObject?.setNameQuery(name)
-        //getSupportActionBar()!!.setTitle(mObject?.getName())
         AdsUtils.getInstance().increaseInteraction()
         Toasty.success(activity, getString(R.string.success_edit_name), Toast.LENGTH_SHORT).show()
     }
 
     override fun onDeleteItemFromList(position: Int) {
-
         colorList.removeAt(position)
         mObject?.addList(colorList)
         colorList.clear()

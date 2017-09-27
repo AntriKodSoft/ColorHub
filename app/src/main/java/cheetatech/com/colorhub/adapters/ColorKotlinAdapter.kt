@@ -53,7 +53,7 @@ class ColorKotlinAdapter(dataset: MutableList<ColorData>, itemSelectedListener: 
         holder?.mLayout?.setBackgroundColor(Color.parseColor(model.code))
 
         holder?.mColorCode?.text = model.code
-        holder?.mColorName?.text = model?.name
+        holder?.mColorName?.text = model.name
 
         holder?.mColorAddButton?.setOnClickListener({
             var dataSet = mDataset.get(position)

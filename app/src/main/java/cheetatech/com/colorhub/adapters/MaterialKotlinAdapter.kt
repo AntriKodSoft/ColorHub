@@ -45,7 +45,7 @@ class MaterialKotlinAdapter(dataset: MutableList<ColorData>, itemSelectedListene
 
         var model = mDataset.get(position)
         holder?.mLayout?.setBackgroundColor(Color.parseColor(model.code))
-        holder?.mColorName?.text = model?.name
+        holder?.mColorName?.text = model.name
         holder?.mColorName?.setTextColor(Color.parseColor(model.code))
 
         var gd4 = holder?.mBorderLayout?.background?.current as GradientDrawable

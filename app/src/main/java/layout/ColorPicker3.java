@@ -120,11 +120,9 @@ public class ColorPicker3 extends Fragment implements ColorPickerView.OnColorCha
 
     @Override
     public void onColorChanged(int newColor) {
-
-        int colorText = newColor;
         colorTextView.setText("#" + Integer.toHexString(newColor));
         colorTextView.setTextColor(Color.parseColor(inverseColor(Integer.toHexString(newColor))));
-        colorView.setBackgroundColor(colorText);
+        colorView.setBackgroundColor(newColor);
     }
 
     public void setListener(ColorPicker1.OnColorListener listener) {

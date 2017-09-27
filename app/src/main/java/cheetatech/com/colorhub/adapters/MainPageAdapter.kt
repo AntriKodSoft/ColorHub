@@ -66,7 +66,7 @@ class MainPageAdapter : RecyclerView.Adapter<MainPageAdapter.ViewHolder>{
             setColor(Color.parseColor(model?.colorCode))
             setStroke(Util.dpToPx(2),Color.parseColor(model?.colorCode))
         }
-        holder.mRelativeLayout.setOnClickListener { v ->
+        holder.mRelativeLayout.setOnClickListener {
             this.itemSelectListener.onItemSelected(position)
         }
     }

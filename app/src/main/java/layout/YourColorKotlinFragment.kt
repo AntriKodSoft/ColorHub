@@ -38,7 +38,6 @@ class YourColorKotlinFragment : Fragment() , YourColorAdapter.OnItemDelete {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         mRecyclerView = view?.findViewById(R.id.recyclerview) as RecyclerView
-
         loadAdapters()
 
     }
@@ -120,8 +119,11 @@ class YourColorKotlinFragment : Fragment() , YourColorAdapter.OnItemDelete {
     }
 
     override fun onClickedPosition(position: Int) {
+        //
+        AdsUtils.getInstance().increaseInteraction()
+        println("onClicked Position " + position)
+
         ColorBus.getInstance().savedObject = modelList.get(position)
-        //startActivity(Intent(activity, ColorActivity::class.java))
         activity.supportFragmentManager
                 .beginTransaction()
                 .add(R.id.root_your_color_frame, ColorDetailFragment.newInstance(), "ColorDetailFragment")

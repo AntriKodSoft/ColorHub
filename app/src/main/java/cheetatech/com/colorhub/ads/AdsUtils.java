@@ -93,7 +93,10 @@ public class AdsUtils {
                     .addTestDevice("9552A433781FF6F1766BC1BDF72022E5")
                     .build();
         } else {
-            ret = new AdRequest.Builder().build();
+            ret = new AdRequest.Builder()
+                    .addTestDevice("0A02E72208689385EF8EE5F0CCCFE947")
+                    .addTestDevice("9552A433781FF6F1766BC1BDF72022E5")
+                    .build();
         }
         mInterstitialAd.loadAd(ret);
     }

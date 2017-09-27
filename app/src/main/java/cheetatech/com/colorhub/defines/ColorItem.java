@@ -1,7 +1,7 @@
 package cheetatech.com.colorhub.defines;
 
 
-public class ColorItem {
+class ColorItem {
 
     private int red,green,blue,opacity;
     private int colour = 0;
