@@ -50,6 +50,14 @@ We are developing this application in public to bring you a tool that _you_ want
  
 ## ChangeLog  
 
+### [v1.3.0](https://github.com/AntriKodSoft/ColorHub/releases/tag/v1.3.0)
+  
+  * Designed new UI/UX.
+  * Improve functionality.
+  * Added Kotlin support.
+  * Simple user friendly build application.
+
+
 ### [v1.2.0](https://github.com/AntriKodSoft/ColorHub/releases/tag/v1.2.0)
   
   * Designed new Color shown UI.
