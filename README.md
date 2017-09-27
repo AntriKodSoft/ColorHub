@@ -9,8 +9,10 @@ ColorHub is an Android Application that you select Material, Flat, Social, Metro
 
 [![Licence](https://img.shields.io/aur/license/yaourt.svg)](https://github.com/AntriKodSoft/ColorHub/blob/master/LICENCE)
 
-![ColorHub Screenshots](/img/colorhub_small.gif)
 
+<p align="center"> 
+<img src="/img/colorhub_small.gif">
+</p>
 
 
 
