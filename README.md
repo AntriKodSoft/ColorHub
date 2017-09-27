@@ -18,7 +18,7 @@ ColorHub is an Android Application that you select Material, Flat, Social, Metro
 
 ## Features
 
-  * Select easily a color which color palette page with sliding tabs that name is **`Material, Flat, Social, Metro and HTML`**.
+  * Select easily a color which color palette page with recycler view tabs that name is **`Material, Flat, Social, Metro and HTML`**.
   * See Color's name and _HEX_ Code in GridView.
   * Copy Color _HEX_ Code to the clipboard with button that is in the right bottom on the GridView.
   * Create your _Colors_ with **`Color Picker`** page. This Hex code includes **`Alpha`** Channel. 
