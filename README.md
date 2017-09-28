@@ -26,6 +26,20 @@ ColorHub is an Android Application that you select Material, Flat, Social, Metro
   * Easily select color and add dynamic layout palette then save it your **Your Colors**
   * UI/UX improvement works.
 
+## Contribute Us
+
+ * Need to translate play store info text to other languages like,
+ 
+  - [x] [Turkish](/translate/turkish.md)
+  - [x] [English](/translate/english.md)
+  - [ ] [German](/translate/german.md)
+  - [ ] [Russian](/translate/russian.md)
+  - [ ] [Chinese](/translate/chinese.md)
+  - [ ] [French](/translate/french.md)
+  - [ ] [Portuguese](/translate/portuguese.md)
+  - [ ] [Spanish](/translate/spanish.md)
+
+You can feel free to pull request to contribute us.
 
 ## Contributors
 
