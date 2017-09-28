@@ -1,5 +1,7 @@
 # ColorHub Turkish Translate
 
+### Materyal, Flat, Sosyal ve HTML renklerini içeren zengin renk paletidir.
+
 ColorHub, Android, Web ve iOS için kullanılabilen materyal tasarım, flat, metro, sosyal ve HTML paletlerini içeren bir koleksiyondur.
 
 ColorHub işinizde kullanmak için size geniş renk paletleri sunar ve internette arama yaparak zaman kaybetmekten kurtarır.
