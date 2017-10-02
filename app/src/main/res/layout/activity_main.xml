@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-
-
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -39,8 +36,6 @@
             style="@style/MyCustomTabLayout"
             app:tabTextAppearance="@style/TabTextAppearance"
             />
-
-
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager
@@ -86,21 +81,9 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/image_layout"
                 >
-
             </android.support.v7.widget.RecyclerView>
-
-
         </RelativeLayout>
-
-
-
     </RelativeLayout>
-
-
-    <!-- start from here-->
-    <!-- LinearLayout for give space fab and AdView-->
-    <!-- end from here-->
-
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabAdd"
@@ -143,125 +126,8 @@
                     android:visibility="gone"
                     />
             </LinearLayout>
-
-            <!-- LinearLayour for AdView-->
-            <!--
-            <LinearLayout
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="53dp"
-
-                >
-                <com.google.android.gms.ads.AdView
-                    android:id="@+id/adView"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_vertical|center"
-                    android:layout_marginTop="0dp"
-                    android:gravity="center"
-                    ads:adSize="BANNER"
-                    ads:adUnitId="@string/banner_commercial">
-                </com.google.android.gms.ads.AdView>
-            </LinearLayout>
-            -->
-
         </LinearLayout>
     </LinearLayout>
-
-
-    <!-- ### -->
-
-
 </android.support.design.widget.CoordinatorLayout>
 
-
-
-    <!--
-
-    <RelativeLayout
-        android:id="@+id/relative_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@android:color/transparent"
-        android:layout_marginTop="24dp"
-        >
-
-        <ListView
-            android:id="@+id/left_drawer"
-            android:layout_width="240dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:choiceMode="singleChoice"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="0dp"
-            android:background="@color/colorDrawerBackground"
-            android:layout_above="@+id/space_item"
-
-            />
-
-
-        <LinearLayout
-            android:layout_width="240dp"
-            android:layout_height="1dp"
-            android:background="@color/colorDrawerText"
-            android:id="@+id/space_item"
-            android:layout_above="@+id/social_drawer_layout"
-            android:orientation="horizontal" />
-
-        <RelativeLayout
-            android:id="@+id/social_drawer_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true" >
-
-            <LinearLayout
-                android:layout_width="240dp"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@color/colorDrawerBackground"
-                >
-
-                <ImageButton
-                    android:id="@+id/icon_facebook"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:src="@mipmap/ic_launcher_facebook"
-                    android:background="@android:color/transparent"
-                    android:visibility="invisible"
-                    />
-
-                <ImageButton
-                    android:id="@+id/icon_twitter"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@mipmap/ic_launcher_twitter"
-                    android:background="@android:color/transparent"
-                    android:layout_weight="1"
-                    />
-
-                <ImageButton
-                    android:id="@+id/icon_browser"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@mipmap/ic_launcher_browser"
-                    android:layout_weight="1"
-                    android:background="@android:color/transparent"
-                    />
-
-                <ImageButton
-                    android:id="@+id/icon_instagram"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:src="@mipmap/ic_launcher_instagram"
-                    android:background="@android:color/transparent"
-                    android:visibility="invisible"
-                    />
-            </LinearLayout>
-
-        </RelativeLayout>
-    </RelativeLayout>
-    -->
 </android.support.v4.widget.DrawerLayout>

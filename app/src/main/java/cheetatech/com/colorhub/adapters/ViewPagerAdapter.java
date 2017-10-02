@@ -51,7 +51,6 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         mDrawable.setBounds(0, 0, mDrawable.getIntrinsicWidth(), mDrawable.getIntrinsicHeight());
         imageSpan = new ImageSpan(mDrawable, ImageSpan.ALIGN_BASELINE);
         sb.setSpan(imageSpan, 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
         return sb;
 
     }
