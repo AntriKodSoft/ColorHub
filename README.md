@@ -64,6 +64,10 @@ We are developing this application in public to bring you a tool that _you_ want
  
 ## ChangeLog  
 
+### [v1.4.0](https://github.com/AntriKodSoft/ColorHub/releases/tag/v1.4.0)
+  
+  * Added Multi Screen Layouts.
+
 ### [v1.3.0](https://github.com/AntriKodSoft/ColorHub/releases/tag/v1.3.0)
   
   * Designed new UI/UX.
