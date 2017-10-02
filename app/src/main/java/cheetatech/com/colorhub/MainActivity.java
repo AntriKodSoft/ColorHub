@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         setUpViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setOnTabSelectedListener(this);
+        //tabLayout.setTabMode(TabLayout.MODE_FIXED);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
 
         ToolBarController.getInstance().setToolBar(toolbar);
@@ -125,9 +126,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         loadAds();
         initAppRateDialog();
     }
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

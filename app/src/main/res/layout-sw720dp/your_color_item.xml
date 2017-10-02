@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/dynamic_linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_above="@+id/form_label"
+            >
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/form_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/bottom_label"
+            android:padding="5dp"
+            >
+        <TextView
+            android:id="@+id/color_palette_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Color"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:layout_marginLeft="5dp"
+            android:textSize="22sp"
+            android:layout_centerVertical="true"
+            />
+
+        <ImageButton
+            android:id="@+id/delete_saved_query"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_action_delete"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            />
+
+        <ImageButton
+            android:id="@+id/palette_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_action_share_dark"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:visibility="invisible"
+            />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
