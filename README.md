@@ -32,7 +32,7 @@ ColorHub is an Android Application that you select Material, Flat, Social, Metro
  
   - [x] [Turkish](/translate/turkish.md)
   - [x] [English](/translate/english.md)
-  - [ ] [German](/translate/german.md)
+  - [x] [German](/translate/german.md)   Thanks to **Burak Uyanık** that contributed
   - [ ] [Russian](/translate/russian.md)
   - [ ] [Chinese](/translate/chinese.md)
   - [ ] [French](/translate/french.md)
