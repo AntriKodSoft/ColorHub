@@ -66,7 +66,7 @@ class MainFragment : Fragment(){
         mRecyclerView.adapter = adapter
 
         mRecyclerView.addOnItemTouchListener(object : RecyclerItemClickListener(context, OnItemClickListener { view, position ->
-            var fragment : Fragment? = null;
+            var fragment : Fragment? = null
             fragment = when(position){
                 0 ->  ColorKotlinFragment.newInstance(lists.flatList!!, itemListener)
                 1 -> MaterialUIFragment.newInstance(lists, itemListener)

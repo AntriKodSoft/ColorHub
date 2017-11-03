@@ -28,12 +28,12 @@ public class AboutusActivity extends AppCompatActivity  implements View.OnClickL
         });
         getSupportActionBar().setTitle("ColorHub");
 
-        ((TextView)findViewById(R.id.link_web_text)).setOnClickListener(this);
-        ((FloatingActionButton) findViewById(R.id.fab)).setOnClickListener(this);
-        ((ImageView)findViewById(R.id.steam_1)).setOnClickListener(this);
-        ((ImageView)findViewById(R.id.steam_2)).setOnClickListener(this);
-        ((ImageView)findViewById(R.id.gteam_1)).setOnClickListener(this);
-        ((ImageView)findViewById(R.id.gteam_2)).setOnClickListener(this);
+        findViewById(R.id.link_web_text).setOnClickListener(this);
+        findViewById(R.id.fab).setOnClickListener(this);
+        findViewById(R.id.steam_1).setOnClickListener(this);
+        findViewById(R.id.steam_2).setOnClickListener(this);
+        findViewById(R.id.gteam_1).setOnClickListener(this);
+        findViewById(R.id.gteam_2).setOnClickListener(this);
     }
 
     @Override
