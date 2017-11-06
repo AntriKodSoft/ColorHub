@@ -25,10 +25,16 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
+
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,8 +49,11 @@ import cheetatech.com.colorhub.defines.BoardEditor;
 import cheetatech.com.colorhub.dialog.SaveDialog;
 import cheetatech.com.colorhub.listeners.OnItemSelect;
 import cheetatech.com.colorhub.models.Model;
+import cheetatech.com.colorhub.pojos.ColorModel;
+import cheetatech.com.colorhub.pojos.DefaultModel;
 import cheetatech.com.colorhub.realm.RealmX;
 import cheetatech.com.colorhub.realm.SavedObject;
+import cheetatech.com.colorhub.retrofit.RetrofitInterface;
 import cheetatech.com.colorhub.social.Links;
 import cheetatech.com.colorhub.social.Social;
 import es.dmoral.toasty.Toasty;
@@ -59,6 +68,9 @@ import layout.MaterialUIFragment;
 import layout.RootFragment;
 import layout.RootYourColorFragment;
 import layout.YourColorKotlinFragment;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener , SaveDialog.OnSaveListener, RootFragment.OnFragmentInteractionListener, MaterialRootFragment.OnFragmentInteractionListener, ColorKotlinFragment.OnFragmentInteractionListener, ColorPicker1.OnColorListener, MaterialUIFragment.OnFragmentInteractionListener, YourColorKotlinFragment.OnFragmentInteractionListener, ColorDetailFragment.OnFragmentInteractionListener, RootYourColorFragment.OnFragmentInteractionListener{
 
@@ -90,9 +102,15 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
     private List<Model> listModel = new ArrayList<>();
     private AnimControl animControl = null;
 
+    @Inject
+    RetrofitInterface retrofitService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ((ColorHubApplication)getApplication()).getNetComponent().inject(this);
+
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
@@ -125,7 +143,51 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         RealmX.list();
         loadAds();
         initAppRateDialog();
+
+        //
+
+
+        //
+        DefaultModel model = new DefaultModel("default");
+        Call<ColorModel> modelCall = retrofitService.getColors(model);
+        modelCall.enqueue(new Callback<ColorModel>() {
+
+            @Override
+            public void onResponse(Call<ColorModel> call, Response<ColorModel> response) {
+                if(response.code() == 200){
+                    ColorModel model = response.body();
+                    if(model != null){
+                        List<List<Integer>> list = model.getResult();
+                        for (List l : list
+                             ) {
+                                for(int i = 0; i < l.size(); i++)
+                                    Log.e("TAG"," XxXx: " + (Integer)l.get(i));
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ColorModel> call, Throwable t) {
+                Log.e("TAG","OnFailure: " + t.getMessage().toString());
+            }
+        });
+        //
     }
+
+    public String getJsonObjectBody(){
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("model", "default");
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        Log.e("TAG","Json " + obj.toString());
+        return obj.toString();
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
