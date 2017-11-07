@@ -63,6 +63,7 @@ import io.realm.RealmList;
 import layout.ColorDetailFragment;
 import layout.ColorKotlinFragment;
 import layout.ColorPicker1;
+import layout.GenerateColorFragment;
 import layout.MaterialRootFragment;
 import layout.MaterialUIFragment;
 import layout.RootFragment;
@@ -72,7 +73,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener , SaveDialog.OnSaveListener, RootFragment.OnFragmentInteractionListener, MaterialRootFragment.OnFragmentInteractionListener, ColorKotlinFragment.OnFragmentInteractionListener, ColorPicker1.OnColorListener, MaterialUIFragment.OnFragmentInteractionListener, YourColorKotlinFragment.OnFragmentInteractionListener, ColorDetailFragment.OnFragmentInteractionListener, RootYourColorFragment.OnFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements ListView.OnItemClickListener, TabLayout.OnTabSelectedListener , SaveDialog.OnSaveListener, RootFragment.OnFragmentInteractionListener, MaterialRootFragment.OnFragmentInteractionListener, ColorKotlinFragment.OnFragmentInteractionListener, ColorPicker1.OnColorListener, MaterialUIFragment.OnFragmentInteractionListener, YourColorKotlinFragment.OnFragmentInteractionListener, ColorDetailFragment.OnFragmentInteractionListener, RootYourColorFragment.OnFragmentInteractionListener, GenerateColorFragment.OnFragmentInteractionListener{
 
     @BindView(R.id.tablayout)
     TabLayout tabLayout;
