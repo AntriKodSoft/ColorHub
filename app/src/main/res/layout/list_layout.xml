@@ -9,11 +9,6 @@
     android:descendantFocusability="blocksDescendants"
     android:focusable="false"
     >
-
-
-
-
-
     <TextView
         android:id="@+id/colorName"
         android:layout_width="wrap_content"

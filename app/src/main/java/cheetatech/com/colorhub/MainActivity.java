@@ -144,10 +144,6 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         RealmX.list();
         loadAds();
         initAppRateDialog();
-
-        //
-
-
         //
         DefaultModel model = new DefaultModel("default");
         Call<ColorModel> modelCall = retrofitService.getColors(model);
